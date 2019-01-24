@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React官网之09-表单 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、表单  HTML表单元素与React中的其他DOM元素有所不同，因为表单元素自然地保留了一些内部状态。例如，下面这个表单接受一个单独的 name：  1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input type=&quot;sub">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React官网之09-表单">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-09/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、表单  HTML表单元素与React中的其他DOM元素有所不同，因为表单元素自然地保留了一些内部状态。例如，下面这个表单接受一个单独的 name：  1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input type=&quot;sub">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-07T17:04:18.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React官网之09-表单">
+<meta name="twitter:description" content="一、表单  HTML表单元素与React中的其他DOM元素有所不同，因为表单元素自然地保留了一些内部状态。例如，下面这个表单接受一个单独的 name：  1234567&amp;lt;form&amp;gt;  &amp;lt;label&amp;gt;    Name:    &amp;lt;input type=&quot;text&quot; name=&quot;name&quot; /&amp;gt;  &amp;lt;/label&amp;gt;  &amp;lt;input type=&quot;sub">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-gw-09" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React官网之09-表单
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-07-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、表单"><a href="#一、表单" class="headerlink" title="一、表单"></a>一、表单</h3><p>  HTML表单元素与React中的其他DOM元素有所不同，因为表单元素自然地保留了一些内部状态。例如，下面这个表单接受一个单独的 name：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">  &lt;label&gt;</span><br><span class="line">    Name:</span><br><span class="line">    &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"name"</span> /&gt;</span><br><span class="line">  &lt;/label&gt;</span><br><span class="line">  &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  当用户提交表单时，HTML的默认行为会使这个表单跳转到一个新页面。在React中亦是如此。但多数情况下，我们会构造一个处理提交表单并可访问用户输入表单数据的函数。实现这一点的标准方法是使用一种称为“受控组件”的技术。</p>
+<h3 id="二、受控组件"><a href="#二、受控组件" class="headerlink" title="二、受控组件"></a>二、受控组件</h3><p>  HTML 中，表单元素如 &lt; input &gt;，&lt; textarea &gt; 和 &lt; select &gt; 等通常会保持自己的状态，并根据用户输入进行更新。而在 React 中，可变的状态一般保存在组件的 state 属性中，并且只能通过 setState() 更新。</p>
+<p>  我们可以通过使 React 的 state 成为 “单一数据源原则” 来实现状态保持，同时渲染表单的 React 组件也可以控制用户输入之后的行为。这种形式，其值由 React 控制输入的表单元素称为“受控组件”。</p>
+<p>  例如，如果我们想使上一个例子在提交时记录名称，我们可以将表单写为受控组件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">class NameForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;value: <span class="string">''</span>&#125;;</span><br><span class="line"></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.handleSubmit = this.handleSubmit.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(event) &#123;</span><br><span class="line">    this.setState(&#123;value: event.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'A name was submitted: '</span> + this.state.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Name:</span><br><span class="line">          &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  由于 value 属性是在我们的表单元素上设置的，因此显示的值将始终为 React 数据源上 this.state.value 的值。由于每次按键都会触发 handleChange 来更新当前 React 的 state ，所展示的值也会随着不同用户的输入而更新。</p>
+<p>  对于受控组件来说，每个状态的改变都有一个与之相关的处理函数。这样就可以直接修改或验证用户输入。 比如，如果我们希望强制 name 的输入都是大写字母，可以这样来写 handleChange 方法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleChange(event) &#123;</span><br><span class="line">  this.setState(&#123;value: event.target.value.toUpperCase()&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、textare-标签"><a href="#三、textare-标签" class="headerlink" title="三、textare 标签"></a>三、textare 标签</h3><p>  在 HTML 中，&lt; textarea &gt; 元素通过它的子节点定义了它的文本值：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea&gt;</span><br><span class="line">  Hello there, this is some text <span class="keyword">in</span> a text area</span><br><span class="line">&lt;/textarea&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  在 React 中，&lt; textarea &gt; 的赋值使用 value 属性替代。这样一来，表单中 &lt; textarea &gt; 的书写方式接近于单行文本输入框 ：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class EssayForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      value: <span class="string">'Please write an essay about your favorite DOM element.'</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.handleSubmit = this.handleSubmit.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(event) &#123;</span><br><span class="line">    this.setState(&#123;value: event.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'An essay was submitted: '</span> + this.state.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Name:</span><br><span class="line">          &lt;textarea value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注意，this.state.value 在构造函数中初始化，所以这些文本一开始就出现在文本域中。</p>
+<h3 id="四、select-标签"><a href="#四、select-标签" class="headerlink" title="四、select 标签"></a>四、select 标签</h3><p>  在 HTML 中，&lt; select &gt; 会创建一个下拉列表。例如这段 HTML 创建一个下拉的列表：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;select&gt;</span><br><span class="line">  &lt;option value=<span class="string">"grapefruit"</span>&gt;Grapefruit&lt;/option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"lime"</span>&gt;Lime&lt;/option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"coconut"</span> selected&gt;Coconut&lt;/option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"mango"</span>&gt;Mango&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  注意，Coconut 选项是初始化时由于 selected 选中的。React 中，并不使用这个 selected 属性，而是在根 select 标签中使用了一个 value 属性。 这使得受控组件使用更方便，因为你只需要更新一处即可。例如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class FlavorForm extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;value: <span class="string">'coconut'</span>&#125;;</span><br><span class="line"></span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.handleSubmit = this.handleSubmit.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(event) &#123;</span><br><span class="line">    this.setState(&#123;value: event.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    alert(<span class="string">'Your favorite flavor is: '</span> + this.state.value);</span><br><span class="line">    event.preventDefault();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;form onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Pick your favorite La Croix flavor:</span><br><span class="line">          &lt;select value=&#123;this.state.value&#125; onChange=&#123;this.handleChange&#125;&gt;</span><br><span class="line">            &lt;option value=<span class="string">"grapefruit"</span>&gt;Grapefruit&lt;/option&gt;</span><br><span class="line">            &lt;option value=<span class="string">"lime"</span>&gt;Lime&lt;/option&gt;</span><br><span class="line">            &lt;option value=<span class="string">"coconut"</span>&gt;Coconut&lt;/option&gt;</span><br><span class="line">            &lt;option value=<span class="string">"mango"</span>&gt;Mango&lt;/option&gt;</span><br><span class="line">          &lt;/select&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Submit"</span> /&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  总的来说，&lt; input type=”text” &gt;， &lt; textarea &gt; 和 &lt; select &gt; 都以类似的方式工作，它们都通过传入一个 value 属性来实现对组件的控制。</p>
+<p>  注意可以将一个数组传递给 value 属性，允许你在 select 标签中选择多个选项：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;select multiple=&#123;<span class="literal">true</span>&#125; value=&#123;[<span class="string">'B'</span>, <span class="string">'C'</span>]&#125;&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="五、file-input-标签"><a href="#五、file-input-标签" class="headerlink" title="五、file input 标签"></a>五、file input 标签</h3><p>  在HTML中，&lt; input type=”file” &gt; 允许用户从他们的存储设备中选择一个或多个文件以提交表单的方式上传到服务器上，或者通过 JavaScript 使用 File API 对文件进行操作：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"file"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  在 React 中，一个 &lt; input type=”file” /&gt; 和一个普通的 &lt; input /&gt; 类似，但有一个重要的区别：它是只读的(read-only)，不能以编程方式设置值，相反，你应该使用 File API 与文件进行交互。</p>
+<p>  以下示例显示了如何使用一个 ref 来访问提交处理程序中的文件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">class FileInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleSubmit = this.handleSubmit.bind(</span><br><span class="line">      this</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  handleSubmit(event) &#123;</span><br><span class="line">    event.preventDefault();</span><br><span class="line">    alert(</span><br><span class="line">      `Selected file - $&#123;</span><br><span class="line">        this.fileInput.files[0].name</span><br><span class="line">      &#125;`</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;form</span><br><span class="line">        onSubmit=&#123;this.handleSubmit&#125;&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Upload file:</span><br><span class="line">          &lt;input</span><br><span class="line">            <span class="built_in">type</span>=<span class="string">"file"</span></span><br><span class="line">            ref=&#123;input =&gt; &#123;</span><br><span class="line">              this.fileInput = input;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;button <span class="built_in">type</span>=<span class="string">"submit"</span>&gt;</span><br><span class="line">          Submit</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;FileInput /&gt;,</span><br><span class="line">  document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、处理多个输入元素"><a href="#六、处理多个输入元素" class="headerlink" title="六、处理多个输入元素"></a>六、处理多个输入元素</h3><p>  当需要处理多个受控的 input 元素时，可以为每个元素添加一个 name 属性，并让处理函数根据 event.target.name 的值来选择要做什么：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">class Reservation extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      isGoing: <span class="literal">true</span>,</span><br><span class="line">      numberOfGuests: 2</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.handleInputChange = this.handleInputChange.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleInputChange(event) &#123;</span><br><span class="line">    const target = event.target;</span><br><span class="line">    const value = target.type === <span class="string">'checkbox'</span> ? target.checked : target.value;</span><br><span class="line">    const name = target.name;</span><br><span class="line"></span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      [name]: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;form&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Is going:</span><br><span class="line">          &lt;input</span><br><span class="line">            name=<span class="string">"isGoing"</span></span><br><span class="line">            <span class="built_in">type</span>=<span class="string">"checkbox"</span></span><br><span class="line">            checked=&#123;this.state.isGoing&#125;</span><br><span class="line">            onChange=&#123;this.handleInputChange&#125; /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">        &lt;br /&gt;</span><br><span class="line">        &lt;label&gt;</span><br><span class="line">          Number of guests:</span><br><span class="line">          &lt;input</span><br><span class="line">            name=<span class="string">"numberOfGuests"</span></span><br><span class="line">            <span class="built_in">type</span>=<span class="string">"number"</span></span><br><span class="line">            value=&#123;this.state.numberOfGuests&#125;</span><br><span class="line">            onChange=&#123;this.handleInputChange&#125; /&gt;</span><br><span class="line">        &lt;/label&gt;</span><br><span class="line">      &lt;/form&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注意我们如何使用 ES6 当中的计算属性名语法来更新与给定输入名称相对应的状态键：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.setState(&#123;</span><br><span class="line">  [name]: value</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  这段代码等价于 ES5 代码:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var partialState = &#123;&#125;;</span><br><span class="line">partialState[name] = value;</span><br><span class="line">this.setState(partialState);</span><br></pre></td></tr></table></figure></p>
+<p>  此外，由于 setState() 自动将部分状态合并到当前状态，所以我们只需要调用更改的部分即可。</p>
+<h3 id="七、受控-Input-组件的-null-值"><a href="#七、受控-Input-组件的-null-值" class="headerlink" title="七、受控 Input 组件的 null 值"></a>七、受控 Input 组件的 null 值</h3><p>  在受控组件上指定 prop 可防止用户更改输入。 如果你已经指定了一个 value ，但是输入仍然是可编辑的，你可能会意外地把 value 设置为 undefined 或 null 。</p>
+<p>  以下代码演示了这一点。 （输入首先被锁定，但在短暂的延迟后可以编辑。）<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(&lt;input value=<span class="string">"hi"</span> /&gt;, mountNode);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">  ReactDOM.render(&lt;input value=&#123;null&#125; /&gt;, mountNode);</span><br><span class="line">&#125;, 1000);</span><br></pre></td></tr></table></figure></p>
+<h3 id="八、受控组件的替代方案"><a href="#八、受控组件的替代方案" class="headerlink" title="八、受控组件的替代方案"></a>八、受控组件的替代方案</h3><p>  有时使用受控组件可能很繁琐，因为你需要为每一个可更改的数据提供事件处理器，并通过 React 组件管理所有输入状态。 当你将已经存在的代码转换为 React 时，或将 React 应用程序与非 React 库集成时，这可能变得特别烦人。在这些情况下，您可能需要使用不受控的组件，用于实现输入表单的替代技术。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
+<li>参考资料2：<a href="https://doc.react-china.org/" target="_blank" rel="noopener">https://doc.react-china.org/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月08日 01:04</p>
+        <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-09/" title="React官网之09-表单">http://liuxuewen-site.github.io/2018/07/08/React-gw-09/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/&title=《React官网之09-表单》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/&title=《React官网之09-表单》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React官网之09-表单》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/07/08/React-gw-09/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、表单"><span class="post-toc-text">一、表单</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、受控组件"><span class="post-toc-text">二、受控组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、textare-标签"><span class="post-toc-text">三、textare 标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、select-标签"><span class="post-toc-text">四、select 标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、file-input-标签"><span class="post-toc-text">五、file input 标签</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、处理多个输入元素"><span class="post-toc-text">六、处理多个输入元素</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、受控-Input-组件的-null-值"><span class="post-toc-text">七、受控 Input 组件的 null 值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、受控组件的替代方案"><span class="post-toc-text">八、受控组件的替代方案</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/08/React-gw-10/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React官网之10-状态提升
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/07/08/React-gw-08/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React官网之08-列表和键</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

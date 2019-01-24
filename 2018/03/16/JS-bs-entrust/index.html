@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>事件代理（事件委托） | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、事件代理  1）描述：  事件代理也叫事件委托，就是使用事件冒泡机制，一个元素将监听事件的请求委托给其他的元素。   最常见的就是子元素将监听事件挂在到父元素上，然后当点击子元素的时候，由于事件冒泡，最终会在父元素上触发监听函数，然后执行子元素的回调函数，这样做的好处是可以避免在每个子元素上都去挂载监听事件，坏处是有些事件没有冒泡机制，如focus、blur，就无法使用事件委托的方式，还有像m">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件代理（事件委托）">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、事件代理  1）描述：  事件代理也叫事件委托，就是使用事件冒泡机制，一个元素将监听事件的请求委托给其他的元素。   最常见的就是子元素将监听事件挂在到父元素上，然后当点击子元素的时候，由于事件冒泡，最终会在父元素上触发监听函数，然后执行子元素的回调函数，这样做的好处是可以避免在每个子元素上都去挂载监听事件，坏处是有些事件没有冒泡机制，如focus、blur，就无法使用事件委托的方式，还有像m">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-03T16:38:17.146Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件代理（事件委托）">
+<meta name="twitter:description" content="一、事件代理  1）描述：  事件代理也叫事件委托，就是使用事件冒泡机制，一个元素将监听事件的请求委托给其他的元素。   最常见的就是子元素将监听事件挂在到父元素上，然后当点击子元素的时候，由于事件冒泡，最终会在父元素上触发监听函数，然后执行子元素的回调函数，这样做的好处是可以避免在每个子元素上都去挂载监听事件，坏处是有些事件没有冒泡机制，如focus、blur，就无法使用事件委托的方式，还有像m">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-bs-entrust" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      事件代理（事件委托）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-03-16
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、事件代理"><a href="#一、事件代理" class="headerlink" title="一、事件代理"></a>一、事件代理</h3><p>  1）描述：<br>  事件代理也叫事件委托，就是使用事件冒泡机制，一个元素将监听事件的请求委托给其他的元素。</p>
+<p>  最常见的就是子元素将监听事件挂在到父元素上，然后当点击子元素的时候，由于事件冒泡，最终会在父元素上触发监听函数，然后执行子元素的回调函数，这样做的好处是可以避免在每个子元素上都去挂载监听事件，坏处是有些事件没有冒泡机制，如focus、blur，就无法使用事件委托的方式，还有像mousemove、mouseout只能通过位置去计算定位，性能消耗太大，不适宜使用事件委托。</p>
+<p>  2）优点：<br>  一般来说，dom需要有事件处理程序，我们都会直接给它设事件处理程序就好了，若很多的dom需要添加事件处理，比如我们有100个li，每个li都有相同的click点击事件，可能我们会用for循环的方法，来遍历所有的li，然后给它们添加事件，那这么做会存在什么影响呢？</p>
+<p>  在JavaScript中，添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能，因为需要不断的与dom节点进行交互，访问dom的次数越多，引起浏览器重绘与重排的次数也就越多，就会延长整个页面的交互就绪时间（所以性能优化的主要思想之一就是减少DOM操作）；如果要用事件委托，就会将所有的操作放到js程序里面，与dom的操作就只需要交互一次，这样就能大大的减少与dom的交互次数，提高性能；</p>
+<p>  每个函数都是一个对象，是对象就会占用内存，对象越多，内存占用率就越大，自然性能就越差了，比如上面的100个li，就要占用100个内存空间，如果是1000个，10000个呢，那只能说呵呵了，如果用事件委托，那么我们就可以只对它的父级（如果只有一个父级）这一个对象进行操作，这样我们就需要一个内存空间就够了，自然性能就会更好。</p>
+<p>  3）原理：<br>  事件委托是利用事件的冒泡原理来实现的，事件冒泡就是事件从最深的节点开始，逐步向上传播事件。</p>
+<p>  如：页面上有这么一个节点树，div&gt;ul&gt;li&gt;a，给最里面的a加一个click点击事件，那么这个事件就会一层一层的往外执行，执行顺序a&gt;li&gt;ul&gt;div，那么我们给最外面的div加点击事件，里面的ul，li，a做点击事件的时候，都会冒泡到最外层的div上，所以都会触发，这就是事件委托，委托它们父级代为执行事件。</p>
+<h3 id="二、实现事件代理"><a href="#二、实现事件代理" class="headerlink" title="二、实现事件代理"></a>二、实现事件代理</h3><p>  我们举例子来说：</p>
+<p>  对于下面，实现功能：点击li，弹出123：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id=<span class="string">"ul1"</span>&gt;</span><br><span class="line">    &lt;li&gt;111&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;222&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;333&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;444&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  1）首先，实现功能：点击li，弹出123：<br>  a、一般：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    var oUl = document.getElementById(&quot;ul1&quot;);</span><br><span class="line">    var aLi = oUl.getElementsByTagName(&apos;li&apos;);</span><br><span class="line">    for(var i=0; i&lt;aLi.length; i++)&#123;</span><br><span class="line">        aLi[i].onclick = function()&#123;</span><br><span class="line">            alert(123);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">上面的代码，我们看看有多少次的dom操作，</span><br><span class="line">首先要找到ul、li，然后遍历li，然后点击li的时候，又要找一次目标的li的位置，才能执行最后的操作，</span><br><span class="line">每次点击都要找一次li；</span><br></pre></td></tr></table></figure></p>
+<p>  b、事件代理：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">window.onload = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">　　var oUl = document.getElementById(<span class="string">"ul1"</span>);</span><br><span class="line">　　oUl.onclick = <span class="keyword">function</span>(ev)&#123;</span><br><span class="line">　　　　var ev = ev || window.event;</span><br><span class="line">　　　　var target = ev.target || ev.srcElement;</span><br><span class="line">　　　　<span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">'li'</span>)&#123;</span><br><span class="line">　 　　　　　　 alert(123);</span><br><span class="line">　　　　　　　  alert(target.innerHTML);</span><br><span class="line">　　　　&#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">上面的代码，Event对象提供了一个属性叫target，可以返回事件的目标节点，我们成为事件源，</span><br><span class="line">也就是说，target就可以表示为当前的事件操作的dom，但不是真正操作dom。</span><br><span class="line">当然这个是有兼容性的，标准浏览器用ev.target，IE浏览器用event.srcElement，</span><br><span class="line">此时只是获取了当前节点的位置，并不知道是什么节点名称，这里我们用nodeName来获取具体是什么标签名，</span><br><span class="line">这个返回的是一个大写的，我们需要转成小写再做比较（习惯问题）</span><br><span class="line"></span><br><span class="line">这样点击li会触发事件，且每次只执行一次dom操作，如果li数量很多的话，将大大减少dom的操作，优化性能</span><br></pre></td></tr></table></figure></p>
+<p>  2）再者，点击ul下面的li，弹出当前li的index<br>  a、一般：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var nodes = document.getElementsByTagName(&quot;li&quot;);</span><br><span class="line">for(i = 0; i&lt;nodes.length; i+= 1)&#123;</span><br><span class="line">    nodes[i].onclick = (function(i)&#123;</span><br><span class="line">              return function() &#123;</span><br><span class="line">                 console.log(i);</span><br><span class="line">              &#125; </span><br><span class="line">    &#125;)(i);                </span><br><span class="line">    //立即执行函数,参数是i, 循环时已把i值赋给li的onclick事件, 外部函数的i改变后并不会影响i的值.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  b、事件代理：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var oUl = document.getElementById(<span class="string">"ul1"</span>);</span><br><span class="line">var oLi = oUl.getElementsByTagName(<span class="string">"li"</span>); </span><br><span class="line">oUl.onclick = <span class="keyword">function</span>(ev)&#123;</span><br><span class="line">  var ev = ev || window.event;</span><br><span class="line">  var target = ev.target || ev.srcElement;</span><br><span class="line">  <span class="keyword">for</span>(var i = 0, len = oLi.length; i &lt; len; i++)&#123;  </span><br><span class="line">      <span class="keyword">if</span>(oLi[i] == target)&#123;  </span><br><span class="line">          alert(i);  </span><br><span class="line">      &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.cnblogs.com/liugang-vip/p/5616484.html" target="_blank" rel="noopener">https://www.cnblogs.com/liugang-vip/p/5616484.html</a></li>
+<li>参考资料2：<a href="https://segmentfault.com/q/1010000008557139?_ea=1680527" target="_blank" rel="noopener">https://segmentfault.com/q/1010000008557139?_ea=1680527</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 00:38</p>
+        <p>原始链接： <a class="post-url" href="/2018/03/16/JS-bs-entrust/" title="事件代理（事件委托）">http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/&title=《事件代理（事件委托）》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/&title=《事件代理（事件委托）》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《事件代理（事件委托）》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/03/16/JS-bs-entrust/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、事件代理"><span class="post-toc-text">一、事件代理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、实现事件代理"><span class="post-toc-text">二、实现事件代理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/03/16/JS-bs-arrow/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          箭头函数与普通函数
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/03/15/JS-bs-module/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">前端模块化开发</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

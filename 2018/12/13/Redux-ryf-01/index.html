@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Redux入门之01-基本用法 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。   为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux入门之01-基本用法">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。   为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/Redux-ryf-01/1.jpg">
+<meta property="og:updated_time" content="2018-12-12T17:44:53.790Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux入门之01-基本用法">
+<meta name="twitter:description" content="一、前言  React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。   为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/Redux-ryf-01/1.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Redux-ryf-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Redux入门之01-基本用法
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-12-13
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  <a href="https://redux.js.org/" target="_blank" rel="noopener">React</a> 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。</p>
+<p>  为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就成为了最热门的前端架构。</p>
+<h3 id="二、你可能不需要-Redux"><a href="#二、你可能不需要-Redux" class="headerlink" title="二、你可能不需要 Redux"></a>二、你可能不需要 Redux</h3><p>  首先明确一点，Redux 是一个有用的架构，但不是非用不可。事实上大多数情况你可以不用它，只用 React 就够了。如果你不知道是否需要 Redux，那就是不需要它，只有遇到 React 实在解决不了的问题，你才需要 Redux 。</p>
+<p>  下面这些情况，都不需要使用 Redux，用了反而增加复杂性：<br>  1）用户的使用方式非常简单<br>  2）用户之间没有协作<br>  3）不需要与服务器大量交互，也没有使用 WebSocket<br>  4）视图层（View）只从单一来源获取数据</p>
+<p>  下面这些情况才是 Redux 的适用场景，多交互、多数据源：<br>  1）用户的使用方式复杂<br>  2）多个用户之间可以协作<br>  3）与服务器大量交互，或者使用了WebSocket<br>  4）View要从多个来源获取数据<br>  5）不同身份的用户有不同的使用方式（比如普通用户和管理员）</p>
+<p>  从组件角度看，如果你的应用有以下场景，可以考虑使用 Redux：<br>  1）某个组件的状态，需要共享<br>  2）某个状态需要在任何地方都可以拿到<br>  3）一个组件需要改变全局状态<br>  4）一个组件需要改变另一个组件的状态</p>
+<p>  发生上面情况时，如果不使用 Redux 或者其他状态管理工具，不按照一定规律处理状态的读写，代码很快就会变成一团乱麻。你需要一种机制，可以在同一个地方查询状态、改变状态、传播状态的变化。</p>
+<p>  总之，不要把 Redux 当作万灵丹，如果你的应用没那么复杂，就没必要用它。另一方面，Redux 只是 Web 架构的一种解决方案，也可以选择其他方案。</p>
+<h3 id="三、设计思想"><a href="#三、设计思想" class="headerlink" title="三、设计思想"></a>三、设计思想</h3><p>  （1）Web 应用是一个状态机，视图与状态是一一对应的。<br>  （2）所有的状态，保存在一个对象里面。</p>
+<h3 id="四、基本概念和-API"><a href="#四、基本概念和-API" class="headerlink" title="四、基本概念和 API"></a>四、基本概念和 API</h3>  <font size="4" face="黑体"><strong>1、Store</strong></font>
+
+<p>  Store 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。</p>
+<p>  Redux 提供 createStore 这个函数，用来生成 Store，该函数接受另一个函数作为参数，返回新生成的 Store 对象：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line">const store = createStore(fn);</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>2、State</strong></font>
+
+<p>  Store 对象包含所有数据，如果想得到某个时点的数据，就要对 Store 生成快照，这种时点的数据集合，就叫做 State。</p>
+<p>  当前时刻的 State，可以通过 store.getState() 拿到：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line">const store = createStore(fn);</span><br><span class="line">const state = store.getState();</span><br></pre></td></tr></table></figure></p>
+<p>  Redux 规定，一个 State 对应一个 View，只要 State 相同，View 就相同，你知道 State，就知道 View 是什么样，反之亦然。</p>
+  <font size="4" face="黑体"><strong>3、Action</strong></font>
+
+<p>  State 的变化，会导致 View 的变化，但是用户接触不到 State，只能接触到 View，所以，State 的变化必须是 View 导致的，Action 就是 View 发出的通知，表示 State 应该要发生变化了。</p>
+<p>  Action 是一个对象，其中的type属性是必须的，表示 Action 的名称。其他属性可以自由设置，社区有一个 <a href="https://github.com/redux-utilities/flux-standard-action" target="_blank" rel="noopener">规范</a> 可以参考。下面代码中，Action 的名称是 ADD_TODO，它携带的信息是字符串 Learn Redux:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const action = &#123;</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'ADD_TODO'</span>,</span><br><span class="line">    payload: <span class="string">'Learn Redux'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  可以这样理解，Action 描述当前发生的事情，改变 State 的唯一办法，就是使用 Action，它会运送数据到 Store。</p>
+  <font size="4" face="黑体"><strong>4、Action Creator</strong></font>
+
+<p>  View 要发送多少种消息，就会有多少种 Action，如果都手写，会很麻烦。可以定义一个函数来生成 Action，这个函数就叫 Action Creator，下面代码中，addTodo 函数就是一个 Action Creator：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const ADD_TODO = <span class="string">'添加 TODO'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> addTodo(text) &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">        <span class="built_in">type</span>: ADD_TODO,</span><br><span class="line">        text</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const action = addTodo(<span class="string">'Learn Redux'</span>);</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>5、store.dispatch()</strong></font>
+
+<p>  store.dispatch() 是 View 发出 Action 的唯一方法。下面代码中，store.dispatch 接受一个 Action 对象作为参数，将它发送出去：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line">const store = createStore(fn);</span><br><span class="line"></span><br><span class="line">store.dispatch(&#123;</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'ADD_TODO'</span>,</span><br><span class="line">    payload: <span class="string">'Learn Redux'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  结合 Action Creator，这段代码可以改写如下:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(addTodo(<span class="string">'Learn Redux'</span>));</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>6、Reducer</strong></font>
+
+<p>  Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会发生变化，这种 State 的计算过程就叫做 Reducer。</p>
+<p>  Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reducer = <span class="keyword">function</span> (state, action) &#123;</span><br><span class="line">    // ...</span><br><span class="line">    <span class="built_in">return</span> new_state;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  整个应用的初始状态，可以作为 State 的默认值。下面是一个实际的例子:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const defaultState = 0;</span><br><span class="line">const reducer = (state = defaultState, action) =&gt; &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'ADD'</span>: <span class="built_in">return</span> state + action.payload;</span><br><span class="line">        default: <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const state = reducer(1, &#123;</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'ADD'</span>,</span><br><span class="line">    payload: 2</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  上面代码中，reducer 函数收到名为 ADD 的 Action 以后，就返回一个新的 State，作为加法的计算结果。其他运算的逻辑（比如减法），也可以根据 Action 的不同来实现。</p>
+<p>  实际应用中，Reducer 函数不用像上面这样手动调用，store.dispatch 方法会触发 Reducer 的自动执行。为此，Store 需要知道 Reducer 函数，做法就是在生成 Store 的时候，将 Reducer 传入createStore方法:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line">const store = createStore(reducer);</span><br></pre></td></tr></table></figure></p>
+<p>  上面代码中，createStore 接受 Reducer 作为参数，生成一个新的 Store。以后每当 store.dispatch 发送过来一个新的 Action，就会自动调用 Reducer，得到新的 State。</p>
+<p>  为什么这个函数叫做 Reducer 呢？因为它可以作为数组的 reduce 方法的参数。请看下面的例子，一系列 Action 对象按照顺序作为一个数组:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const actions = [</span><br><span class="line">    &#123; <span class="built_in">type</span>: <span class="string">'ADD'</span>, payload: 0 &#125;,</span><br><span class="line">    &#123; <span class="built_in">type</span>: <span class="string">'ADD'</span>, payload: 1 &#125;,</span><br><span class="line">    &#123; <span class="built_in">type</span>: <span class="string">'ADD'</span>, payload: 2 &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">const total = actions.reduce(reducer, 0); // 3</span><br></pre></td></tr></table></figure></p>
+<p>  上面代码中，数组 actions 表示依次有三个 Action，分别是加0、加1和加2。数组的 reduce 方法接受 Reducer 函数作为参数，就可以直接得到最终的状态3。</p>
+  <font size="4" face="黑体"><strong>7、纯函数</strong></font>
+
+<p>  Reducer 函数最重要的特征是，它是一个纯函数，也就是说，只要是同样的输入必定得到同样的输出。</p>
+<p>  纯函数是函数式编程的概念，必须遵守以下一些约束：<br>  1）不得改写参数<br>  2）不能调用系统 I/O 的API<br>  3）不能调用Date.now()或者Math.random()等不纯的方法，因为每次会得到不一样的结果</p>
+<p>  由于 Reducer 是纯函数，就可以保证同样的 State，必定得到同样的 View，但也正因为这一点，Reducer 函数里面不能改变 State，必须返回一个全新的对象，请参考下面的写法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// State 是一个对象</span><br><span class="line"><span class="keyword">function</span> reducer(state, action) &#123;</span><br><span class="line">    <span class="built_in">return</span> Object.assign(&#123;&#125;, state, &#123; thingToChange &#125;);</span><br><span class="line">    // 或者</span><br><span class="line">    <span class="built_in">return</span> &#123; ...state, ...newState &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// State 是一个数组</span><br><span class="line"><span class="keyword">function</span> reducer(state, action) &#123;</span><br><span class="line">    <span class="built_in">return</span> [...state, newItem];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  最好把 State 对象设成只读，你没法改变它，要得到新的 State，唯一办法就是生成一个新对象。这样的好处是，任何时候，与某个 View 对应的 State 总是一个不变的对象。</p>
+  <font size="4" face="黑体"><strong>8、store.subscribe()</strong></font>
+
+<p>  Store 允许使用 store.subscribe 方法设置监听函数，一旦 State 发生变化，就自动执行这个函数：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line">const store = createStore(reducer);</span><br><span class="line">store.subscribe(listener);</span><br></pre></td></tr></table></figure></p>
+<p>  显然，只要把 View 的更新函数（对于 React 项目，就是组件的 render 方法或 setState 方法）放入 listen，就会实现 View 的自动渲染。</p>
+<p>  store.subscribe 方法返回一个函数，调用这个函数就可以解除监听:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> unsubscribe = store.subscribe(() =&gt;</span><br><span class="line">    console.log(store.getState())</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">unsubscribe();</span><br></pre></td></tr></table></figure></p>
+<h3 id="五、Store-的实现"><a href="#五、Store-的实现" class="headerlink" title="五、Store 的实现"></a>五、Store 的实现</h3><p>  上面介绍了 Redux 涉及的基本概念，可以发现 Store 提供了三个方法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 1）store.getState()</span><br><span class="line">// 2）store.dispatch()</span><br><span class="line">// 3）store.subscribe()</span><br><span class="line"></span><br><span class="line">import &#123; createStore &#125; from <span class="string">'redux'</span>;</span><br><span class="line"><span class="built_in">let</span> &#123; subscribe, dispatch, getState &#125; = createStore(reducer);</span><br></pre></td></tr></table></figure></p>
+<p>  createStore 方法还可以接受第二个参数，表示 State 的最初状态，这通常是服务器给出的，下面代码中，window.STATE_FROM_SERVER 就是整个应用的状态初始值。注意，如果提供了这个参数，它会覆盖 Reducer 函数的默认初始值：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> store = createStore(todoApp, window.STATE_FROM_SERVER)</span><br></pre></td></tr></table></figure></p>
+<p>  下面是 createStore 方法的一个简单实现，可以了解一下 Store 是怎么生成的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">const createStore = (reducer) =&gt; &#123;</span><br><span class="line">    <span class="built_in">let</span> state;</span><br><span class="line">    <span class="built_in">let</span> listeners = [];</span><br><span class="line"></span><br><span class="line">    const getState = () =&gt; state;</span><br><span class="line"></span><br><span class="line">    const dispatch = (action) =&gt; &#123;</span><br><span class="line">        state = reducer(state, action);</span><br><span class="line">        listeners.forEach(listener =&gt; listener());</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    const subscribe = (listener) =&gt; &#123;</span><br><span class="line">        listeners.push(listener);</span><br><span class="line">        <span class="built_in">return</span> () =&gt; &#123;</span><br><span class="line">            listeners = listeners.filter(l =&gt; l !== listener);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    dispatch(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> &#123; getState, dispatch, subscribe &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、Reducer-的拆分"><a href="#六、Reducer-的拆分" class="headerlink" title="六、Reducer 的拆分"></a>六、Reducer 的拆分</h3><p>  Reducer 函数负责生成 State。由于整个应用只有一个 State 对象，包含所有数据，对于大型应用来说，这个 State 必然十分庞大，导致 Reducer 函数也十分庞大。请看下面的例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const chatReducer = (state = defaultState, action = &#123;&#125;) =&gt; &#123;</span><br><span class="line">    const &#123; <span class="built_in">type</span>, payload &#125; = action;</span><br><span class="line">    switch (<span class="built_in">type</span>) &#123;</span><br><span class="line">        <span class="keyword">case</span> ADD_CHAT:</span><br><span class="line">        <span class="built_in">return</span> Object.assign(&#123;&#125;, state, &#123;</span><br><span class="line">            chatLog: state.chatLog.concat(payload)</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">case</span> CHANGE_STATUS:</span><br><span class="line">        <span class="built_in">return</span> Object.assign(&#123;&#125;, state, &#123;</span><br><span class="line">            statusMessage: payload</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">case</span> CHANGE_USERNAME:</span><br><span class="line">        <span class="built_in">return</span> Object.assign(&#123;&#125;, state, &#123;</span><br><span class="line">            userName: payload</span><br><span class="line">        &#125;);</span><br><span class="line">        default: <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  上面代码中，三种 Action 分别改变 State 的三个属性：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD_CHAT：chatLog属性</span><br><span class="line">CHANGE_STATUS：statusMessage属性</span><br><span class="line">CHANGE_USERNAME：userName属性</span><br></pre></td></tr></table></figure></p>
+<p>  这三个属性之间没有联系，这提示我们可以把 Reducer 函数拆分。不同的函数负责处理不同属性，最终把它们合并成一个大的 Reducer 即可。下面代码中，Reducer 函数被拆成了三个小函数，每一个负责生成对应的属性:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const chatReducer = (state = defaultState, action = &#123;&#125;) =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">        chatLog: chatLog(state.chatLog, action),</span><br><span class="line">        statusMessage: statusMessage(state.statusMessage, action),</span><br><span class="line">        userName: userName(state.userName, action)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  这样一拆，Reducer 就易读易写多了。而且，这种拆分与 React 应用的结构相吻合：一个 React 根组件由很多子组件构成，这就是说，子组件与子 Reducer 完全可以对应。</p>
+<p>  Redux 提供了一个combineReducers方法，用于 Reducer 的拆分，你只要定义各个子 Reducer 函数，然后用这个方法，将它们合成一个大的 Reducer。下面的代码通过 combineReducers 方法将三个子 Reducer 合并成一个大的函数：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; combineReducers &#125; from <span class="string">'redux'</span>;</span><br><span class="line"></span><br><span class="line">const chatReducer = combineReducers(&#123;</span><br><span class="line">    chatLog,</span><br><span class="line">    statusMessage,</span><br><span class="line">    userName</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default todoApp;</span><br></pre></td></tr></table></figure></p>
+<p>  这种写法有一个前提，就是 State 的属性名必须与子 Reducer 同名，如果不同名，就要采用下面的写法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const reducer = combineReducers(&#123;</span><br><span class="line">    a: doSomethingWithA,</span><br><span class="line">    b: processB,</span><br><span class="line">    c: c</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// 等同于</span><br><span class="line"><span class="keyword">function</span> reducer(state = &#123;&#125;, action) &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">        a: doSomethingWithA(state.a, action),</span><br><span class="line">        b: processB(state.b, action),</span><br><span class="line">        c: c(state.c, action)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  总之，combineReducers() 做的就是产生一个整体的 Reducer 函数，该函数根据 State 的 key 去执行相应的子 Reducer，并将返回结果合并成一个大的 State 对象。</p>
+<p>  下面是 combineReducer 的简单实现：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const combineReducers = reducers =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> (state = &#123;&#125;, action) =&gt; &#123;</span><br><span class="line">        <span class="built_in">return</span> Object.keys(reducers).reduce(</span><br><span class="line">            (nextState, key) =&gt; &#123;</span><br><span class="line">                nextState[key] = reducers[key](state[key], action);</span><br><span class="line">                <span class="built_in">return</span> nextState;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;&#125; </span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  你可以把所有子 Reducer 放在一个文件里面，然后统一引入:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; combineReducers &#125; from <span class="string">'redux'</span></span><br><span class="line">import * as reducers from <span class="string">'./reducers'</span></span><br><span class="line"></span><br><span class="line">const reducer = combineReducers(reducers)</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、工作流程"><a href="#七、工作流程" class="headerlink" title="七、工作流程"></a>七、工作流程</h3><p>  如图：</p>
+<p>  <img src="Redux-ryf-01/1.jpg" alt="Alt text"></p>
+<p>  首先，用户发出 Action：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(action);</span><br></pre></td></tr></table></figure></p>
+<p>  然后，Store 自动调用 Reducer，并且传入两个参数：当前 State 和收到的 Action。Reducer 会返回新的 State :<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> nextState = todoApp(previousState, action);</span><br></pre></td></tr></table></figure></p>
+<p>  State 一旦有变化，Store 就会调用监听函数:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.subscribe(listener);   // 设置监听函数</span><br></pre></td></tr></table></figure></p>
+<p>  listener 可以通过 store.getState() 得到当前状态，如果使用的是 React，这时可以触发重新渲染 View：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">listerner</span></span>() &#123;</span><br><span class="line">    <span class="built_in">let</span> newState = store.getState();</span><br><span class="line">    component.setState(newState);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="八、实例：计数器"><a href="#八、实例：计数器" class="headerlink" title="八、实例：计数器"></a>八、实例：计数器</h3><p>  下面我们来看一个最简单的实例：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const Counter = (&#123; value &#125;) =&gt; (</span><br><span class="line">    &lt;h1&gt;&#123;value&#125;&lt;/h1&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">const render = () =&gt; &#123;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line">      &lt;Counter value=&#123;store.getState()&#125;/&gt;,</span><br><span class="line">      document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">store.subscribe(render);</span><br><span class="line">render();</span><br></pre></td></tr></table></figure></p>
+<p>  上面是一个简单的计数器，唯一的作用就是把参数 value 的值，显示在网页上。Store 的监听函数设置为 render，每次 State 的变化都会导致网页重新渲染。</p>
+<p>  下面加入一点变化，为Counter添加递增和递减的 Action：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const Counter = (&#123; value, onIncrement, onDecrement &#125;) =&gt; (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;&#123;value&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;button onClick=&#123;onIncrement&#125;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;button onClick=&#123;onDecrement&#125;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">const reducer = (state = 0, action) =&gt; &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'INCREMENT'</span>: <span class="built_in">return</span> state + 1;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'DECREMENT'</span>: <span class="built_in">return</span> state - 1;</span><br><span class="line">        default: <span class="built_in">return</span> state;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const store = createStore(reducer);</span><br><span class="line"></span><br><span class="line">const render = () =&gt; &#123;</span><br><span class="line">    ReactDOM.render(</span><br><span class="line">        &lt;Counter</span><br><span class="line">            value=&#123;store.getState()&#125;</span><br><span class="line">            onIncrement=&#123;() =&gt; store.dispatch(&#123;<span class="built_in">type</span>: <span class="string">'INCREMENT'</span>&#125;)&#125;</span><br><span class="line">            onDecrement=&#123;() =&gt; store.dispatch(&#123;<span class="built_in">type</span>: <span class="string">'DECREMENT'</span>&#125;)&#125;</span><br><span class="line">        /&gt;,</span><br><span class="line">        document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">render();</span><br><span class="line">store.subscribe(render);</span><br></pre></td></tr></table></figure></p>
+<p>  完整的代码 <a href="https://github.com/reduxjs/redux/tree/master/examples/counter" target="_blank" rel="noopener">看这</a> 。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年12月13日 01:44</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/13/Redux-ryf-01/" title="Redux入门之01-基本用法">http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/&title=《Redux入门之01-基本用法》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/&title=《Redux入门之01-基本用法》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Redux入门之01-基本用法》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、你可能不需要-Redux"><span class="post-toc-text">二、你可能不需要 Redux</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、设计思想"><span class="post-toc-text">三、设计思想</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、基本概念和-API"><span class="post-toc-text">四、基本概念和 API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、Store-的实现"><span class="post-toc-text">五、Store 的实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、Reducer-的拆分"><span class="post-toc-text">六、Reducer 的拆分</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、工作流程"><span class="post-toc-text">七、工作流程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、实例：计数器"><span class="post-toc-text">八、实例：计数器</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/14/Redux-ryf-02/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Redux入门之02-中间件与异步操作
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/09/16/JS-bs-virtualDom/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">虚拟DOM</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

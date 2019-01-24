@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Dva官网之03-综合 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、React 没有解决的问题  React 本身只是一个 DOM 的抽象层，使用组件构建虚拟 DOM。如果开发大应用，还需要解决一些问题：   1）通信：组件之间如何通信？  2）数据流：数据如何和视图串联起来？路由和数据如何绑定？如何编写异步逻辑？等等 二、通信问题  组件会发生三种通信：   1）向子组件发消息  2）向父组件发消息  3）向其他组件发消息   React 只提供了一种通信手">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva官网之03-综合">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、React 没有解决的问题  React 本身只是一个 DOM 的抽象层，使用组件构建虚拟 DOM。如果开发大应用，还需要解决一些问题：   1）通信：组件之间如何通信？  2）数据流：数据如何和视图串联起来？路由和数据如何绑定？如何编写异步逻辑？等等 二、通信问题  组件会发生三种通信：   1）向子组件发消息  2）向父组件发消息  3）向其他组件发消息   React 只提供了一种通信手">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/Dva-gw-03/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/Dva-gw-03/2.png">
+<meta property="og:updated_time" content="2019-01-07T12:46:50.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dva官网之03-综合">
+<meta name="twitter:description" content="一、React 没有解决的问题  React 本身只是一个 DOM 的抽象层，使用组件构建虚拟 DOM。如果开发大应用，还需要解决一些问题：   1）通信：组件之间如何通信？  2）数据流：数据如何和视图串联起来？路由和数据如何绑定？如何编写异步逻辑？等等 二、通信问题  组件会发生三种通信：   1）向子组件发消息  2）向父组件发消息  3）向其他组件发消息   React 只提供了一种通信手">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/Dva-gw-03/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Dva-gw-03" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Dva官网之03-综合
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-01-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、React-没有解决的问题"><a href="#一、React-没有解决的问题" class="headerlink" title="一、React 没有解决的问题"></a>一、React 没有解决的问题</h3><p>  React 本身只是一个 DOM 的抽象层，使用组件构建虚拟 DOM。如果开发大应用，还需要解决一些问题：</p>
+<p>  1）通信：组件之间如何通信？<br>  2）数据流：数据如何和视图串联起来？路由和数据如何绑定？如何编写异步逻辑？等等</p>
+<h3 id="二、通信问题"><a href="#二、通信问题" class="headerlink" title="二、通信问题"></a>二、通信问题</h3><p>  组件会发生三种通信：</p>
+<p>  1）向子组件发消息<br>  2）向父组件发消息<br>  3）向其他组件发消息</p>
+<p>  React 只提供了一种通信手段：传参。对于大应用很不方便。看一看组件通信的例子。</p>
+<p>  步骤一，想一想父组件如何拿到子组件的值：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Son extends React.Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> &lt;input/&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> </span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Son/&gt;</span><br><span class="line">                &lt;p&gt;这里显示 Son 组件的内容&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;Father/&gt;, mountNode);</span><br></pre></td></tr></table></figure></p>
+<p>  步骤二，理解子组件如何通过父组件传入的函数，将自己的值再传回父组件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Son extends React.Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> &lt;input onChange=&#123;this.props.onChange&#125;/&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">    <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            son: <span class="string">""</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    changeHandler(e) &#123;</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            son: e.target.value</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> </span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;Son onChange=&#123;this.changeHandler.bind(this)&#125;/&gt;</span><br><span class="line">                &lt;p&gt;这里显示 Son 组件的内容：&#123;this.state.son&#125;&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;Father/&gt;, mountNode);</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、数据流问题"><a href="#三、数据流问题" class="headerlink" title="三、数据流问题"></a>三、数据流问题</h3><p>  目前流行的数据流方案有：</p>
+<p>  1）Flux，单向数据流方案，以 Redux 为代表<br>  2）Reactive，响应式数据流方案，以 Mobx 为代表<br>  3）其他，比如 rxjs 等</p>
+<p>  目前最流行的数据流方案（截止 2017.1，最流行的社区 React 应用架构方案如下）：</p>
+<p>  1）路由：React-Router<br>  2）架构：Redux<br>  3）异步操作：Redux-saga </p>
+<p>  此数据流方案的缺点：要引入多个库，项目结构复杂。</p>
+<h3 id="四、dva"><a href="#四、dva" class="headerlink" title="四、dva"></a>四、dva</h3><h4 id="1、是什么："><a href="#1、是什么：" class="headerlink" title="1、是什么："></a>1、是什么：</h4><p>  dva 是体验技术部开发的 React 应用框架，将上面三个 React 工具库包装在一起，简化了 API，让开发 React 应用更加方便和快捷。dva = React-Router + Redux + Redux-saga</p>
+<h4 id="2、应用的最简结构："><a href="#2、应用的最简结构：" class="headerlink" title="2、应用的最简结构："></a>2、应用的最简结构：</h4><p>  不带model：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import dva from <span class="string">'dva'</span>;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; &lt;div&gt;Hello dva&lt;/div&gt;;</span><br><span class="line"></span><br><span class="line">// 创建应用</span><br><span class="line">const app = dva();</span><br><span class="line"></span><br><span class="line">// 注册视图</span><br><span class="line">app.router(() =&gt; &lt;App /&gt;);</span><br><span class="line"></span><br><span class="line">// 启动应用</span><br><span class="line">app.start(<span class="string">'#root'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  带model：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import dva from <span class="string">'dva'</span>;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; &lt;div&gt;Hello dva&lt;/div&gt;;</span><br><span class="line"></span><br><span class="line">// 创建应用</span><br><span class="line">const app = dva();</span><br><span class="line"></span><br><span class="line">// 注册 Model</span><br><span class="line">app.model(&#123;</span><br><span class="line">    namespace: <span class="string">'count'</span>,</span><br><span class="line">    state: 0,</span><br><span class="line">    reducers: &#123;</span><br><span class="line">        add(state) &#123; <span class="built_in">return</span> state + 1 &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    effects: &#123;</span><br><span class="line">        *addAfter1Second(action, &#123; call, put &#125;) &#123;</span><br><span class="line">            yield call(delay, 1000);</span><br><span class="line">            yield put(&#123; <span class="built_in">type</span>: <span class="string">'add'</span> &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 注册视图</span><br><span class="line">app.router(() =&gt; &lt;ConnectedApp /&gt;);</span><br><span class="line"></span><br><span class="line">// 启动应用</span><br><span class="line">app.start(<span class="string">'#root'</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="3、数据流图："><a href="#3、数据流图：" class="headerlink" title="3、数据流图："></a>3、数据流图：</h4><p>  <img src="Dva-gw-03/1.png" alt="Alt text"></p>
+<p>  <img src="Dva-gw-03/2.png" alt="Alt text"></p>
+<h4 id="4、核心概念："><a href="#4、核心概念：" class="headerlink" title="4、核心概念："></a>4、核心概念：</h4><p>  1）State：一个对象，保存整个应用状态<br>  2）View：React 组件构成的视图层<br>  3）Action：一个对象，描述事件<br>  4）connect 方法：一个函数，绑定 State 到 View<br>  5）dispatch 方法：一个函数，发送 Action 到 State</p>
+<h4 id="5、State-和-View："><a href="#5、State-和-View：" class="headerlink" title="5、State 和 View："></a>5、State 和 View：</h4><p>  State 是储存数据的地方，收到 Action 以后，会更新数据。</p>
+<p>  View 就是 React 组件构成的 UI 层，从 State 取数据后，渲染成 HTML 代码，只要 State 有变化，View 就会自动更新。</p>
+<h4 id="6、Action："><a href="#6、Action：" class="headerlink" title="6、Action："></a>6、Action：</h4><p>  Action 是用来描述 UI 层事件的一个对象：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'click-submit-button'</span>,</span><br><span class="line">    payload: this.form.data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="7、connect："><a href="#7、connect：" class="headerlink" title="7、connect："></a>7、connect：</h4><p>  connect 是一个函数，绑定 State 到 View。connect 方法返回的是一个 React 组件，通常称为容器组件，因为它是原始 UI 组件的容器，即在外面包了一层 State。connect 方法传入的第一个参数是 mapStateToProps 函数，mapStateToProps 函数会返回一个对象，用于建立 State 到 Props 的映射关系。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from <span class="string">'dva'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> mapStateToProps(state) &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123; todos: state.todos &#125;;</span><br><span class="line">&#125;</span><br><span class="line">connect(mapStateToProps)(App);</span><br></pre></td></tr></table></figure></p>
+<h4 id="8、dispatch："><a href="#8、dispatch：" class="headerlink" title="8、dispatch："></a>8、dispatch：</h4><p>  dispatch 是一个函数方法，用来将 Action 发送给 State。被 connect 的 Component 会自动在 props 中拥有 dispatch 方法。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dispatch(&#123;</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'click-submit-button'</span>,</span><br><span class="line">    payload: this.form.data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h4 id="9、app-model："><a href="#9、app-model：" class="headerlink" title="9、app.model："></a>9、app.model：</h4><p>  dva 提供 app.model 这个对象，所有的应用逻辑都定义在它上面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import dva from <span class="string">'dva'</span>;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; &lt;div&gt;Hello dva&lt;/div&gt;;</span><br><span class="line"></span><br><span class="line">// 创建应用</span><br><span class="line">const app = dva();</span><br><span class="line"></span><br><span class="line">// 新增这一行</span><br><span class="line">app.model(&#123; /**/ &#125;);</span><br><span class="line"></span><br><span class="line">// 注册视图</span><br><span class="line">app.router(() =&gt; &lt;App /&gt;);</span><br><span class="line"></span><br><span class="line">// 启动应用</span><br><span class="line">app.start(<span class="string">'#root'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  Model 对象的例子:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    namespace: <span class="string">'count'</span>,</span><br><span class="line">    state: 0,</span><br><span class="line">    reducers: &#123;</span><br><span class="line">        add(state) &#123; <span class="built_in">return</span> state + 1 &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    effects: &#123;</span><br><span class="line">        *addAfter1Second(action, &#123; call, put &#125;) &#123;</span><br><span class="line">            yield call(delay, 1000);</span><br><span class="line">            yield put(&#123; <span class="built_in">type</span>: <span class="string">'add'</span> &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  Model 对象的属性:</p>
+<p>  1）namespace: 当前 Model 的名称。整个应用的 State，由多个小的 Model 的 State 以 namespace 为 key 合成<br>  2）state: 该 Model 当前的状态。数据保存在这里，直接决定了视图层的输出<br>  3）reducers: Action 处理器，处理同步动作，用来算出最新的 State<br>  4）effects：Action 处理器，处理异步动作</p>
+<h4 id="10、Reducer："><a href="#10、Reducer：" class="headerlink" title="10、Reducer："></a>10、Reducer：</h4><p>  Reducer 是 Action 处理器，用来处理同步操作，可以看做是 state 的计算器，它的作用是根据 Action，从上一个 State 算出当前 State。举个例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// count +1</span><br><span class="line"><span class="keyword">function</span> add(state) &#123; </span><br><span class="line">    <span class="built_in">return</span> state + 1; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 往 [] 里添加一个新 todo</span><br><span class="line"><span class="keyword">function</span> addTodo(state, action) &#123; </span><br><span class="line">    <span class="built_in">return</span> [...state, action.payload]; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 往 &#123; todos: [], loading: <span class="literal">true</span> &#125; 里添加一个新 todo，并标记 loading 为 <span class="literal">false</span></span><br><span class="line"><span class="keyword">function</span> addTodo(state, action) &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        todos: state.todos.concat(action.payload),</span><br><span class="line">        loading: <span class="literal">false</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="11、Effect："><a href="#11、Effect：" class="headerlink" title="11、Effect："></a>11、Effect：</h4><p>  Effect 是 Action 处理器，用来处理异步动作，基于 Redux-saga 实现。Effect 指的是副作用，根据函数式编程，计算以外的操作都属于 Effect，典型的就是 I/O 操作、数据库读写：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// Effect 是一个 Generator 函数，内部使用 yield 关键字，标识每一步的操作（不管是异步或同步）。</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> *addAfter1Second(action, &#123; put, call &#125;) &#123;</span><br><span class="line">    yield call(delay, 1000);</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'add'</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  dva 提供多个 Effect 函数内部的处理函数，比较常用的是 call 和 put:</p>
+<p>  1）call：执行异步函数<br>  2）put：发出一个 Action，类似于 dispatch</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://dvajs.com" target="_blank" rel="noopener">https://dvajs.com</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年01月07日 20:46</p>
+        <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-03/" title="Dva官网之03-综合">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/&title=《Dva官网之03-综合》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/&title=《Dva官网之03-综合》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dva官网之03-综合》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-03/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、React-没有解决的问题"><span class="post-toc-text">一、React 没有解决的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、通信问题"><span class="post-toc-text">二、通信问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、数据流问题"><span class="post-toc-text">三、数据流问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、dva"><span class="post-toc-text">四、dva</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、是什么："><span class="post-toc-text">1、是什么：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、应用的最简结构："><span class="post-toc-text">2、应用的最简结构：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、数据流图："><span class="post-toc-text">3、数据流图：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、核心概念："><span class="post-toc-text">4、核心概念：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、State-和-View："><span class="post-toc-text">5、State 和 View：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、Action："><span class="post-toc-text">6、Action：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7、connect："><span class="post-toc-text">7、connect：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8、dispatch："><span class="post-toc-text">8、dispatch：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#9、app-model："><span class="post-toc-text">9、app.model：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#10、Reducer："><span class="post-toc-text">10、Reducer：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#11、Effect："><span class="post-toc-text">11、Effect：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/07/Dva-gw-04/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Dva官网之04-图解 dva
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/01/07/Dva-gw-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Dva官网之02-概念</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

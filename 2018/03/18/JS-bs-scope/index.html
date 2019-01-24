@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>作用域与作用域链 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：   执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。   执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域与作用域链">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：   执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。   执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/1.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/2.jpg">
+<meta property="og:updated_time" content="2018-07-03T16:29:11.116Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域与作用域链">
+<meta name="twitter:description" content="一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：   执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。   执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/1.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-bs-scope" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      作用域与作用域链
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-03-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、执行环境"><a href="#一、执行环境" class="headerlink" title="一、执行环境"></a>一、执行环境</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在了解作用域与作用域链之前，我们先了解一下执行环境：</span><br></pre></td></tr></table></figure>
+<p>  执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。</p>
+<p>  执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局的执行环境，而在调用函数的时候，会创建函数执行环境。</p>
+<p>  1）全局执行环境<br>  全局执行环境是最外围的一个执行环境，在web浏览器中可以认为是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。代码载入浏览器时全局环境被创建，关闭网页或者关闭浏览时全局环境被销毁。</p>
+<p>  2）函数执行环境<br>  每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就被推入一个环境栈中，当函数执行完毕后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
+<h3 id="二、作用域"><a href="#二、作用域" class="headerlink" title="二、作用域"></a>二、作用域</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name1=<span class="string">"haha"</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changName</span></span>()&#123;</span><br><span class="line">    var name2=<span class="string">"xixi"</span>;</span><br><span class="line">    console.log(name1);   // haha</span><br><span class="line">    console.log(name2);   // xixi</span><br><span class="line">&#125; </span><br><span class="line">changName();</span><br><span class="line">console.log(name1);       //haha</span><br><span class="line">console.log(name2);       //Uncaught ReferenceError: name2 is not defined</span><br></pre></td></tr></table></figure>
+<p>  作用域就是变量和函数的可访问范围，或者说变量或函数起作用的区域。</p>
+<p>  通常我们可以将作用域分为全局作用域与局部（函数）作用域。</p>
+<p>  1）全局作用域在代码中的任何地方都能被访问到，如上例的全局变量name1，具有全局作用域所以在哪都能被访问到；</p>
+<p>  2）局部作用域一般只在固定的代码片段内可以访问得到，如上例的局部变量name2，只有在函数内部可以访问得到。</p>
+<p>  注意：<br>  1）如果name2定义的时候，去掉了var，那么它也是属于全局变量，具有全局作用域。<br>  2）ES6里新增了块作用域一说，块作用域的作用范围是在代码块里，通常我们可以认为是括号里面。<br>  比如说，在for循环里面，如果我们定义var i = 0，i的作用域是局部作用域，在函数内部，for循环以外，也是可以访问到。但使用let的话，for循环里创建了块作用域，只在for循环里能访问到，for循环外是访问不到的，这样可以避免了变量污染。</p>
+<h3 id="三、作用域链"><a href="#三、作用域链" class="headerlink" title="三、作用域链"></a>三、作用域链</h3><p>  在JavaScript中，当调用一个函数的时候，会创建一个执行环境，并为此函数增加一个属性SCOPE,通过这个属性来指向一块内存，这块内存中包含有所有上下文的变量。当在这个函数中调用了新函数之后，新函数依然会有一个作用域来执行原来的函数的SCOPE和自己新增加的SCOPE，这样就形成了一个链式结构，这就是JavaScript中的作用域链。</p>
+<p>  作用域链的用途是保证对执行环境中有权访问的所有变量和函数的有序访问。在作用域链的最前端始终是当前执行的代码所在的环境的变量对象，作用域链的下一个变量对象来自于包含环境，再下一个变量对象又来自于下一个包含环境，一直延续到全局执行环境。全局执行环境的变量对象始终是作用域链的最后一个对象。</p>
+<p>  看一个例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var color = <span class="string">"red"</span>;                        // 定义一个颜色属性</span><br><span class="line"> </span><br><span class="line">var showColor = <span class="function"><span class="title">function</span></span>()&#123;               // 定义显示颜色的方法</span><br><span class="line">    console.info(this.color);</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changeColor</span></span>()&#123;                   // 定义一个交换颜色的函数</span><br><span class="line">    var anotherColor = <span class="string">"blue"</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">swapColor</span></span>()&#123;</span><br><span class="line">     var tempColor = anotherColor;</span><br><span class="line">     anotherColor = color;</span><br><span class="line">     color = tempColor;</span><br><span class="line">    &#125;</span><br><span class="line">    swapColor();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">changeColor();                           // 调用交换颜色的函数来改变颜色</span><br><span class="line"> </span><br><span class="line">showColor();                             // 调用显示颜色的函数来显示颜色</span><br></pre></td></tr></table></figure></p>
+<p>  1）看上面的代码，首先定义了一个颜色变量color，和一个打印颜色的方法showColor()。接着定义了一个用于交换颜色的函数changeColor()。注意在这个函数中是通过另外一个函数swapColor()来实现交换的。</p>
+<p>  2）接下来，我们开始执行changeColor()函数。上面说到，js在执行函数的时候，会创建一个执行环境，并为每一个函数增加一个属性SCOPE,通过这个属性来指向一块内存，这块内存中包含有所有上下文的变量。那么，在执行changeColor()函数的时候，内存模型应该如下图所示：</p>
+<p>  <img src="JS-bs-scope/1.jpg" alt="Alt text"></p>
+<p>  图中蓝色部分是changeColor()函数的作用域链。由于changeColor()的执行上下文是window对象，所以它的作用域链的最高位指向的是全局作用域（golbal scope），在我们的程序中，目前全局作用域中有color、showColor和changeColor这3个属性。changeColor()作用域链的低位指向的是它自己的作用域，在changeColor()中，有anotherColor和swapColor2个属性。</p>
+<p>  3）执行changeColor()函数时，在函数内部又创建了一个swapColor()函数，创建之后立刻执行这个函数。此时的作用域链内存模型如下图所示：</p>
+<p>  <img src="JS-bs-scope/2.jpg" alt="Alt text"></p>
+<p>  同样，swapColor的作用域链的最顶端指向的是全局作用域，下一级指向的是包含它的changeColor函数的作用域，最后才是指向自己的作用域。</p>
+<p>  4）接着，swapColor函数开始执行，第一代码是var tempColor = anotherColor，它首先会在自己的作用域中查找是否有tempColor属性，根据上面的图我们可以看到，在swapColor的作用域中存在tempColor属性，于是它把tempColor的值由“red”修改为“blue”。</p>
+<p>  第二句代码是anotherColor = color，首先它也是先在swapColor的作用域中查找anotherColor属性，发现没有找到，它就会通过作用域链到上一级的changeColor作用域中去查找，找到之后将anotherColor属性由“blue”修改为“red”。</p>
+<p>  第三句代码是color = tempColor，属性查找的方法相同，首先在自己的作用域中查找，没有找到的话到上一级的作用域去查找。最终会在全局作用域中找到color属性，于是它将全局作用域中的color属性由“red”修改为“blue”。</p>
+<p>  5）最后，swapColor函数执行完毕之后，函数会被垃圾回收，同时changeColor函数也执行完毕，同样被垃圾回收。紧接着我们调用了showColor()方法，此时又会为该函数创建新的执行环境和作用域链。</p>
+<p>  在showColor的作用域链中有2个指向：顶层的全局作用域和它自己的作用域。在执行showColor函数的时候，它在自己的作用域中没有发现color属性，于是到上一级的全局作用域中查找，此时全局作用域中的color属性已经被修改为“blue”，所以程序最终会打印出的颜色是“blue”。</p>
+<h3 id="四、提升"><a href="#四、提升" class="headerlink" title="四、提升"></a>四、提升</h3><p>  提升有变量提升和函数提升之分，看下面：</p>
+<p>  1）变量提升：把变量提升到函数的顶部<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var name=<span class="string">"haha"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changeName</span></span>()&#123;</span><br><span class="line">    console.log(name);</span><br><span class="line">    var name=<span class="string">"xixi"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">changeName();                     //undefined </span><br><span class="line"></span><br><span class="line">console.log(name);                //haha</span><br></pre></td></tr></table></figure></p>
+<p>  看这段代码，为什么changeName()结果会是undefined，按理说应该是haha或者xixi呀，接着看：</p>
+<p>  先来分析一下代码，函数changeName()的作用域链：自己的变量对象 –&gt; 全局变量对象。解析器在函数执行环境中发现变量name，因此不会再向全局环境的变量对象中寻找。但是大家要注意的是，解析器在解析第3句代码时，还不知道变量name的值，也就是说只知道有变量name，但是不知道它具体的值（因为还没有执行第4句代码），因此输出是undefined，第7行输出haha大家应该都理解把（作用域问题）。所以上述代码可以写成下面的形式：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name=<span class="string">"haha"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changeName</span></span>()&#123;</span><br><span class="line">    var name;</span><br><span class="line">    console.log(name);</span><br><span class="line">    name=<span class="string">"xixi"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">changeName();</span><br><span class="line"></span><br><span class="line">console.log(name);</span><br></pre></td></tr></table></figure></p>
+<p>  这个现象就是变量提升！变量提升，就是把变量提升到函数的顶部，需要注意的是，变量提升只是提升变量的声明，不会把变量的值也提升上来！</p>
+<p>  2）函数提升：把函数提升到前面<br>  在JavaScript中函数的创建方式有三种：函数声明、函数表达式、函数构造法。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//函数表达式</span><br><span class="line">var func1 = <span class="keyword">function</span>(n1,n2)&#123;</span><br><span class="line">    //<span class="keyword">function</span> body;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//函数构造法</span><br><span class="line">var func2 = new Function(<span class="string">"para1"</span>,<span class="string">"para2"</span>,...,<span class="string">"function body"</span>); </span><br><span class="line"></span><br><span class="line">//函数声明</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">func3</span></span>()&#123;</span><br><span class="line">    //<span class="keyword">function</span> body;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  在这里需要说明的是：只有函数声明形式才能被提升！例如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//函数声明</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">myTest1</span></span>()&#123; </span><br><span class="line">    func(); </span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">func</span></span>()&#123; </span><br><span class="line">        console.log(<span class="string">"我可以被提升"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">myTest1();                                    //我可以被提升</span><br><span class="line"></span><br><span class="line">//函数表达式</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">myTest2</span></span>()&#123; </span><br><span class="line">    func(); </span><br><span class="line">    var func = <span class="function"><span class="title">function</span></span>()&#123; </span><br><span class="line">        console.log(<span class="string">"我不能被提升"</span>); </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">myTest2();                                     //出错object expected</span><br></pre></td></tr></table></figure></p>
+<p>  标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.cnblogs.com/buchongming/p/5858026.html" target="_blank" rel="noopener">https://www.cnblogs.com/buchongming/p/5858026.html</a></li>
+<li>参考资料2：<a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201512242948.html" target="_blank" rel="noopener">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201512242948.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 00:29</p>
+        <p>原始链接： <a class="post-url" href="/2018/03/18/JS-bs-scope/" title="作用域与作用域链">http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/&title=《作用域与作用域链》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/&title=《作用域与作用域链》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《作用域与作用域链》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、执行环境"><span class="post-toc-text">一、执行环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、作用域"><span class="post-toc-text">二、作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、作用域链"><span class="post-toc-text">三、作用域链</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、提升"><span class="post-toc-text">四、提升</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/03/18/secure-bs-attack/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          前端安全攻击
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/03/16/JS-bs-arrow/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">箭头函数与普通函数</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

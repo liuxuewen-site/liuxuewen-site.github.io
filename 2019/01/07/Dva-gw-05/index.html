@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Dva官网之05-dva 开发复杂 SPA | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  在 dva 的官方仓库里，提供了上手教程，讲述了 dva 的一些基本概念。到了真实的业务开发过程中，会遇到许许多多不能用那些基本操作覆盖的场景，本文尝试列举一些常见的需求在 dva 中的实现方式。 二、动态加载 model  不少业务场景下我们可能会定义多个 model，但并不需要在应用启动的时候就全部加载，比较典型的是各类管理控制台。   如果每个功能页面是通过路由切换，互相之间没有">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva官网之05-dva 开发复杂 SPA">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  在 dva 的官方仓库里，提供了上手教程，讲述了 dva 的一些基本概念。到了真实的业务开发过程中，会遇到许许多多不能用那些基本操作覆盖的场景，本文尝试列举一些常见的需求在 dva 中的实现方式。 二、动态加载 model  不少业务场景下我们可能会定义多个 model，但并不需要在应用启动的时候就全部加载，比较典型的是各类管理控制台。   如果每个功能页面是通过路由切换，互相之间没有">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-08T01:51:24.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dva官网之05-dva 开发复杂 SPA">
+<meta name="twitter:description" content="一、前言  在 dva 的官方仓库里，提供了上手教程，讲述了 dva 的一些基本概念。到了真实的业务开发过程中，会遇到许许多多不能用那些基本操作覆盖的场景，本文尝试列举一些常见的需求在 dva 中的实现方式。 二、动态加载 model  不少业务场景下我们可能会定义多个 model，但并不需要在应用启动的时候就全部加载，比较典型的是各类管理控制台。   如果每个功能页面是通过路由切换，互相之间没有">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Dva-gw-05" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Dva官网之05-dva 开发复杂 SPA
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-01-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  在 dva 的官方仓库里，提供了上手教程，讲述了 dva 的一些基本概念。到了真实的业务开发过程中，会遇到许许多多不能用那些基本操作覆盖的场景，本文尝试列举一些常见的需求在 dva 中的实现方式。</p>
+<h3 id="二、动态加载-model"><a href="#二、动态加载-model" class="headerlink" title="二、动态加载 model"></a>二、动态加载 model</h3><p>  不少业务场景下我们可能会定义多个 model，但并不需要在应用启动的时候就全部加载，比较典型的是各类管理控制台。</p>
+<p>  如果每个功能页面是通过路由切换，互相之间没有关系的话，通常会使用 webpack 的 require.ensure 来做代码模块的懒加载。我们也可以利用这个特性来做model的动态加载：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> RouterConfig(&#123; <span class="built_in">history</span>, app &#125;) &#123;</span><br><span class="line">    const routes = [</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/'</span>,</span><br><span class="line">            name: <span class="string">'IndexPage'</span>,</span><br><span class="line">            getComponent(nextState, cb) &#123;</span><br><span class="line">                require.ensure([], (require) =&gt; &#123;</span><br><span class="line">                    registerModel(app, require(<span class="string">'./models/dashboard'</span>));</span><br><span class="line">                    cb(null, require(<span class="string">'./routes/IndexPage'</span>));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: <span class="string">'/users'</span>,</span><br><span class="line">            name: <span class="string">'UsersPage'</span>,</span><br><span class="line">            getComponent(nextState, cb) &#123;</span><br><span class="line">                require.ensure([], (require) =&gt; &#123;</span><br><span class="line">                    registerModel(app, require(<span class="string">'./models/users'</span>));</span><br><span class="line">                    cb(null, require(<span class="string">'./routes/Users'</span>));</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> &lt;Router <span class="built_in">history</span>=&#123;<span class="built_in">history</span>&#125; routes=&#123;routes&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这样，在视图切换到这个路由的时候，对应的 model 就会被加载。同理，也可以做 model 的动态移除，不过一般情况下是不需要移除的。</p>
+<h3 id="三、用-model-共享全局信息"><a href="#三、用-model-共享全局信息" class="headerlink" title="三、用 model 共享全局信息"></a>三、用 model 共享全局信息</h3><p>  在二中我们提到，可以动态加载 model，也可以移除。从这个角度看，model 是可以有不同生命周期的，有些可以与功能视图伴随，而有些可以贯穿整个应用的生命周期。</p>
+<p>  从业务场景来说，有不少场景是可以做全局 model 的，比如说，我们在路由之间前进后退，model 可以用于在路由间共享数据，比较典型的像列表页和详情页的互相跳转，就可以用同一份 model 去共享它们的数据。</p>
+<p>  注意，如果当前应用中加载了不止一个 model，在其中一个的 effect 里面做 select 操作，是可以获取另外一个中的 state 的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*foo(action, &#123; select &#125;) &#123;</span><br><span class="line">    const &#123; a, b &#125; = yield select();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这里 a，b 可以分别是两个不同 model 的 state。所以，借助这个特点，我们就不必非要把 model 按照视图的结构进行组织，可以适当按照业务分类，把一些数据存在对应业务的 model 中，分别通过不同的 effect 去更新，在获取的地方再去组合，这样可以使得 model 拥有更好的复用性。</p>
+<h3 id="四、model-的复用"><a href="#四、model-的复用" class="headerlink" title="四、model 的复用"></a>四、model 的复用</h3><p>  有时候，业务上可能会遇到把一些与外部关联较少的 model 拆出来的需求，我们可能会拆出这样的一个 model，然后用不同的视图容器去 connect 它：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">    namespace: <span class="string">'reusable'</span>,</span><br><span class="line">    state: &#123;&#125;,</span><br><span class="line">    reducers: &#123;&#125;,</span><br><span class="line">    effects: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  所以在业务上，可能出现的使用情况就是：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">            ContainerA &lt;-- ModelA</span><br><span class="line">               |</span><br><span class="line">------------------------------</span><br><span class="line">|                            |</span><br><span class="line">ContainerB &lt;-- reusable     ContainerC &lt;-- reusable</span><br></pre></td></tr></table></figure></p>
+<p>  这里面，ContainerB 和 Container C 是 ContainerA 的下属，它们的逻辑结构一致，只是展现不同，我们可以让它们分别 connect 同一个 model，注意，这个时候，model 的修改会同时影响到两个视图，因为 model 在 state 中是直接以 namespace 作 key 存放的，实际上只有一份实例。</p>
+<h3 id="五、动态扩展-model"><a href="#五、动态扩展-model" class="headerlink" title="五、动态扩展 model"></a>五、动态扩展 model</h3><p>  在四中，我们提到可以把 model 进行分类，以实现在若干视图中的共享，但业务需求是比较多变的，很可能我们又会遇到这种情况：几个业务视图长得差不多，model 也存在少量差别。</p>
+<p>  这个情况下，如果我们让它们复用同一个 model 也可以，但这么做对维护是一种挑战，很可能改其中一个，对另外一些造成了影响，所以这种情况下，可能会期望能够对 model 进行扩展。</p>
+<p>  所谓扩展，通常是要做几个事情：<br>  1）新增一些东西<br>  2）覆盖一些原有的东西<br>  3）根据条件动态创建一些东西</p>
+<p>  注意到 dva 中的每个 model，实际上都是普通的 JavaScript 对象，包含：<br>  1）namespace<br>  2）state<br>  3）reducers<br>  4）effects<br>  5）subscriptions</p>
+<p>  从这个角度看，我们要新增或者覆盖一些东西都会是比较容易的，比如说，使用 Object.assign 来进行对象属性复制，就可以把新的内容添加或者覆盖到原有对象上。注意这里有两级，model 结构中的 state，reducers，effects，subscriptions 都是对象结构，需要分别在这一级去做 assign。可以借助 dva 社区的 dva-model-extend 库来做这件事。</p>
+<p>  换个角度，也可以通过工厂函数来生成 model，比如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createModel(options) &#123;</span><br><span class="line">    const &#123; namespace, param &#125; = options;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">        namespace: `demo<span class="variable">$&#123;namespace&#125;</span>`,</span><br><span class="line">        states: &#123;&#125;,</span><br><span class="line">        reducers: &#123;&#125;,</span><br><span class="line">        effects: &#123;</span><br><span class="line">            *<span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">                // 这里可以根据param来确定下面这个call的参数</span><br><span class="line">                yield call()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const modelA = createModel(&#123; namespace: <span class="string">'A'</span>, param: &#123; <span class="built_in">type</span>: <span class="string">'A'</span> &#125; &#125;);</span><br><span class="line">const modelB = createModel(&#123; namespace: <span class="string">'A'</span>, param: &#123; <span class="built_in">type</span>: <span class="string">'B'</span> &#125; &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  这样也能够实现对 model 的扩展。</p>
+<h3 id="六、长流程的业务逻辑"><a href="#六、长流程的业务逻辑" class="headerlink" title="六、长流程的业务逻辑"></a>六、长流程的业务逻辑</h3><p>  在业务中，有时候会出现较长的流程，比如说，一个复杂表单的提交，中间会需要去发起多种对视图状态的操作，这是一个真实业务：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">*submit(action, &#123; put, call, select &#125;) &#123;</span><br><span class="line">    const formData = yield select(state =&gt; &#123;</span><br><span class="line">        const buyModel = state.buy;</span><br><span class="line">        const context = state.context;</span><br><span class="line">        const &#123; stock &#125; = buyModel;</span><br><span class="line">        <span class="built_in">return</span> &#123;</span><br><span class="line">            uuid: context.uuid,</span><br><span class="line">            market: stock &amp;&amp; stock.market,</span><br><span class="line">            stockCode: stock &amp;&amp; stock.code,</span><br><span class="line">            stockName: stock &amp;&amp; stock.name,</span><br><span class="line">            price: String(buyModel.price),</span><br><span class="line">            entrustAmount: String(buyModel.count),                   // 委托数量</span><br><span class="line">            totalBalance: buyModel.totalBalance,</span><br><span class="line">            availableTzbBalance: buyModel.availableTzbBalance,</span><br><span class="line">            availableDepositBalance: buyModel.availableDepositBalance,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">    const result = yield call(post, <span class="string">'/h5/ajax/trade/entrust_buy'</span>, formData, &#123; loading: <span class="literal">true</span> &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result.success) &#123;</span><br><span class="line">        toast(&#123;</span><br><span class="line">            <span class="built_in">type</span>: <span class="string">'success'</span>,</span><br><span class="line">            content: <span class="string">'委托已受理'</span>,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        // 成功之后再获取一次现价，并填入</span><br><span class="line">        // yield put(&#123;<span class="built_in">type</span>: <span class="string">'fetchQuotation'</span>, payload: stock&#125;);</span><br><span class="line">        yield put(&#123; <span class="built_in">type</span>: <span class="string">'entrustNoChange'</span>, payload: result.result &amp;&amp; result.result.entrustNo &#125;);</span><br><span class="line"></span><br><span class="line">        // 清空输入框内容</span><br><span class="line">        yield put(&#123; <span class="built_in">type</span>: <span class="string">'searchQueryChange'</span>, value: <span class="string">''</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 403时，需要验证密码再重新提交</span><br><span class="line">    <span class="keyword">if</span> (!result.success &amp;&amp; result.resultCode === 403) &#123;</span><br><span class="line">        yield put(&#123; <span class="built_in">type</span>: <span class="string">'checkPassword'</span>, payload: &#123;&#125; &#125;);</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 失败之后也需要更新投资宝和保证金金额</span><br><span class="line">    <span class="keyword">if</span> (result.result) &#123;</span><br><span class="line">        yield put(&#123; <span class="built_in">type</span>: <span class="string">'balanceChange'</span>, payload: result.result &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 重新获取最新可撤单列表</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'fetchRevockList'</span> &#125;);</span><br><span class="line"></span><br><span class="line">    // 返回的结果里面如果有uuid, 用新的uuid替换</span><br><span class="line">    <span class="keyword">if</span> (result.uuid) &#123;</span><br><span class="line">        yield put(&#123; <span class="built_in">type</span>: <span class="string">'context/updateUuid'</span>, payload: result.uuid &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>  在一个 effect 中，可以使用多个 put 来分别调用 reducer 来更新状态。</p>
+<p>  另外存在一些流程，在 effect 中可能会存在多个异步的服务调用，比如说，要调用一次服务端的验证，成功之后再去提交数据，这时候，在一个 effect 中就会存在多个 call 操作了。</p>
+<h3 id="七、用-take-进行事件监听"><a href="#七、用-take-进行事件监听" class="headerlink" title="七、用 take 进行事件监听"></a>七、用 take 进行事件监听</h3><p>  与六提到的情况相比，我们还可能遇到另外一些场景，比如：一个流程的变动，需要扩散到若干个其他 model 中。这个需求其实也覆盖了六的情况，但在这一节中，我们侧重讨论这类需求比较通用的处理方式。</p>
+<p>  在 redux-saga 中，提供了 take 和 takeLatest 这两个操作，dva 是 redux-saga 的封装，也是可以使用这种操作的。要理解 take 操作的语义，可以参见这两种示例的对比。</p>
+<p>  假设我们有一个事件处理的代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">someSource.on(<span class="string">'click'</span>, event =&gt; doSomething(event))</span><br></pre></td></tr></table></figure></p>
+<p>  这段代码转成用 generator 来表达，就是下面这个形式：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="function"><span class="title">saga</span></span>() &#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        const event = yield take(<span class="string">'click'</span>);</span><br><span class="line">        doSomething(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  所以，我们也可以在 dva 中使用 take 操作来监听 action。</p>
+<h3 id="八、多任务调度"><a href="#八、多任务调度" class="headerlink" title="八、多任务调度"></a>八、多任务调度</h3><p>  在七中我们提到的是多个任务的串行执行方式，这是业务中最常见的多任务执行方式，只需逐个 yield call 就可以了。</p>
+<p>  有的时候，我们可能会希望多个任务以另外一些方式执行，比如：<br>  1）并行，若干个任务之间不存在依赖关系，并且后续操作对它们的结果无依赖<br>  2）竞争，若干个任务之间，只要有一个执行完成，就进入下一个环节<br>  3）子任务，若干个任务，并行执行，但必须全部做完之后，下一个环节才继续执行</p>
+  <font size="4" face="黑体"><strong>a、任务的并行执行：</strong></font>
+
+<p>  如果想要让任务并行执行，可以通过下面这种方式：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const [result1, result2]  = yield [</span><br><span class="line">    call(service1, param1),</span><br><span class="line">    call(service2, param2)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>  把多个要并行执行的东西放在一个数组里，就可以并行执行，等所有的都结束之后，进入下个环节，类似 promise.all 的操作。一般有一些集成界面，比如 dashboard，其中各组件之间业务关联较小，就可以用这种方式去分别加载数据，此时整体加载时间只取决于时间最长的那个。</p>
+<p>  注意上面代码中的 yield [] 不要写成 yield* []，这两者含义是不同的，后者会顺序执行。</p>
+  <font size="4" face="黑体"><strong>b、任务的竞争：</strong></font>
+
+<p>  如果多个任务之间存在竞争关系，可以通过下面这种方式：<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const &#123; data, timeout &#125; = yield race(&#123;</span><br><span class="line">    data: call(service, <span class="string">'some data'</span>),</span><br><span class="line">    timeout: call(delay, 1000)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (data)</span><br><span class="line">    put(&#123;<span class="built_in">type</span>: <span class="string">'DATA_RECEIVED'</span>, data&#125;);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    put(&#123;<span class="built_in">type</span>: <span class="string">'TIMEOUT_ERROR'</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  这个例子比较巧妙地用一个延时一秒的空操作来跟一个网络请求竞争，如果到了一秒，请求还没结束，就让它超时。这个类似于 Promise.race 的作用。</p>
+<h3 id="十、跨-model-的通信"><a href="#十、跨-model-的通信" class="headerlink" title="十、跨 model 的通信"></a>十、跨 model 的通信</h3><p>  当业务复杂的情况下，我们可能会对 model 进行拆分，但在这种情况下，往往又会遇到一些比较复杂的事情，比如：一个流程贯穿多个 model。对这个事情，我们可能有若干种不同的解决办法。</p>
+<p>  假设有如下场景：<br>  1）父容器 A，子容器 B，二者各自 connect 了不同的 model A 和 model B<br>  2）父容器中有一个操作，分三个步骤：<br>      model A 中某个 effect 处理第一步<br>      call model B 中的某个 effect 去处理第二步<br>      第二步结束后，再返回 model A 中做第三步</p>
+<p>  在 dva 中，可以用 namespace 去指定接受 action 的 model，所以可以通过类似这样的方式去组合：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yield call(&#123; <span class="built_in">type</span>: <span class="string">'a/foo'</span> &#125;);</span><br><span class="line">yield call(&#123; <span class="built_in">type</span>: <span class="string">'b/foo'</span> &#125;);</span><br><span class="line">yield call(&#123; <span class="built_in">type</span>: <span class="string">'a/bar'</span> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  甚至还可以利用 take 命令，在另外一个 model 的某个 effect 中插入逻辑：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*<span class="function"><span class="title">effectA</span></span>() &#123;</span><br><span class="line">    yield call(service1);</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'service1Success'</span> &#125;);</span><br><span class="line">    // 如果我们复用这个effect，但要在这里加一件事，怎么办？</span><br><span class="line">    yield call(service2);</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'service2Success'</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  可以利用之前我们说的 take 命令：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yield take(<span class="string">'a/service1Success'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  这样，可以在外部往里面添加一个并行操作，通过这样的组合可以处理一些组合流程。但实际情况下，我们可能要处理的不仅仅是 effect，很可能视图组件中还存在后续逻辑，在某个 action 执行之后，还需要再做某些事情。比如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yield call(&#123; <span class="built_in">type</span>: <span class="string">'a/foo'</span> &#125;);</span><br><span class="line">yield call(&#123; <span class="built_in">type</span>: <span class="string">'b/foo'</span> &#125;);</span><br><span class="line">// 如果这里是要在组件里面做某些事情，怎么办？</span><br></pre></td></tr></table></figure></p>
+<p>  可以利用一些特殊手段把流程延伸出来到组件里。比如说，我们通常在组件中 dispatch 一个 action 的时候，不会处理后续事情，但可以修改这个过程：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    dispatch(&#123; <span class="built_in">type</span>: <span class="string">'reusable/addLog'</span>, payload: &#123; data: 9527, resolve, reject &#125; &#125;);</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="keyword">then</span>((data) =&gt; &#123;</span><br><span class="line">    console.log(`after a long time, <span class="variable">$&#123;data&#125;</span> returns`);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  注意这里，我们是把 resolve 和 reject 传到 action 里面了，所以，只需在 effect 里面这样处理：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    const result = yield call(service1);</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'service1Success'</span>, payload: result &#125;);</span><br><span class="line">    resolve(result);</span><br><span class="line">&#125;</span><br><span class="line">catch (error) &#123;</span><br><span class="line">    yield put(&#123; <span class="built_in">type</span>: <span class="string">'service1Fail'</span>, error &#125;);</span><br><span class="line">    reject(ex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这样，就实现了跨越组件、模型的复杂的长流程的调用。</p>
+<h3 id="十一、为-dva-应用编写测试"><a href="#十一、为-dva-应用编写测试" class="headerlink" title="十一、为 dva 应用编写测试"></a>十一、为 dva 应用编写测试</h3><p>  在比较追求稳定性的工程中，应当使用单元测试来保证代码质量。在 Redux 的各类中间件中，redux-saga 应当是测试最简单的了，原因如下：</p>
+<p>  在一个应用中，除了视图组件之外，可能存在逻辑的地方主要是两种：reducer、effect。这两者中，reducer 是普通函数，并且是纯函数，职责单一，对于固定输入，就有固定输出，所以很容易测试。而在 effect 中，我们所要测试的东西是什么呢？如何确保测试能够覆盖某个effect，是全部真实执行一遍吗？</p>
+<p>  所谓的单元测试，其实要测试的是某个函数自身的逻辑是否全被覆盖，像在一个 effect 中对外部服务（比如网络请求）的调用，这些外部服务的执行过程其实与本模块的单元测试无关，因此，我们只需要验证这件事：是否发起了对某个服务的调用。</p>
+<p>  至于说这个服务是否在执行，无关于本模块的正确性，那是这个服务的单元测试要做的事。所以这么一来，一个 effect 实际上是转化为同步逻辑的测试，因为它是一个 generator 函数，只需对这个 effect 一路 next，就能跑完整个逻辑。</p>
+<p>  对 redux-saga 的测试是这样的原理，而 dva 是对 redux-saga 的封装，这块的机制是一致的，所以我们可以用同样的方式，从 model 对象中获取 reducer 和 effect，分别编写测试用例。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://dvajs.com" target="_blank" rel="noopener">https://dvajs.com</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年01月08日 09:51</p>
+        <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-05/" title="Dva官网之05-dva 开发复杂 SPA">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/&title=《Dva官网之05-dva 开发复杂 SPA》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/&title=《Dva官网之05-dva 开发复杂 SPA》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dva官网之05-dva 开发复杂 SPA》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-05/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、动态加载-model"><span class="post-toc-text">二、动态加载 model</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、用-model-共享全局信息"><span class="post-toc-text">三、用 model 共享全局信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、model-的复用"><span class="post-toc-text">四、model 的复用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、动态扩展-model"><span class="post-toc-text">五、动态扩展 model</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、长流程的业务逻辑"><span class="post-toc-text">六、长流程的业务逻辑</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、用-take-进行事件监听"><span class="post-toc-text">七、用 take 进行事件监听</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、多任务调度"><span class="post-toc-text">八、多任务调度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十、跨-model-的通信"><span class="post-toc-text">十、跨 model 的通信</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十一、为-dva-应用编写测试"><span class="post-toc-text">十一、为 dva 应用编写测试</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/08/Dva-gw-06/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Dva官网之06-dva 源码解析
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/01/07/Dva-gw-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Dva官网之04-图解 dva</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

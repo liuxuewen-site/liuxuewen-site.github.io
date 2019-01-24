@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>前端基础考题5 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、什么是优雅降级和渐进增强？  1）优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。优雅降级能为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效.   2）渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的">
+<meta name="keywords" content="前端-考题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础考题5">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、什么是优雅降级和渐进增强？  1）优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。优雅降级能为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效.   2）渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-03T06:55:40.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端基础考题5">
+<meta name="twitter:description" content="一、什么是优雅降级和渐进增强？  1）优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。优雅降级能为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效.   2）渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-frontEnd-basic5" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      前端基础考题5
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-14
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、什么是优雅降级和渐进增强？"><a href="#一、什么是优雅降级和渐进增强？" class="headerlink" title="一、什么是优雅降级和渐进增强？"></a>一、什么是优雅降级和渐进增强？</h3><p>  1）优雅降级：Web站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会检查以确认它们是否能正常工作。优雅降级能为那些无法支持功能的浏览器增加候选方案，使之在旧式浏览器上以某种形式降级体验却不至于完全失效.</p>
+<p>  2）渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新式浏览器才支持的功能,向页面增加无害于基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。</p>
+<h3 id="二、常见浏览器兼容性问题与解决方案？"><a href="#二、常见浏览器兼容性问题与解决方案？" class="headerlink" title="二、常见浏览器兼容性问题与解决方案？"></a>二、常见浏览器兼容性问题与解决方案？</h3><p>  1）不同浏览器，标签默认的外补丁和内补丁不同<br>  &emsp;问题症状：标签在不加样式控制的情况下，各自的margin和padding差异较大<br>  &emsp;碰到频率：100%<br>  &emsp;解决方案：CSS里 * {margin:0;padding:0;}<br>  &emsp;备注：这个是最常见的浏览器兼容性问题，几乎所有CSS文件开头都会用通配符*来设置各标签的内外补丁是0</p>
+<p>  2）块标签float后，又有横行的margin情况下，在IE6显示margin比设置的大<br>  &emsp;问题症状：常见症状是IE6中后面的一块被顶到下一行<br>  &emsp;碰到频率：90%（稍微复杂点的页面都会碰到，float布局最常见的浏览器兼容问题）<br>  &emsp;解决方案：在float的标签样式控制中加入display:inline;将其转化为行内属性<br>  &emsp;备注：div+CSS横向布局中我们常用div float实现，横向间距设置如果用margin，这便是一个必然会碰到的兼容性问题</p>
+<p>  3）行内标签，设置display:block后采用float布局，又有横行的margin的情况，IE6间距bug<br>  &emsp;问题症状：IE6里的间距比超过设置的间距<br>  &emsp;碰到频率：20%<br>  &emsp;解决方案： 在display:block;后面加入display:inline;display:table;<br>  &emsp;备注：行内标签为了设置宽高，我们需要设置display:block;(除了input标签比较特殊)。在用float布局并有横向的margin后，在IE6下他就具有了块属性float后的横向margin的bug。不过因为它本身就是行内属性标签，所以我们再加上display:inline的话，它的高宽就不可设了。这时候我们还需要在display:inline后面加入display:talbe。</p>
+<p>  4）设置较小高度标签（一般小于10px），在IE6，IE7中高度超出自己设置高度<br>  &emsp;问题症状：IE6、7标签的高度不受控制，超出自己设置的高度<br>  &emsp;碰到频率：60%<br>  &emsp;解决方案：给超出高度的标签设置overflow:hidden;或者设置行高line-height小于你设置的高度<br>  &emsp;备注：这种情况一般出现在我们设置小圆角背景的标签里。出现这个问题的原因是IE8之前的浏览器都会给标签一个最小默认的行高的高度。即使你的标签是空的，这个标签的高度还是会达到默认的行高。</p>
+<p>  5）图片默认有间距<br>  &emsp;问题症状：几个img标签放在一起的时候，有些浏览器会有默认间距，加通配符也不起作用。<br>  &emsp;碰到几率：20%<br>  &emsp;解决方案：使用float属性为img布局<br>  &emsp;备注：因为img标签是行内属性标签，所以只要不超出容器宽度，img标签都会排在一行里，但是部分浏览器的img标签之间会有个间距。去掉这个间距使用float。</p>
+<p>  6）标签最低高度设置min-height不兼容<br>  &emsp;问题症状：min-height本身就是一个不兼容的CSS属性，所以设置min-height时不能很好的被各个浏览器兼容<br>  &emsp;碰到几率：5%<br>  &emsp;解决方案：如果我们要设置一个标签的最小高度200px，需要进行的设置为：{min-height:200px; height:auto !important; height:200px; overflow:visible;}<br>  &emsp;备注：在B/S系统前端，有很多情况下我们有这种需求。当内容小于一个值（如300px）时。容器的高度为300px；当内容高度大于这个值时，容器高度被撑高，而不是出现滚动条。这时候我们就会面临这个兼容性问题。</p>
+<p>  7）透明度的兼容CSS设置<br>  &emsp;一般在ie中用的是filter:alpha(opacity=0);这个属性来设置div或者是块级元素的透明度，而在firefox中，一般就是直接使用opacity:0,对于兼容的，一般的做法就是在书写css样式的将2个都写上就行，就能实现兼容 </p>
+<h3 id="三、性能优化的方法有哪些？"><a href="#三、性能优化的方法有哪些？" class="headerlink" title="三、性能优化的方法有哪些？"></a>三、性能优化的方法有哪些？</h3><p>  1）使用CDN<br>  2）减少http请求次数<br>  3）为文件头指定Expires<br>  4）用innerHTML代替DOM操作，减少DOM操作次数，优化javascript性能<br>  5）将样式表放在顶部，将脚本放在底部<br>  6）使用gzip压缩内容<br>  7）将CSS和JS放到外部文件中<br>  8）避免跳转<br>  9）可缓存的AJAX<br>  10）少用全局变量</p>
+<p>  详情请看性能优化文章</p>
+<h3 id="四、为什么要初始化CSS样式（重置浏览器默认样式）？"><a href="#四、为什么要初始化CSS样式（重置浏览器默认样式）？" class="headerlink" title="四、为什么要初始化CSS样式（重置浏览器默认样式）？"></a>四、为什么要初始化CSS样式（重置浏览器默认样式）？</h3><p>  因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，若没对CSS初始化往往会出现浏览器之间的页面显示差异。（初始化样式会对SEO有一定的影响，所以力求影响最小的情况下初始化）<br>  方法：<br>  1）最简单的办法：（不推荐使用）*{margin: 0;padding: 0;}。<br>  2）使用CSSReset可以将所有浏览器默认样式设置成一样。<br>  3）normalize：有些cssreset过于简单粗暴，有点伤及无辜，normalize是另一个选择。bootstrap引用该css来重置浏览器默认样式，比普通的cssreset要精细，保留浏览器有用的默认样式，支持包括手机浏览器在内的超多浏览器，同时对HTML5元素、排版、列表、嵌入的内容、表单和表格都进行了一般化。 </p>
+<h3 id="五、谈谈你对CSS中刻度的认识？"><a href="#五、谈谈你对CSS中刻度的认识？" class="headerlink" title="五、谈谈你对CSS中刻度的认识？"></a>五、谈谈你对CSS中刻度的认识？</h3><p>  CSS中刻度是用于设置元素尺寸的单位。<br>  1）长度单位包括：相对单位（em, ex, ch, rem, vw, vh, vmax, vmin）和绝对单位（cm, mm, q, in, pt, pc, px）。<br>  2）绝对长度单位：1in = 2.54cm = 25.4 mm = 72pt = 6pc = 96px<br>  3）特殊值0可以省略单位。如margin:0px可以写成margin:0<br>  4）一些属性可能允许有负长度值，或有一定的范围限制。若不支持负长度值，应变换到能够被支持的最近一个长度值</p>
+<p>  文本相对长度单位：em<br>  相对于当前对象内文本的字体尺寸，若当前对象行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。(相对父元素的字体大小倍数)</p>
+<p>  文本相对长度单位：rem<br>  rem是CSS3新增的一个相对单位，相对于根元素(即html元素)font-size计算值的倍数。<br>  （浏览器的默认字体大小为16像素，浏览器内置的默认样式多数是可以被修改的，但chrome不能直接修改，可以被用户样式覆盖）</p>
+<p>  em与rem的重要区别在于它们计算的规则一个是依赖父元素另一个是依赖根元素计算</p>
+<h3 id="六、box-sizing属性的的用法？"><a href="#六、box-sizing属性的的用法？" class="headerlink" title="六、box-sizing属性的的用法？"></a>六、box-sizing属性的的用法？</h3><p>  用来设置或检索对象的盒模型组成模式<br>  1）box-sizing:content-box：<br>  padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和，即 (Element width = width + border + padding，但占有页面位置还要加上margin)此属性表现为标准模式下的盒模型。<br>  2）box-sizing:border-box：<br>  padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度，即 (Element width = width) 此属性表现为怪异模式下的盒模型。 </p>
+<h3 id="七、隐藏元素的方式有哪些？"><a href="#七、隐藏元素的方式有哪些？" class="headerlink" title="七、隐藏元素的方式有哪些？"></a>七、隐藏元素的方式有哪些？</h3><p>  1）CSS的display:none，不会占有原来的位置<br>  2）CSS的visibility:hidden，会占有原来的位置<br>  3）HTML5中的新增属性hidden=”hidden”，不会占有原来的位置</p>
+<h3 id="八、如何解决多个元素重叠问题？"><a href="#八、如何解决多个元素重叠问题？" class="headerlink" title="八、如何解决多个元素重叠问题？"></a>八、如何解决多个元素重叠问题？</h3><p>  使用z-index属性可以设置元素的层叠顺序<br>  1）语法：z-index: auto | <integer><br>  &emsp;&emsp;auto：元素在当前层叠上下文中的层叠级别是0。<br>  &emsp;&emsp;整数： 用整数值来定义堆叠级别。可以为负值。<br>  &emsp;&emsp;当多个元素层叠在一起时，数字大者将显示在上面<br>  2）默认值：auto<br>  3）适用于：定位元素。即定义了position为非static的元素</integer></p>
+<p>标注：</p>
+<ul>
+<li>本文来自牛客网</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年09月03日 14:55</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/14/frontEnd-basic5/" title="前端基础考题5">http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/&title=《前端基础考题5》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/&title=《前端基础考题5》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端基础考题5》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/02/14/frontEnd-basic5/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-考题/" class="color1">前端-考题</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、什么是优雅降级和渐进增强？"><span class="post-toc-text">一、什么是优雅降级和渐进增强？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、常见浏览器兼容性问题与解决方案？"><span class="post-toc-text">二、常见浏览器兼容性问题与解决方案？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、性能优化的方法有哪些？"><span class="post-toc-text">三、性能优化的方法有哪些？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、为什么要初始化CSS样式（重置浏览器默认样式）？"><span class="post-toc-text">四、为什么要初始化CSS样式（重置浏览器默认样式）？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、谈谈你对CSS中刻度的认识？"><span class="post-toc-text">五、谈谈你对CSS中刻度的认识？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、box-sizing属性的的用法？"><span class="post-toc-text">六、box-sizing属性的的用法？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、隐藏元素的方式有哪些？"><span class="post-toc-text">七、隐藏元素的方式有哪些？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、如何解决多个元素重叠问题？"><span class="post-toc-text">八、如何解决多个元素重叠问题？</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/15/CSS-bs-webLayout/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          web页面布局
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/08/CSS-bs-bfc/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">BFC</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

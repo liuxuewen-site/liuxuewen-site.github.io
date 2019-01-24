@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Dva官网之01-上手 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。   特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，effects 和 subs">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva官网之01-上手">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。   特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，effects 和 subs">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/Dva-gw-01/1.gif">
+<meta property="og:updated_time" content="2019-01-22T10:21:42.211Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dva官网之01-上手">
+<meta name="twitter:description" content="一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。   特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，effects 和 subs">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/Dva-gw-01/1.gif">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Dva-gw-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Dva官网之01-上手
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-01-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、dva-介绍"><a href="#一、dva-介绍" class="headerlink" title="一、dva 介绍"></a>一、dva 介绍</h3><p>  dva 是一个基于 <a href="https://github.com/reduxjs/redux" target="_blank" rel="noopener">redux</a> 和 <a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="noopener">redux-saga</a> 的数据流方案，为了简化开发体验，dva 还额外内置了 <a href="https://github.com/ReactTraining/react-router" target="_blank" rel="noopener">react-router</a> 和 <a href="https://github.com/github/fetch" target="_blank" rel="noopener">fetch</a>，所以可以理解为一个轻量级的应用框架。</p>
+<p>  特性：<br>  1）易学易用，仅有6个 api，对 redux 用户友好，配合 <a href="https://umijs.org/guide/with-dva.html" target="_blank" rel="noopener">umi</a> 使用后更是降低为0 api。<br>  2）elm 概念，通过 reducers，effects 和 subscriptions 组织 model。<br>  3）插件机制，比如 <a href="https://github.com/dvajs/dva/tree/master/packages/dva-loading" target="_blank" rel="noopener">dva-loading</a> 可以自动处理 loading 状态，不用一遍遍写 showLoading 和 hideLoading。<br>  4）支持HMR，基于 <a href="https://github.com/dvajs/babel-plugin-dva-hmr" target="_blank" rel="noopener">babel-plugin-dva-hmr</a> 实现 components、routes、models的HMR。</p>
+<h3 id="二、安装-dva-cli"><a href="#二、安装-dva-cli" class="headerlink" title="二、安装 dva-cli"></a>二、安装 dva-cli</h3><p>  通过 npm 安装 dva-cli 并确保版本是 0.9.1 以上:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install dva-cli -g</span><br></pre></td></tr></table></figure></p>
+<p>  查看版本：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dva -v</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、创建新应用"><a href="#三、创建新应用" class="headerlink" title="三、创建新应用"></a>三、创建新应用</h3><p>  创建 dva-quickstart 目录，包含了项目初始化目录和文件，并提供开发服务器、构建脚本、数据 mock 服务、代理服务器等功能:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dva new dva-quickstart</span><br></pre></td></tr></table></figure></p>
+<p>  cd 进入 dva-quickstart 目录，启动开发服务器：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure></p>
+<p>  浏览器打开<a href="http://localhost:8000，会看到" target="_blank" rel="noopener">http://localhost:8000，会看到</a> dva 的欢迎页面。</p>
+<h3 id="四、使用-antd"><a href="#四、使用-antd" class="headerlink" title="四、使用 antd"></a>四、使用 antd</h3><p>  通过 npm 安装 antd 和 babel-plugin-import，babel-plugin-import 是用来按需加载 antd 的脚本和样式的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install antd babel-plugin-import --save</span><br></pre></td></tr></table></figure></p>
+<p>  编辑 .webpackrc，使 babel-plugin-import 插件生效:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"extraBabelPlugins"</span>: [</span><br><span class="line">      [<span class="string">"import"</span>, &#123; <span class="string">"libraryName"</span>: <span class="string">"antd"</span>, <span class="string">"libraryDirectory"</span>: <span class="string">"es"</span>, <span class="string">"style"</span>: <span class="string">"css"</span> &#125;]</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注意：dva-cli 基于 roadhog 实现 build 和 dev，更多 .webpackrc 的配置详见 <a href="https://github.com/sorrycc/roadhog#%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">roadhog 配置</a>。</p>
+<h3 id="五、定义路由"><a href="#五、定义路由" class="headerlink" title="五、定义路由"></a>五、定义路由</h3><p>  写个应用来显示产品列表。首先第一步是创建路由，路由可以想象成是组成应用的不同页面。</p>
+<p>  新建 route component（routes/Products.js），内容如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line">const Products = (props) =&gt; (</span><br><span class="line">    &lt;h2&gt;List of Products&lt;/h2&gt;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default Products;</span><br></pre></td></tr></table></figure></p>
+<p>  添加路由信息到路由表，编辑 router.js:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import Products from <span class="string">'./routes/Products'</span>;</span><br><span class="line">...</span><br><span class="line">&lt;Route path=<span class="string">"/products"</span> exact component=&#123;Products&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  在浏览器里打开 <a href="http://localhost:8000/#/products，应该能看到前面定义的" target="_blank" rel="noopener">http://localhost:8000/#/products，应该能看到前面定义的</a> &lt; h2 &gt; 标签。</p>
+<h3 id="六、编写-UI-Component"><a href="#六、编写-UI-Component" class="headerlink" title="六、编写 UI Component"></a>六、编写 UI Component</h3><p>  随着应用的发展，会需要在多个页面分享 UI 元素 (或在一个页面使用多次)，在 dva 里你可以把这部分抽成 component。</p>
+<p>  新建 ProductList component（components/ProductList.js），这样就能在不同的地方显示产品列表了：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import PropTypes from <span class="string">'prop-types'</span>;</span><br><span class="line">import &#123; Table, Popconfirm, Button &#125; from <span class="string">'antd'</span>;</span><br><span class="line"></span><br><span class="line">const ProductList = (&#123; onDelete, products &#125;) =&gt; &#123;</span><br><span class="line">const columns = [&#123;</span><br><span class="line">    title: <span class="string">'Name'</span>,</span><br><span class="line">    dataIndex: <span class="string">'name'</span>,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    title: <span class="string">'Actions'</span>,</span><br><span class="line">    render: (text, record) =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">        &lt;Popconfirm title=<span class="string">"Delete?"</span> onConfirm=&#123;() =&gt; onDelete(record.id)&#125;&gt;</span><br><span class="line">        &lt;Button&gt;Delete&lt;/Button&gt;</span><br><span class="line">        &lt;/Popconfirm&gt;</span><br><span class="line">    );</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;];</span><br><span class="line"><span class="built_in">return</span> (</span><br><span class="line">    &lt;Table</span><br><span class="line">    dataSource=&#123;products&#125;</span><br><span class="line">    columns=&#123;columns&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ProductList.propTypes = &#123;</span><br><span class="line">onDelete: PropTypes.func.isRequired,</span><br><span class="line">products: PropTypes.array.isRequired,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default ProductList;</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、定义-Model"><a href="#七、定义-Model" class="headerlink" title="七、定义 Model"></a>七、定义 Model</h3><p>  完成 UI 后，现在开始处理数据和逻辑。dva 通过 model 的概念把一个领域的模型管理起来，包含同步更新 state 的 reducers，处理异步逻辑的 effects，订阅数据源的 subscriptions。</p>
+<p>  新建 model（models/products.js）：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">    namespace: <span class="string">'products'</span>,</span><br><span class="line">    state: [],</span><br><span class="line">    reducers: &#123;</span><br><span class="line">        <span class="string">'delete'</span>(state, &#123; payload: id &#125;) &#123;</span><br><span class="line">            <span class="built_in">return</span> state.filter(item =&gt; item.id !== id);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  这个 model 里：<br>  1）namespace 表示在全局 state 上的 key<br>  2）state 是初始值，在这里是空数组<br>  3）reducers 等同于 redux 里的 reducer，接收 action，同步更新 state</p>
+<p>  然后在 index.js 里载入它：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 3. Model</span><br><span class="line">app.model(require(<span class="string">'./models/products'</span>).default);</span><br></pre></td></tr></table></figure></p>
+<h3 id="八、connect-起来"><a href="#八、connect-起来" class="headerlink" title="八、connect 起来"></a>八、connect 起来</h3><p>  到这里，我们已经单独完成了 model 和 component，那么他们如何串联起来呢，dva 提供了 connect 方法。如果你熟悉 redux，这个 connect 就是 react-redux 的 connect。</p>
+<p>  编辑 routes/Products.js，替换为以下内容：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import &#123; connect &#125; from <span class="string">'dva'</span>;</span><br><span class="line">import ProductList from <span class="string">'../components/ProductList'</span>;</span><br><span class="line"></span><br><span class="line">const Products = (&#123; dispatch, products &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">function</span> handleDelete(id) &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            <span class="built_in">type</span>: <span class="string">'products/delete'</span>,</span><br><span class="line">            payload: id,</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;List of Products&lt;/h2&gt;</span><br><span class="line">            &lt;ProductList onDelete=&#123;handleDelete&#125; products=&#123;products&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// <span class="built_in">export</span> default Products;</span><br><span class="line"><span class="built_in">export</span> default connect((&#123; products &#125;) =&gt; (&#123;</span><br><span class="line">    products,</span><br><span class="line">&#125;))(Products);</span><br></pre></td></tr></table></figure></p>
+<p>  最后，我们还需要一些初始数据让这个应用 run 起来。编辑 index.js：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- const app = dva();</span><br><span class="line">+ const app = dva(&#123;</span><br><span class="line">+   initialState: &#123;</span><br><span class="line">+     products: [</span><br><span class="line">+       &#123; name: <span class="string">'dva'</span>, id: 1 &#125;,</span><br><span class="line">+       &#123; name: <span class="string">'antd'</span>, id: 2 &#125;,</span><br><span class="line">+     ],</span><br><span class="line">+   &#125;,</span><br><span class="line">+ &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  刷新浏览器，应该能看到以下效果：</p>
+<p>  <img src="Dva-gw-01/1.gif" alt="Alt text"></p>
+<h3 id="九、构建应用"><a href="#九、构建应用" class="headerlink" title="九、构建应用"></a>九、构建应用</h3><p>  完成开发并且在开发环境验证之后，就需要部署给我们的用户了。先执行下面的命令：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure></p>
+<p>  几秒后，输出应该如下:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; @ build /private/tmp/myapp</span><br><span class="line">&gt; roadhog build</span><br><span class="line"></span><br><span class="line">Creating an optimized production build...</span><br><span class="line">Compiled successfully.</span><br><span class="line"></span><br><span class="line">File sizes after gzip:</span><br><span class="line"></span><br><span class="line">  82.98 KB  dist/index.js</span><br><span class="line">  270 B     dist/index.css</span><br></pre></td></tr></table></figure></p>
+<p>  build 命令会打包所有的资源，包含 JavaScript, CSS, web fonts, images, html 等。然后你可以在 dist/ 目录下找到这些文件。</p>
+<h3 id="十、例子和脚手架"><a href="#十、例子和脚手架" class="headerlink" title="十、例子和脚手架"></a>十、例子和脚手架</h3><p>  官方：<br>  <a href="https://stackblitz.com/edit/dva-example-count" target="_blank" rel="noopener">Count</a>: 简单计数器<br>  <a href="https://github.com/dvajs/dva/tree/master/examples/user-dashboard" target="_blank" rel="noopener">User Dashboard</a>: 用户管理<br>  <a href="https://github.com/ant-design/ant-design-pro" target="_blank" rel="noopener">AntDesign Pro</a>：(Demo)，开箱即用的中台前端/设计解决方案<br>  <a href="https://github.com/dvajs/dva-hackernews" target="_blank" rel="noopener">HackerNews</a>: (Demo)，HackerNews Clone<br>  <a href="https://github.com/zuiidea/antd-admin" target="_blank" rel="noopener">antd-admin</a>: (Demo)，基于 antd 和 dva 的后台管理应用<br>  <a href="https://github.com/sorrycc/github-stars" target="_blank" rel="noopener">github-stars</a>: (Demo)，Github Star 管理应用</p>
+<p>  社区：<br>  <a href="https://github.com/yvanwangl/AccountSystem" target="_blank" rel="noopener">Account System</a>: 小型库存管理系统<br>  <a href="https://github.com/nihgwu/react-native-dva-starter" target="_blank" rel="noopener">react-native-dva-starter</a>: 集成了 dva 和 react-navigation 典型应用场景的 React Native 实例</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://dvajs.com" target="_blank" rel="noopener">https://dvajs.com</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年01月22日 18:21</p>
+        <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-01/" title="Dva官网之01-上手">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/&title=《Dva官网之01-上手》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/&title=《Dva官网之01-上手》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dva官网之01-上手》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、dva-介绍"><span class="post-toc-text">一、dva 介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、安装-dva-cli"><span class="post-toc-text">二、安装 dva-cli</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、创建新应用"><span class="post-toc-text">三、创建新应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、使用-antd"><span class="post-toc-text">四、使用 antd</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、定义路由"><span class="post-toc-text">五、定义路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、编写-UI-Component"><span class="post-toc-text">六、编写 UI Component</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、定义-Model"><span class="post-toc-text">七、定义 Model</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、connect-起来"><span class="post-toc-text">八、connect 起来</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、构建应用"><span class="post-toc-text">九、构建应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十、例子和脚手架"><span class="post-toc-text">十、例子和脚手架</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/07/Dva-gw-02/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Dva官网之02-概念
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/12/20/React-bs-interact/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React数据交互</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

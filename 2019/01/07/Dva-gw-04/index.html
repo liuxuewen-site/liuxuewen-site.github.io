@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Dva官网之04-图解 dva | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、示例背景  最常见的 Web 类示例之一: TodoList = Todo list + Add todo button 二、图解一: React 表示法     按照 React 官方指导意见, 如果多个 Component 之间要发生交互, 那么状态（即数据）就维护在这些 Component 的最小公约父节点上, 也即是 &amp;lt; App / &amp;gt;，&amp;lt; TodoList / &amp;g">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva官网之04-图解 dva">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、示例背景  最常见的 Web 类示例之一: TodoList = Todo list + Add todo button 二、图解一: React 表示法     按照 React 官方指导意见, 如果多个 Component 之间要发生交互, 那么状态（即数据）就维护在这些 Component 的最小公约父节点上, 也即是 &amp;lt; App / &amp;gt;，&amp;lt; TodoList / &amp;g">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/Dva-gw-04/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/Dva-gw-04/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/Dva-gw-04/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/Dva-gw-04/4.png">
+<meta property="og:updated_time" content="2019-01-07T13:53:56.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dva官网之04-图解 dva">
+<meta name="twitter:description" content="一、示例背景  最常见的 Web 类示例之一: TodoList = Todo list + Add todo button 二、图解一: React 表示法     按照 React 官方指导意见, 如果多个 Component 之间要发生交互, 那么状态（即数据）就维护在这些 Component 的最小公约父节点上, 也即是 &amp;lt; App / &amp;gt;，&amp;lt; TodoList / &amp;g">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/Dva-gw-04/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Dva-gw-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Dva官网之04-图解 dva
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-01-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、示例背景"><a href="#一、示例背景" class="headerlink" title="一、示例背景"></a>一、示例背景</h3><p>  最常见的 Web 类示例之一: TodoList = Todo list + Add todo button</p>
+<h3 id="二、图解一-React-表示法"><a href="#二、图解一-React-表示法" class="headerlink" title="二、图解一: React 表示法"></a>二、图解一: React 表示法</h3><p>  <img src="Dva-gw-04/1.png" alt="Alt text"></p>
+<p>  按照 React 官方指导意见, 如果多个 Component 之间要发生交互, 那么状态（即数据）就维护在这些 Component 的最小公约父节点上, 也即是 &lt; App / &gt;，&lt; TodoList / &gt; &lt; Todo / &gt; 以及&lt; AddTodoBtn / &gt; 本身不维持任何 state, 完全由父节点&lt; App / &gt; 传入 props 以决定其展现, 是一个纯函数的存在形式, 即: Pure Component。</p>
+<h3 id="三、图解二-Redux-表示法"><a href="#三、图解二-Redux-表示法" class="headerlink" title="三、图解二: Redux 表示法"></a>三、图解二: Redux 表示法</h3><p>  <img src="Dva-gw-04/2.png" alt="Alt text"></p>
+<p>  React 只负责页面渲染, 而不负责页面逻辑, 页面逻辑可以从中单独抽取出来, 变成 store。与图一相比, 几个明显的改进点:</p>
+<p>  1）状态及页面逻辑从 &lt; App / &gt; 里面抽取出来, 成为独立的 store, 页面逻辑就是 reducer。<br>  2）&lt; TodoList / &gt; 及 &lt; AddTodoBtn / &gt; 都是 Pure Component, 通过 connect 方法可以很方便地给它俩加一层 wrapper 从而建立起与 store 的联系: 可以通过 dispatch 向 store 注入 action, 促使 store 的状态进行变化, 同时又订阅了 store 的状态变化, 一旦状态有变, 被 connect 的组件也随之刷新。<br>  3）使用 dispatch 往 store 发送 action 的这个过程是可以被拦截的, 自然而然地就可以在这里增加各种 Middleware, 实现各种自定义功能, eg: logging。</p>
+<p>  这样一来, 各个部分各司其职, 耦合度更低, 复用度更高, 扩展性更好。</p>
+<h3 id="四、图解三-加入-Saga"><a href="#四、图解三-加入-Saga" class="headerlink" title="四、图解三: 加入 Saga"></a>四、图解三: 加入 Saga</h3><p>  <img src="Dva-gw-04/3.png" alt="Alt text"></p>
+<p>  上面说了, 可以使用 Middleware 拦截 action, 这样一来异步的网络操作也就很方便了, 做成一个 Middleware 就行了, 这里使用 redux-saga 这个类库, 举个栗子:</p>
+<p>  1）点击创建 Todo 的按钮, 发起一个 type == addTodo 的 action。<br>  2）saga 拦截这个 action, 发起 http 请求, 如果请求成功, 则继续向 reducer 发一个 type == addTodoSucc 的 action, 提示创建成功, 反之则发送 type == addTodoFail 的 action 即可。</p>
+<h3 id="五、图解四-Dva-表示法"><a href="#五、图解四-Dva-表示法" class="headerlink" title="五、图解四: Dva 表示法"></a>五、图解四: Dva 表示法</h3><p>  <img src="Dva-gw-04/4.png" alt="Alt text"></p>
+<p>  有了前面的三步铺垫, Dva 的出现也就水到渠成了, 正如 Dva 官网所言, Dva 是基于 React + Redux + Saga 的最佳实践沉淀, 做了 3 件很重要的事情, 大大提升了编码体验:</p>
+<p>  1）把 store 及 saga 统一为一个 model 的概念, 写在一个 js 文件里面。<br>  2）增加了一个 Subscriptions, 用于收集其他来源的 action, eg: 键盘操作。<br>  3）model 写法很简约, 类似于 DSL 或者 RoR, coding 快得飞起。</p>
+<p>  约定优于配置, 总是好的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">app.model(&#123;</span><br><span class="line">    namespace: <span class="string">'count'</span>,</span><br><span class="line">    state: &#123;</span><br><span class="line">        record: 0,</span><br><span class="line">        current: 0,</span><br><span class="line">    &#125;,</span><br><span class="line">    reducers: &#123;</span><br><span class="line">        add(state) &#123;</span><br><span class="line">            const newCurrent = state.current + 1;</span><br><span class="line">            <span class="built_in">return</span> &#123; ...state,</span><br><span class="line">                record: newCurrent &gt; state.record ? newCurrent : state.record,</span><br><span class="line">                current: newCurrent,</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">        minus(state) &#123;</span><br><span class="line">            <span class="built_in">return</span> &#123; ...state, current: state.current - 1&#125;;</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    effects: &#123;</span><br><span class="line">        *add(action, &#123; call, put &#125;) &#123;</span><br><span class="line">            yield call(delay, 1000);</span><br><span class="line">            yield put(&#123; <span class="built_in">type</span>: <span class="string">'minus'</span> &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    subscriptions: &#123;</span><br><span class="line">        keyboardWatcher(&#123; dispatch &#125;) &#123;</span><br><span class="line">            key(<span class="string">'⌘+up, ctrl+up'</span>, () =&gt; &#123; dispatch(&#123;<span class="built_in">type</span>:<span class="string">'add'</span>&#125;) &#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://dvajs.com" target="_blank" rel="noopener">https://dvajs.com</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年01月07日 21:53</p>
+        <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-04/" title="Dva官网之04-图解 dva">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/&title=《Dva官网之04-图解 dva》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/&title=《Dva官网之04-图解 dva》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dva官网之04-图解 dva》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/01/07/Dva-gw-04/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、示例背景"><span class="post-toc-text">一、示例背景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、图解一-React-表示法"><span class="post-toc-text">二、图解一: React 表示法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、图解二-Redux-表示法"><span class="post-toc-text">三、图解二: Redux 表示法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、图解三-加入-Saga"><span class="post-toc-text">四、图解三: 加入 Saga</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、图解四-Dva-表示法"><span class="post-toc-text">五、图解四: Dva 表示法</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2019/01/07/Dva-gw-05/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          Dva官网之05-dva 开发复杂 SPA
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2019/01/07/Dva-gw-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Dva官网之03-综合</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

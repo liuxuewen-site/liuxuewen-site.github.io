@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>nginx专讲 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、nginx  Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。其特点是占有内存少，并发能力强，性能高。 二、nginx功能  1）反向代理。比如想在本地使用 www.mickey.com 的域名去访问 www.taobao.com。这个时候我们就可以通过nginx去实现。可解决跨域问题。   2）负载均衡。比如我的项目部署在不同的服务器上，但是通过">
+<meta name="keywords" content="前端-服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx专讲">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、nginx  Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。其特点是占有内存少，并发能力强，性能高。 二、nginx功能  1）反向代理。比如想在本地使用 www.mickey.com 的域名去访问 www.taobao.com。这个时候我们就可以通过nginx去实现。可解决跨域问题。   2）负载均衡。比如我的项目部署在不同的服务器上，但是通过">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/server-bs-nginx/1.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/server-bs-nginx/2.png">
+<meta property="og:updated_time" content="2018-07-03T17:45:01.459Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nginx专讲">
+<meta name="twitter:description" content="一、nginx  Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。其特点是占有内存少，并发能力强，性能高。 二、nginx功能  1）反向代理。比如想在本地使用 www.mickey.com 的域名去访问 www.taobao.com。这个时候我们就可以通过nginx去实现。可解决跨域问题。   2）负载均衡。比如我的项目部署在不同的服务器上，但是通过">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/server-bs-nginx/1.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-server-bs-nginx" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      nginx专讲
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-31
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、nginx"><a href="#一、nginx" class="headerlink" title="一、nginx"></a>一、nginx</h3><p>  Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。其特点是占有内存少，并发能力强，性能高。</p>
+<h3 id="二、nginx功能"><a href="#二、nginx功能" class="headerlink" title="二、nginx功能"></a>二、nginx功能</h3><p>  1）反向代理。比如想在本地使用 <a href="http://www.mickey.com" target="_blank" rel="noopener">www.mickey.com</a> 的域名去访问 <a href="http://www.taobao.com。这个时候我们就可以通过nginx去实现。可解决跨域问题。" target="_blank" rel="noopener">www.taobao.com。这个时候我们就可以通过nginx去实现。可解决跨域问题。</a></p>
+<p>  2）负载均衡。比如我的项目部署在不同的服务器上，但是通过统一的域名进入，由nginx对请求进行分发，减轻了服务器的压力。</p>
+<p>  上面这两种情况下，nginx服务器的作用都只是作为分发服务器，真正的内容，我们可以放在其他的服务器上，这样来，还能起到一层安全隔壁的作用，nginx作为隔离层。</p>
+<h3 id="三、nginx安装"><a href="#三、nginx安装" class="headerlink" title="三、nginx安装"></a>三、nginx安装</h3><p>  在 <a href="http://nginx.org/" target="_blank" rel="noopener">http://nginx.org/</a> 下载对应版本的nginx；<br>  在 nginx 的目录下使用 start nginx 或者 双击 nginx.exe 打开nginx（注意端口冲突）；</p>
+<h3 id="四、nginx配置属性说明"><a href="#四、nginx配置属性说明" class="headerlink" title="四、nginx配置属性说明"></a>四、nginx配置属性说明</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#全局设置</span></span><br><span class="line">main </span><br><span class="line"><span class="comment"># 运行用户</span></span><br><span class="line">user www-data;    </span><br><span class="line"><span class="comment"># 启动进程,通常设置成和cpu的数量相等</span></span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局错误日志及PID文件</span></span><br><span class="line">error_log  /var/<span class="built_in">log</span>/nginx/error.log;</span><br><span class="line">pid        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工作模式及连接数上限</span></span><br><span class="line">events &#123;</span><br><span class="line">    use epoll; <span class="comment">#epoll是多路复用IO(I/O Multiplexing)中的一种方式,但是仅用于linux2.6以上内核,可以大大提高nginx的性能</span></span><br><span class="line">    worker_connections 1024; <span class="comment">#单个后台worker process进程的最大并发链接数</span></span><br><span class="line">    <span class="comment"># multi_accept on; </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#设定http服务器，利用它的反向代理功能提供负载均衡支持</span></span><br><span class="line">http &#123;</span><br><span class="line">    <span class="comment">#设定mime类型,类型由mime.type文件定义</span></span><br><span class="line">    include       /etc/nginx/mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    <span class="comment">#设定日志格式</span></span><br><span class="line">    access_log    /var/<span class="built_in">log</span>/nginx/access.log;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#sendfile 指令指定 nginx 是否调用 sendfile 函数（zero copy 方式）来输出文件，对于普通应用，</span></span><br><span class="line">    <span class="comment">#必须设为 on,如果用来进行下载等应用磁盘IO重负载应用，可设置为 off，以平衡磁盘与网络I/O处理速度，降低系统的uptime.</span></span><br><span class="line">    sendfile        on;</span><br><span class="line">    <span class="comment">#将tcp_nopush和tcp_nodelay两个指令设置为on用于防止网络阻塞</span></span><br><span class="line">    tcp_nopush      on;</span><br><span class="line">    tcp_nodelay     on;</span><br><span class="line">    <span class="comment">#连接超时时间</span></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#开启gzip压缩</span></span><br><span class="line">    gzip  on;</span><br><span class="line">    gzip_disable <span class="string">"MSIE [1-6]\.(?!.*SV1)"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#设定请求缓冲</span></span><br><span class="line">    client_header_buffer_size    1k;</span><br><span class="line">    large_client_header_buffers  4 4k;</span><br><span class="line"></span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line">    include /etc/nginx/sites-enabled/*;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#设定负载均衡的服务器列表</span></span><br><span class="line">    upstream mysvr &#123;</span><br><span class="line">        <span class="comment">#weigth参数表示权值，权值越高被分配到的几率越大</span></span><br><span class="line">        <span class="comment">#本机上的Squid开启3128端口</span></span><br><span class="line">        server 192.168.8.1:3128 weight=5;</span><br><span class="line">        server 192.168.8.2:80  weight=1;</span><br><span class="line">        server 192.168.8.3:80  weight=6;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        <span class="comment">#侦听80端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        <span class="comment">#定义使用www.xx.com访问</span></span><br><span class="line">        server_name  www.xx.com;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#设定本虚拟主机的访问日志</span></span><br><span class="line">        access_log  logs/www.xx.com.access.log  main;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#默认请求</span></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   /root;      <span class="comment">#定义服务器的默认网站根目录位置</span></span><br><span class="line">            index index.php index.html index.htm;   <span class="comment">#定义首页索引文件的名称</span></span><br><span class="line"></span><br><span class="line">            fastcgi_pass  www.xx.com;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  <span class="variable">$document_root</span>/<span class="variable">$fastcgi_script_name</span>; </span><br><span class="line">            include /etc/nginx/fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义错误提示页面</span></span><br><span class="line">        error_page   500 502 503 504 /50x.html;  </span><br><span class="line">            location = /50x.html &#123;</span><br><span class="line">            root   /root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#静态文件，nginx自己处理</span></span><br><span class="line">        location ~ ^/(images|javascript|js|css|flash|media|static)/ &#123;</span><br><span class="line">            root /var/www/virtual/htdocs;</span><br><span class="line">            <span class="comment">#过期30天，静态文件不怎么更新，过期可以设大一点，如果频繁更新，则可以设置得小一点。</span></span><br><span class="line">            expires 30d;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">#PHP 脚本请求全部转发到 FastCGI处理. 使用FastCGI默认配置.</span></span><br><span class="line">        location ~ \.php$ &#123;</span><br><span class="line">            root /root;</span><br><span class="line">            fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">            fastcgi_index index.php;</span><br><span class="line">            fastcgi_param SCRIPT_FILENAME /home/www/www<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">            include fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">#设定查看Nginx状态的地址</span></span><br><span class="line">        location /NginxStatus &#123;</span><br><span class="line">            stub_status            on;</span><br><span class="line">            access_log              on;</span><br><span class="line">            auth_basic              <span class="string">"NginxStatus"</span>;</span><br><span class="line">            auth_basic_user_file  conf/htpasswd;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">#禁止访问 .htxxx 文件</span></span><br><span class="line">        location ~ /\.ht &#123;</span><br><span class="line">            deny all;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#第一个虚拟服务器</span></span><br><span class="line">    server &#123;</span><br><span class="line">        <span class="comment">#侦听192.168.8.x的80端口</span></span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  192.168.8.x;</span><br><span class="line"></span><br><span class="line">        <span class="comment">#对aspx后缀的进行负载均衡请求</span></span><br><span class="line">        location ~ .*\.aspx$ &#123;</span><br><span class="line">            root   /root;<span class="comment">#定义服务器的默认网站根目录位置</span></span><br><span class="line">            index index.php index.html index.htm;<span class="comment">#定义首页索引文件的名称</span></span><br><span class="line"></span><br><span class="line">            proxy_pass  http://mysvr;<span class="comment">#请求转向mysvr 定义的服务器列表</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">#以下是一些反向代理的配置可删除.</span></span><br><span class="line">            proxy_redirect off;</span><br><span class="line"></span><br><span class="line">            <span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">            proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            client_max_body_size 10m;    <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">            client_body_buffer_size 128k;  <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数，</span></span><br><span class="line">            proxy_connect_timeout 90;  <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">            proxy_send_timeout 90;        <span class="comment">#后端服务器数据回传时间(代理发送超时)</span></span><br><span class="line">            proxy_read_timeout 90;         <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">            proxy_buffer_size 4k;             <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">            proxy_buffers 4 32k;               <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span></span><br><span class="line">            proxy_busy_buffers_size 64k;    <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">            proxy_temp_file_write_size 64k;  <span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="五、nginx反向代理"><a href="#五、nginx反向代理" class="headerlink" title="五、nginx反向代理"></a>五、nginx反向代理</h3><h4 id="1、代理服务器："><a href="#1、代理服务器：" class="headerlink" title="1、代理服务器："></a>1、代理服务器：</h4><p>  客户机在发送请求时，不会直接发送给目的主机，而是先发送给代理服务器，代理服务接受客户机请求之后，再向主机发出，并接收目的主机返回的数据，存放在代理服务器的硬盘中，再发送给客户机。</p>
+<h4 id="2、代理服务器作用："><a href="#2、代理服务器作用：" class="headerlink" title="2、代理服务器作用："></a>2、代理服务器作用：</h4><p>  提高访问速度：目标主机返回的数据会存放在代理服务器的硬盘中，因此下一次客户再访问相同的站点数据时，会直接从代理服务器的硬盘中读取，起到了缓存的作用，尤其对于热门站点能明显提高请求速度。</p>
+<p>  防火墙：由于所有的客户机请求都必须通过代理服务器访问远程站点，因此可在代理服务器上设限，过滤某些不安全信息。</p>
+<p>  访问不能访问的目标站点：客户机在访问受限时，可通过不受限的代理服务器访问目标站点，通俗说，我们使用的翻墙浏览器就是利用了代理服务器，虽然不能出国，但也可直接访问外网。 </p>
+<h4 id="3、正向代理与反向代理："><a href="#3、正向代理与反向代理：" class="headerlink" title="3、正向代理与反向代理："></a>3、正向代理与反向代理：</h4><p>  比如要访问youtube,但是不能直接访问，只能先找个翻墙软件，通过翻墙软件才能访问youtube. 翻墙软件就叫做正向代理。<br>  比如要访问youtube,但是youtube悄悄地把这个请求交给x-art来做，那么x-art就是反向代理了。<br>  <img src="server-bs-nginx/1.jpg" alt="Alt text"><br>  正向代理中，proxy和client同属一个LAN，对server透明；反向代理中，proxy和server同属一个LAN，对client透明。</p>
+<h4 id="4、反向代理实践："><a href="#4、反向代理实践：" class="headerlink" title="4、反向代理实践："></a>4、反向代理实践：</h4><p>  此处不作讲解，用时查。</p>
+<h4 id="5、反向代理处理跨域："><a href="#5、反向代理处理跨域：" class="headerlink" title="5、反向代理处理跨域："></a>5、反向代理处理跨域：</h4><p>  关于跨域的相关知识，本文不做讲解，只做应用。<br>  首先，下载好nginx，把本地项目放至nginx目录下的html文件夹里；<br>  第二，打开nginx/conf目录下的nginx.conf文件进行相关设置,如图，解释看三:</p>
+<p>  <img src="server-bs-nginx/2.png" alt="Alt text"></p>
+<p>  第三：上图中，listen表示端口号，默认为80(80可省）；server_name表示服务器名称，此处设为localhost。<br>  &emsp;&emsp;&emsp;本地项目中的的接口，均把远程服务器ip改为localhost，(此时访问出错)<br>  &emsp;&emsp;&emsp;如：<a href="http://11.11.11.1/html/index.html改为http://localhost/html/index.html" target="_blank" rel="noopener">http://11.11.11.1/html/index.html改为http://localhost/html/index.html</a></p>
+<p>  &emsp;&emsp;&emsp;前两个location配置本地打开项目（还没涉及接口），<br>  &emsp;&emsp;&emsp;第一个浏览器url若匹配到reconsitutionYD，跳至目录下的页面（第二个同理）<br>  &emsp;&emsp;&emsp;如：<a href="http://127.0.0.1:80/reconsitutionYD/html/index.html" target="_blank" rel="noopener">http://127.0.0.1:80/reconsitutionYD/html/index.html</a><br>  &emsp;&emsp;&emsp;与：<a href="http://127.0.0.1:80/guanwang/html/index.html" target="_blank" rel="noopener">http://127.0.0.1:80/guanwang/html/index.html</a></p>
+<p>  &emsp;&emsp;&emsp;第三个location配置代理到百度（涉及接口），<br>  &emsp;&emsp;&emsp;当匹配到接口中的gw时，nginx将ip替换为<a href="http://www.baidu.com，" target="_blank" rel="noopener">www.baidu.com，</a><br>  &emsp;&emsp;&emsp;如：<a href="http://127.0.0.1/gw/?t=asdada" target="_blank" rel="noopener">http://127.0.0.1/gw/?t=asdada</a><br>  &emsp;&emsp;&emsp;变：<a href="http://www.baidu.com/?t=asdada" target="_blank" rel="noopener">http://www.baidu.com/?t=asdada</a></p>
+<p>  &emsp;&emsp;&emsp;第四个location，当前面都匹配不到时，配置代理到谷歌（涉及接口），<br>  &emsp;&emsp;&emsp;当前面的匹配都没有时，nginx将ip替换为<a href="http://www.google.com，" target="_blank" rel="noopener">www.google.com，</a><br>  &emsp;&emsp;&emsp;如：<a href="http://127.0.0.1/aaaaa/?t=asdada" target="_blank" rel="noopener">http://127.0.0.1/aaaaa/?t=asdada</a><br>  &emsp;&emsp;&emsp;变：<a href="http://www.google.com/?t=asdada" target="_blank" rel="noopener">http://www.google.com/?t=asdada</a></p>
+<h4 id="6、localhost与127-0-0-1："><a href="#6、localhost与127-0-0-1：" class="headerlink" title="6、localhost与127.0.0.1："></a>6、localhost与127.0.0.1：</h4><p>  在第5点实践的时候，我们发现，<br>  若接口写<a href="http://localhost/……，那么浏览器地址就必须为http://localhost/……，" target="_blank" rel="noopener">http://localhost/……，那么浏览器地址就必须为http://localhost/……，</a><br>  若接口写<a href="http://127.0.0.1/……，那么浏览器地址就必须为http://127.0.0.1/……，" target="_blank" rel="noopener">http://127.0.0.1/……，那么浏览器地址就必须为http://127.0.0.1/……，</a><br>  这就引发出了个问题，localhost与127.0.0.1有什么区别？</p>
+<p>  一开始我觉得他们是通用的，只是表示本地服务器的两个不同的写法而已，因为经常将它们替换来替换去，就好比一个网页可以通过域名来访问也可以通过IP来访问一样，localhost代表的是域名，而127.0.0.1则代表IP地址。</p>
+<p>  下面看它们间的区别吧</p>
+<p>  首先从概念开始：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">localhost：本地服务器</span><br><span class="line">127.0.0.1：本机地址(本机服务器)</span><br><span class="line"></span><br><span class="line">localhost 是一个域名，</span><br><span class="line">在过去它指向 127.0.0.1 这个IP地址。在操作系统支持 ipv6 后，它同时还指向ipv6 的地址 [::1]。</span><br><span class="line">但它可以被配置为任意的 IP 地址。</span><br><span class="line"></span><br><span class="line">127.0.0.1 是绑定在物理或虚拟网络接口上的IP地址，</span><br><span class="line">可供其他设备访问到。</span><br></pre></td></tr></table></figure></p>
+<p>  接着，是工作原理：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">localhot：是不经网卡传输的，它不受网络防火墙和网卡相关的的限制。</span><br><span class="line">127.0.0.1：是通过网卡传输的，它依赖网卡，并受到网络防火墙和网卡相关的限制。</span><br><span class="line"></span><br><span class="line">许多情况下localhost不能访问但127.0.0.1可以访问的问题，究其原因，可能是：</span><br><span class="line">用localhost访问时，系统带的本机当前用户的权限去访问，</span><br><span class="line">用ip访问时，等于本机是通过网络再去访问本机，涉及到网络用户的权限。</span><br><span class="line"></span><br><span class="line">另外，我们现在也应该明白了一个道理，</span><br><span class="line">一般设置程序时本地服务最好用localhost，因为localhost不会解析成IP，也不会占用网卡、网络资源。</span><br></pre></td></tr></table></figure></p>
+<p>  那么，localhost不能访问127.0.0.1可以访问的情况下的解决方案有哪些呢？</p>
+<p>  一般情况下ping localhost 应该为127.0.0.1 ，但是有时会出来下面这个东西：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;ping localhost </span><br><span class="line">reply from ::1: <span class="built_in">times</span>&lt;1ms </span><br><span class="line">reply from ::1: <span class="built_in">times</span>&lt;1ms </span><br><span class="line">reply from ::1: <span class="built_in">times</span>&lt;1ms</span><br></pre></td></tr></table></figure></p>
+<p>  地址根本不是“127.0.0.1”，而是“::1:”<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;ping 127.0.0.1 正常</span><br><span class="line">reply from 127.0.0.1 : bytes=32 <span class="built_in">times</span>&lt;1ms </span><br><span class="line">reply from 127.0.0.1 : bytes=32 <span class="built_in">times</span>&lt;1ms </span><br><span class="line">reply from 127.0.0.1 : bytes=32 <span class="built_in">times</span>&lt;1ms</span><br></pre></td></tr></table></figure></p>
+<p>  原因是：IPV6协议将127.0.0.1解析为 ::1 (127.0.0.1 ipv6的形式)</p>
+<p>  解决方案1：<br>  修改host文件：用记事本打开C:/WINDOWS/system32/drivers/etc/hosts文件，看里面是否有包含127.0.0.1 localhost，没有则将其添加进去，再查看能否访问localhost。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 127.0.0.1 localhost</span></span><br><span class="line"><span class="comment"># ::1 localhost</span></span><br><span class="line">127.0.0.1localhost </span><br><span class="line">localhost 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>  解决方案2：<br>  1、打开Internert信息管理查看IIS是否启动，且默认网站时候已经开启；<br>  2、打开<a href="http://127.0.0.1/" target="_blank" rel="noopener">http://127.0.0.1/</a> 看是否能访问IIS的默认网页，能则说明IIS已成功安装到电脑，可能是无法解析localhost；<br>  3、ping localhost，看是否能ping通，并从127.0.0.1上返回信息，如果成功则说明可以解析localhost；<br>  4、如果上一步不成功，则用记事本打开C:/WINDOWS/system32/drivers/etc/hosts文件，看里面是否有包含：127.0.0.1 localhost ，如果没有则将其添加进去，再查看能否访问localhost。<br>  5、尝试将网站的主目录指向另一个目录或新建一个虚拟目录，并在该新目录创建一个新的网页文件，如index.html，然后将其加到默认网站的”文档”项中作为默认访问的网页，重新输入网址：<a href="http://localhost/，看否能访问。" target="_blank" rel="noopener">http://localhost/，看否能访问。</a><br>  6、还是不行的话将IIS卸载掉，重新再安装一次。</p>
+<p>  解决问题的思路：<br>  1、ping一下localhost，这个是关键，看看是否能ping通，然后看解析到哪个ip地址下了<br>  2、然后查看本机的hosts文件，看看是否有被修改，如果被修改，就改回正常的模式<br>  3、解决问题本质，ipconfig看看网络是否正常，如果不正常就进行修复<br>  4、用杀毒软件或者360等修复软件进行扫描，看看是否存在恶意插件或者病毒，然后清除，一劳永逸！<br>  5、多动脑，想办法解决问题，善于用搜索引擎。</p>
+<p>标注：</p>
+<ul>
+<li>本文综合多个网上教程所改，五/6改自<a href="http://www.webkaka.com/tutorial/server/2013/121611/" target="_blank" rel="noopener">http://www.webkaka.com/tutorial/server/2013/121611/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:45</p>
+        <p>原始链接： <a class="post-url" href="/2018/01/31/server-bs-nginx/" title="nginx专讲">http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/&title=《nginx专讲》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/&title=《nginx专讲》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《nginx专讲》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/01/31/server-bs-nginx/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-服务器/" class="color2">前端-服务器</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、nginx"><span class="post-toc-text">一、nginx</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、nginx功能"><span class="post-toc-text">二、nginx功能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、nginx安装"><span class="post-toc-text">三、nginx安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、nginx配置属性说明"><span class="post-toc-text">四、nginx配置属性说明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、nginx反向代理"><span class="post-toc-text">五、nginx反向代理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、代理服务器："><span class="post-toc-text">1、代理服务器：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、代理服务器作用："><span class="post-toc-text">2、代理服务器作用：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、正向代理与反向代理："><span class="post-toc-text">3、正向代理与反向代理：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、反向代理实践："><span class="post-toc-text">4、反向代理实践：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、反向代理处理跨域："><span class="post-toc-text">5、反向代理处理跨域：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6、localhost与127-0-0-1："><span class="post-toc-text">6、localhost与127.0.0.1：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/01/31/mobile-bs-flexible/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          flexible实现移动端适配
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/01/30/JS-bs-localStorage/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">localStorage专讲</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

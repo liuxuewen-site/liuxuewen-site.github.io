@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>浏览器中输入URL并回车后发生了什么 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、URL解析：  URL（Universal Resource Locator）：统一资源定位符。俗称网页地址或者网址。表示某个资源的地址。其组成为：      –&amp;gt; URL解析后，浏览器抽取出域名字段进行DNS解析。 二、DNS解析：  DNS实际上是一个域名和IP对应的数据库。DNS解析也即域名解析，获取域名对应ip地址。   浏览器输入IP地址是直接从主机上调用内容，输入域名是通过域">
+<meta name="keywords" content="网络协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器中输入URL并回车后发生了什么">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、URL解析：  URL（Universal Resource Locator）：统一资源定位符。俗称网页地址或者网址。表示某个资源的地址。其组成为：      –&amp;gt; URL解析后，浏览器抽取出域名字段进行DNS解析。 二、DNS解析：  DNS实际上是一个域名和IP对应的数据库。DNS解析也即域名解析，获取域名对应ip地址。   浏览器输入IP地址是直接从主机上调用内容，输入域名是通过域">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/network-bs-urlEnter/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/network-bs-urlEnter/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/network-bs-urlEnter/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/network-bs-urlEnter/4.png">
+<meta property="og:updated_time" content="2018-07-03T17:22:39.998Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器中输入URL并回车后发生了什么">
+<meta name="twitter:description" content="一、URL解析：  URL（Universal Resource Locator）：统一资源定位符。俗称网页地址或者网址。表示某个资源的地址。其组成为：      –&amp;gt; URL解析后，浏览器抽取出域名字段进行DNS解析。 二、DNS解析：  DNS实际上是一个域名和IP对应的数据库。DNS解析也即域名解析，获取域名对应ip地址。   浏览器输入IP地址是直接从主机上调用内容，输入域名是通过域">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/network-bs-urlEnter/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-network-bs-urlEnter" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浏览器中输入URL并回车后发生了什么
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/网络协议/">网络协议</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-03-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、URL解析："><a href="#一、URL解析：" class="headerlink" title="一、URL解析："></a>一、URL解析：</h3><p>  URL（Universal Resource Locator）：统一资源定位符。俗称网页地址或者网址。表示某个资源的地址。其组成为：</p>
+<p>  <img src="network-bs-urlEnter/1.png" alt="Alt text"></p>
+<p>  –&gt; URL解析后，浏览器抽取出域名字段进行DNS解析。</p>
+<h3 id="二、DNS解析："><a href="#二、DNS解析：" class="headerlink" title="二、DNS解析："></a>二、DNS解析：</h3><p>  DNS实际上是一个域名和IP对应的数据库。DNS解析也即域名解析，获取域名对应ip地址。</p>
+<p>  浏览器输入IP地址是直接从主机上调用内容，输入域名是通过域名解析服务器指向对应主机的IP地址，再从主机调用内容。</p>
+<p>  DNS解析步骤：<br>  1）查询浏览器缓存：浏览器会缓存之前拿到的DNS 2-30分钟时间，若找到即直接获取目的主机的ip地址，若无<br>  2）查询系统缓存　：检查hosts文件，其保存了一些以前访问过的网站的域名和IP数据。若无找到<br>  3）查询路由器缓存：路由器有自己的DNS缓存，可能包括了查询的内容。若无找到<br>  4）查询ISP DNS缓存：ISP服务商DNS缓存（本地服务器缓存）那里可能有相关的内容，若无找到<br>  5）递归查询：从根域名服务器到顶级域名服务器再到极限域名服务器依次搜索对应目标域名的IP。</p>
+<p>  –&gt; 获取到域名对应的IP后即向该IP地址定位的HTTP服务器发起TCP连接。</p>
+<h3 id="三、浏览器与网站建立TCP连接（三次握手）"><a href="#三、浏览器与网站建立TCP连接（三次握手）" class="headerlink" title="三、浏览器与网站建立TCP连接（三次握手）"></a>三、浏览器与网站建立TCP连接（三次握手）</h3><p>  第一次握手：客户端向服务器端发送请求，等待服务器确认（SYN=1）；<br>  第二次握手：服务器收到请求并确认，回复一个指令（SYN=1，ACK=1）；<br>  第三次握手：客户端收到服务器的回复指令并返回确认（ACK=1）。</p>
+<p>  <img src="network-bs-urlEnter/2.png" alt="Alt text"></p>
+<p>  –&gt; 三次握手建立了客户端和服务器之间的连接，现在可以请求和传输数据了。</p>
+<h3 id="四、请求和传输数据"><a href="#四、请求和传输数据" class="headerlink" title="四、请求和传输数据"></a>四、请求和传输数据</h3><p>  比如要通过get请求访问<a href="http://www.dydh.org/，通过抓包可以看到：" target="_blank" rel="noopener">http://www.dydh.org/，通过抓包可以看到：</a></p>
+<p>  <img src="network-bs-urlEnter/3.png" alt="Alt text"></p>
+<p>  响应头中有一个：Set-Cookie:”……”，说明浏览器中没有关于这个网站的cookie信息。当我们下一次访问相同的网站时：</p>
+<p>  <img src="network-bs-urlEnter/4.png" alt="Alt text"></p>
+<p>  请求头中包含了这个cookie信息，Cookie:”……”。</p>
+<p>  cookie可以用来保存一些有用的信息：如果是首次访问，会提示服务器建立用户缓存信息，如果不是，可以利用Cookies对应键值，找到相应缓存，缓存里面存放着用户名，密码和一些用户设置项。</p>
+<p>  –&gt; 通过请求可以将服务器上的目标文件传输到浏览器进行渲染。</p>
+<h3 id="五、浏览器渲染页面"><a href="#五、浏览器渲染页面" class="headerlink" title="五、浏览器渲染页面"></a>五、浏览器渲染页面</h3><p>  客户端拿到服务器端传输来的文件，找到HTML和MIME文件，通过MIME浏览器知道要用页面渲染引擎来处理HTML。</p>
+<p>  a .浏览器会解析html源码，然后创建一个 DOM树。<br>  在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。</p>
+<p>  b .浏览器解析CSS代码，计算出最终的样式数据，形成css对象模型CSSOM。<br>  忽略非法的CSS代码，按照浏览器默认设置——用户设置——外链样式——内联样式——HTML中的style样式顺序进行渲染。</p>
+<p>  c .利用DOM和CSSOM构建一个渲染树（rendering tree）。<br>  渲染树和DOM树有点像，但是是有区别的。DOM树完全和html标签一一对应，但渲染树会忽略掉不需要渲染的元素，比如head、display:none等。</p>
+<p>  d .浏览器根据渲染树直接把页面绘制到屏幕上。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.cnblogs.com/tisikcci/p/5866753.html" target="_blank" rel="noopener">https://www.cnblogs.com/tisikcci/p/5866753.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:22</p>
+        <p>原始链接： <a class="post-url" href="/2018/03/07/network-bs-urlEnter/" title="浏览器中输入URL并回车后发生了什么">http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/&title=《浏览器中输入URL并回车后发生了什么》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/&title=《浏览器中输入URL并回车后发生了什么》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浏览器中输入URL并回车后发生了什么》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/03/07/network-bs-urlEnter/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/网络协议/" class="color5">网络协议</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、URL解析："><span class="post-toc-text">一、URL解析：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、DNS解析："><span class="post-toc-text">二、DNS解析：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、浏览器与网站建立TCP连接（三次握手）"><span class="post-toc-text">三、浏览器与网站建立TCP连接（三次握手）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、请求和传输数据"><span class="post-toc-text">四、请求和传输数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、浏览器渲染页面"><span class="post-toc-text">五、浏览器渲染页面</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/03/07/property-bs-optimization/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          前端性能优化
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/16/frontEnd-basic6/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">前端基础考题6</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React路由 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。 二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React路由">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。 二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/2.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/3.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/5.png">
+<meta property="og:updated_time" content="2018-12-18T15:57:45.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React路由">
+<meta name="twitter:description" content="一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。 二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/React-bs-router01/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-bs-router01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React路由
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-12-18
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。</p>
+<h3 id="二、前端路由"><a href="#二、前端路由" class="headerlink" title="二、前端路由"></a>二、前端路由</h3><p>  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随之而来的问题是无法保存 Ajax 操作状态，浏览器的前进后退功能也不可用，当下流行的两种解决方法是：</p>
+<p>  1）hash, 其原本的作用是为一个很长的文档页添加锚点信息，它自带不改变 url 刷新页面的功能，所以自然而然被用在记录 Ajax 操作状态中了。</p>
+<p>  2）history, 其是主流的解决方案，浏览器的前进后退用的就是这个，它是 window 对象下的。</p>
+<p>  以前的 history 提供的方法只能做页面之间的前进后退，如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">history.go(number|URL)   可加载历史列表中的某个具体的页面</span><br><span class="line">history.forward()        可加载历史列表中的下一个 URL</span><br><span class="line">history.back()           可加载历史列表中的前一个 URL</span><br></pre></td></tr></table></figure></p>
+<p>  为了让 history 不仅仅能回退到上一个页面，还可以回到上一个操作状态，HTML5 新增了三个方法，其中两个是在 history 对象里的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(state, title, url) 添加一条历史记录。</span><br><span class="line">state 用于传递参数，可以为空。title 是设置历史记录的标题，可以为空。url 是历史记录的 URL，不可以为空。</span><br><span class="line"></span><br><span class="line">history.replaceState(state, title, url) 将 <span class="built_in">history</span> 堆栈中当前的记录替换成这里的 url。</span><br><span class="line">参数同上。</span><br></pre></td></tr></table></figure></p>
+<p>  还有一个事件在 window 对象下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.onpopstate() 监听 url 的变化。</span><br><span class="line">会忽略 <span class="built_in">hash</span> 的变化（<span class="built_in">hash</span> 变化有一个 onhashchange 事件），但是前面的两个事件不会触发它。</span><br></pre></td></tr></table></figure></p>
+<p>  到这里你大概猜到单页面应用或者 Ajax 操作记录状态用的就是 hash 和 h5 增加的 history API，这就是 react-router-dom 扩展的路由实现，也是 web 应用最常用的两种路由。</p>
+<h3 id="三、静态路由和动态路由"><a href="#三、静态路由和动态路由" class="headerlink" title="三、静态路由和动态路由"></a>三、静态路由和动态路由</h3><p>  react-router v4 是一个非常大的版本改动，具体体现在从 “静态路由” 到 “动态路由” 的转变上。</p>
+<p>  一般将 “静态路由” 看作一种配置，当启动 react 项目时，会先生成好一个路由表，发生页面跳转时，react 会根据地址到路由表中找到对应的处理页面或处理方法。</p>
+<p>  而动态路由不是作为一个项目运行的配置文件存储在外部，它在项目 render 的时候才开始定义，router 的作者认为 route 应当和其它普通组件一样，它的作用不是提供路由配置，而是一个普通的UI组件，这也符合 react 的开发思想 —— 一切皆组件。</p>
+<p>  下面引用一段 router 作者对路由做这么大改动的原因：</p>
+<p>  To be candid, we were pretty frustrated with the direction we’d taken React Router by v2. We (Michael and Ryan) felt limited by the API, recognized we were reimplementing parts of React (lifecycles, and more), and it just didn’t match the mental model React has given us for composing UI.<br>  We ended up with API that wasn’t “outside” of React, an API that composed, or naturally fell into place, with the rest of React.</p>
+<h3 id="四、安装"><a href="#四、安装" class="headerlink" title="四、安装"></a>四、安装</h3><p>  对于 web 应用，我们只需要安装 react-router-dom：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-router-dom</span><br></pre></td></tr></table></figure></p>
+<p>  在 node_modules 下你依然会看到 react-router 的身影，这是 react-router-dom 依赖的包，另外还有一个 history 包，这个下面会提到。</p>
+<h3 id="五、-lt-Router-gt"><a href="#五、-lt-Router-gt" class="headerlink" title="五、&lt; Router &gt;"></a>五、&lt; Router &gt;</h3><p>  &lt; Router &gt;是实现路由最外层的容器，一般情况下我们不再需要直接使用它，而是使用在它基础之上封装的几个适用于不同环境的组件，react-router-dom 的 Router 有四种：</p>
+<p>  1）BrowserRouter：react-router-dom 扩展，利用 HTML5 新增的 history API (pushState, replaceState)，是 web 应用最常用的路由组件。</p>
+<p>  2）HashRouter：react-router-dom 扩展，利用 window.location.hash，适用于低版本浏览器或者一些特殊情境。</p>
+<p>  3）MemoryRouter：继承自 react-router，用户在地址栏看不到任何路径变化，一般用在测试或者非浏览器环境开发中。</p>
+<p>  4）StaticRouter：继承自 react-router，某些页面从渲染出来以后没有多的交互，所以没有状态的变化需要存储，就可以使用静态路由，静态路由适用于服务器端。</p>
+<p>  备注：还有个 withRouter 有别于上面四个组件，这里没有列出来。一般我们很少会用到 MemoryRouter 和 StaticRouter，在 web 应用中更多的是用 react-router-dom 扩展出来的 BrowserRouter 和 HashRouter，这两个就是前面提到的前端路由的两种解决办法的各自实现。</p>
+<p>  为了不被后面的一些配置弄迷糊，我们从&lt; Router &gt;的实现源码来看看路由到底传了些什么东西：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Router.js:</span><br><span class="line"></span><br><span class="line">class Router extends React.Component &#123;</span><br><span class="line"></span><br><span class="line">  //检测接收的参数</span><br><span class="line">  static propTypes = &#123;</span><br><span class="line">      <span class="built_in">history</span>: PropTypes.object.isRequired,    //必须传入</span><br><span class="line">      children: PropTypes.node</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  //设置传递给子组件的属性</span><br><span class="line">  <span class="function"><span class="title">getChildContext</span></span>() &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123;</span><br><span class="line">          router: &#123;</span><br><span class="line">              ...this.context.router, </span><br><span class="line">              <span class="built_in">history</span>: this.props.history,     //核心对象</span><br><span class="line">              route: &#123;</span><br><span class="line"></span><br><span class="line">                  //<span class="built_in">history</span>里的location对象</span><br><span class="line">                  location: this.props.history.location, </span><br><span class="line"></span><br><span class="line">                  //当路由路径和当前路径成功匹配，一些有关的路径信息会存放在这里，嵌套路由会用到它。</span><br><span class="line">                  match: this.state.match </span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">      match: this.computeMatch(this.props.history.location.pathname)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  computeMatch(pathname) &#123;</span><br><span class="line">      <span class="built_in">return</span> &#123;</span><br><span class="line">          path: <span class="string">'/'</span>,</span><br><span class="line">          url: <span class="string">'/'</span>, </span><br><span class="line">          params: &#123;&#125;,                           //页面间传递参数</span><br><span class="line">          isExact: pathname === <span class="string">'/'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这里最重要的就是需要我们传入的 history 对象，前面提到我们一般不会直接使用&lt; Router &gt;组件，因为这个组件要求我们手动传入 history 对象，但这个对象又非常重要，而且不同的开发环境需要不同的 history，所以针对这种情况 react-router 才衍生了两个插件 react-router-dom 和 react-router-native（我认为这是比较重要的原因，浏览器有一个 history 对象，所以 web 应用的路由都是在此对象基础上扩展的）。</p>
+<p>  接着让我们来看一下 react-router-dom 用到的来自 history 的两个方法：createBrowserHistory（适用于现代浏览器，支持 h5 history API），createHashHistory（适用于需要兼容老版本浏览器的情况）。这两个方法就分别对应了两个组件：&lt; BrowserRouter &gt;和&lt; HashRouter &gt;,它俩返回的 history 对象拥有的属性是一样的，但是各自的实现不同:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">// createHashHistory.js</span><br><span class="line"></span><br><span class="line">var HashChangeEvent = <span class="string">'hashchange'</span>;                         // <span class="built_in">hash</span>值改变时会触发该事件</span><br><span class="line">var createHashHistory = <span class="keyword">function</span> <span class="function"><span class="title">createHashHistory</span></span>() &#123;</span><br><span class="line">    var globalHistory = window.history;                     // 全局的<span class="built_in">history</span>对象</span><br><span class="line">    var handleHashChange = <span class="keyword">function</span> <span class="function"><span class="title">handleHashChange</span></span>() &#123;&#125;   // <span class="built_in">hash</span>值变化时操作的方法</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// createBrowserHistory.js</span><br><span class="line"></span><br><span class="line">var PopStateEvent = <span class="string">'popstate'</span>;                            // 监听url的变化事件</span><br><span class="line"></span><br><span class="line">// 依然监听了<span class="built_in">hash</span>改变的事件，但是多加了一个判断是是否需要监听<span class="built_in">hash</span>改变，如果不需要就不绑定该事件。</span><br><span class="line">var HashChangeEvent = <span class="string">'hashchange'</span>;                        </span><br><span class="line"></span><br><span class="line">var createBrowserHistory = <span class="keyword">function</span> <span class="function"><span class="title">createBrowserHistory</span></span>() &#123;</span><br><span class="line">    var globalHistory = window.history;                   //全局的<span class="built_in">history</span>对象</span><br><span class="line">    var handlePop = <span class="keyword">function</span> handlePop(location) &#123;&#125;       // 出栈操作</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// createHashHistory.js，createBrowserHistory.js导出的<span class="built_in">history</span>对象</span><br><span class="line"></span><br><span class="line">const <span class="built_in">history</span> = &#123;</span><br><span class="line">    length: globalHistory.length,               // globalHistory就是window.history</span><br><span class="line">    action: <span class="string">"POP"</span>,                              // 操作历史状态都属于出栈操作</span><br><span class="line"></span><br><span class="line">    //最重要的!!前面的Router.js源码向子组件单独传递了这个对象，因为路由匹配会用到它。</span><br><span class="line">    location: initialLocation, </span><br><span class="line">    createHref,                                 // 生成的url地址样式，如果是<span class="built_in">hash</span>则加一个<span class="string">'#'</span></span><br><span class="line">    push,                                       // 扩展history.pushState()方法</span><br><span class="line">    replace,                                    // 扩展history.replaceState()方法</span><br><span class="line">    go,                                         // history.go()方法</span><br><span class="line">    goBack,                                     // history.back()方法</span><br><span class="line">    goForward,                                  // history.forward()方法</span><br><span class="line">    block,</span><br><span class="line">    listen</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  我们从控制台打印一下看看这个 history：</p>
+<p>  <img src="React-bs-router01/1.png" alt="Alt text"></p>
+<p>  所以，我们直接用&lt; BrowserRouter &gt;与使用&lt; Router &gt;搭配 createBrowserHistory() 方法是一样的效果:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Router &#125; from <span class="string">'react-router-dom'</span></span><br><span class="line">import createBrowserHistory from <span class="string">'history/createBrowserHistory'</span>;</span><br><span class="line"></span><br><span class="line">const <span class="built_in">history</span> = createBrowserHistory();</span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">    &lt;Router <span class="built_in">history</span>=&#123;<span class="built_in">history</span>&#125;&gt;</span><br><span class="line">        &lt;div&gt; &#123;/*其它*/&#125; &lt;/div&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">等同于：</span><br><span class="line"></span><br><span class="line">import &#123; BrowserRouter &#125; from <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">    &lt;BrowserRouter&gt;</span><br><span class="line">        &lt;div&gt;&#123;/*其它*/&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/BrowserRouter&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>  然后我们看看&lt; BrowserRouter &gt;和&lt; HashRouter &gt;使用的一些注意点:</p>
+<p>  &lt; HashRouter &gt;生成的 url 路径看起来是这样的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/<span class="comment">#/user</span></span><br></pre></td></tr></table></figure></p>
+<p>  我们知道 hash 值是不会传到服务器端的，所以使用 hash 记录状态不需要服务器端配合。</p>
+<p>  &lt; BrowserRouter &gt;生成的路径是这样的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/user</span><br></pre></td></tr></table></figure></p>
+<p>  这时候在此目录下刷新浏览器会重新向服务器发起请求，服务器端没有配置这个路径，所以会出现 can’t GET /user 这种错误，而解决方法就是修改 devServer 的配置:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">webpack.config.js:</span><br><span class="line"></span><br><span class="line">devServer: &#123;</span><br><span class="line">    publicPath: publicPath,</span><br><span class="line">    contentBase: path.resolve(__dirname, <span class="string">'build'</span>),</span><br><span class="line">    inline: <span class="literal">true</span>,</span><br><span class="line">    hot: <span class="literal">true</span>,  </span><br><span class="line">    historyApiFallback: <span class="literal">true</span>, //增加</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>  还有一点需要注意的是&lt; Router &gt;只能有一个子孩子，这也符合 React 的规则。</p>
+<h3 id="六、-lt-Route-gt"><a href="#六、-lt-Route-gt" class="headerlink" title="六、&lt; Route &gt;"></a>六、&lt; Route &gt;</h3><p>  &lt; Route &gt;是路由配置的具体实现，它指定当路径匹配的时候渲染哪一个UI，一个基本的路由配置如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">        &lt;Route strict path=<span class="string">"/login"</span> render=&#123;() =&gt; &lt;h1&gt;Login&lt;/h1&gt;&#125; /&gt;</span><br><span class="line">        &lt;Route path=<span class="string">"/user"</span> children=&#123;() =&gt; &lt;h1&gt;User&lt;/h1&gt;&#125;/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/Router&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  path 是用于指定路径名的，exact 和 strict 是匹配路径名时指定更为严格的匹配规则，其匹配原则用的是 path-to-regexp。</p>
+<p>  如果&lt; Route &gt;不写 path 则总是能被匹配。当 exact 为 true 时只有 path 等于 location.pathname 时才会匹配成功，location 就是前面 Router 提到的 location 对象。当 strict 为 true 时会严格验证尾随线，path 和 location.pathname 都有或者都没有才会匹配成功。</p>
+<p>  看几个例子理解一下 exact 和 strict（注意以下例子 exact 和 strict 都是写在&lt; Route &gt;里的，&lt; NavLink &gt;也有这两个值，写在这两个地方效果是不一样的，后面会讲&lt; NavLink &gt;）：</p>
+<p>  <img src="React-bs-router01/2.jpg" alt="Alt text"></p>
+<p>  注意：第三、四行是带参数路由的写法，后面会讲。</p>
+<p>  总结：从表中可以看出，当一个路径包含某一个路径，暂且称它们为子路径和父路径，如果 exact 为 false (默认)，那么“子路径”会渲染出“父路径”的UI（所有的路径都是’/‘的子路径）,如果不想子路径渲染出父路径的UI，那么就给父路径添加 exact 属性。所以表中一二行的 exact 是加在‘/’的&lt; Route &gt;里，三四行是加在’/user’的&lt; Route &gt;里。</p>
+<p>  <img src="React-bs-router01/3.jpg" alt="Alt text"></p>
+<p>  注意：表中第二三行的区别，即多余的尾随线加在 location.pathname 里，那么依然会匹配成功。</p>
+<p>  总结：从第四行可以看出，path 有尾随线，location.pathname 有二级路由，会被认为也是有尾随线的，所以会匹配成功，不过只需要再添加 exact,那么就无法匹配成功了。</p>
+<p>  接下来看一下 component, render, children，他们是渲染UI方法，区别如下：</p>
+<p>  1）component（最常用）当路径匹配时渲染UI，内部实现用的是 React.createElement() 方法，即每一次都会触发卸载和创建组件，如果渲染的UI没有多余的内容，推荐使用 render。</p>
+<p>  2）render 当路径匹配时渲染UI，与 component 不同的是，它只调用 render() 方法去渲染组件，不会去重新创建元素，所以速度更快，只适用于行内渲染。</p>
+<p>  3）children 与 render 类似，唯一的区别是不管路径是否匹配都会渲染，所以它最适合用于做转场动画。</p>
+<p>  这三个方法在渲染组件的同时还传递了几个参数过去，这些参数也不是它的，是从前面传下来的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const props = &#123; match, location, <span class="built_in">history</span>, staticContext &#125;</span><br></pre></td></tr></table></figure></p>
+<p>  除了最后一个其它三个已经见过了，match 来自 Router.js，前面有源码，history 和 loaction 来自 history 插件的 createBrowserHistory 或 createHashHistory 方法，最后一个待定。现在，这几个 UI 组件都可以访问到这几个对象了：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//component</span><br><span class="line"></span><br><span class="line">&lt;Route path=<span class="string">"/user"</span> component=&#123;User&#125; /&gt;</span><br><span class="line"></span><br><span class="line">//User.js</span><br><span class="line">class User extends Component &#123;</span><br><span class="line">    <span class="built_in">let</span> &#123; match, location, <span class="built_in">history</span> &#125; = this.props;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"user"</span>&gt;&lt;/div&gt;    </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//render, children</span><br><span class="line">&lt;Route path=<span class="string">"/user"</span> render=&#123;(match, location, <span class="built_in">history</span>) =&gt; &lt;div&gt;&lt;/div&gt;&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  当然，有个最简单的方式就是直接传一个 props 属性过去，这几个对象可以直接通过 props 属性访问：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//render, children</span><br><span class="line">&lt;Route path=<span class="string">"/user"</span> render=&#123;(props) =&gt; &lt;User &#123;...props&#125;/&gt;&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  它们有啥用？后面就知道了。</p>
+<h3 id="七、-lt-NavLink-gt-和-lt-Link-gt"><a href="#七、-lt-NavLink-gt-和-lt-Link-gt" class="headerlink" title="七、&lt; NavLink &gt;和&lt; Link &gt;"></a>七、&lt; NavLink &gt;和&lt; Link &gt;</h3><p>  它俩都是 react-router-dom 提供的组件，&lt; NavLink &gt;是在&lt; Link &gt;上面扩展了当路由匹配时添加样式属性,而这更常用，所以建议直接使用&lt; NavLink &gt;。</p>
+<p>  &lt; Link &gt;提供的属性及方法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">to [string]: 路径名</span><br><span class="line"></span><br><span class="line">to [object]: location对象，值如下：</span><br><span class="line">&#123;</span><br><span class="line">    pathname: <span class="string">'/'</span>,     // 路径名，</span><br><span class="line">    search: <span class="string">''</span>,        // 参数，会添加到url里面，形如<span class="string">"?name=melody&amp;age=20"</span></span><br><span class="line">    <span class="built_in">hash</span>: <span class="string">''</span>,          // 参数，会添加到url里面，形如<span class="string">"#tab1"</span></span><br><span class="line">    state: &#123;&#125;,         // 参数，不会添加到url里面</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">replace[bool]: <span class="literal">false</span>,  // 是否替换当前路由，正常情况下是往路由栈里新增一条数据，</span><br><span class="line">                       // 如果将此参数设置为<span class="literal">true</span>,则会替换当前路由。</span><br></pre></td></tr></table></figure></p>
+<p>  &lt; NavLink &gt;扩展的属性及方法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">activeClassName[string]:<span class="string">'active'</span>, // 路由匹配时添加的class，默认是active</span><br><span class="line"></span><br><span class="line">activeStyle[object]: &#123;&#125;,          // 路由匹配时的样式</span><br><span class="line"></span><br><span class="line">exact[bool]:                      // 是否开启严格模式</span><br><span class="line"></span><br><span class="line">strict[bool]：                    // 是否严格验证尾随线</span><br></pre></td></tr></table></figure></p>
+<p>  对于&lt; NavLink &gt;设置 exact 和 strict 这两个参数非常困惑，比如遇到的一个坑：</p>
+<p>  <img src="React-bs-router01/4.png" alt="Alt text"></p>
+<p>  已经设置&lt; Route exa/ct path=”/“ component={Home} / &gt;，并且在 login 页也不会渲染出 home 页的UI，但非常惊讶的发现当使用&lt; NavLink &gt;的选中样式属性时，在二级路由(图中的 User 和 Login )里却始终显示着 Home 页的选中样式。后来发现需要给匹配 Home 页的&lt; NavLink &gt;也添加 exact 。而 strict 参数也并没有验证出加与不加有何区别。</p>
+<p>  去源码里面找答案：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> (</span><br><span class="line">    &lt;Route</span><br><span class="line">        path=&#123;escapedPath&#125;</span><br><span class="line">        exact=&#123;exact&#125;</span><br><span class="line">        strict=&#123;strict&#125;</span><br><span class="line">        location=&#123;location&#125;</span><br><span class="line">        children=&#123;(&#123; location, match &#125;) =&gt; &#123;</span><br><span class="line">            const isActive = !!(getIsActive ? getIsActive(match, location) : match)</span><br><span class="line">            <span class="built_in">return</span> (</span><br><span class="line">                &lt;Link</span><br><span class="line">                    to=&#123;to&#125;</span><br><span class="line">                    className=&#123;isActive ? [ className, activeClassName ].filter(i =&gt; i).join(<span class="string">' '</span>) : className&#125;</span><br><span class="line">                    style=&#123;isActive ? &#123; ...style, ...activeStyle &#125; : style&#125;</span><br><span class="line">                /&gt;</span><br><span class="line">            )</span><br><span class="line">        &#125;&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>  发现这俩参数依然是添加在了&lt; Route &gt;组件上，那为什么和之前&lt; Route &gt;的 exact 和 strict 参数表现会不一样呢？这里有一个关键属性就是 isActive,源码中可以看到，某一个路由是否匹配完全取决于这个属性。</p>
+<p>  前面没有提到&lt; NavLink &gt;还可以传入一个方法：isActive()，源码中的 getIsActive 对应的就是我们传入的 isActive 方法，源码中的 isActive 仅仅是一个布尔值。官网对 isActive() 方法的解释是：</p>
+<p>  isActive[func]：添加额外逻辑以确定路由是否处于被匹配状态。如果你想要做的不仅仅是验证链接的路径名是否与当前URL的路径名相匹配，那么应该使用它。</p>
+<p>  从源码中可以看到，当不传入 isActive() 方法时，isActive 的取值就是 match,match 就比较好玩了，在最前面提到过它最常用在嵌套路由中，当路由不匹配的时候，它的值为 null。当路由匹配时，它会长这样：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">match = &#123;</span><br><span class="line">    isExact: <span class="literal">true</span>, //没研究过，不知道干啥用的</span><br><span class="line">    params: &#123;&#125;,    //参数</span><br><span class="line">    path: <span class="string">"/"</span>,     //值就是&lt;Route&gt;的path值</span><br><span class="line">    url: <span class="string">"/"</span>       //值就是location.pathname</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  也就是说，假如你当前在 Login 页下面，那么 Login 页的 match 对象有值，而别的页面 Login 页的 match 是 null，但是这个别的页面不包括首页，如下：</p>
+<p>  <img src="React-bs-router01/5.png" alt="Alt text"></p>
+<p>  解决办法就是给&lt; NavLink to=”/“ &gt; 添加 exact 参数。</p>
+<h3 id="八、-lt-Switch-gt"><a href="#八、-lt-Switch-gt" class="headerlink" title="八、&lt; Switch &gt;"></a>八、&lt; Switch &gt;</h3><p>  顾名思义&lt; Switch &gt;就是一个“开关”，它会在多个路由配置都可以匹配成功的时候只选择第一个匹配上的渲染其UI，有的时候它也需要和 exact 配合使用，否则会有永远匹配不上某个路由的情况发生。比如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/dataList"</span> component=&#123;List&#125;/&gt;</span><br><span class="line">&lt;Route path=<span class="string">"/dataList/:id"</span> component=&#123;ListDetails&#125;/&gt;</span><br><span class="line">&lt;Route path=<span class="string">"/error"</span> component=&#123;Error&#125; /&gt;</span><br><span class="line">&lt;Route path=<span class="string">"*"</span> render=&#123;() =&gt; &lt;Redirect to=<span class="string">"/error"</span>/&gt; &#125;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;li&gt;&lt;NavLink to=<span class="string">"/dataList/4"</span>&gt;Go to ListDetails&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">&lt;li&gt;&lt;NavLink to=<span class="string">"/dataList"</span>&gt;Go to List&lt;/NavLink&gt;&lt;/li&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  List的&lt; Route &gt;配置没有加 exact 参数，所以在 ListDetails 页也会渲染出 List 页面，添加了&lt; Switch &gt;以后，根据&lt; Switch &gt;的工作原则，它只渲染第一个匹配成功的UI，这就会导致 ListDetails 永远不会被渲染，而正确做法是给 List 添加 exact:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Route exact path=<span class="string">"/dataList"</span> component=&#123;List&#125;/&gt;</span><br><span class="line">    &lt;Route path=<span class="string">"/dataList/:id"</span> component=&#123;ListDetails&#125;/&gt;</span><br><span class="line">    &lt;Route path=<span class="string">"/error"</span> component=&#123;Error&#125; /&gt;</span><br><span class="line">    &lt;Route path=<span class="string">"*"</span> render=&#123;() =&gt; &lt;Redirect to=<span class="string">"/error"</span>/&gt; &#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  我觉得&lt; Switch &gt;最大的作用就是可以实现当所有路由都匹配不上的时候，可以显示一个404页面，也就是代码中的 Error 页。</p>
+<p>  注意：使用&lt; Switch &gt;路由配置的顺序非常重要，因为它会渲染第一个匹配上的，所以应该将最详细的路由写在前面，容易被配上的路由写在后面。</p>
+<h3 id="九、-lt-Redirect-gt"><a href="#九、-lt-Redirect-gt" class="headerlink" title="九、&lt; Redirect &gt;"></a>九、&lt; Redirect &gt;</h3><p>  重定向组件，它会从路由栈里将当前路由替换为它的路径名，这也是它和&lt; NavLink &gt;的最大区别：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/error"</span> component=&#123;Error&#125; /&gt;</span><br><span class="line">&lt;Route path=<span class="string">"*"</span> render=&#123;() =&gt; &lt;Redirect to=<span class="string">"/error"</span>/&gt; &#125;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  to 属性和&lt; NavLink &gt;的 to 一样，可以为 string，也可以为 object，为 string 时就是 location.pathname ,为 object 时就是 location 对象。</p>
+<p>  push 属性对应&lt; NavLink &gt;的 replace，&lt; Redirect &gt;默认行为是替换路由，而&lt; NavLink &gt;默认行为是新增一个路由，push 和 replace 就是改变它们的默认行为的参数。</p>
+<p>  from，指定一个路由名，当匹配到该路由时重定向到另一个路由上：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Switch&gt;</span><br><span class="line">    &lt;Redirect from=<span class="string">"/hello"</span> to=<span class="string">"/user"</span> /&gt;</span><br><span class="line">    &lt;Route path=<span class="string">"/login"</span> component=&#123;Login&#125;/&gt;</span><br><span class="line">    &lt;Route exact path=<span class="string">"/user"</span> render=&#123;() =&gt; &lt;div&gt;hello user&lt;/div&gt;&#125;/&gt;</span><br><span class="line">&lt;/Switch&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  注：官网说指定的路由必须在&lt; Switch &gt;里面才有效，但测试了发现它的意思不是说 from 或者 to 的值都必须是&lt; Switch &gt;里面的&lt; Route &gt;的 path 指定过的(比如代码中的/hello)，而是如果你要使用 from 属性则必须将其包含在&lt; Switch &gt;里面，否则页面会报警告。并且要注意&lt; Redirect &gt;要写在它想要替换的路由配置前面，否则不会生效。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.jianshu.com/p/875225b2ec90" target="_blank" rel="noopener">https://www.jianshu.com/p/875225b2ec90</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年12月18日 23:57</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/18/React-bs-router01/" title="React路由">http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React路由》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、前端路由"><span class="post-toc-text">二、前端路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、静态路由和动态路由"><span class="post-toc-text">三、静态路由和动态路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、安装"><span class="post-toc-text">四、安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、-lt-Router-gt"><span class="post-toc-text">五、&lt; Router &gt;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、-lt-Route-gt"><span class="post-toc-text">六、&lt; Route &gt;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、-lt-NavLink-gt-和-lt-Link-gt"><span class="post-toc-text">七、&lt; NavLink &gt;和&lt; Link &gt;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、-lt-Switch-gt"><span class="post-toc-text">八、&lt; Switch &gt;</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、-lt-Redirect-gt"><span class="post-toc-text">九、&lt; Redirect &gt;</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/19/React-bs-router02/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React路由实例
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/12/16/React-bs-lifeCycle/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React生命周期</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

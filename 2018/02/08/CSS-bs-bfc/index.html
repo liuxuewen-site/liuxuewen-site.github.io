@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>BFC | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、什么是BFC？  BFC（Block Format Context），即块级格式化范围，是CSS2.1中用于规定块级盒子的渲染布局方式，他在计算盒子高度、margin值等地方有区别于其他环境。具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素。  （另有IFC，对应内联格式化范围，可用来做水平居中以及垂直居中） 二、如何触发BFC？  只要元素满足下面任">
+<meta name="keywords" content="前端-CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BFC">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、什么是BFC？  BFC（Block Format Context），即块级格式化范围，是CSS2.1中用于规定块级盒子的渲染布局方式，他在计算盒子高度、margin值等地方有区别于其他环境。具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素。  （另有IFC，对应内联格式化范围，可用来做水平居中以及垂直居中） 二、如何触发BFC？  只要元素满足下面任">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/5.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/6.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/7.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/8.png">
+<meta property="og:updated_time" content="2018-07-03T16:57:01.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BFC">
+<meta name="twitter:description" content="一、什么是BFC？  BFC（Block Format Context），即块级格式化范围，是CSS2.1中用于规定块级盒子的渲染布局方式，他在计算盒子高度、margin值等地方有区别于其他环境。具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素。  （另有IFC，对应内联格式化范围，可用来做水平居中以及垂直居中） 二、如何触发BFC？  只要元素满足下面任">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/CSS-bs-bfc/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-CSS-bs-bfc" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      BFC
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、什么是BFC？"><a href="#一、什么是BFC？" class="headerlink" title="一、什么是BFC？"></a>一、什么是BFC？</h3><p>  BFC（Block Format Context），即块级格式化范围，是CSS2.1中用于规定块级盒子的渲染布局方式，他在计算盒子高度、margin值等地方有区别于其他环境。具有BFC特性的元素可以看作是隔离了的独立容器，容器里面的元素不会在布局上影响到外面的元素。<br>  （另有IFC，对应内联格式化范围，可用来做水平居中以及垂直居中）</p>
+<h3 id="二、如何触发BFC？"><a href="#二、如何触发BFC？" class="headerlink" title="二、如何触发BFC？"></a>二、如何触发BFC？</h3><p>  只要元素满足下面任一条件即可触发 BFC 特性：<br>  1）body 根元素<br>  2）浮动元素：float 除 none 以外的值<br>  3）绝对定位元素：position (absolute、fixed)<br>  4）display 为 inline-block、table-cells、flex<br>  5）overflow 除了 visible 以外的值 (hidden、auto、scroll)</p>
+<h3 id="三、BFC的应用？"><a href="#三、BFC的应用？" class="headerlink" title="三、BFC的应用？"></a>三、BFC的应用？</h3><h4 id="1、避免边距重叠"><a href="#1、避免边距重叠" class="headerlink" title="1、避免边距重叠"></a>1、避免边距重叠</h4><p>  1）什么是边距重叠：<br>  所谓边距重叠即当两个元素垂直边距相互接触时，它们将合并形成一个边距，这个合并后的边距值就是这两个边距值中最大的那一个。<br>  参加折叠的margin都是正值：取其中margin较大的值为最终margin值。<br>  参与折叠的margin都是负值：取的是其中绝对值较大的，然后从0位置负向位移。<br>  参与折叠的margin有正有负：先取出负margin中绝对值中大的，然后和正margin值中最大的margin相加。 </p>
+<p>  2）产生边距重叠的情形：<br>  a、嵌套的父子元素<br>  b、垂直排列的两个同级元素</p>
+<p>  3）具体例子之嵌套的父子元素：</p>
+<p>  如下，父元素没有设置margin-top，而子元素设置了margin-top：20px:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .demo&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: <span class="comment">#eee;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .parent&#123;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: <span class="comment">#88f;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .child&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">            background: <span class="comment">#0ff;</span></span><br><span class="line">            width:200px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=<span class="string">"demo"</span>&gt;</span><br><span class="line">        &lt;h2&gt;此部分是能更容易看出让下面的块的margin-top。&lt;/h2&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class = <span class="string">"parent"</span>&gt;</span><br><span class="line">        &lt;article class=<span class="string">"child"</span>&gt;</span><br><span class="line">            &lt;h2&gt;子元素&lt;/h2&gt;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;h2&gt;父元素&lt;/h2&gt;</span><br><span class="line">            没有设置margin-top</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，父元素也一起有了边距:<br><br>  <img src="CSS-bs-bfc/1.png" alt="Alt text"></p>
+<p>  BFC解决方法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .demo&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            background: <span class="comment">#eee;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .parent&#123;</span><br><span class="line">            height:200px;</span><br><span class="line">            background: <span class="comment">#88f;</span></span><br><span class="line">            overflow: hidden;            /* 通过overflow方式形成BFC环境，内部怎么变都不影响外部 */</span><br><span class="line">        &#125;</span><br><span class="line">        .child&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">            background: <span class="comment">#0ff;</span></span><br><span class="line">            width:200px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=<span class="string">"demo"</span>&gt;</span><br><span class="line">        &lt;h2&gt;此部分是能更容易看出让下面的块的margin-top。&lt;/h2&gt;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class = <span class="string">"parent"</span>&gt;</span><br><span class="line">        &lt;article class=<span class="string">"child"</span>&gt;</span><br><span class="line">            &lt;h2&gt;子元素&lt;/h2&gt;</span><br><span class="line">            margin-top:20px;</span><br><span class="line">        &lt;/article&gt;</span><br><span class="line">        &lt;h2&gt;父元素&lt;/h2&gt;</span><br><span class="line">            没有设置margin-top</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，父元素不margin了:<br><br>  <img src="CSS-bs-bfc/2.png" alt="Alt text"></p>
+<p>  4）具体例子之垂直排列的两个同级元素：</p>
+<p>  如下，上元素设置了margin-bottom: 30px，下元素设置了margin-top：50px:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .top&#123;</span><br><span class="line">            background: <span class="comment">#0ff;</span></span><br><span class="line">            height:100px;</span><br><span class="line">            margin-bottom:30px;</span><br><span class="line">        &#125;</span><br><span class="line">        .bottom&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:50px;</span><br><span class="line">            background: <span class="comment">#ddd;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=<span class="string">"top"</span>&gt;</span><br><span class="line">        &lt;h1&gt;上&lt;/h1&gt;</span><br><span class="line">        margin-bottom:30px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;section class=<span class="string">"bottom"</span>&gt;</span><br><span class="line">        &lt;h1&gt;下&lt;/h1&gt;</span><br><span class="line">        margin-top:50px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，两同级元素间的距离是50px而不是80px:<br><br>  <img src="CSS-bs-bfc/3.png" alt="Alt text"></p>
+<p>  BFC解决方法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        *&#123;</span><br><span class="line">            margin:0;</span><br><span class="line">            padding:0;</span><br><span class="line">        &#125;</span><br><span class="line">        .top&#123;</span><br><span class="line">            background: <span class="comment">#0ff;</span></span><br><span class="line">            height:100px;</span><br><span class="line">            margin-bottom:30px;</span><br><span class="line">            overflow: hidden;</span><br><span class="line">        &#125;</span><br><span class="line">        .bottom&#123;</span><br><span class="line">            height:100px;</span><br><span class="line">            margin-top:50px;</span><br><span class="line">            background: <span class="comment">#ddd;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;section class=<span class="string">"top"</span>&gt;</span><br><span class="line">        &lt;h1&gt;上&lt;/h1&gt;</span><br><span class="line">        margin-bottom:30px;</span><br><span class="line">    &lt;/section&gt;</span><br><span class="line">    &lt;div style=<span class="string">"overflow:hidden"</span>&gt;            &lt;!-- 给下面这个块添加一个父元素，在父元素上创建bfc --&gt;</span><br><span class="line">        &lt;section class=<span class="string">"bottom"</span>&gt;</span><br><span class="line">            &lt;h1&gt;下&lt;/h1&gt;</span><br><span class="line">            margin-top:50px;</span><br><span class="line">        &lt;/section&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，间距变成了80px:<br><br>  <img src="CSS-bs-bfc/4.png" alt="Alt text"></p>
+<h4 id="2、阻止元素被浮动元素覆盖"><a href="#2、阻止元素被浮动元素覆盖" class="headerlink" title="2、阻止元素被浮动元素覆盖"></a>2、阻止元素被浮动元素覆盖</h4><p>  我们知道浮动元素会脱离文档流，然后浮盖在文档流元素上:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style=<span class="string">"height: 100px;width: 100px;float: left;background: lightblue"</span>&gt;</span><br><span class="line">        我是一个左浮动的元素</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div style=<span class="string">"width: 200px; height: 200px;background: #eee"</span>&gt;</span><br><span class="line">        我是一个没有设置浮动, 也没有触发 BFC 元素, width: 200px; height:200px; background: <span class="comment">#eee;</span></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，第二个元素有部分被浮动元素所覆盖，(但是文本信息不会被浮动元素所覆盖):<br><br>  <img src="CSS-bs-bfc/5.png" alt="Alt text"></p>
+<p>  BFC解决方法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style=<span class="string">"height: 100px;width: 100px;float: left;background: lightblue"</span>&gt;</span><br><span class="line">        我是一个左浮动的元素</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- 给第二个元素中加入overflow: hidden创建bfc --&gt;</span><br><span class="line">    &lt;div style=<span class="string">"width: 200px; height: 200px;background: #eee; overflow: hidden"</span>&gt;    </span><br><span class="line">        我是一个没有设置浮动, 也没有触发 BFC 元素, width: 200px; height:200px; background: <span class="comment">#eee;</span></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，浮动不覆盖了:<br><br>  <img src="CSS-bs-bfc/6.png" alt="Alt text"></p>
+<h4 id="3、防止高度塌陷（清除浮动）"><a href="#3、防止高度塌陷（清除浮动）" class="headerlink" title="3、防止高度塌陷（清除浮动）"></a>3、防止高度塌陷（清除浮动）</h4><p>  我们都知道，浮动的元素会脱离普通文档流：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div style=<span class="string">"border: 1px solid #000;"</span>&gt;</span><br><span class="line">        &lt;div style=<span class="string">"width: 100px;height: 100px;background: #eee;float: left;"</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，由于容器内元素浮动，脱离了文档流，所以容器只剩下2px的边距高度:<br><br>  <img src="CSS-bs-bfc/7.png" alt="Alt text"></p>
+<p>  BFC解决方法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;!-- 给父元素中加入overflow: hidden创建bfc --&gt; </span><br><span class="line">    &lt;div style=<span class="string">"border: 1px solid #000;overflow: hidden"</span>&gt;    </span><br><span class="line">        &lt;div style=<span class="string">"width: 100px;height: 100px;background: #eee;float: left;"</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  由图可以看出，高度呈现了:<br><br>  <img src="CSS-bs-bfc/8.png" alt="Alt text"></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://zhuanlan.zhihu.com/p/25321647" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/25321647</a> </li>
+<li>参考资料2：<a href="https://www.cnblogs.com/chengzp/p/cssbox.html" target="_blank" rel="noopener">https://www.cnblogs.com/chengzp/p/cssbox.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 00:57</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/08/CSS-bs-bfc/" title="BFC">http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/&title=《BFC》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/&title=《BFC》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《BFC》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/02/08/CSS-bs-bfc/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-CSS/" class="color2">前端-CSS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、什么是BFC？"><span class="post-toc-text">一、什么是BFC？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、如何触发BFC？"><span class="post-toc-text">二、如何触发BFC？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、BFC的应用？"><span class="post-toc-text">三、BFC的应用？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、避免边距重叠"><span class="post-toc-text">1、避免边距重叠</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、阻止元素被浮动元素覆盖"><span class="post-toc-text">2、阻止元素被浮动元素覆盖</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、防止高度塌陷（清除浮动）"><span class="post-toc-text">3、防止高度塌陷（清除浮动）</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/14/frontEnd-basic5/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          前端基础考题5
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/07/frontEnd-basic4/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">前端基础考题4</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

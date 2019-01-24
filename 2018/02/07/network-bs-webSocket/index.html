@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>webSocket | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前景-http协议  B/S架构（即浏览器和服务器结构）的系统多使用HTTP协议，HTTP协议的特点：  1） 无状态协议（即不具备保存之前发送过的请求或响应的功能）  2） 用于通过 Internet 发送请求消息和响应消息  3） 使用端口接收和发送消息，默认为80端口  4） 底层通信还是使用Socket完成      HTTP协议只支持请求响应模式,即通信只能由客户端发起。优点是可以简">
+<meta name="keywords" content="网络协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webSocket">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前景-http协议  B/S架构（即浏览器和服务器结构）的系统多使用HTTP协议，HTTP协议的特点：  1） 无状态协议（即不具备保存之前发送过的请求或响应的功能）  2） 用于通过 Internet 发送请求消息和响应消息  3） 使用端口接收和发送消息，默认为80端口  4） 底层通信还是使用Socket完成      HTTP协议只支持请求响应模式,即通信只能由客户端发起。优点是可以简">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/network-bs-webSocket/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/network-bs-webSocket/2.png">
+<meta property="og:updated_time" content="2018-07-03T17:22:46.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webSocket">
+<meta name="twitter:description" content="一、前景-http协议  B/S架构（即浏览器和服务器结构）的系统多使用HTTP协议，HTTP协议的特点：  1） 无状态协议（即不具备保存之前发送过的请求或响应的功能）  2） 用于通过 Internet 发送请求消息和响应消息  3） 使用端口接收和发送消息，默认为80端口  4） 底层通信还是使用Socket完成      HTTP协议只支持请求响应模式,即通信只能由客户端发起。优点是可以简">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/network-bs-webSocket/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-network-bs-webSocket" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      webSocket
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/网络协议/">网络协议</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-07
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前景-http协议"><a href="#一、前景-http协议" class="headerlink" title="一、前景-http协议"></a>一、前景-http协议</h3><p>  B/S架构（即浏览器和服务器结构）的系统多使用HTTP协议，HTTP协议的特点：<br>  1） 无状态协议（即不具备保存之前发送过的请求或响应的功能）<br>  2） 用于通过 Internet 发送请求消息和响应消息<br>  3） 使用端口接收和发送消息，默认为80端口<br>  4） 底层通信还是使用Socket完成</p>
+<p>  <img src="network-bs-webSocket/1.png" alt="Alt text"></p>
+<p>  HTTP协议只支持请求响应模式,即通信只能由客户端发起。优点是可以简化Web服务器，减少服务器的负担，加快响应速度，因为服务器不需要与客户端长时间建立一个通信链接。缺点是不容易实现实时的消息推送功能，如聊天室、后台信息提示、实时更新数据等功能。一些变相的解决办法如下二。</p>
+<h3 id="二、前景-消息推送"><a href="#二、前景-消息推送" class="headerlink" title="二、前景-消息推送"></a>二、前景-消息推送</h3><h4 id="1、轮询（http"><a href="#1、轮询（http" class="headerlink" title="1、轮询（http)"></a>1、轮询（http)</h4><p>  定义：客户端定时向服务器发送Ajax请求，服务器接到请求后马上返回响应信息并关闭连接。<br>  优点：后端程序编写比较容易。<br>  缺点：请求中有大半是无用，浪费带宽和服务器资源（因为必须不停连接，或者HTTP连接始终打开）。<br>  实例：适于小型应用。</p>
+<h4 id="2、长轮询（http"><a href="#2、长轮询（http" class="headerlink" title="2、长轮询（http)"></a>2、长轮询（http)</h4><p>  定义：客户端向服务器发送Ajax请求，服务器接到请求后hold住连接，直到有新消息才返回响应信息并关闭连接，客户端处理完响应信息后再向服务器发送新的请求。<br>  优点：在无消息的情况下不会频繁的请求，耗费资小。<br>  缺点：服务器hold连接会消耗资源，返回数据顺序无保证，难于管理维护。<br>  实例：WebQQ、 Hi 网页版、 Facebook IM 。 </p>
+<h4 id="3、长连接（http"><a href="#3、长连接（http" class="headerlink" title="3、长连接（http)"></a>3、长连接（http)</h4><p>  定义：在页面里嵌入一个隐蔵iframe，将这个隐蔵iframe的src属性设为对一个长连接的请求或是采用xhr请求，服务器端就能源源不断地往客户端输入数据。<br>  优点：消息即时到达，不发无用请求；管理起来也相对便。<br>  缺点：服务器维护一个长连接会增加开销。<br>  实例：Gmail聊天</p>
+<h4 id="4、Flash-Socket（socket）"><a href="#4、Flash-Socket（socket）" class="headerlink" title="4、Flash Socket（socket）"></a>4、Flash Socket（socket）</h4><p>  定义：在页面中内嵌入一个使用了Socket类的Flash程序，JavaScript通过调用此Flash程序提供的Socket接口与服务器端的Socket接口进行通信，JavaScript在收到服务器端传送的信息后控制页面的显示。<br>  优点：实现真正的即时通信，而不是伪即时。<br>  缺点：客户端必须安装Flash插件；非 HTTP 协议，无法自动穿越防火墙。<br>  实例：网络互动游戏。 </p>
+<h4 id="5、Websocket（socket）"><a href="#5、Websocket（socket）" class="headerlink" title="5、Websocket（socket）"></a>5、Websocket（socket）</h4><p>  看下三。</p>
+<h3 id="三、WebSocket"><a href="#三、WebSocket" class="headerlink" title="三、WebSocket"></a>三、WebSocket</h3><h4 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h4><p>  WebSocket协议在2008年诞生，2011年成为国际标准。所有浏览器都已经支持了。<br>  HTML5提供的WebSocket是一种浏览器与服务器间进行全双工通讯的网络技术。可实现客户端和服务器端的长连接，双向实时通信。<br>  特点：<br>  1）服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，能实现真正意义上的推送功能，属于服务器推送技术的一种。异步。<br>  2）建立在 TCP 协议之上，服务器端的实现比较容易。<br>  3）与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。<br>  4）数据格式比较轻量，性能开销小，通信高效。<br>  5）可以发送文本，也可以发送二进制数据。<br>  6）没有同源限制，客户端可以与任意服务器通信。<br>  7）协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。</p>
+<h4 id="2、客户端API"><a href="#2、客户端API" class="headerlink" title="2、客户端API"></a>2、客户端API</h4><p>  1）WebSocket<br>  WebSocket对象作为一个构造函数，用于新建WebSocket实例：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ws = new WebSocket(<span class="string">'ws://localhost:8080'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  执行上面语句之后，客户端就会与服务器进行连接。websocket的url开头是ws，如果需要ssl加密可以使用wss。</p>
+<p>  2）webSocket.readyState<br>  readyState属性返回实例对象的当前状态，共有四种：<br>  CONNECTING：值为0，表示正在连接。<br>  OPEN：值为1，表示连接成功，可以通信了。<br>  CLOSING：值为2，表示连接正在关闭。<br>  CLOSED：值为3，表示连接已经关闭，或者打开连接失败。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">switch (ws.readyState) &#123;</span><br><span class="line"> case WebSocket.CONNECTING:</span><br><span class="line">   // do something</span><br><span class="line">   break;</span><br><span class="line"> case WebSocket.OPEN:</span><br><span class="line">   // do something</span><br><span class="line">   break;</span><br><span class="line"> case WebSocket.CLOSING:</span><br><span class="line">   // do something</span><br><span class="line">   break;</span><br><span class="line"> case WebSocket.CLOSED:</span><br><span class="line">   // do something</span><br><span class="line">   break;</span><br><span class="line"> default:</span><br><span class="line">   // this never happens</span><br><span class="line">   break;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  3）webSocket.onopen<br>  实例对象的onopen属性，用于指定连接成功后的回调函数:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ws.onopen = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    ws.send(<span class="string">'Hello Server!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  如果要指定多个回调函数，可以使用addEventListener方法:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ws.addEventListener(<span class="string">'open'</span>, <span class="keyword">function</span> (event) &#123;</span><br><span class="line">    ws.send(<span class="string">'Hello Server!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  4）webSocket.onclose<br>  实例对象的onclose属性，用于指定连接关闭后的回调函数：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ws.onclose = <span class="keyword">function</span>(event) &#123;</span><br><span class="line">    var code = event.code;</span><br><span class="line">    var reason = event.reason;</span><br><span class="line">    var wasClean = event.wasClean;</span><br><span class="line">    // handle close event</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.addEventListener(<span class="string">"close"</span>, <span class="keyword">function</span>(event) &#123;</span><br><span class="line">    var code = event.code;</span><br><span class="line">    var reason = event.reason;</span><br><span class="line">    var wasClean = event.wasClean;</span><br><span class="line">    // handle close event</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  5）webSocket.onmessage<br>  实例对象的onmessage属性，用于指定收到服务器数据后的回调函数：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ws.onmessage = function(event) &#123;</span><br><span class="line">  var data = event.data;</span><br><span class="line">  // 处理数据</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.addEventListener(&quot;message&quot;, function(event) &#123;</span><br><span class="line">  var data = event.data;</span><br><span class="line">  // 处理数据</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  注意，服务器数据可能是文本，也可能是二进制数据（blob对象或Arraybuffer对象）:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ws.onmessage = <span class="keyword">function</span>(event)&#123;</span><br><span class="line">  <span class="keyword">if</span>(typeof event.data === String) &#123;</span><br><span class="line">    console.log(<span class="string">"Received data string"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(event.data instanceof ArrayBuffer)&#123;</span><br><span class="line">    var buffer = event.data;</span><br><span class="line">    console.log(<span class="string">"Received arraybuffer"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  除了动态判断收到的数据类型，也可以使用binaryType属性，显式指定收到的二进制数据类型:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/ 收到的是 blob 数据</span><br><span class="line">ws.binaryType = <span class="string">"blob"</span>;</span><br><span class="line">ws.onmessage = <span class="keyword">function</span>(e) &#123;</span><br><span class="line">  console.log(e.data.size);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 收到的是 ArrayBuffer 数据</span><br><span class="line">ws.binaryType = <span class="string">"arraybuffer"</span>;</span><br><span class="line">ws.onmessage = <span class="keyword">function</span>(e) &#123;</span><br><span class="line">  console.log(e.data.byteLength);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  6）webSocket.send()<br>  实例对象的send()方法用于向服务器发送数据：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//发送文本</span><br><span class="line">ws.send(<span class="string">'your message'</span>);</span><br><span class="line"></span><br><span class="line">//发送 Blob 对象</span><br><span class="line">var file = document</span><br><span class="line">  .querySelector(<span class="string">'input[type="file"]'</span>)</span><br><span class="line">  .files[0];</span><br><span class="line">ws.send(file);</span><br><span class="line"></span><br><span class="line">//发送 ArrayBuffer  对象</span><br><span class="line">// Sending canvas ImageData as ArrayBuffer</span><br><span class="line">var img = canvas_context.getImageData(0, 0, 400, 320);</span><br><span class="line">var binary = new Uint8Array(img.data.length);</span><br><span class="line"><span class="keyword">for</span> (var i = 0; i &lt; img.data.length; i++) &#123;</span><br><span class="line">  binary[i] = img.data[i];</span><br><span class="line">&#125;</span><br><span class="line">ws.send(binary.buffer);</span><br></pre></td></tr></table></figure></p>
+<p>  7）webSocket.bufferedAmount<br>  实例对象的bufferedAmount属性，表示还有多少字节的二进制数据没有发送出去。它可以用来判断发送是否结束：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var data = new ArrayBuffer(10000000);</span><br><span class="line">socket.send(data);</span><br><span class="line">if (socket.bufferedAmount === 0) &#123;</span><br><span class="line">  // 发送完毕</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  // 发送还没结束</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  8）webSocket.onerror<br>  实例对象的onerror属性，用于指定报错时的回调函数：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">socket.onerror = <span class="keyword">function</span>(event) &#123;</span><br><span class="line">  // handle error event</span><br><span class="line">&#125;;</span><br><span class="line">socket.addEventListener(<span class="string">"error"</span>, <span class="keyword">function</span>(event) &#123;</span><br><span class="line">  // handle error event</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="3、客户端实例"><a href="#3、客户端实例" class="headerlink" title="3、客户端实例"></a>3、客户端实例</h4>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width"</span> /&gt;</span><br><span class="line">		&lt;meta charset=<span class="string">"UTF-8"</span>/&gt;</span><br><span class="line">		&lt;title&gt;WebSocket客户端&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;div&gt;</span><br><span class="line">			&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> id=<span class="string">"btnConnection"</span> value=<span class="string">"连接"</span> /&gt;</span><br><span class="line">			&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> id=<span class="string">"btnClose"</span> value=<span class="string">"关闭"</span> /&gt;</span><br><span class="line">			&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> id=<span class="string">"btnSend"</span> value=<span class="string">"发送"</span> /&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;script src=<span class="string">"js/jquery-1.11.1.min.js"</span> <span class="built_in">type</span>=<span class="string">"text/javascript"</span> charset=<span class="string">"utf-8"</span>&gt;&lt;/script&gt;</span><br><span class="line">		&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">			$(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">				var socket;</span><br><span class="line">				<span class="keyword">if</span>(typeof(WebSocket) == <span class="string">"undefined"</span>) &#123;</span><br><span class="line">					alert(<span class="string">"您的浏览器不支持WebSocket"</span>);</span><br><span class="line">					<span class="built_in">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				$(<span class="string">"#btnConnection"</span>).click(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">					socket = new WebSocket(<span class="string">"ws://127.0.0.1:8087/WebSocketServer/ws/张三"</span>);</span><br><span class="line">					//连接成功事件</span><br><span class="line">					socket.onopen = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">						alert(<span class="string">"Socket已连接"</span>);</span><br><span class="line">					&#125;;</span><br><span class="line">					//获得消息事件</span><br><span class="line">					socket.onmessage = <span class="keyword">function</span>(msg) &#123;</span><br><span class="line">						alert(msg.data);</span><br><span class="line">					&#125;;</span><br><span class="line">					//连接关闭事件</span><br><span class="line">					socket.onclose = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">						alert(<span class="string">"Socket已关闭"</span>);</span><br><span class="line">					&#125;;</span><br><span class="line">					//发生错误事件</span><br><span class="line">					socket.onerror = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">						alert(<span class="string">"发生了错误"</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;);</span><br><span class="line">				$(<span class="string">"#btnSend"</span>).click(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">					socket.send(<span class="string">"这是来自客户端的消息"</span> + location.href + new Date());</span><br><span class="line">				&#125;);</span><br><span class="line">				$(<span class="string">"#btnClose"</span>).click(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">					socket.close();</span><br><span class="line">				&#125;);</span><br><span class="line">			&#125;);</span><br><span class="line">		&lt;/script&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="4、服务端实例"><a href="#4、服务端实例" class="headerlink" title="4、服务端实例"></a>4、服务端实例</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package action;</span><br><span class="line">import javax.websocket.CloseReason;</span><br><span class="line">import javax.websocket.OnClose;</span><br><span class="line">import javax.websocket.OnError;</span><br><span class="line">import javax.websocket.OnMessage;</span><br><span class="line">import javax.websocket.OnOpen;</span><br><span class="line">import javax.websocket.Session;</span><br><span class="line">import javax.websocket.server.PathParam;</span><br><span class="line">import javax.websocket.server.ServerEndpoint;</span><br><span class="line"></span><br><span class="line">//ws://127.0.0.1:8087/Demo1/ws/张三</span><br><span class="line">@ServerEndpoint(&quot;/ws/&#123;user&#125;&quot;)</span><br><span class="line">public class WSServer &#123;</span><br><span class="line">	private String currentUser;</span><br><span class="line">	</span><br><span class="line">	//连接打开时执行</span><br><span class="line">	@OnOpen</span><br><span class="line">	public void onOpen(@PathParam(&quot;user&quot;) String user, Session session) &#123;</span><br><span class="line">		currentUser = user;</span><br><span class="line">		System.out.println(&quot;Connected ... &quot; + session.getId());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//收到消息时执行</span><br><span class="line">	@OnMessage</span><br><span class="line">	public String onMessage(String message, Session session) &#123;</span><br><span class="line">		System.out.println(currentUser + &quot;：&quot; + message);</span><br><span class="line">		return currentUser + &quot;：&quot; + message;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//连接关闭时执行</span><br><span class="line">	@OnClose</span><br><span class="line">	public void onClose(Session session, CloseReason closeReason) &#123;</span><br><span class="line">		System.out.println(String.format(&quot;Session %s closed because of %s&quot;, session.getId(), closeReason));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//连接错误时执行</span><br><span class="line">	@OnError</span><br><span class="line">	public void onError(Throwable t) &#123;</span><br><span class="line">		t.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5、结果截图"><a href="#5、结果截图" class="headerlink" title="5、结果截图"></a>5、结果截图</h4><p>  <img src="network-bs-webSocket/2.png" alt="Alt text"></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.cnblogs.com/best/archive/2016/09/12/5695570.html" target="_blank" rel="noopener">https://www.cnblogs.com/best/archive/2016/09/12/5695570.html</a> </li>
+<li>参考资料2：<a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/05/websocket.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:22</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/07/network-bs-webSocket/" title="webSocket">http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/&title=《webSocket》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/&title=《webSocket》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《webSocket》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/02/07/network-bs-webSocket/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/网络协议/" class="color5">网络协议</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前景-http协议"><span class="post-toc-text">一、前景-http协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、前景-消息推送"><span class="post-toc-text">二、前景-消息推送</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、轮询（http"><span class="post-toc-text">1、轮询（http)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、长轮询（http"><span class="post-toc-text">2、长轮询（http)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、长连接（http"><span class="post-toc-text">3、长连接（http)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、Flash-Socket（socket）"><span class="post-toc-text">4、Flash Socket（socket）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、Websocket（socket）"><span class="post-toc-text">5、Websocket（socket）</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、WebSocket"><span class="post-toc-text">三、WebSocket</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、简介"><span class="post-toc-text">1、简介</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、客户端API"><span class="post-toc-text">2、客户端API</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、客户端实例"><span class="post-toc-text">3、客户端实例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、服务端实例"><span class="post-toc-text">4、服务端实例</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、结果截图"><span class="post-toc-text">5、结果截图</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/07/frontEnd-basic4/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          前端基础考题4
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/05/JS-bs-picUpload/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">图片上传</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>浏览器缓存机制 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、什么是浏览器缓存  浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中。当下一个请求来到的时候，如果是相同的URL，缓存会根据缓存机制决定是直接使用副本响应访问请求，还是向源服务器再次发送请求。 二、为什么使用缓存  1、减少网络带宽消耗  2、减少网络延迟，加快页面打开速度  3、降低服务器压力 三、浏览器缓存机制  先看一张图：">
+<meta name="keywords" content="网络协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器缓存机制">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、什么是浏览器缓存  浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中。当下一个请求来到的时候，如果是相同的URL，缓存会根据缓存机制决定是直接使用副本响应访问请求，还是向源服务器再次发送请求。 二、为什么使用缓存  1、减少网络带宽消耗  2、减少网络延迟，加快页面打开速度  3、降低服务器压力 三、浏览器缓存机制  先看一张图：">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/network-bs-cache/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/network-bs-cache/2.png">
+<meta property="og:updated_time" content="2018-07-03T17:23:34.637Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器缓存机制">
+<meta name="twitter:description" content="一、什么是浏览器缓存  浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中。当下一个请求来到的时候，如果是相同的URL，缓存会根据缓存机制决定是直接使用副本响应访问请求，还是向源服务器再次发送请求。 二、为什么使用缓存  1、减少网络带宽消耗  2、减少网络延迟，加快页面打开速度  3、降低服务器压力 三、浏览器缓存机制  先看一张图：">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/network-bs-cache/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-network-bs-cache" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      浏览器缓存机制
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/网络协议/">网络协议</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-03-12
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、什么是浏览器缓存"><a href="#一、什么是浏览器缓存" class="headerlink" title="一、什么是浏览器缓存"></a>一、什么是浏览器缓存</h3><p>  浏览器缓存就是把一个已经请求过的Web资源（如html页面，图片，js，数据等）拷贝一份副本储存在浏览器中。当下一个请求来到的时候，如果是相同的URL，缓存会根据缓存机制决定是直接使用副本响应访问请求，还是向源服务器再次发送请求。</p>
+<h3 id="二、为什么使用缓存"><a href="#二、为什么使用缓存" class="headerlink" title="二、为什么使用缓存"></a>二、为什么使用缓存</h3><p>  1、减少网络带宽消耗<br>  2、减少网络延迟，加快页面打开速度<br>  3、降低服务器压力</p>
+<h3 id="三、浏览器缓存机制"><a href="#三、浏览器缓存机制" class="headerlink" title="三、浏览器缓存机制"></a>三、浏览器缓存机制</h3><p>  先看一张图：</p>
+<p>  <img src="network-bs-cache/1.png" alt="Alt text"></p>
+<p>  用文字来描述：</p>
+<p>  首先，当用户发送一个请求的时候，浏览器会先从浏览器缓存里查找，看是否存在有关于此请求的缓存信息，<br>  若不存在，则直接向服务器请求资源，返回资源后呈现并存入缓存系统，<br>  若存在，则判断缓存是否过期，<br>  若未过期，则使用缓存（到这一步过程称为强制缓存），<br>  若过期，则向服务器请求，服务器判定是否从缓存中获取资源就好，<br>  若直接从缓存里获取就好，则使用缓存（到这一步过程过程称协商缓存），<br>  否则，则向服务器请求资源，返回资源后呈现并存入缓存系统。</p>
+<p>  其中，有两个概念需要说一下：</p>
+<p>  强缓存：用户发送的请求，直接从客户端缓存中获取，不发送请求到服务器，不与服务器发生交互行为。<br>  协商缓存：用户发送的请求，发送到服务器后，由服务器判定是否从缓存中获取资源。<br>  两者共同点：客户端获得的数据最后都是从客户端缓存中获得。<br>  两者的区别：强缓存不与服务器交互，协商缓存则需要与服务器交互。</p>
+<p>  再其中，有几个问题需要深究一下：</p>
+<p>  <font size="4" face="黑体"><strong>1、浏览器判定是否有缓存：</strong></font><br>  浏览器怎么判定是否有缓存，可以转化为浏览器去读取本地放缓存的地方（注：不同浏览器不同系统都会不同），看是否有该请求对应的缓存啦。总结来说就是个查找文件是否存在的问题。</p>
+<p>  <font size="4" face="黑体"><strong>2、缓存是否过期：</strong></font><br>  在客户端，保留了一个服务器端的response header，里面的Date字段包含了两个字段，expires 跟 Cache-Control。</p>
+<p>  <img src="network-bs-cache/2.png" alt="Alt text"></p>
+<p>  http1.0的时候，使用的是Expires字段，该字段表示缓存到期时间，即有效时间+当时服务器的时间，比如：Expires: Thu, 10 Nov 2017 08:45:11 GMT。该时间是一个绝对时间。服务器将这个时间设置在header中返回给客户端，告诉浏览器在这个时间未过期之前不需要再次请求。</p>
+<p>  但是，这个字段设置时有缺点：由于是绝对时间，若服务器时间与客户端时间的不一致，可能导致浏览器判断缓存失效，重新请求该资源。</p>
+<p>  http1.1的时候，已知Expires的缺点之后，增加了一个字段Cache-Control，该字段表示资源缓存的最大有效时间，比如：Cache-Control: max-age=2592000。该时间是一个相对时间。在该时间内，客户端不需要向服务器发送请求。</p>
+<p>  所以判断缓存是否过期步骤是：<br>  查看是否有cache-control 的max-age / s-maxage , 如果有，则用date值(header里有个data) + max-age/s-maxage 的秒数计算出新的过期时间，将当前时间与过期时间进行比较，判断是否过期。若无，则用expires作为过期时间判断。</p>
+<p>  <font size="4" face="黑体"><strong>3、跟服务器协商是否使用缓存：</strong></font><br>  此时涉及到两个字段Last-Modified和If-Modified-Since</p>
+<p>  Last-Modified：请求的资源上次的修改时间。<br>  If-Modified-Since：客户端保留的资源上次的修改时间。</p>
+<p>  请求时，请求头中带有If-Modified-Since，服务器会将If-Modified-Since的值与Last-Modified字段进行对比，如果相等，则表示未修改，响应304，告知客户端缓存未更新，可继续使用；反之，则表示修改了，响应200状态码，返回数据。</p>
+<p>  此字段的缺点是如果文件是通过服务器动态生成的，那么该方法的Last-Modified永远是文件生成的时间，尽管文件可能没有变化，所以起不到缓存的作用。</p>
+<p>  此时有另外两个字段出现，Etag和If-None-Match</p>
+<p>  Etag：资源的内容标识。（不唯一，通常为文件的md5或者一段hash值）<br>  If-None-Match：客户端保留的资源内容标识。</p>
+<p>  请求时，客户端传送If-no-match的字段，服务器将If-no-match与Etag进行比较，如果相等，则表示未修改，响应304；反之，则表示已修改，响应200状态码。</p>
+<p>  <font size="4" face="黑体"><strong>4、浏览器行为引起的不同：</strong></font><br>  最后，我们来聊聊浏览器行为会引起缓存的变化吧。<br>  1）刷新网页              =&gt; 如果缓存没有失效，浏览器会直接使用缓存；反之，则向服务器请求数据<br>  2）手动刷新（F5）        =&gt; 浏览器会认为缓存失效，在请求服务器时加上Cache-Control: max-age=0字段，然后询问服务器数据是否更新。<br>  3）强制刷新（Ctrl + F5） =&gt; 浏览器会直接忽略缓存，在请求服务器时加上Cache-Control: no-cache字段，然后重新向服务器拉取文件。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://github.com/laizimo/zimo-article/issues/24" target="_blank" rel="noopener">https://github.com/laizimo/zimo-article/issues/24</a> </li>
+<li>参考资料2：<a href="https://www.cnblogs.com/shixiaomiao1122/p/7591556.html" target="_blank" rel="noopener">https://www.cnblogs.com/shixiaomiao1122/p/7591556.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:23</p>
+        <p>原始链接： <a class="post-url" href="/2018/03/12/network-bs-cache/" title="浏览器缓存机制">http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/&title=《浏览器缓存机制》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/&title=《浏览器缓存机制》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《浏览器缓存机制》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/03/12/network-bs-cache/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/网络协议/" class="color5">网络协议</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、什么是浏览器缓存"><span class="post-toc-text">一、什么是浏览器缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、为什么使用缓存"><span class="post-toc-text">二、为什么使用缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、浏览器缓存机制"><span class="post-toc-text">三、浏览器缓存机制</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/03/12/CSS-ryf-flex/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          flex布局
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/03/11/JS-bs-async/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Javascript异步编程</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

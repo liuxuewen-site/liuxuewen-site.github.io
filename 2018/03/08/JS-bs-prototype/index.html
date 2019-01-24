@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>原型与原型链 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、原型与原型链  首先，说原型与原型链之前，我们先了解一下对象：    Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。  1234567891011121314function f1()&amp;#123;&amp;#125;;var f2 = function()&amp;#123;&amp;#12">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型与原型链">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、原型与原型链  首先，说原型与原型链之前，我们先了解一下对象：    Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。  1234567891011121314function f1()&amp;#123;&amp;#125;;var f2 = function()&amp;#123;&amp;#12">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/JS-bs-prototype/1.png">
+<meta property="og:updated_time" content="2018-07-03T16:45:40.150Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型与原型链">
+<meta name="twitter:description" content="一、原型与原型链  首先，说原型与原型链之前，我们先了解一下对象：    Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。  1234567891011121314function f1()&amp;#123;&amp;#125;;var f2 = function()&amp;#123;&amp;#12">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/JS-bs-prototype/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-bs-prototype" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      原型与原型链
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-03-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、原型与原型链"><a href="#一、原型与原型链" class="headerlink" title="一、原型与原型链"></a>一、原型与原型链</h3>  <font size="4" face="黑体"><strong>首先，说原型与原型链之前，我们先了解一下对象：</strong></font>
+
+<p>  Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f1</span></span>()&#123;&#125;;</span><br><span class="line">var f2 = <span class="function"><span class="title">function</span></span>()&#123;&#125;;</span><br><span class="line">var f3 = new Function(<span class="string">'x'</span>,<span class="string">'console.log(x)'</span>);</span><br><span class="line">var o1 = &#123;&#125;;</span><br><span class="line">var o2 = new Object();</span><br><span class="line">var o3 = new f1();</span><br><span class="line">console.log(</span><br><span class="line">    typeof f1,//<span class="keyword">function</span></span><br><span class="line">    typeof f2,//<span class="keyword">function</span></span><br><span class="line">    typeof f3,//<span class="keyword">function</span></span><br><span class="line">    typeof o1,//object</span><br><span class="line">    typeof o2,//object</span><br><span class="line">    typeof o3 //object</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>说完对象，接下来我们进入原型与原型链：</strong></font>
+
+<p>  原型是一个对象，其他对象可以通过它实现属性继承。</p>
+<p>  js每当创建一个函数对象如f1时，该对象中都会内置一些属性包括prototype和__proto __,<br>  js每当创建一个普通对象如o1时，该对象中都会内置一些属性包括__proto__，</p>
+<p>  prototype是显式原型，它记录着f1的一些属性和方法（指向函数的原型对象），是子类创建的核心，是连接子类原型链的桥梁。<br>  __proto__是隐式原型，构成原型链，实现基于原型的继承。<br>  隐式原型指向创建这个对象的函数(constructor)的显式原型。</p>
+<p>  prototype 对f1是不可见的，即，f1不会查找prototype中的属性和方法。<br>  prototype的主要作用就是继承，通俗一点讲，prototype中定义的属性和方法都是留给自己的“后代”用的，因此，子类完全可以访问prototype中的属性和方法。</p>
+<p>  __proto__在普通对象和函数对象中都存在， 它的作用就是保存父类的prototype对象，JS在通过new 表达式创建一个对象的时候，通常会把父类的prototype赋值给新对象的__proto__属性，这样，就形成了一代代传承…由__proto__组成了原型链</p>
+<p>  <font size="4" face="黑体"><strong>举个例子：</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>()&#123;&#125;</span><br><span class="line">f.prototype.foo = <span class="string">"abc"</span>;</span><br><span class="line">var obj = new f();</span><br><span class="line">console.log(obj.foo); //abc</span><br></pre></td></tr></table></figure></p>
+<p>  其中，obj中__proto__保存的是f的prototype，那么，f的prototype中的__proto__中呢？<br>  f.prototype的__proto__中保存的是Object.prototype，<br>  Object.prototype对象中也有__proto__，值是null，表示obj对象原型链的终结。</p>
+<p>  <img src="JS-bs-prototype/1.png" alt="Alt text"></p>
+<p>  obj对象拥有这样一个原型链后，当obj.foo执行时，obj会先查找自身是否有该属性，但不会查找自己的prototype（因为没有么？）,当找不到foo时，obj就沿着原型链依次去查找。<br>  上面的例子中，我们在f的prototype上定义了foo属性，这时obj就会在原型链上找到这个属性并执行。</p>
+<h3 id="二、new操作"><a href="#二、new操作" class="headerlink" title="二、new操作"></a>二、new操作</h3><p>  众所周知new是用来创建一个新的实例对象，那么，在new的过程中，到底经过了什么呢？</p>
+<p>  举个例子来说明：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cat = new Animal(<span class="string">"cat"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  JS引擎在执行这句代码时，做了很多工作，用伪代码模拟其工作流程如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;&#125;;</span><br><span class="line">obj.__proto__ = Animal.prototype;</span><br><span class="line">var result = Animal.call(obj,<span class="string">"cat"</span>);</span><br><span class="line"><span class="built_in">return</span> typeof result === <span class="string">'obj'</span>? result : obj;</span><br></pre></td></tr></table></figure></p>
+<p>  什么意思呢？下面我们分步来看：<br>  1）第一步，创建一个空对象obj;<br>  2）第二步，把obj的<strong>proto</strong> 指向Animal的原型对象prototype，此时便建立了obj对象的原型链：obj-&gt;Animal.prototype-&gt;Object.prototype-&gt;null<br>  3）第三步，将Animal中的this指向obj，并给其赋值，obj便产生了属性name并赋值为”cat”。<br>  4）第四步，考察第3步返回的返回值，如果无返回值或者返回一个非对象值，则将obj返回作为新对象；否则会将返回值作为新对象返回。</p>
+<h3 id="三、继承"><a href="#三、继承" class="headerlink" title="三、继承"></a>三、继承</h3><p>  要实现继承，首先我们得有一个父类，代码如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Animal (name) &#123;                                // 定义一个动物类</span><br><span class="line">  this.name = name || <span class="string">'Animal'</span>;                         // 属性</span><br><span class="line">  this.sleep = <span class="function"><span class="title">function</span></span>()&#123;                              // 实例方法</span><br><span class="line">    console.log(this.name + <span class="string">'正在睡觉！'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Animal.prototype.eat = <span class="keyword">function</span>(food) &#123;                 // 原型方法</span><br><span class="line">  console.log(this.name + <span class="string">'正在吃：'</span> + food);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  1、原型链继承：<br>  核心： 将父类的实例作为子类的原型<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">Cat</span></span>()&#123; &#125;</span><br><span class="line">Cat.prototype = new Animal();</span><br><span class="line">Cat.prototype.name = <span class="string">'cat'</span>;</span><br><span class="line"></span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.eat(<span class="string">'fish'</span>));</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); //<span class="literal">true</span></span><br><span class="line">console.log(cat instanceof Cat); //<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、非常纯粹的继承关系，实例是子类的实例，也是父类的实例<br>  2、父类新增原型方法/原型属性，子类都能访问到<br>  3、简单，易于实现</p>
+<p>  缺点：<br>  1、无法实现多继承<br>  2、来自原型对象的引用属性是所有实例共享的（详细请看附录代码： 示例1）<br>  3、创建子类实例时，无法向父类构造函数传参</p>
+<p>  推荐指数：★★（2、3两大致命缺陷）</p>
+<p>  2、构造继承<br>  核心：使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">  Animal.call(this);</span><br><span class="line">  this.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Test Code</span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); // <span class="literal">false</span></span><br><span class="line">console.log(cat instanceof Cat); // <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、可以实现多继承（call多个父类对象）<br>  2、解决了1中子类实例共享父类引用属性的问题<br>  3、创建子类实例时，可以向父类传递参数</p>
+<p>  缺点：<br>  1、实例并不是父类的实例，只是子类的实例<br>  2、只能继承父类的实例属性和方法，不能继承原型属性/方法<br>  3、无法实现函数复用，每个子类都有父类实例函数的副本，影响性能</p>
+<p>  推荐指数：★★（缺点3）</p>
+<p>  3、实例继承<br>  核心：为父类实例添加新特性，作为子类实例返回<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">  var instance = new Animal();</span><br><span class="line">  instance.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">  <span class="built_in">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Test Code</span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); // <span class="literal">true</span></span><br><span class="line">console.log(cat instanceof Cat); // <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、不限制调用方式，不管是new 子类()还是子类(),返回的对象具有相同的效果</p>
+<p>  缺点：<br>  1、实例是父类的实例，不是子类的实例<br>  2、不支持多继承</p>
+<p>  推荐指数：★★</p>
+<p>  4、拷贝继承<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">  var animal = new Animal();</span><br><span class="line">  <span class="keyword">for</span>(var p <span class="keyword">in</span> animal)&#123;</span><br><span class="line">    Cat.prototype[p] = animal[p];</span><br><span class="line">  &#125;</span><br><span class="line">  Cat.prototype.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Test Code</span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); // <span class="literal">false</span></span><br><span class="line">console.log(cat instanceof Cat); // <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、支持多继承</p>
+<p>  缺点：<br>  1、效率较低，内存占用高（因为要拷贝父类的属性）<br>  2、无法获取父类不可枚举的方法（不可枚举方法，不能使用for in 访问到）</p>
+<p>  推荐指数：★（缺点1）</p>
+<p>  5、组合继承<br>  核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">  Animal.call(this);</span><br><span class="line">  this.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype = new Animal();</span><br><span class="line"></span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line">// Test Code</span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); // <span class="literal">true</span></span><br><span class="line">console.log(cat instanceof Cat); // <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、弥补了方式2的缺陷，可以继承实例属性/方法，也可以继承原型属性/方法<br>  2、既是子类的实例，也是父类的实例<br>  3、不存在引用属性共享问题<br>  4、可传参<br>  5、函数可复用</p>
+<p>  缺点：<br>  1、调用了两次父类构造函数，生成了两份实例（子类实例将子类原型上的那份屏蔽了）</p>
+<p>  推荐指数：★★★★（仅仅多消耗了一点内存）</p>
+<p>  6、寄生组合继承<br>  核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">  Animal.call(this);</span><br><span class="line">  this.name = name || <span class="string">'Tom'</span>;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  // 创建一个没有实例方法的类</span><br><span class="line">  var Super = <span class="function"><span class="title">function</span></span>()&#123;&#125;;</span><br><span class="line">  Super.prototype = Animal.prototype;</span><br><span class="line">  //将实例作为子类的原型</span><br><span class="line">  Cat.prototype = new Super();</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">Cat.prototype.constructor = Cat;</span><br><span class="line"></span><br><span class="line">// Test Code</span><br><span class="line">var cat = new Cat();</span><br><span class="line">console.log(cat.name);</span><br><span class="line">console.log(cat.sleep());</span><br><span class="line">console.log(cat instanceof Animal); // <span class="literal">true</span></span><br><span class="line">console.log(cat instanceof Cat); //<span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  特点：<br>  1、堪称完美</p>
+<p>  缺点：<br>  1、实现较为复杂</p>
+<p>  推荐指数：★★★★（实现复杂，扣掉一颗星）</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">附录示例1：</span><br><span class="line"><span class="keyword">function</span> Animal (name) &#123;</span><br><span class="line">  // 属性</span><br><span class="line">  this.name = name || <span class="string">'Animal'</span>;</span><br><span class="line">  // 实例方法</span><br><span class="line">  this.sleep = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    console.log(this.name + <span class="string">'正在睡觉！'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  //实例引用属性</span><br><span class="line">  this.features = [];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> Cat(name)&#123;</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype = new Animal();</span><br><span class="line"></span><br><span class="line">var tom = new Cat(<span class="string">'Tom'</span>);</span><br><span class="line">var kissy = new Cat(<span class="string">'Kissy'</span>);</span><br><span class="line"></span><br><span class="line">console.log(tom.name); // <span class="string">"Animal"</span></span><br><span class="line">console.log(kissy.name); // <span class="string">"Animal"</span></span><br><span class="line">console.log(tom.features); // []</span><br><span class="line">console.log(kissy.features); // []</span><br><span class="line"></span><br><span class="line">tom.name = <span class="string">'Tom-New Name'</span>;</span><br><span class="line">tom.features.push(<span class="string">'eat'</span>);</span><br><span class="line"></span><br><span class="line">//针对父类实例值类型成员的更改，不影响</span><br><span class="line">console.log(tom.name); // <span class="string">"Tom-New Name"</span></span><br><span class="line">console.log(kissy.name); // <span class="string">"Animal"</span></span><br><span class="line">//针对父类实例引用类型成员的更改，会通过影响其他子类实例</span><br><span class="line">console.log(tom.features); // [<span class="string">'eat'</span>]</span><br><span class="line">console.log(kissy.features); // [<span class="string">'eat'</span>]</span><br><span class="line"></span><br><span class="line">原因分析：</span><br><span class="line"></span><br><span class="line">关键点：属性查找过程</span><br><span class="line"></span><br><span class="line">执行tom.features.push，首先找tom对象的实例属性（找不到），</span><br><span class="line">那么去原型对象中找，也就是Animal的实例。发现有，那么就直接在这个对象的</span><br><span class="line">features属性中插入值。</span><br><span class="line">在console.log(kissy.features); 的时候。同上，kissy实例上没有，那么去原型上找。</span><br><span class="line">刚好原型上有，就直接返回，但是注意，这个原型对象中features属性值已经变化了。</span><br></pre></td></tr></table></figure>
+<p>标注：</p>
+<ul>
+<li>本文继承部分来自<a href="https://www.cnblogs.com/humin/p/4556820.html" target="_blank" rel="noopener">https://www.cnblogs.com/humin/p/4556820.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 00:45</p>
+        <p>原始链接： <a class="post-url" href="/2018/03/08/JS-bs-prototype/" title="原型与原型链">http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/&title=《原型与原型链》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/&title=《原型与原型链》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《原型与原型链》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、原型与原型链"><span class="post-toc-text">一、原型与原型链</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、new操作"><span class="post-toc-text">二、new操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、继承"><span class="post-toc-text">三、继承</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/03/09/JS-bs-this/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          this关键字
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/03/08/JS-bs-closure/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">闭包</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React官网之04-组件 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、组件定义  组件可将UI划分为一个个独立、可复用的小部件，这样你可对每个部件进行单独的设计。组件可以接收任意输入props，并返回react元素，用以描述屏幕显示内容。 二、函数式组件和类组件  函数式组件即，写一个 JavaScript 函数，接收一个 props 参数, 返回一个 React 元素：  123function Welcome(props) &amp;#123;  return &amp;l">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React官网之04-组件">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/04/React-gw-04/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、组件定义  组件可将UI划分为一个个独立、可复用的小部件，这样你可对每个部件进行单独的设计。组件可以接收任意输入props，并返回react元素，用以描述屏幕显示内容。 二、函数式组件和类组件  函数式组件即，写一个 JavaScript 函数，接收一个 props 参数, 返回一个 React 元素：  123function Welcome(props) &amp;#123;  return &amp;l">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-06T04:01:18.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React官网之04-组件">
+<meta name="twitter:description" content="一、组件定义  组件可将UI划分为一个个独立、可复用的小部件，这样你可对每个部件进行单独的设计。组件可以接收任意输入props，并返回react元素，用以描述屏幕显示内容。 二、函数式组件和类组件  函数式组件即，写一个 JavaScript 函数，接收一个 props 参数, 返回一个 React 元素：  123function Welcome(props) &amp;#123;  return &amp;l">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-gw-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React官网之04-组件
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-07-04
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、组件定义"><a href="#一、组件定义" class="headerlink" title="一、组件定义"></a>一、组件定义</h3><p>  组件可将UI划分为一个个独立、可复用的小部件，这样你可对每个部件进行单独的设计。组件可以接收任意输入props，并返回react元素，用以描述屏幕显示内容。</p>
+<h3 id="二、函数式组件和类组件"><a href="#二、函数式组件和类组件" class="headerlink" title="二、函数式组件和类组件"></a>二、函数式组件和类组件</h3><p>  函数式组件即，写一个 JavaScript 函数，接收一个 props 参数, 返回一个 React 元素：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Welcome(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  类组件即，用 ES6 的 class 来定义一个组件:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Welcome extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  上面两个组件从 React 的角度来看是等效的。</p>
+<h3 id="三、渲染一个组件"><a href="#三、渲染一个组件" class="headerlink" title="三、渲染一个组件"></a>三、渲染一个组件</h3><p>  前面，我们遇到的 React 元素都只是 DOM 标签 ：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;div /&gt;;</span><br></pre></td></tr></table></figure></p>
+<p>  然而，元素也可以代表用户定义的组件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const element = &lt;Welcome name=<span class="string">"Sara"</span> /&gt;;</span><br></pre></td></tr></table></figure></p>
+<p>  当 React 遇到的元素是用户自定义的组件时，它会将 JSX 属性以一个单独对象的形式传递给相应的组件。 我们将其称为 “props” 对象。</p>
+<p>  看个例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Welcome(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const element = &lt;Welcome name=<span class="string">"Sara"</span> /&gt;;</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>  例子流程：<br>  a、调用了ReactDOM.render() 方法并向其中传入了 &lt; Welcome name=”Sara” /&gt; 元素。<br>  b、React 调用 Welcome 组件，并向其中传入了 {name: ‘Sara’} 作为 props 对象。<br>  c、Welcome 组件返回 &lt; h1&gt;Hello, Sara&lt; /h1&gt; 。<br>  d、React DOM 迅速更新 DOM ，使其显示为 &lt; h1&gt;Hello, Sara&lt; /h1&gt;。</p>
+<p>  注意：<br>  a、组件名称总是以大写字母开始。<br>  b、举例来说, &lt; div /&gt; 代表一个 DOM 标签，而 &lt; Welcome /&gt; 代表一个组件，并且在使用该组件时你必须定义或引入它。</p>
+<h3 id="四、组合组件"><a href="#四、组合组件" class="headerlink" title="四、组合组件"></a>四、组合组件</h3><p>  组件可以在它们的输出中引用其它组件，这使我们可以使用同样的组件来抽象到任意层级。在React应用中，按钮，表单，对话框，屏幕等通常都被表示为组件。</p>
+<p>  例如，我们可以创建一个 App 组件，并在其内部多次渲染 Welcome：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Welcome(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">App</span></span>() &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Welcome name=<span class="string">"Sara"</span> /&gt;</span><br><span class="line">      &lt;Welcome name=<span class="string">"Cahal"</span> /&gt;</span><br><span class="line">      &lt;Welcome name=<span class="string">"Edite"</span> /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;App /&gt;,</span><br><span class="line">  document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>  通常，新的React apps都有一个单独的顶层App组件。然而如果你在已有的应用中整合 React，你可以由下至上地, 从类似于Button这样的小组件开始, 逐渐整合到视图层的顶层。</p>
+<p>  注意：<br>  a、组件必须返回一个单独的根元素，这就是为什么我们添加一个 &lt; div&gt; 来包含所有 &lt; Welcome /&gt; 元素的原因。</p>
+<h3 id="五、提取组件"><a href="#五、提取组件" class="headerlink" title="五、提取组件"></a>五、提取组件</h3><p>  不要害怕把一个组件分为多个更小的组件，看下面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Comment(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"Comment"</span>&gt;</span><br><span class="line">      &lt;div className=<span class="string">"UserInfo"</span>&gt;</span><br><span class="line">        &lt;img className=<span class="string">"Avatar"</span></span><br><span class="line">          src=&#123;props.author.avatarUrl&#125;</span><br><span class="line">          alt=&#123;props.author.name&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;div className=<span class="string">"UserInfo-name"</span>&gt;</span><br><span class="line">          &#123;props.author.name&#125;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=<span class="string">"Comment-text"</span>&gt;</span><br><span class="line">        &#123;props.text&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=<span class="string">"Comment-date"</span>&gt;</span><br><span class="line">        &#123;formatDate(props.date)&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  它接受 author（一个对象），text（一个字符串）和 date（一个日期）作为 props，用于在某社交网站中描述一条评论。这个组件修改起来很麻烦，因为它是被嵌套的，而且很难复用其中的某个部分。所以让我们从其中提取一些组件。</p>
+<p>  首先，提取头像 Avatar：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Avatar(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;img className=<span class="string">"Avatar"</span></span><br><span class="line">      src=&#123;props.user.avatarUrl&#125;</span><br><span class="line">      alt=&#123;props.user.name&#125;</span><br><span class="line">    /&gt;</span><br><span class="line"></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  Avatar 组件不用关心它在 Comment 中是如何渲染的。这就是为什么它的 prop 是一个更通用的属性名: user, 而不是 author 的原因。我们建议从组件本身的角度来命名 props 而不是它被使用的上下文环境。</p>
+<p>  接下来，我们提取用户信息 UserInfo 组件， 用于将 Avatar 显示在用户名旁边：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> UserInfo(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"UserInfo"</span>&gt;</span><br><span class="line">      &lt;Avatar user=&#123;props.user&#125; /&gt;</span><br><span class="line">      &lt;div className=<span class="string">"UserInfo-name"</span>&gt;</span><br><span class="line">        &#123;props.user.name&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  接着简化一下 Comment 组件:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Comment(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div className=<span class="string">"Comment"</span>&gt;</span><br><span class="line">      &lt;UserInfo user=&#123;props.author&#125; /&gt;</span><br><span class="line">      &lt;div className=<span class="string">"Comment-text"</span>&gt;</span><br><span class="line">        &#123;props.text&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=<span class="string">"Comment-date"</span>&gt;</span><br><span class="line">        &#123;formatDate(props.date)&#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  提取组件看起来是一个繁琐的工作，但是在大型的Apps中可提供大量的可复用组件。如果你 UI 的一部分需要用多次 (Button，Panel，Avatar)，或者本身足够复杂(App，FeedStory，Comment)，最好的做法是使其成为可复用组件。</p>
+<h3 id="六、Props-是只读的"><a href="#六、Props-是只读的" class="headerlink" title="六、Props 是只读的"></a>六、Props 是只读的</h3><p>  无论你用函数或类的方法来声明组件, 它都无法修改其自身 props</p>
+<p>  看下面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> sum(a, b) &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这种函数称为“纯函数”，它们不会试图改变它们的输入，并且对于同样的输入,始终可以得到相同的结果。</p>
+<p>  而下面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> withdraw(account, amount) &#123;</span><br><span class="line">  account.total -= amount;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这是非纯函数， 因为它改变了自身的输入值。</p>
+<p>  React 很灵活，但是它有一条严格的规则：所有 React 组件都必须是纯函数，并禁止修改其自身 props 。</p>
+<p>  当然，应用 UI 总是动态的，并且随时有可以改变。 所以有一个新的概念 state(状态) ，允许 React 组件在不违反上述规则的情况下, 根据用户操作, 网络响应, 或者其他随便什么东西, 来动态地改变其输出。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
+<li>参考资料2：<a href="https://doc.react-china.org/" target="_blank" rel="noopener">https://doc.react-china.org/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月06日 12:01</p>
+        <p>原始链接： <a class="post-url" href="/2018/07/04/React-gw-04/" title="React官网之04-组件">http://liuxuewen-site.github.io/2018/07/04/React-gw-04/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/&title=《React官网之04-组件》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/&title=《React官网之04-组件》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React官网之04-组件》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/07/04/React-gw-04/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、组件定义"><span class="post-toc-text">一、组件定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、函数式组件和类组件"><span class="post-toc-text">二、函数式组件和类组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、渲染一个组件"><span class="post-toc-text">三、渲染一个组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、组合组件"><span class="post-toc-text">四、组合组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、提取组件"><span class="post-toc-text">五、提取组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、Props-是只读的"><span class="post-toc-text">六、Props 是只读的</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/04/React-gw-05/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React官网之05-状态
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/07/04/React-gw-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React官网之03-元素渲染</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

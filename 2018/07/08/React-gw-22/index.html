@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React官网之22-上下文(Context) | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  在一个典型的 React 应用中，数据是通过 props 属性由上向下（由父及子）的进行传递的，但这对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI主题。 Context 提供了一种在组件之间共享此类值的方式，而不必通过组件树的每个层级显式地传递 props 。 二、不推荐使用Context  绝大多数的应用程序不需要使用context。   如果你希望使应用程序更加稳定，就不">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React官网之22-上下文(Context)">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-22/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  在一个典型的 React 应用中，数据是通过 props 属性由上向下（由父及子）的进行传递的，但这对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI主题。 Context 提供了一种在组件之间共享此类值的方式，而不必通过组件树的每个层级显式地传递 props 。 二、不推荐使用Context  绝大多数的应用程序不需要使用context。   如果你希望使应用程序更加稳定，就不">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-30T12:44:57.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React官网之22-上下文(Context)">
+<meta name="twitter:description" content="一、前言  在一个典型的 React 应用中，数据是通过 props 属性由上向下（由父及子）的进行传递的，但这对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI主题。 Context 提供了一种在组件之间共享此类值的方式，而不必通过组件树的每个层级显式地传递 props 。 二、不推荐使用Context  绝大多数的应用程序不需要使用context。   如果你希望使应用程序更加稳定，就不">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-gw-22" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React官网之22-上下文(Context)
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-07-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  在一个典型的 React 应用中，数据是通过 props 属性由上向下（由父及子）的进行传递的，但这对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI主题。 Context 提供了一种在组件之间共享此类值的方式，而不必通过组件树的每个层级显式地传递 props 。</p>
+<h3 id="二、不推荐使用Context"><a href="#二、不推荐使用Context" class="headerlink" title="二、不推荐使用Context"></a>二、不推荐使用Context</h3><p>  绝大多数的应用程序不需要使用context。</p>
+<p>  如果你希望使应用程序更加稳定，就不要使用context。这只是一个实验性的 API ，并且可能在未来的 React 版本中移除。</p>
+<p>  如果你熟悉 Redux 或者 MobX 这类 state 管理库，就不要使用 context 。在许多实际应用中，这些库和 React 绑定是一个很好的组件state管理。Redux 相比 context 是更好的解决方案。</p>
+<p>  如果你不是一个经验丰富的 React 开发者，就不要使用 context 。更好的方式是使用 props 和 state 。</p>
+<p>  如果你不顾这些警告仍然坚持使用 context ，请尝试着将 context 的使用隔离在一个将小的范围内，并且在可能的情况下直接使用 context ，以便在API改变的时候进行升级。</p>
+<h3 id="三、何时使用Context"><a href="#三、何时使用Context" class="headerlink" title="三、何时使用Context"></a>三、何时使用Context</h3><p>  Context 设计的目的是为共享那些被认为对于一个组件树而言是全局的数据，例如当前认证的用户、主题或首选语言。</p>
+<p>  在下面的代码中，我们通过一个theme属性手动调整一个按钮组件的样式：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> ThemedButton(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;Button theme=&#123;props.theme&#125; /&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 中间组件</span><br><span class="line"><span class="keyword">function</span> Toolbar(props) &#123;</span><br><span class="line">  // Toolbar 组件必须添加一个额外的 theme 属性，然后传递它给 ThemedButton 组件</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ThemedButton theme=&#123;props.theme&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;Toolbar theme=<span class="string">"dark"</span> /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  使用 context, 可以避免通过中间元素传递 props：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个 themeContext,  默认 theme 的值为 light</span><br><span class="line">const ThemeContext = React.createContext(<span class="string">'light'</span>);</span><br><span class="line"></span><br><span class="line">// ThemedButton 组件从 context 接收 theme</span><br><span class="line"><span class="keyword">function</span> ThemedButton(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;ThemeContext.Consumer&gt;</span><br><span class="line">      &#123;theme =&gt; &lt;Button &#123;...props&#125; theme=&#123;theme&#125; /&gt;&#125;</span><br><span class="line">    &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 中间组件</span><br><span class="line"><span class="keyword">function</span> Toolbar(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ThemedButton /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;ThemeContext.Provider value=<span class="string">"dark"</span>&gt;</span><br><span class="line">        &lt;Toolbar /&gt;</span><br><span class="line">      &lt;/ThemeContext.Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  注意:不要仅仅为了避免在几个层级下的组件传递 props 而使用 context，它是被用于在多个层级的多个组件需要访问相同数据的情景。</p>
+<h3 id="四、API"><a href="#四、API" class="headerlink" title="四、API"></a>四、API</h3><p>  React.createContext内部：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Provider, Consumer&#125; = React.createContext(defaultValue);</span><br><span class="line"></span><br><span class="line">创建一对 &#123; Provider, Consumer &#125;。</span><br><span class="line">当 React 渲染 context 组件 Consumer 时，</span><br><span class="line">它将从组件树的上层中最接近的匹配的 Provider 读取当前的 context 值。</span><br><span class="line"></span><br><span class="line">如果上层的组件树没有一个匹配的 Provider，</span><br><span class="line">而此时你需要渲染一个 Consumer 组件，那么你可以用到 defaultValue 。</span><br></pre></td></tr></table></figure></p>
+<p>  Provider内部:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider value=&#123;/* some value */&#125;&gt;</span><br><span class="line"></span><br><span class="line">接收一个 value 属性传递给 Provider 的后代 Consumers。</span><br><span class="line">一个 Provider 可以联系到多个 Consumers。</span><br><span class="line">Providers 可以被嵌套以覆盖组件树内更深层次的值。</span><br></pre></td></tr></table></figure></p>
+<p>  Consumer内部:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Consumer&gt;</span><br><span class="line">  &#123;value =&gt; /* render something based on the context value */&#125;</span><br><span class="line">&lt;/Consumer&gt;</span><br><span class="line"></span><br><span class="line">一个可以订阅 context 变化的 React 组件。</span><br></pre></td></tr></table></figure></p>
+<p>  接收一个函数作为子节点，函数接收当前 context 的值并返回一个 React 节点。传递给函数的 value 将等于组件树中上层 context 的最近的 Provider 的 value 属性。如果 context 没有 Provider ，那么 value 参数将等于被传递给 createContext() 的 defaultValue 。</p>
+<p>  每当 Provider 的值发生改变时，所有的 Consumers 都将会重新渲染。通过使用相同的算法如Object.is比较新旧值来确定变化。（这在传递对象作为value时会引发一些问题Caveats.）</p>
+<h3 id="五、例子1（老）"><a href="#五、例子1（老）" class="headerlink" title="五、例子1（老）"></a>五、例子1（老）</h3><p>  假定你有下面的结构:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Button extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;background: this.props.color&#125;&#125;&gt;</span><br><span class="line">        &#123;this.props.children&#125;</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Message extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;this.props.text&#125; &lt;Button color=&#123;this.props.color&#125;&gt;Delete&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageList extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const color = <span class="string">"purple"</span>;</span><br><span class="line">    const children = this.props.messages.map((message) =&gt;</span><br><span class="line">      &lt;Message text=&#123;message.text&#125; color=&#123;color&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">    <span class="built_in">return</span> &lt;div&gt;&#123;children&#125;&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  在这个例子中，我们手动地传递 color 属性使得 Button 和 Message 设置正确的样式。使用 context ，我们可以自动在组件树中传递:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">const PropTypes = require(<span class="string">'prop-types'</span>);</span><br><span class="line"></span><br><span class="line">class Button extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;background: this.context.color&#125;&#125;&gt;</span><br><span class="line">        &#123;this.props.children&#125;</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Button.contextTypes = &#123;</span><br><span class="line">  color: PropTypes.string</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Message extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;this.props.text&#125; &lt;Button&gt;Delete&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MessageList extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">getChildContext</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;color: <span class="string">"purple"</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const children = this.props.messages.map((message) =&gt;</span><br><span class="line">      &lt;Message text=&#123;message.text&#125; /&gt;</span><br><span class="line">    );</span><br><span class="line">    <span class="built_in">return</span> &lt;div&gt;&#123;children&#125;&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MessageList.childContextTypes = &#123;</span><br><span class="line">  color: PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  上述代码，我们实现了通过React的Context实现了值color的越级传递。来分析一下上述的方法：</p>
+<p>  1）首先在顶层组件中：</p>
+<p>  定义了顶层组件所拥有的子类context对象，该顶层组件所拥有的的子类context对象为color，且必须为字符串。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MessageList.childContextTypes = &#123;</span><br><span class="line">  color: PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  然后通过getChildText方法，来给子context对象的属性赋值：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">getChildContext</span></span>() &#123;</span><br><span class="line">  <span class="built_in">return</span> &#123;color: <span class="string">"purple"</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这样就完成了顶层组件中，context对象的赋值。</p>
+<p>  2）越级传递，因为color属性只在最底层使用：</p>
+<p>  因为color属性，在一级子组件Message中并没有直接用到，因此我们可以直接传递到最底层（越级），在Button组件中使用。</p>
+<p>  首先Button组件中，再次声明了所接受到的context的子组件color的类型，声明必须为字符串：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Button.contextTypes = &#123;</span><br><span class="line">  color: React.PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  然后可以通过this.context.color这种方式调用：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button style=&#123;&#123;background: this.context.color&#125;&#125;&gt;</span><br><span class="line">  &#123;this.props.children&#125;</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  综上：这样，我们发现通过Context，我们就能实现值得越级传递.</p>
+<h3 id="六、例子2"><a href="#六、例子2" class="headerlink" title="六、例子2"></a>六、例子2</h3><p>  主题的动态值，一个更加复杂的例子：</p>
+<p>  theme-context.js：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> const themes = &#123;</span><br><span class="line">  light: &#123;</span><br><span class="line">    foreground: <span class="string">'#ffffff'</span>,</span><br><span class="line">    background: <span class="string">'#222222'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  dark: &#123;</span><br><span class="line">    foreground: <span class="string">'#000000'</span>,</span><br><span class="line">    background: <span class="string">'#eeeeee'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> const ThemeContext = React.createContext(</span><br><span class="line">  themes.dark // 默认值</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>  themed-button.js:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ThemeContext&#125; from <span class="string">'./theme-context'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> ThemedButton(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;ThemeContext.Consumer&gt;</span><br><span class="line">      &#123;theme =&gt; (</span><br><span class="line">        &lt;button</span><br><span class="line">          &#123;...props&#125;</span><br><span class="line">          style=&#123;&#123;backgroundColor: theme.background&#125;&#125;</span><br><span class="line">        /&gt;</span><br><span class="line"></span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default ThemedButton;</span><br></pre></td></tr></table></figure></p>
+<p>  app.js:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ThemeContext, themes&#125; from <span class="string">'./theme-context'</span>;</span><br><span class="line">import ThemedButton from <span class="string">'./button'</span>;</span><br><span class="line"></span><br><span class="line">// 一个使用到ThemedButton组件的中间组件</span><br><span class="line"><span class="keyword">function</span> Toolbar(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;ThemedButton onClick=&#123;props.changeTheme&#125;&gt;</span><br><span class="line">      Change Theme</span><br><span class="line">    &lt;/ThemedButton&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      theme: themes.light,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    this.toggleTheme = () =&gt; &#123;</span><br><span class="line">      this.setState(state =&gt; (&#123;</span><br><span class="line">        theme:</span><br><span class="line">          state.theme === themes.dark</span><br><span class="line">            ? themes.light</span><br><span class="line">            : themes.dark,</span><br><span class="line">      &#125;));</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    // ThemedButton 位于 ThemeProvider 内</span><br><span class="line">    // 在外部使用时使用来自 state 里面的 theme</span><br><span class="line">    // 默认 dark theme</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;Page&gt;</span><br><span class="line">        &lt;ThemeContext.Provider value=&#123;this.state.theme&#125;&gt;</span><br><span class="line">          &lt;Toolbar changeTheme=&#123;this.toggleTheme&#125; /&gt;</span><br><span class="line">        &lt;/ThemeContext.Provider&gt;</span><br><span class="line">        &lt;Section&gt;</span><br><span class="line">          &lt;ThemedButton /&gt;</span><br><span class="line">        &lt;/Section&gt;</span><br><span class="line">      &lt;/Page&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.root);</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、父子耦合"><a href="#七、父子耦合" class="headerlink" title="七、父子耦合"></a>七、父子耦合</h3><p>  Context 可以构建 API 使得父组件和子组件进行相互通信。例如，React Router V4 就是使用这种方式的一个库：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import &#123; BrowserRouter as Router, Route, Link &#125; from <span class="string">'react-router-dom'</span>;</span><br><span class="line"></span><br><span class="line">const BasicExample = () =&gt; (</span><br><span class="line">  &lt;Router&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;&lt;Link to=<span class="string">"/"</span>&gt;Home&lt;/Link&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;Link to=<span class="string">"/about"</span>&gt;About&lt;/Link&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;Link to=<span class="string">"/topics"</span>&gt;Topics&lt;/Link&gt;&lt;/li&gt;</span><br><span class="line">      &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">      &lt;hr /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125; /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/about"</span> component=&#123;About&#125; /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/topics"</span> component=&#123;Topics&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/Router&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>  从 Router 组件向下传递一些信息，每一个 Link 和 Route 都可以沟通回到包含容器 Router。</p>
+<p>  在你使用类似的API构建组件之前，考虑是否有一个更加的替代方案。例如如果你喜欢你可以将整个 React 组件作为props 传入。</p>
+<h3 id="八、作用于多个上下文"><a href="#八、作用于多个上下文" class="headerlink" title="八、作用于多个上下文"></a>八、作用于多个上下文</h3><p>  为了保持 context 快速进行二次渲染，React 需要使每一个 Consumer 在组件树中成为一个单独的节点：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 主题上下文, 默认light</span><br><span class="line">const ThemeContext = React.createContext(<span class="string">'light'</span>);</span><br><span class="line"></span><br><span class="line">// 登陆用户上下文</span><br><span class="line">const UserContext = React.createContext();</span><br><span class="line"></span><br><span class="line">// 一个依赖于两个上下文的中间组件</span><br><span class="line"><span class="keyword">function</span> Toolbar(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;ThemeContext.Consumer&gt;</span><br><span class="line">      &#123;theme =&gt; (</span><br><span class="line">        &lt;UserContext.Consumer&gt;</span><br><span class="line">          &#123;user =&gt; (</span><br><span class="line">            &lt;ProfilePage user=&#123;user&#125; theme=&#123;theme&#125; /&gt;</span><br><span class="line">          )&#125;</span><br><span class="line">        &lt;/UserContext.Consumer&gt;</span><br><span class="line">      )&#125;</span><br><span class="line">    &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const &#123;signedInUser, theme&#125; = this.props;</span><br><span class="line"></span><br><span class="line">    // App组件提供上下文的初始值</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;ThemeContext.Provider value=&#123;theme&#125;&gt;</span><br><span class="line">        &lt;UserContext.Provider value=&#123;signedInUser&#125;&gt;</span><br><span class="line">          &lt;Toolbar /&gt;</span><br><span class="line">        &lt;/UserContext.Provider&gt;</span><br><span class="line">      &lt;/ThemeContext.Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  如果两个或者多个上下文的值经常被一起使用，也许你需要考虑你自己渲染属性的组件提供给它们。</p>
+<h3 id="九、在生命周期方法中引用Context"><a href="#九、在生命周期方法中引用Context" class="headerlink" title="九、在生命周期方法中引用Context"></a>九、在生命周期方法中引用Context</h3><p>  如果 contextTypes 在组件中定义，下列的生命周期方法将接受一个额外的参数， context 对象：<br>  1）constructor(props, context)<br>  2）componentWillReceiveProps(nextProps, nextContext)<br>  3）shouldComponentUpdate(nextProps, nextState, nextContext)<br>  4）componentWillUpdate(nextProps, nextState, nextContext)<br>  5）componentDidUpdate(prevProps, prevState, prevContext)</p>
+<p>  注意：从 React 16 开始， componentDidUpdate 不再接收 prevContext 。</p>
+<p>  在生命周期方法中从上下文访问值是一种相对常见的用例。而不是将上下文添加到每个生命周期方法中，只需要将它作为一个 props 传递，然后像通常使用 props 一样去使用它：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Button extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">componentDidMount</span></span>() &#123;</span><br><span class="line">    // ThemeContext value is this.props.theme</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">    // Previous ThemeContext value is prevProps.theme</span><br><span class="line">    // New ThemeContext value is this.props.theme</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const &#123;theme, children&#125; = this.props;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;button className=&#123;theme ? <span class="string">'dark'</span> : <span class="string">'light'</span>&#125;&gt;</span><br><span class="line">        &#123;children&#125;</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default props =&gt; (</span><br><span class="line">  &lt;ThemeContext.Consumer&gt;</span><br><span class="line">    &#123;theme =&gt; &lt;Button &#123;...props&#125; theme=&#123;theme&#125; /&gt;&#125;</span><br><span class="line">  &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="十、高阶组件中的-Context"><a href="#十、高阶组件中的-Context" class="headerlink" title="十、高阶组件中的 Context"></a>十、高阶组件中的 Context</h3><p>  某些类型的上下文被许多组件（例如主题或者地点信息）共用。使用 &lt; Context.Consumer &gt; 元素显示地封装每个依赖项是冗余的。这里higher-order component可以帮助我们解决这个问题。</p>
+<p>  例如，一个按钮组件也许被作用于一个主题 context：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const ThemeContext = React.createContext(<span class="string">'light'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> ThemedButton(props) &#123;</span><br><span class="line">  <span class="built_in">return</span> (</span><br><span class="line">    &lt;ThemeContext.Consumer&gt;</span><br><span class="line">      &#123;theme =&gt; &lt;button className=&#123;theme&#125; &#123;...props&#125; /&gt;&#125;</span><br><span class="line">    &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  这对于少量组件来说并没有毛病，但是如果我们想在很多地方使用主题上下文呢？</p>
+<p>  我们可以创建一个命名为 withTheme 高阶组件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const ThemeContext = React.createContext(<span class="string">'light'</span>);</span><br><span class="line"></span><br><span class="line">// 在函数中引入组件</span><br><span class="line"><span class="built_in">export</span> <span class="keyword">function</span> withTheme(Component) &#123;</span><br><span class="line">  // 然后返回另一个组件</span><br><span class="line">  <span class="built_in">return</span> <span class="keyword">function</span> ThemedComponent(props) &#123;</span><br><span class="line">    // 最后使用context theme渲染这个被封装组件</span><br><span class="line">    // 注意我们照常引用了被添加的属性</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;ThemeContext.Consumer&gt;</span><br><span class="line">        &#123;theme =&gt; &lt;Component &#123;...props&#125; theme=&#123;theme&#125; /&gt;&#125;</span><br><span class="line">      &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  目前任何组件都依赖于主题 context，它们都可以很容易的使用我们创建的 withTheme 函数进行订阅:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Button(&#123;theme, ...rest&#125;) &#123;</span><br><span class="line">  <span class="built_in">return</span> &lt;button className=&#123;theme&#125; &#123;...rest&#125; /&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ThemedButton = withTheme(Button);</span><br></pre></td></tr></table></figure></p>
+<h3 id="十一、转发Refs"><a href="#十一、转发Refs" class="headerlink" title="十一、转发Refs"></a>十一、转发Refs</h3><p>  一个关于渲染属性API的问题是 refs 不会自动的传递给被封装的元素。为了解决这个问题，使用 React.forwardRef：</p>
+<p>  fancy-button.js：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class FancyButton extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">focus</span></span>() &#123;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用 context 传递当前的 <span class="string">"theme"</span> 给 FancyButton.</span><br><span class="line">// 使用 forwardRef 传递 refs 给 FancyButton 也是可以的.</span><br><span class="line"><span class="built_in">export</span> default React.forwardRef((props, ref) =&gt; (</span><br><span class="line">  &lt;ThemeContext.Consumer&gt;</span><br><span class="line">    &#123;theme =&gt; (</span><br><span class="line">      &lt;FancyButton &#123;...props&#125; theme=&#123;theme&#125; ref=&#123;ref&#125; /&gt;</span><br><span class="line">    )&#125;</span><br><span class="line">  &lt;/ThemeContext.Consumer&gt;</span><br><span class="line">));</span><br></pre></td></tr></table></figure></p>
+<p>  app.js:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import FancyButton from <span class="string">'./fancy-button'</span>;</span><br><span class="line"></span><br><span class="line">const ref = React.createRef();</span><br><span class="line"></span><br><span class="line">// ref属性将指向 FancyButton 组件,</span><br><span class="line">// ThemeContext.Consumer 没有包裹它</span><br><span class="line">// 这意味着我们可以调用 FancyButton 的方法就像这样 ref.current.focus()</span><br><span class="line">&lt;FancyButton ref=&#123;ref&#125; onClick=&#123;handleClick&#125;&gt;</span><br><span class="line">  Click me!</span><br><span class="line">&lt;/FancyButton&gt;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="十二、告诫"><a href="#十二、告诫" class="headerlink" title="十二、告诫"></a>十二、告诫</h3><p>  因为 context 使用 reference identity 确定何时重新渲染，在 Consumer 中，当一个 Provider 的父节点重新渲染的时候，有一些问题可能触发意外的渲染。例如下面的代码，所有的 Consumner 在 Provider 重新渲染之时，每次都将重新渲染，因为一个新的对象总是被创建对应 Provider 里的 value：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;Provider value=&#123;&#123;something: <span class="string">'something'</span>&#125;&#125;&gt;</span><br><span class="line">        &lt;Toolbar /&gt;</span><br><span class="line">      &lt;/Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  为了防止这样, 提升 value 到父节点的 state里:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      value: &#123;something: <span class="string">'something'</span>&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;Provider value=&#123;this.state.value&#125;&gt;</span><br><span class="line">        &lt;Toolbar /&gt;</span><br><span class="line">      &lt;/Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="十三、更新-Context（老）"><a href="#十三、更新-Context（老）" class="headerlink" title="十三、更新 Context（老）"></a>十三、更新 Context（老）</h3><p>  React 有一个 API 更新 context，但是它打破了基本流程，不应该使用。</p>
+<p>  getChildContext 函数将会在每次state或者props改变时调用。为了更新context中的数据，使用 this.setState触发本地状态的更新。这将触发一个新的context并且数据的改变可以被子元素收到。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const PropTypes = require(<span class="string">'prop-types'</span>);</span><br><span class="line"></span><br><span class="line">class MediaQuery extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;<span class="built_in">type</span>:<span class="string">'desktop'</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">getChildContext</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;<span class="built_in">type</span>: this.state.type&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">componentDidMount</span></span>() &#123;</span><br><span class="line">    const checkMediaQuery = () =&gt; &#123;</span><br><span class="line">      const <span class="built_in">type</span> = window.matchMedia(<span class="string">"(min-width: 1025px)"</span>).matches ? <span class="string">'desktop'</span> : <span class="string">'mobile'</span>;</span><br><span class="line">      <span class="keyword">if</span> (<span class="built_in">type</span> !== this.state.type) &#123;</span><br><span class="line">        this.setState(&#123;<span class="built_in">type</span>&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    window.addEventListener(<span class="string">'resize'</span>, checkMediaQuery);</span><br><span class="line">    checkMediaQuery();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MediaQuery.childContextTypes = &#123;</span><br><span class="line">  <span class="built_in">type</span>: PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  问题在于，组件提供的context值改变，后代元素如果 shouldComponentUpdate 返回 false 那么context的将不会更新。这使得使用context的组件完全失控，所以基本上没有办法可靠的更新context。 <a href="https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076" target="_blank" rel="noopener">这篇博客文章</a> 很好的解释了为什么这是一个问题并如果绕过它。</p>
+<h3 id="十四、补充："><a href="#十四、补充：" class="headerlink" title="十四、补充："></a>十四、补充：</h3><p>  本文中，content的使用，一种是childContextTypes、getChildContext、contextTypes，另一种是createContext、Provider、Consumer，前者是老版本的方式，由于和shouldComponentUpdate 搭配使用时容易出问题，便有了新版本。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
+<li>参考资料2：<a href="https://doc.react-china.org/" target="_blank" rel="noopener">https://doc.react-china.org/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年11月30日 20:44</p>
+        <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-22/" title="React官网之22-上下文(Context)">http://liuxuewen-site.github.io/2018/07/08/React-gw-22/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/&title=《React官网之22-上下文(Context)》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/&title=《React官网之22-上下文(Context)》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React官网之22-上下文(Context)》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/07/08/React-gw-22/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、不推荐使用Context"><span class="post-toc-text">二、不推荐使用Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、何时使用Context"><span class="post-toc-text">三、何时使用Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、API"><span class="post-toc-text">四、API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、例子1（老）"><span class="post-toc-text">五、例子1（老）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、例子2"><span class="post-toc-text">六、例子2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、父子耦合"><span class="post-toc-text">七、父子耦合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、作用于多个上下文"><span class="post-toc-text">八、作用于多个上下文</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、在生命周期方法中引用Context"><span class="post-toc-text">九、在生命周期方法中引用Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十、高阶组件中的-Context"><span class="post-toc-text">十、高阶组件中的 Context</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十一、转发Refs"><span class="post-toc-text">十一、转发Refs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十二、告诫"><span class="post-toc-text">十二、告诫</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十三、更新-Context（老）"><span class="post-toc-text">十三、更新 Context（老）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十四、补充："><span class="post-toc-text">十四、补充：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/08/React-gw-23/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React官网之23-片段(Fragments)
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/07/08/React-gw-21/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React官网之21-一致性比较(Reconciliation)</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>跨域 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、跨域  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。 二、同源策略  &amp;emsp;&amp;emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含">
+<meta name="keywords" content="前端-服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨域">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、跨域  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。 二、同源策略  &amp;emsp;&amp;emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/5.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/6.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/7.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/8.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/9.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/10.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/11.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/12.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/13.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/14.png">
+<meta property="og:updated_time" content="2018-07-03T17:47:30.465Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跨域">
+<meta name="twitter:description" content="一、跨域  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。 二、同源策略  &amp;emsp;&amp;emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-server-bs-crossDomain" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      跨域
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、跨域"><a href="#一、跨域" class="headerlink" title="一、跨域"></a>一、跨域</h3><p>  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。<br>  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。</p>
+<h3 id="二、同源策略"><a href="#二、同源策略" class="headerlink" title="二、同源策略"></a>二、同源策略</h3><p>  &emsp;&emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含隐私（比如存款总额），这些信息就会泄漏。 更可怕的是，Cookie 往往用来保存用户的登录状态，如果用户没有退出登录，其他网站就可以冒充用户，为所欲为，因为浏览器同时还规定，提交表单不受同源政策的限制。</p>
+<p>  &emsp;&emsp;由此可见，”同源政策”是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。</p>
+<p>  &emsp;&emsp;同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，保证用户信息的安全，防止恶意的网站窃取数据。如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
+<p>  &emsp;&emsp;同源策略限制以下几种行为：<br>  1.) Cookie、LocalStorage 和 IndexDB 无法读取；2.) DOM 和 Js对象无法获得；3.) AJAX 请求不能发送。</p>
+<h3 id="三、常见跨域场景"><a href="#三、常见跨域场景" class="headerlink" title="三、常见跨域场景"></a>三、常见跨域场景</h3><p>  <img src="server-bs-crossDomain/1.png" alt="Alt text"></p>
+<h3 id="四、ajax跨域的表现"><a href="#四、ajax跨域的表现" class="headerlink" title="四、ajax跨域的表现"></a>四、ajax跨域的表现</h3><p>  <font size="4" face="黑体"><strong>第一种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且The response had HTTP status code 404</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="server-bs-crossDomain/2.png" alt="Alt text"></p>
+<p>  出现这种情况的原因如下：<br>  1）本次ajax请求是“非简单请求”,所以请求前会发送一次预检请求(OPTIONS)<br>  2）服务器端后台接口没有允许OPTIONS请求,导致无法找到对应接口地址</p>
+<p>  解决方案: 后端允许options请求</p>
+<p>  <font size="4" face="黑体"><strong>第二种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且The response had HTTP status code 405</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="server-bs-crossDomain/3.png" alt="Alt text"></p>
+<p>  出现这种情况的原因如下：<br>  1）后台方法允许OPTIONS请求,但是一些配置文件中(如安全配置),阻止了OPTIONS请求。</p>
+<p>  解决方案: 后端关闭对应的安全配置</p>
+<p>  <font size="4" face="黑体"><strong>第三种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且status 200</span><br></pre></td></tr></table></figure></p>
+<p>  <img src="server-bs-crossDomain/4.png" alt="Alt text"></p>
+<p>  出现这种情况的原因如下：<br>  1）服务器端后台允许OPTIONS请求,并且接口也允许OPTIONS请求,但是头部匹配时出现不匹配现象。比如origin头部检查不匹配,比如少了一些头部的支持(如常见的X-Requested-With头部),然后服务端就会将response返回给前端,前端检测到这个后就触发XHR.onerror,导致前端控制台报错</p>
+<p>  解决方案: 后端增加对应的头部支持</p>
+<p>  <font size="4" face="黑体"><strong>第四种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heade contains multiple values <span class="string">'*,*'</span></span><br></pre></td></tr></table></figure></p>
+<p>  <img src="server-bs-crossDomain/5.jpg" alt="Alt text"><br>  <img src="server-bs-crossDomain/6.png" alt="Alt text"></p>
+<p>  表现现象是，后台响应的http头部信息有两个Access-Control-Allow-Origin:*，主要原因是进行了跨域配置重复。</p>
+<p>  出现这种情况的原因如下：<br>  1）常见于.net后台( 一般在web.config中配置了一次origin,然后代码中又手动添加了一次origin(比如代码手动设置了返回* ) )<br>  2）常见于.net后台(在IIS和项目的webconfig中同时设置Origin:*)</p>
+<p>  解决方案(对应):<br>  1）建议删除代码中手动添加的*，只用项目配置中的即可<br>  2）建议删除IIS下的配置*，只用项目配置中的即可</p>
+<h3 id="五、跨域解决方案"><a href="#五、跨域解决方案" class="headerlink" title="五、跨域解决方案"></a>五、跨域解决方案</h3><h4 id="1、JSONP"><a href="#1、JSONP" class="headerlink" title="1、JSONP"></a>1、JSONP</h4><p>  JSONP之所以能够用来解决跨域方案,主要是因为&lt; script >脚本拥有跨域能力,JSONP正是利用这一点来实现。</p>
+<p>  具体原理：</p>
+<p>  <img src="server-bs-crossDomain/7.png" alt="Alt text"></p>
+<p>  实现流程：</p>
+<p>  客户端网页通过添加一个&lt; script >元素，向服务器请求JSON数据，这种做法不受同源政策限制</p>
+<p>  1.）原生实现<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var script = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line">    // 传参并指定回调执行函数为onBack</span><br><span class="line">    script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=onBack'</span>;</span><br><span class="line">    document.head.appendChild(script);</span><br><span class="line"></span><br><span class="line">    // 回调执行函数</span><br><span class="line">    <span class="keyword">function</span> onBack(res) &#123;</span><br><span class="line">        alert(JSON.stringify(res));</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  请求时,接口地址是作为构建出的脚本标签的src的,这样,当脚本标签构建出来时,最终的src是接口返回的内容</p>
+<p>  2.）jquery ajax<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">'http://www.domain2.com:8080/login'</span>,</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">'get'</span>,</span><br><span class="line">  dataType: <span class="string">'jsonp'</span>,  // 请求方式为jsonp</span><br><span class="line">  jsonpCallback: <span class="string">"onBack"</span>,    // 自定义回调函数名</span><br><span class="line">  data: &#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  3.）vue.js<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.<span class="variable">$http</span>.jsonp(<span class="string">'http://www.domain2.com:8080/login'</span>, &#123;</span><br><span class="line">  params: &#123;&#125;,</span><br><span class="line">  jsonp: <span class="string">'onBack'</span></span><br><span class="line">&#125;).<span class="keyword">then</span>((res) =&gt; &#123;</span><br><span class="line">  console.log(res); </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>  服务端返回，对应的接口在返回参数外面添加函数包裹层 onBack({“status”: true, “user”: “admin”})</p>
+<p>  1.）后端node.js代码示例<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var querystring = require(<span class="string">'querystring'</span>);</span><br><span class="line">var http = require(<span class="string">'http'</span>);</span><br><span class="line">var server = http.createServer();</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="keyword">function</span>(req, res) &#123;</span><br><span class="line">    var params = qs.parse(req.url.split(<span class="string">'?'</span>)[1]);</span><br><span class="line">    var fn = params.callback;</span><br><span class="line"></span><br><span class="line">    // jsonp返回设置</span><br><span class="line">    res.writeHead(200, &#123; <span class="string">'Content-Type'</span>: <span class="string">'text/javascript'</span> &#125;);</span><br><span class="line">    res.write(fn + <span class="string">'('</span> + JSON.stringify(params) + <span class="string">')'</span>);</span><br><span class="line"></span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="string">'8080'</span>);</span><br><span class="line">console.log(<span class="string">'Server is running at port 8080...'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  注意,一般的JSONP接口和普通接口返回数据是有区别的,所以接口如果要做JSONO兼容,需要进行判断是否有对应callback关键字参数,如果有则是JSONP请求,返回JSONP数据,否则返回普通数据。</p>
+<p>  基于JSONP的实现原理,所以JSONP只能是“GET”请求,不能进行较为复杂的POST和其它请求(所以如今它也基本被淘汰了)</p>
+<h4 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h4><p>  CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
+<p>  基本上目前所有的浏览器都实现了CORS标准,其实目前几乎所有的浏览器ajax请求都是基于CORS机制的,所以说其实现在CORS解决方案主要是考虑后台该如何实现的问题。</p>
+<p>  具体原理：</p>
+<p>  <img src="server-bs-crossDomain/8.png" alt="Alt text"></p>
+<p>  简单请求与非简单请求：</p>
+<p>  浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。只要同时满足以下两大条件，就属于简单请求。<br>  1）请求方法是以下三种方法之一：HEAD,GET,POST<br>  2）HTTP的头信息不超出以下几种字段：<br>  &emsp;&emsp;Accept<br>  &emsp;&emsp;Accept-Language<br>  &emsp;&emsp;Content-Language<br>  &emsp;&emsp;Last-Event-ID<br>  &emsp;&emsp;Content-Type(只限于三个值application/x-www-form-urlencoded、 multipart/form-data、text/plain)<br>  凡是不同时满足上面两个条件，就属于非简单请求。</p>
+<p>  普通跨域请求与带cookie请求：</p>
+<p>  1）普通跨域请求：只服务端设置Access-Control-Allow-Origin即可，前端无须设置。<br>  2）带cookie请求：前后端都需要设置字段，需注意：所带cookie为跨域请求接口所在域的cookie，而非当前页。</p>
+<p>  实现流程：</p>
+<p>  前端设置</p>
+<p>  1.）原生ajax<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest(); // IE8/9需用window.XDomainRequest兼容</span><br><span class="line"></span><br><span class="line">// 前端设置是否带cookie</span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'http://www.domain2.com:8080/login'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">xhr.send(<span class="string">'user=admin'</span>);</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123;</span><br><span class="line">        alert(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  2.）jQuery ajax<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  ...</span><br><span class="line"> xhrFields: &#123;</span><br><span class="line">     withCredentials: <span class="literal">true</span>    // 前端设置是否带cookie</span><br><span class="line"> &#125;,</span><br><span class="line"> crossDomain: <span class="literal">true</span>,   // 会让请求头中包含跨域的额外信息，但不会含cookie</span><br><span class="line">  ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  3.）vue框架在vue-resource封装的ajax组件中加入以下代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.http.options.credentials = <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>  服务端设置(主要)</p>
+<p>  1.）PHP后台配置<br>  第一步 配置Php 后台允许跨域<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">header(<span class="string">'Access-Control-Allow-Origin: *'</span>);</span><br><span class="line">header(<span class="string">'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept'</span>);</span><br><span class="line">//主要为跨域CORS配置的两大基本信息,Origin和headers</span><br></pre></td></tr></table></figure></p>
+<p>  第二步 配置Apache web服务器跨域(httpd.conf中)<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">原始代码：</span><br><span class="line">&lt;Directory /&gt;</span><br><span class="line">    AllowOverride none</span><br><span class="line">    Require all denied</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">修改为：</span><br><span class="line">&lt;Directory /&gt;</span><br><span class="line">    Options FollowSymLinks</span><br><span class="line">    AllowOverride none</span><br><span class="line">    Order deny,allow</span><br><span class="line">    Allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  2.）Node.js后台配置(express框架)<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.all(<span class="string">'*'</span>, <span class="keyword">function</span>(req, res, next) &#123;</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"X-Requested-With"</span>);</span><br><span class="line">    res.header(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"PUT,POST,GET,DELETE,OPTIONS"</span>);</span><br><span class="line">    res.header(<span class="string">"X-Powered-By"</span>, <span class="string">' 3.2.1'</span>)</span><br><span class="line">        //这段仅仅为了方便返回json而已</span><br><span class="line">    res.header(<span class="string">"Content-Type"</span>, <span class="string">"application/json;charset=utf-8"</span>);</span><br><span class="line">    <span class="keyword">if</span>(req.method == <span class="string">'OPTIONS'</span>) &#123;</span><br><span class="line">        //让options请求快速返回</span><br><span class="line">        res.sendStatus(200); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">        next(); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  3.）JAVA后台配置</p>
+<p>  第一步 获取依赖jar包：<br>  下载 <a href="https://dailc.github.io/staticResource/blog/basicKnowledge/ajax/resource/cors-filter-2.4.jar" target="_blank" rel="noopener">cors-filter-1.7.jar</a> , <a href="https://dailc.github.io/staticResource/blog/basicKnowledge/ajax/resource/java-property-utils-1.9.1.jar" target="_blank" rel="noopener">java-property-utils-1.9.jar</a> 这两个库文件放到lib目录下。(放到对应项目的webcontent/WEB-INF/lib/下)</p>
+<p>  第二步 如果项目用了Maven构建的,请添加如下依赖到pom.xml中:(非maven请忽视)<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.thetransactioncompany&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;cors-filter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;[ version ]&lt;/version&gt;               //其中版本应该是最新的稳定版本,CORS过滤器</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  第三步 添加CORS配置到项目的Web.xml中( App/WEB-INF/web.xml)注意,配置请放到web.xml的前面,作为第一个filter存在(可以有多个filter的)<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 跨域配置--&gt;    </span><br><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;!-- The CORS filter with parameters --&gt;</span><br><span class="line">    &lt;filter-name&gt;CORS&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;com.thetransactioncompany.cors.CORSFilter&lt;/filter-class&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;!-- Note: All parameters are options, <span class="keyword">if</span> omitted the CORS </span><br><span class="line">         Filter will fall back to the respective default values.</span><br><span class="line">      --&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.allowGenericHttpRequests&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;<span class="literal">true</span>&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.allowOrigin&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;*&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.allowSubdomains&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;<span class="literal">false</span>&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.supportedMethods&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;GET, HEAD, POST, OPTIONS&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.supportedHeaders&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;Accept, Origin, X-Requested-With, Content-Type, Last-Modified&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.exposedHeaders&lt;/param-name&gt;</span><br><span class="line">        &lt;!--这里可以添加一些自己的暴露Headers   --&gt;</span><br><span class="line">        &lt;param-value&gt;X-Test-1, X-Test-2&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.supportsCredentials&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;<span class="literal">true</span>&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;cors.maxAge&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;3600&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line"></span><br><span class="line">&lt;/filter&gt;</span><br><span class="line"></span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;!-- CORS Filter mapping --&gt;</span><br><span class="line">    &lt;filter-name&gt;CORS&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  第四步 可能的安全模块配置错误(注意，某些框架中-譬如公司私人框架，有安全模块的，有时候这些安全模块配置会影响跨域配置，这时候可以先尝试关闭它们)</p>
+<p>  4.）JAVA Spring Boot配置</p>
+<p>  仅列举简单的全局配置。新建配置，然后添加Configuration注解即可配置成功<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class CorsConfig &#123;</span><br><span class="line"></span><br><span class="line">    private CorsConfiguration <span class="function"><span class="title">buildConfig</span></span>() &#123;</span><br><span class="line">        CorsConfiguration corsConfiguration = new CorsConfiguration();</span><br><span class="line">        </span><br><span class="line">        // 可以自行筛选</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">"*"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> corsConfiguration;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public CorsFilter <span class="function"><span class="title">corsFilter</span></span>() &#123;</span><br><span class="line">        UrlBasedCorsConfigurationSource <span class="built_in">source</span> = new UrlBasedCorsConfigurationSource();</span><br><span class="line">        </span><br><span class="line">        source.registerCorsConfiguration(<span class="string">"/**"</span>, buildConfig());</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> new CorsFilter(<span class="built_in">source</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  5.）NET后台配置</p>
+<p>  第一步 网站配置。打开控制面板，选择管理工具,选择iis;右键单击自己的网站，选择浏览;打开网站所在目录,用记事本打开web.config文件添加下述配置信息,重启网站。</p>
+<p>  <img src="server-bs-crossDomain/9.png" alt="Alt text"></p>
+<p>  请注意,以上截图较老,如果配置仍然出问题,可以考虑增加更多的headers允许,比如:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Access-Control-Allow-Headers"</span>:<span class="string">"X-Requested-With,Content-Type,Accept,Origin"</span></span><br></pre></td></tr></table></figure></p>
+<p>  第二步:其它更多配置。如果第一步进行了后,仍然有跨域问题，可能是:<br>  1）接口中有限制死一些请求类型(比如写死了POST等)，这时候请去除限制<br>  2）接口中，重复配置了Origin:*，请去除即可<br>  3）IIS服务器中，重复配置了Origin:*，请去除即可</p>
+<h4 id="3、nginx反向代理处理跨域（推荐）"><a href="#3、nginx反向代理处理跨域（推荐）" class="headerlink" title="3、nginx反向代理处理跨域（推荐）"></a>3、nginx反向代理处理跨域（推荐）</h4><p>  原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。</p>
+<p>  思路：通过nginx配置一个代理服务器（域名与domain1相同，端口不同）做跳板机，反向代理访问domain2接口，并且可以顺便修改cookie中domain信息，方便当前域cookie写入，实现跨域登录。</p>
+<p>  具体实现请看 《nginx专讲》 一文。</p>
+<h4 id="4、Node-js中间件代理跨域"><a href="#4、Node-js中间件代理跨域" class="headerlink" title="4、Node.js中间件代理跨域"></a>4、Node.js中间件代理跨域</h4><p>  node中间件实现跨域代理，原理大致与nginx相同，都是通过启一个代理服务器，实现数据的转发。</p>
+<p>  非vue框架的跨域（2次跨域）：利用node + express + http-proxy-middleware搭建一个proxy服务器。<br>  1.）前端代码示例：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line"></span><br><span class="line">// 前端开关：浏览器是否读写cookie</span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">// 访问http-proxy-middleware代理服务器</span><br><span class="line">xhr.open(<span class="string">'get'</span>, <span class="string">'http://www.domain1.com:3000/login?user=admin'</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></p>
+<p>  2.）中间件服务器：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var express = require(<span class="string">'express'</span>);</span><br><span class="line">var proxy = require(<span class="string">'http-proxy-middleware'</span>);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.use(<span class="string">'/'</span>, proxy(&#123;</span><br><span class="line">  // 代理跨域目标接口</span><br><span class="line">  target: <span class="string">'http://www.domain2.com:8080'</span>,</span><br><span class="line">  changeOrigin: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">  // 修改响应头信息，实现跨域并允许带cookie</span><br><span class="line">  onProxyRes: <span class="keyword">function</span>(proxyRes, req, res) &#123;</span><br><span class="line">      res.header(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'http://www.domain1.com'</span>);</span><br><span class="line">      res.header(<span class="string">'Access-Control-Allow-Credentials'</span>, <span class="string">'true'</span>);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // 修改响应信息中的cookie域名</span><br><span class="line">  cookieDomainRewrite: <span class="string">'www.domain1.com'</span>  // 可以为<span class="literal">false</span>，表示不修改</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">app.listen(3000);</span><br><span class="line">console.log(<span class="string">'Proxy server is listen at port 3000...'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  3.）Nodejs后台:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var http = require(<span class="string">'http'</span>);</span><br><span class="line">var server = http.createServer();</span><br><span class="line">var qs = require(<span class="string">'querystring'</span>);</span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="keyword">function</span>(req, res) &#123;</span><br><span class="line">    var params = qs.parse(req.url.substring(2));</span><br><span class="line"></span><br><span class="line">    // 向前台写cookie</span><br><span class="line">    res.writeHead(200, &#123;</span><br><span class="line">        <span class="string">'Set-Cookie'</span>: <span class="string">'l=a123456;Path=/;Domain=www.domain2.com;HttpOnly'</span>   // HttpOnly:脚本无法读取</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    res.write(JSON.stringify(params));</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="string">'8080'</span>);</span><br><span class="line">console.log(<span class="string">'Server is running at port 8080...'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  vue框架的跨域（1次跨域）:利用node + webpack + webpack-dev-server代理接口跨域。<br>  1）在开发环境下，由于vue渲染服务和接口代理服务都是webpack-dev-server同一个，所以页面与代理接口之间不再跨域，无须设置headers跨域信息了。在webpack.config.js部分配置如下即可：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;&#125;,</span><br><span class="line">    module: &#123;&#125;,</span><br><span class="line">    ...</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">        proxy: [&#123;</span><br><span class="line">            context: <span class="string">'/login'</span>,</span><br><span class="line">            target: <span class="string">'http://www.domain2.com:8080'</span>,  // 代理跨域目标接口</span><br><span class="line">            changeOrigin: <span class="literal">true</span>,</span><br><span class="line">            cookieDomainRewrite: <span class="string">'www.domain1.com'</span>  // 可以为<span class="literal">false</span>，表示不修改</span><br><span class="line">        &#125;],</span><br><span class="line">        noInfo: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="5、WebSocket协议跨域"><a href="#5、WebSocket协议跨域" class="headerlink" title="5、WebSocket协议跨域"></a>5、WebSocket协议跨域</h4><p>  WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是server push技术的一种很好的实现。原生WebSocket API使用起来不太方便，我们使用Socket.io，它很好地封装了webSocket接口，提供了更简单、灵活的接口，也对不支持webSocket的浏览器提供了向下兼容。</p>
+<p>  1.）前端代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;user input：&lt;input <span class="built_in">type</span>=<span class="string">"text"</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;script src=<span class="string">"./socket.io.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var socket = io(<span class="string">'http://www.domain2.com:8080'</span>);</span><br><span class="line"></span><br><span class="line">// 连接成功处理</span><br><span class="line">socket.on(<span class="string">'connect'</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    // 监听服务端消息</span><br><span class="line">    socket.on(<span class="string">'message'</span>, <span class="keyword">function</span>(msg) &#123;</span><br><span class="line">        console.log(<span class="string">'data from server: ---&gt; '</span> + msg); </span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // 监听服务端关闭</span><br><span class="line">    socket.on(<span class="string">'disconnect'</span>, <span class="function"><span class="title">function</span></span>() &#123; </span><br><span class="line">        console.log(<span class="string">'Server socket has closed.'</span>); </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">document.getElementsByTagName(<span class="string">'input'</span>)[0].onblur = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    socket.send(this.value);</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  2.）Nodejs socket后台：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var http = require(<span class="string">'http'</span>);</span><br><span class="line">var socket = require(<span class="string">'socket.io'</span>);</span><br><span class="line"></span><br><span class="line">// 启http服务</span><br><span class="line">var server = http.createServer(<span class="keyword">function</span>(req, res) &#123;</span><br><span class="line">    res.writeHead(200, &#123;</span><br><span class="line">        <span class="string">'Content-type'</span>: <span class="string">'text/html'</span></span><br><span class="line">    &#125;);</span><br><span class="line">    res.end();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="string">'8080'</span>);</span><br><span class="line">console.log(<span class="string">'Server is running at port 8080...'</span>);</span><br><span class="line"></span><br><span class="line">// 监听socket连接</span><br><span class="line">socket.listen(server).on(<span class="string">'connection'</span>, <span class="keyword">function</span>(client) &#123;</span><br><span class="line">    // 接收信息</span><br><span class="line">    client.on(<span class="string">'message'</span>, <span class="keyword">function</span>(msg) &#123;</span><br><span class="line">        client.send(<span class="string">'hello：'</span> + msg);</span><br><span class="line">        console.log(<span class="string">'data from client: ---&gt; '</span> + msg);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // 断开处理</span><br><span class="line">    client.on(<span class="string">'disconnect'</span>, <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">        console.log(<span class="string">'Client socket has closed.'</span>); </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、分析ajax跨域"><a href="#六、分析ajax跨域" class="headerlink" title="六、分析ajax跨域"></a>六、分析ajax跨域</h3><p>  上述已经介绍了跨域的原理以及如何解决，但实际过程中，发现仍然有很多人对照着类似的文档无法解决跨域问题，主要体现在不知道什么时候是跨域问题造成的，什么时候不是，因此这里稍微介绍下如何分析一个请求是否跨域：</p>
+<p>  抓包请求数据：<br>  第一步当然是得知道我们的ajax请求发送了什么数据，接收了什么，做到这一步并不难，也不需要fiddler等工具，仅基于Chrome即可<br>  1）Chrome浏览器打开对应发生ajax的页面，F12打开Dev Tools<br>  2）发送ajax请求<br>  3）右侧面板-&gt;NetWork-&gt;XHR，然后找到刚才的ajax请求，点进去</p>
+<p>  示例一(正常的ajax请求)</p>
+<p>  <img src="server-bs-crossDomain/10.png" alt="Alt text"></p>
+<p>  上述请求是一个正确的请求，成功的拿到了响应数据,可以清晰的看到，接口返回的响应头域中，包括了<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Headers: X-Requested-With,Content-Type,Accept</span><br><span class="line">Access-Control-Allow-Methods: Get,Post,Put,OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: *</span><br></pre></td></tr></table></figure></p>
+<p>  示例二(跨域错误的ajax请求)</p>
+<p>  <img src="server-bs-crossDomain/11.png" alt="Alt text"></p>
+<p>  这个请求中，接口Allow里面没有包括OPTIONS，所以请求出现了跨域。</p>
+<p>  <img src="server-bs-crossDomain/12.jpg" alt="Alt text"></p>
+<p>  这个请求中，Access-Control-Allow-Origin: *出现了两次，导致了跨域配置没有正确配置，出现了错误。</p>
+<p>  更多跨域错误基本都是类似的，就是以上三样没有满足(Headers,Allow,Origin)，这里不再一一说明。</p>
+<p>  示例三(与跨域无关的ajax请求)</p>
+<p>  <img src="server-bs-crossDomain/13.png" alt="Alt text"><br>  <img src="server-bs-crossDomain/14.png" alt="Alt text"></p>
+<p>  比如这个请求，它的跨域配置没有一点问题，它出错仅仅是因为request的Accept和response的Content-Type不匹配而已。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://segmentfault.com/a/1190000012469713" target="_blank" rel="noopener">https://segmentfault.com/a/1190000012469713</a> </li>
+<li>参考资料2：<a href="https://www.cnblogs.com/roam/p/7520433.html" target="_blank" rel="noopener">https://www.cnblogs.com/roam/p/7520433.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:47</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/01/server-bs-crossDomain/" title="跨域">http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/&title=《跨域》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/&title=《跨域》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《跨域》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-服务器/" class="color2">前端-服务器</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、跨域"><span class="post-toc-text">一、跨域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、同源策略"><span class="post-toc-text">二、同源策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、常见跨域场景"><span class="post-toc-text">三、常见跨域场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、ajax跨域的表现"><span class="post-toc-text">四、ajax跨域的表现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、跨域解决方案"><span class="post-toc-text">五、跨域解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、JSONP"><span class="post-toc-text">1、JSONP</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、CORS"><span class="post-toc-text">2、CORS</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、nginx反向代理处理跨域（推荐）"><span class="post-toc-text">3、nginx反向代理处理跨域（推荐）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、Node-js中间件代理跨域"><span class="post-toc-text">4、Node.js中间件代理跨域</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5、WebSocket协议跨域"><span class="post-toc-text">5、WebSocket协议跨域</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、分析ajax跨域"><span class="post-toc-text">六、分析ajax跨域</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/01/frontEnd-basic2/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          前端基础考题2
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/01/31/mobile-bs-flexible/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">flexible实现移动端适配</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React路由实例 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  上一篇中大概总结了一下 web 应用的路由，这一篇接着上一篇分享一些例子。 二、简单的路由示例  一个简单的网站结构是首页和几个独立的二级页面，假如我们有三个独立的二级页面分别为：新闻页、课程页、加入我们，路由配置如下：  1234567891011121314151617181920212223242526272829303132333435363738394041424344ind">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React路由实例">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  上一篇中大概总结了一下 web 应用的路由，这一篇接着上一篇分享一些例子。 二、简单的路由示例  一个简单的网站结构是首页和几个独立的二级页面，假如我们有三个独立的二级页面分别为：新闻页、课程页、加入我们，路由配置如下：  1234567891011121314151617181920212223242526272829303132333435363738394041424344ind">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/React-bs-router02/1.gif">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/React-bs-router02/2.gif">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/React-bs-router02/3.png">
+<meta property="og:updated_time" content="2018-12-18T16:08:26.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React路由实例">
+<meta name="twitter:description" content="一、前言  上一篇中大概总结了一下 web 应用的路由，这一篇接着上一篇分享一些例子。 二、简单的路由示例  一个简单的网站结构是首页和几个独立的二级页面，假如我们有三个独立的二级页面分别为：新闻页、课程页、加入我们，路由配置如下：  1234567891011121314151617181920212223242526272829303132333435363738394041424344ind">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/React-bs-router02/1.gif">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-bs-router02" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React路由实例
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-12-19
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  上一篇中大概总结了一下 web 应用的路由，这一篇接着上一篇分享一些例子。</p>
+<h3 id="二、简单的路由示例"><a href="#二、简单的路由示例" class="headerlink" title="二、简单的路由示例"></a>二、简单的路由示例</h3><p>  一个简单的网站结构是首页和几个独立的二级页面，假如我们有三个独立的二级页面分别为：新闻页、课程页、加入我们，路由配置如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">index.js:</span><br><span class="line"></span><br><span class="line">import React from <span class="string">'react'</span></span><br><span class="line">import ReactDom from <span class="string">'react-dom'</span></span><br><span class="line"></span><br><span class="line">import &#123;</span><br><span class="line">    BrowserRouter as Router,</span><br><span class="line">    Route,</span><br><span class="line">    NavLink,</span><br><span class="line">    Switch</span><br><span class="line">&#125; from <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">import Home from <span class="string">'./pages/Home'</span></span><br><span class="line">import News from <span class="string">'./pages/News'</span></span><br><span class="line">import Course from <span class="string">'./pages/Course'</span></span><br><span class="line">import JoinUs from <span class="string">'./pages/JoinUs'</span></span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;header&gt;</span><br><span class="line">                &lt;nav&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink exact to=<span class="string">"/"</span>&gt;首页&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">"/news"</span>&gt;新闻&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">'/course'</span>&gt;课程&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">"/joinUs"</span>&gt;加入我们&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                    &lt;/ul&gt;</span><br><span class="line">                &lt;/nav&gt;</span><br><span class="line">            &lt;/header&gt;</span><br><span class="line">            &lt;Switch&gt;</span><br><span class="line">                &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/news"</span> component=&#123;News&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/course"</span> component=&#123;Course&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/joinUs"</span> render=&#123;(props) =&gt; &lt;JoinUs &#123;...props&#125;/&gt;&#125;/&gt;</span><br><span class="line">                &lt;/Switch&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ReactDom.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>  一个简单的路由，我们可以将&lt; NavLink &gt;和&lt; Route &gt;都写在 index.js 里面，但这会让每一个页面都渲染出导航栏。</p>
+<h3 id="二、抽离导航的路由"><a href="#二、抽离导航的路由" class="headerlink" title="二、抽离导航的路由"></a>二、抽离导航的路由</h3><p>  假如现在新增了登录页，要求登录页没有导航栏，其它页面有导航栏：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">index.js:</span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Switch&gt;</span><br><span class="line">                &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/login"</span> component=&#123;Login&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/news"</span> component=&#123;News&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/course"</span> component=&#123;Course&#125;/&gt;</span><br><span class="line">                &lt;Route path=<span class="string">"/joinUs"</span> render=&#123;(props) =&gt; &lt;JoinUs &#123;...props&#125;/&gt;&#125;/&gt;</span><br><span class="line">            &lt;/Switch&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ReactDom.render(</span><br><span class="line">    &lt;App /&gt;,</span><br><span class="line">    document.getElementById(<span class="string">'root'</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">components/Header.js:</span><br><span class="line"></span><br><span class="line">import &#123;</span><br><span class="line">    NavLink</span><br><span class="line">&#125; from <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">class Header extends Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> (</span><br><span class="line">            &lt;header&gt;</span><br><span class="line">                &lt;nav&gt;</span><br><span class="line">                    &lt;ul&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink exact to=<span class="string">"/"</span>&gt;首页&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">"/news"</span>&gt;新闻&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">'/course'</span>&gt;课程&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                        &lt;li&gt;&lt;NavLink to=<span class="string">"/joinUs"</span>&gt;加入我们&lt;/NavLink&gt;&lt;/li&gt;</span><br><span class="line">                    &lt;/ul&gt;</span><br><span class="line">                &lt;/nav&gt;</span><br><span class="line">            &lt;/header&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  每个页面根据需要选择是否引入&lt; Header &gt;组件。</p>
+<h3 id="三、添加404页面"><a href="#三、添加404页面" class="headerlink" title="三、添加404页面"></a>三、添加404页面</h3><p>  利用&lt; Switch &gt;组件的特性，当前面所有的路由都匹配不上时，会匹配最后一个 path=”*” 的路由，该路由再重定向到404页面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">index.js:</span><br><span class="line"></span><br><span class="line">import &#123;</span><br><span class="line">    BrowserRouter as Router,</span><br><span class="line">    Route,</span><br><span class="line">    Switch,</span><br><span class="line">    Redirect</span><br><span class="line">&#125; from <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">        &lt;Switch&gt;</span><br><span class="line">            &lt;Route exact path=<span class="string">"/"</span> component=&#123;Home&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/login"</span> component=&#123;Login&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/news"</span> component=&#123;News&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/course"</span> component=&#123;Course&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/joinUs"</span> render=&#123;(props) =&gt; &lt;JoinUs &#123;...props&#125;/&gt;&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/error"</span> render=&#123;(props) =&gt; &lt;div&gt;&lt;h1&gt;404 Not Found!&lt;/h1&gt;&lt;/div&gt;&#125;/&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"*"</span> render=&#123;(props) =&gt; &lt;Redirect to=<span class="string">'/error'</span>/&gt;&#125;/&gt;</span><br><span class="line">        &lt;/Switch&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="四、嵌套路由"><a href="#四、嵌套路由" class="headerlink" title="四、嵌套路由"></a>四、嵌套路由</h3><p>  假如课程页下有三个按钮分别为：前端开发、大数据、算法。前面提到过 match 是实现嵌套路由的对象，当我们在某个页面跳转到它的下一级子页面时，我们不会显示地写出当前页面的路由，而是用 match 对象的 path 和 url 属性：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">pages/Course.js：</span><br><span class="line"></span><br><span class="line">class Course extends Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">let</span> &#123; match &#125; = this.props;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"list"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;NavLink to=&#123;`<span class="variable">$&#123;match.url&#125;</span>/front-end`&#125;&gt;前端技术&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=&#123;`<span class="variable">$&#123;match.url&#125;</span>/big-data`&#125;&gt;大数据&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=&#123;`<span class="variable">$&#123;match.url&#125;</span>/algorithm`&#125;&gt;算法&lt;/NavLink&gt;</span><br><span class="line"></span><br><span class="line">                &lt;Route path=&#123;`<span class="variable">$&#123;match.path&#125;</span>/:name`&#125; render=&#123;(props) =&gt; &lt;div&gt;&#123;props.match.params.name&#125;&lt;/div&gt;&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// match对象的params对象可以获取到/:name的name值</span><br></pre></td></tr></table></figure></p>
+<h3 id="五、带参的嵌套路由"><a href="#五、带参的嵌套路由" class="headerlink" title="五、带参的嵌套路由"></a>五、带参的嵌套路由</h3><p>  假如新闻页是一个新闻列表，点击某一条新闻时展示该条新闻详情。与上一个示例不同的是，新闻列表页需要将该条新闻的内容传递给新闻详情页，传递参数可以有三种方式：</p>
+<p>  1）search: ‘’,    // 会添加到url里面，形如”?name=melody&amp;age=20”<br>  2）hash: ‘’,      // 会添加到url里面，形如”#tab1”<br>  3）state: {},     // 不会添加到url里面</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">pages/News.js:</span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span></span><br><span class="line">import &#123;</span><br><span class="line">    Route,</span><br><span class="line">    NavLink</span><br><span class="line">&#125; from <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line">import Header from <span class="string">'../components/Header'</span></span><br><span class="line"></span><br><span class="line">//模拟数据</span><br><span class="line">const data = [</span><br><span class="line">    &#123;</span><br><span class="line">        id: 1,</span><br><span class="line">        title: <span class="string">'春运地狱级抢票模式开启'</span>,</span><br><span class="line">        content: <span class="string">'春运地狱级抢票模式开启，你抢到回家的票了吗？反正我还没有，难受'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        id: 2,</span><br><span class="line">        title: <span class="string">'寒潮来袭，你，冻成狗了吗？'</span>,</span><br><span class="line">        content: <span class="string">'寒潮来袭，你，冻成狗了吗？被子是我亲人，我不想离开它'</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">class News extends Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"news"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;h1 className=<span class="string">"title"</span>&gt;请选择一条新闻：&lt;/h1&gt; </span><br><span class="line">                &#123;data.map((item) =&gt; (</span><br><span class="line">                    &lt;div key=&#123;item.id&#125;&gt;</span><br><span class="line">                        &lt;NavLink to=&#123;&#123;</span><br><span class="line">                            pathname: `<span class="variable">$&#123;this.props.match.url&#125;</span>/<span class="variable">$&#123;item.id&#125;</span>`,</span><br><span class="line">                            state: &#123;data: item&#125;</span><br><span class="line">                        &#125;&#125;&gt;</span><br><span class="line">                            &#123;item.title&#125;</span><br><span class="line">                        &lt;/NavLink&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                    </span><br><span class="line">                ))&#125;</span><br><span class="line">                &lt;Route path=&#123;`<span class="variable">$&#123;this.props.match.path&#125;</span>/:id`&#125; render=&#123;(props) =&gt; &#123;</span><br><span class="line">                    <span class="built_in">let</span> data = props.location.state &amp;&amp; props.location.state.data;</span><br><span class="line">                    <span class="built_in">return</span> (</span><br><span class="line">                        &lt;div&gt;</span><br><span class="line">                            &lt;h1&gt;&#123;data.title&#125;&lt;/h1&gt;</span><br><span class="line">                            &lt;p&gt;&#123;data.content&#125;&lt;/p&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    )</span><br><span class="line">                &#125;&#125;/&gt;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default News</span><br><span class="line"></span><br><span class="line">// &lt;NavLink&gt;传递的参数是通过 location 对象获取的。</span><br></pre></td></tr></table></figure>
+<p>  <img src="React-bs-router02/1.gif" alt="Alt text"></p>
+<h3 id="六、优化嵌套路由"><a href="#六、优化嵌套路由" class="headerlink" title="六、优化嵌套路由"></a>六、优化嵌套路由</h3><p>  前面两种嵌套路由，子路由都渲染出了父组件，如果不想渲染出父组件，有两种方法。</p>
+<p>  方法一：将配置子路由的&lt; Route &gt;写在 index.js 里面<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">index.js：</span><br><span class="line"></span><br><span class="line">&lt;Route exact path=<span class="string">"/news"</span> component=&#123;News&#125;/&gt;</span><br><span class="line">&lt;Route path=<span class="string">"/news/:id"</span> component=&#123;NewsDetail&#125;/&gt;</span><br><span class="line"></span><br><span class="line">pages/News.js：</span><br><span class="line"></span><br><span class="line">class News extends Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"news"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;h1 className=<span class="string">"title"</span>&gt;请选择一条新闻：&lt;/h1&gt; </span><br><span class="line">                &#123;data.map((item) =&gt; (</span><br><span class="line">                    &lt;div key=&#123;item.id&#125;&gt;</span><br><span class="line">                        &lt;NavLink to=&#123;&#123;</span><br><span class="line">                            pathname: `<span class="variable">$&#123;this.props.match.url&#125;</span>/<span class="variable">$&#123;item.id&#125;</span>`,</span><br><span class="line">                            state: &#123;data: item&#125;</span><br><span class="line">                        &#125;&#125;&gt;</span><br><span class="line">                            &#123;item.title&#125;</span><br><span class="line">                        &lt;/NavLink&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                ))&#125;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">pages/NewsDetail.js：</span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span></span><br><span class="line">import Header from <span class="string">'../components/Header'</span></span><br><span class="line"></span><br><span class="line">class NewsDetail extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.data = props.location.state.data; //获取父组件传递过来的数据</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"news"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;h1&gt;&#123;this.data.title&#125;&lt;/h1&gt;</span><br><span class="line">                &lt;p&gt;&#123;this.data.content&#125;&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default NewsDetail</span><br></pre></td></tr></table></figure></p>
+<p>  方法二：仍然将子路由配置写在News.js里面<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">index.js:</span><br><span class="line"></span><br><span class="line">&lt;Route path=<span class="string">"/news"</span> component=&#123;News&#125;/&gt;</span><br><span class="line"></span><br><span class="line">// 注意：这里一定不能加exact，否则子组件永远渲染不出来。</span><br><span class="line"></span><br><span class="line">pages/News.js:</span><br><span class="line"></span><br><span class="line">class NewsPage extends Component &#123;</span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"news"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;h1 className=<span class="string">"title"</span>&gt;请选择一条新闻：&lt;/h1&gt; </span><br><span class="line">                &#123;data.map((item) =&gt; (</span><br><span class="line">                    &lt;div key=&#123;item.id&#125;&gt;</span><br><span class="line">                        &lt;NavLink to=&#123;&#123;</span><br><span class="line">                            pathname: `<span class="variable">$&#123;this.props.match.url&#125;</span>/<span class="variable">$&#123;item.id&#125;</span>`,</span><br><span class="line">                            state: &#123;data: item&#125;</span><br><span class="line">                        &#125;&#125;&gt;</span><br><span class="line">                            &#123;item.title&#125;</span><br><span class="line">                        &lt;/NavLink&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                ))&#125;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const News = (&#123;match&#125;) =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;Route path=&#123;`<span class="variable">$&#123;match.path&#125;</span>/:id`&#125; component=&#123;NewsDetail&#125;/&gt;</span><br><span class="line">            &lt;Route exact path=&#123;match.path&#125; render=&#123;(props) =&gt; &lt;NewsPage &#123;...props&#125; /&gt;&#125;/&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default News</span><br><span class="line"></span><br><span class="line">// 注意这里的写法其实就是将新闻页也看作一个组件，然后重新定义一个News组件，</span><br><span class="line">// 根据路由来渲染不同的组件，exact参数是加在这里的，并且导出的是News而不是NewsPage。</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、页面间传参的一些注意点"><a href="#七、页面间传参的一些注意点" class="headerlink" title="七、页面间传参的一些注意点"></a>七、页面间传参的一些注意点</h3><p>  在嵌套路由和带参的嵌套路由两小节可以看到两种传参方式，如果仅仅是获取 url 里面的参，比如&lt; Route path={<code>${match.path}/:name</code>} / &gt;的 name 属性，子组件可以通过 this.props.match.params.name 取得，如果还需要多余的参数，比如选中的某一条数据，则父组件通过&lt; NavLink &gt;的 to 属性的 search，hash, state 向子组件传参，子组件通过 this.props.location.search|hash|state 获取。</p>
+<p>  这两者是有区别的！使用的时候要小心！以上面的新闻详情页为例，详情页的数据是从新闻页直接传过来的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.data = props.location.state.data;</span><br></pre></td></tr></table></figure></p>
+<p>  现在让我们随便点进一条新闻，然后刷新它，发现没毛病，然后手动输入另一条存在的新闻id，却报错了：</p>
+<p>  <img src="React-bs-router02/2.gif" alt="Alt text"></p>
+<p>  报错是肯定的，这个页面的数据本身是通过 props.location.state.data 获取的，当我们在这个页面手动输入 id 时，根本没有数据，而且此时打印 state，它的值是 undefined。但是！！通过 props.match.params 却可以获取到 id，所以，这种方式显然更保险，不过你应该也看出来了，由于这种方式涉及到 url 地址栏，所以不可以传递过多的参数，所以开发过程中，要处理好这两种传参方式。</p>
+<p>  对于上面的新闻详情页例子，一般不需要把整条数据传递过去，而是传递一个 id 或者别的参数，然后在详情页再向服务器发起请求拿到该条数据的详情，可以修改代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">pages/NewsDetail.js:</span><br><span class="line"></span><br><span class="line">constructor(props) &#123;</span><br><span class="line">    super(props)</span><br><span class="line">    this.id = props.match.params.id;</span><br><span class="line">    this.state = &#123;</span><br><span class="line">        data: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">componentWillMount</span></span>() &#123;</span><br><span class="line">    this.getNewsDetail();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">getNewsDetail</span></span>() &#123;</span><br><span class="line">    fetch(`xxx?id=<span class="variable">$&#123;this.id&#125;</span>`).<span class="keyword">then</span>(res =&gt; res.json())</span><br><span class="line">    .<span class="keyword">then</span>(resData =&gt; &#123;</span><br><span class="line">        this.setState(&#123;data: resData&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">let</span> title = this.state.data &amp;&amp; this.state.data.title;</span><br><span class="line">    <span class="built_in">let</span> content = this.state.data &amp;&amp; this.state.data.content;</span><br><span class="line">    <span class="built_in">return</span>(</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h1&gt;&#123;title&#125;&lt;/h1&gt;</span><br><span class="line">            &lt;p&gt;&#123;content&#125;&lt;/p&gt;</span><br><span class="line">        &lt;/div&gt;  </span><br><span class="line">    ) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  不过，还是会有必须传递一整条数据过去或者其它更复杂的情况，这种时候就要处理好子组件接收数据的逻辑，以免出现数据为空时报错的情况，修改代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pages/NewsDetail.js:</span><br><span class="line"></span><br><span class="line">class NewsDetail extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props)</span><br><span class="line">        this.data = props.location.state ? props.location.state.data : &#123;&#125; ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">let</span> title = this.data.title || <span class="string">''</span>;</span><br><span class="line">        <span class="built_in">let</span> content = this.data.content || <span class="string">''</span>;</span><br><span class="line">        <span class="built_in">return</span>(</span><br><span class="line">            &lt;div className=<span class="string">"news"</span>&gt;</span><br><span class="line">                &lt;Header /&gt;</span><br><span class="line">                &lt;h1&gt;&#123;title&#125;&lt;/h1&gt;</span><br><span class="line">                &lt;p&gt;&#123;content&#125;&lt;/p&gt;</span><br><span class="line">            &lt;/div&gt;  </span><br><span class="line">        ) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  以上两种处理方式都不会再出现用户输入一个不存在的id报错的情况，不过，我们还可以做的更好。</p>
+<h3 id="八、根据数据判断是否显示404页面"><a href="#八、根据数据判断是否显示404页面" class="headerlink" title="八、根据数据判断是否显示404页面"></a>八、根据数据判断是否显示404页面</h3><p>  前面我们实现了一个简单的404页面，即路由不匹配时跳转到404页面，实际开发中还有一种情况，是根据参数去请求数据，请求回来的数据为空，则显示一个404页面，以上面的新闻详情页为例，假如我们现在是在这个页面发起的数据请求，那么我们可以用一个标志位来实现加载404页面：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">pages/NewsDetail.js：</span><br><span class="line"></span><br><span class="line">constructor(props) &#123;</span><br><span class="line">    super(props)</span><br><span class="line">    this.id = props.match.params.id;</span><br><span class="line">    this.state = &#123;</span><br><span class="line">        data: <span class="string">''</span>,</span><br><span class="line">        hasData: <span class="literal">true</span>,                // 一开始的初始值一定要为<span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">componentWillMount</span></span>() &#123;</span><br><span class="line">    this.getNewsDetail();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">getNewsDetail</span></span>() &#123;</span><br><span class="line">    fetch(`xxx?id=<span class="variable">$&#123;this.id&#125;</span>`).<span class="keyword">then</span>(res =&gt; res.json())</span><br><span class="line">    .<span class="keyword">then</span>(resData =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (resData != null) &#123;</span><br><span class="line">            this.setState(&#123;data: resData&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            this.setState(&#123;hasData: <span class="literal">false</span>&#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//找不到数据重定向到404页面</span><br><span class="line"><span class="function"><span class="title">renderNoDataView</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;Route path=<span class="string">"*"</span> render=&#123;() =&gt; &lt;Redirect to=<span class="string">"/error"</span>/&gt;&#125;/&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.state.hasData ? this.renderView() : this.renderNoDataView()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="九、按需加载"><a href="#九、按需加载" class="headerlink" title="九、按需加载"></a>九、按需加载</h3><p>  这是个非常重要的功能，单页面应用有一个非常大的弊端就是首屏会加载其它页面的内容，当项目非常复杂的时候首屏加载就会很慢，当然，解决方法有很多，webpack 有这方面的技术，路由也有，把它们结合起来，就很完美了。</p>
+<p>  官网的 code-splitting 介绍了路由如何配置按需加载，只是不够详细，它缺少有关 wepback 配置的代码。</p>
+<p>  安装 bundle-loader:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add bundle-loader</span><br></pre></td></tr></table></figure></p>
+<p>  webpack.config.js：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'build'</span>), //打包文件的输出路径</span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,                  //打包文件名</span><br><span class="line">        chunkFilename: <span class="string">'[name].[id].js'</span>,        //增加</span><br><span class="line">        publicPath: publicPath,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        loaders: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">test</span>: /\.bundle\.js$/,</span><br><span class="line">                use: &#123;</span><br><span class="line">                    loader: <span class="string">'bundle-loader'</span>,</span><br><span class="line">                    options: &#123;</span><br><span class="line">                        lazy: <span class="literal">true</span>,</span><br><span class="line">                        name: <span class="string">'[name]'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  项目中需要新建一个 bundle.js 文件，把它放在 components 下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">components/Bundle.js：</span><br><span class="line"></span><br><span class="line">import React, &#123; Component &#125; from <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line">class Bundle extends Component &#123;</span><br><span class="line">    state = &#123;</span><br><span class="line">        // short <span class="keyword">for</span> <span class="string">"module"</span> but that is a keyword <span class="keyword">in</span> js, so <span class="string">"mod"</span></span><br><span class="line">        mod: null</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">componentWillMount</span></span>() &#123;</span><br><span class="line">        this.load(this.props)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    componentWillReceiveProps(nextProps) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nextProps.load !== this.props.load) &#123;</span><br><span class="line">            this.load(nextProps)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    load(props) &#123;</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            mod: null</span><br><span class="line">        &#125;)</span><br><span class="line">        props.load((mod) =&gt; &#123;</span><br><span class="line">            this.setState(&#123;</span><br><span class="line">                // handle both es imports and cjs</span><br><span class="line">                mod: mod.default ? mod.default : mod</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">        <span class="built_in">return</span> this.state.mod ? this.props.children(this.state.mod) : null</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default Bundle</span><br></pre></td></tr></table></figure></p>
+<p>  修改index.js，首先将引入组件的写法改为：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import loaderHome from <span class="string">'bundle-loader?lazy&amp;name=home!./pages/Home'</span></span><br><span class="line">import loaderNews from <span class="string">'bundle-loader?lazy&amp;name=news!./pages/News'</span></span><br></pre></td></tr></table></figure></p>
+<p>  相当于先经过 bundle-loader 处理，这里的 name 会作为 webpack.config.js 配置的 chunkFilename: ‘[name].[id].js’的name。注意这时候 loaderHome 和 loaderNews 不是我们之前引入的组件了，而组件应该这样生成：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const Home = (props) =&gt; (</span><br><span class="line">    &lt;Bundle load=&#123;loaderHome&#125;&gt;</span><br><span class="line">        &#123;(Home) =&gt; &lt;Home &#123;...props&#125;/&gt;&#125;</span><br><span class="line">    &lt;/Bundle&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const News = (props) =&gt; (</span><br><span class="line">    &lt;Bundle load=&#123;loaderNews&#125;&gt;</span><br><span class="line">        &#123;(News) =&gt; &lt;News &#123;...props&#125;/&gt;&#125;</span><br><span class="line">    &lt;/Bundle&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>  剩下的就和之前的写法一样了。</p>
+<p>  <img src="React-bs-router02/3.png" alt="Alt text"></p>
+<p>  可以看到在首页会有一个 home.1.js 文件加载进来，在新闻页有一个 news.2.js 文件，这就实现了到对应页面才加载该页面的 js，不过有一点应该注意到就是 bundle.js 文件依然非常的大，这是因为 react 本身就需要依赖诸如 react,react-dom 以及各种 loader,这些文件都会被打包到 bundle.js 中，而我们虽然用路由实现了各页面的‘按需加载’，但这只分离了一小部分代码出去，剩下的怎么办？还是得用 webpack。</p>
+<p>  文章代码 <a href="https://github.com/dengshasha/react-webpack/tree/master/react-webpack-04" target="_blank" rel="noopener">github</a></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.jianshu.com/p/7df7a6c2f3ec" target="_blank" rel="noopener">https://www.jianshu.com/p/7df7a6c2f3ec</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年12月19日 00:08</p>
+        <p>原始链接： <a class="post-url" href="/2018/12/19/React-bs-router02/" title="React路由实例">http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/&title=《React路由实例》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/&title=《React路由实例》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React路由实例》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/12/19/React-bs-router02/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、简单的路由示例"><span class="post-toc-text">二、简单的路由示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、抽离导航的路由"><span class="post-toc-text">二、抽离导航的路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、添加404页面"><span class="post-toc-text">三、添加404页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、嵌套路由"><span class="post-toc-text">四、嵌套路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、带参的嵌套路由"><span class="post-toc-text">五、带参的嵌套路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、优化嵌套路由"><span class="post-toc-text">六、优化嵌套路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、页面间传参的一些注意点"><span class="post-toc-text">七、页面间传参的一些注意点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、根据数据判断是否显示404页面"><span class="post-toc-text">八、根据数据判断是否显示404页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、按需加载"><span class="post-toc-text">九、按需加载</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/12/20/React-bs-interact/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React数据交互
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/12/18/React-bs-router01/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React路由</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

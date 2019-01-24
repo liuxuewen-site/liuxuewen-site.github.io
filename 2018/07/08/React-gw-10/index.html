@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React官网之10-状态提升 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、引入  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。   来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。   首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：  123456function BoilingV">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React官网之10-状态提升">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、引入  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。   来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。   首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：  123456function BoilingV">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/React-gw-10/1.gif">
+<meta property="og:updated_time" content="2018-07-07T17:05:56.402Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React官网之10-状态提升">
+<meta name="twitter:description" content="一、引入  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。   来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。   首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：  123456function BoilingV">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/React-gw-10/1.gif">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-gw-10" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React官网之10-状态提升
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-07-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h3><p>  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。</p>
+<p>  来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。</p>
+<p>  首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> BoilingVerdict(props) &#123;</span><br><span class="line">  <span class="keyword">if</span> (props.celsius &gt;= 100) &#123;</span><br><span class="line">    <span class="built_in">return</span> &lt;p&gt;The water would boil.&lt;/p&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> &lt;p&gt;The water would not boil.&lt;/p&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  接下来，我们创建一个名为 Calculator 组件。它渲染一个 &lt; input &gt; 来接收用户输入，并在 this.state.temperature 中保存它的值。 另外，它会根据当前输入的温度来渲染 BoilingVerdict:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Calculator extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.state = &#123;temperature: <span class="string">''</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(e) &#123;</span><br><span class="line">    this.setState(&#123;temperature: e.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const temperature = this.state.temperature;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;fieldset&gt;</span><br><span class="line">        &lt;legend&gt;Enter temperature <span class="keyword">in</span> Celsius:&lt;/legend&gt;</span><br><span class="line">        &lt;input</span><br><span class="line">          value=&#123;temperature&#125;</span><br><span class="line">          onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;BoilingVerdict</span><br><span class="line">          celsius=&#123;parseFloat(temperature)&#125; /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;/fieldset&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、添加第二个输入框"><a href="#二、添加第二个输入框" class="headerlink" title="二、添加第二个输入框"></a>二、添加第二个输入框</h3><p>  添加新需求，除了一个摄氏温度输入之外，我们再提供了一个华氏温度输入，并且两者保持自动同步。</p>
+<p>  可以通过从 Calculator 组件中抽离一个 TemperatureInput 组件出来。 并给它添加一个新的 scale 属性，值可能是 “c” 或者 “f” ：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">const scaleNames = &#123;</span><br><span class="line">  c: <span class="string">'Celsius'</span>,</span><br><span class="line">  f: <span class="string">'Fahrenheit'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class TemperatureInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.state = &#123;temperature: <span class="string">''</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(e) &#123;</span><br><span class="line">    this.setState(&#123;temperature: e.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const temperature = this.state.temperature;</span><br><span class="line">    const scale = this.props.scale;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;fieldset&gt;</span><br><span class="line">        &lt;legend&gt;Enter temperature <span class="keyword">in</span> &#123;scaleNames[scale]&#125;:&lt;/legend&gt;</span><br><span class="line">        &lt;input value=&#123;temperature&#125;</span><br><span class="line">               onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">      &lt;/fieldset&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  现在我们修改 Calculator 来渲染两个独立的温度输入：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Calculator extends React.Component &#123;</span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;TemperatureInput scale=<span class="string">"c"</span> /&gt;</span><br><span class="line">        &lt;TemperatureInput scale=<span class="string">"f"</span> /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  我们现在有两个 (input) 输入框 了，但是当你输入其中一个温度时，另一个输入并没有更新。这是跟我们的需要不符的：我们希望它们保持同步。</p>
+<p>  另外，我们此时也不能从 Calculator 组件中展示 BoilingVerdict 的渲染结果。因为现在表示温度的状态数据只存在于 TemperatureInput 组件当中。</p>
+<h3 id="三、编写转换函数"><a href="#三、编写转换函数" class="headerlink" title="三、编写转换函数"></a>三、编写转换函数</h3><p>  首先，我们写两个可以将摄氏度和华氏度互相转换的函数：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> toCelsius(fahrenheit) &#123;</span><br><span class="line">  <span class="built_in">return</span> (fahrenheit - 32) * 5 / 9;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> toFahrenheit(celsius) &#123;</span><br><span class="line">  <span class="built_in">return</span> (celsius * 9 / 5) + 32;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  接下来再编写一个函数，用来接收一个字符串 temperature 和一个 转化器函数 作为参数，并返回一个字符串。 这个函数用来在两个输入之间进行相互转换（对于无效的 temperature 值，它返回一个空字符串，输出结果保留3位小数）：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> tryConvert(temperature, convert) &#123;</span><br><span class="line">  const input = parseFloat(temperature);</span><br><span class="line">  <span class="keyword">if</span> (Number.isNaN(input)) &#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">''</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  const output = convert(input);</span><br><span class="line">  const rounded = Math.round(output * 1000) / 1000;</span><br><span class="line">  <span class="built_in">return</span> rounded.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  例如， tryConvert(‘abc’, toCelsius) 将返回一个空字符串，而 tryConvert(‘10.22’, toFahrenheit) 返回 ‘50.396’ 。</p>
+<h3 id="四、状态提升"><a href="#四、状态提升" class="headerlink" title="四、状态提升"></a>四、状态提升</h3><p>  目前，两个 TemperatureInput 组件都将其值保持在本地状态中：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class TemperatureInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    this.state = &#123;temperature: <span class="string">''</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(e) &#123;</span><br><span class="line">    this.setState(&#123;temperature: e.target.value&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const temperature = this.state.temperature;</span><br></pre></td></tr></table></figure></p>
+<p>  我们希望这两个输入是相互同步的。当我们更新摄氏温度时，华氏温度应反映转换后的温度，反之亦然。</p>
+<p>  在 React 中，共享 state 是通过将其移动到最接近的共同祖先组件来实现的。 这被称为“状态提升”。我们将从 TemperatureInput 中移除相关状态，并将其移动到 Calculator 中。</p>
+<p>  如果 Calculator 拥有共享状态，那么它将成为两个输入当前温度的“单一数据来源”。它可以指示他们具有彼此一致的值。由于两个 TemperatureInput 组件的 props 都来自同一个父级Calculator组件，两个输入将始终保持同步。</p>
+<p>  具体工作如下：</p>
+<p>  首先，我们在 TemperatureInput 组件中用 this.props.temperature 替换 this.state.temperature 。 现在，我们假定 this.props.temperature 已经存在，虽然将来需要从 Calculator 传递过来：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    // 之前是: const temperature = this.state.temperature;</span><br><span class="line">    const temperature = this.props.temperature;</span><br><span class="line">    ……</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  我们知道 props(属性) 是只读的。 当 temperature 是本地 state 时， TemperatureInput 可以调用 this.setState() 来更改它。 然而，现在 temperature 来自父级作为 prop(属性) ，TemperatureInput 就无法控制它。</p>
+<p>  在 React 中，这通常通过使组件“受控”的方式来解决。就像 &lt; input &gt; 能够接受 value 和 onChange 这两个prop属性值，自定义组件 TemperatureInput 也能接受来自 Calculator 父组件的 temperature 变量和 onTemperatureChange 方法作为props属性值。</p>
+<p>  现在，当 TemperatureInput 组件更新其温度时，它就会调用this.props.onTemperatureChange：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleChange(e) &#123;</span><br><span class="line"></span><br><span class="line">  // 之前是: this.setState(&#123;temperature: e.target.value&#125;);</span><br><span class="line">  this.props.onTemperatureChange(e.target.value);</span><br><span class="line">  ……</span><br></pre></td></tr></table></figure></p>
+<p>  注意自定义组件中的 temperature 或 onTemperatureChange 属性名称没有特殊的含义。我们可以命名为任何其他名称，像命名他们为 value 和 onChange，是一个常见的惯例。</p>
+<p>  onTemperatureChange 和 temperature 两个props属性均由父级的 Calculator 组件提供。父组件可以通过修改自己的本地 state 来处理变更，从而通过新值重新渲染两个输入。</p>
+<p>  在修改 Calculator 之前，回顾一下对 TemperatureInput 组件的更改。我们将其自身的 state 从组件中移除，使用 this.props.temperature 替代 this.state.temperature 。当我们想要更改时， 不是调用 this.setState() ，而是调用 this.props.onTemperatureChange()， 这将由 Calculator 提供：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class TemperatureInput extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleChange = this.handleChange.bind(this);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleChange(e) &#123;</span><br><span class="line">    this.props.onTemperatureChange(e.target.value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const temperature = this.props.temperature;</span><br><span class="line">    const scale = this.props.scale;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;fieldset&gt;</span><br><span class="line">        &lt;legend&gt;Enter temperature <span class="keyword">in</span> &#123;scaleNames[scale]&#125;:&lt;/legend&gt;</span><br><span class="line">        &lt;input value=&#123;temperature&#125;</span><br><span class="line">               onChange=&#123;this.handleChange&#125; /&gt;</span><br><span class="line">      &lt;/fieldset&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  接着看一下 Calculator 组件：</p>
+<p>  我们将当前输入的 temperature 和 scale 存储在本地 state 中。这是我们从输入 “提升” 的 state ，它将作为两个输入的 “单一数据来源” 。为了渲染两个输入，我们需要知道的所有数据的最小表示。</p>
+<p>  例如，如果我们在摄氏度输入框中输入 37 ，则 Calculator 组件的状态将是：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  temperature: <span class="string">'37'</span>,</span><br><span class="line">  scale: <span class="string">'c'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  如果我们稍后将华氏温度字段编辑为 212 ，则 Calculator 组件的状态将是：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  temperature: <span class="string">'212'</span>,</span><br><span class="line">  scale: <span class="string">'f'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  其实我们可以存储两个输入框的值，但事实证明是不必要的。存储最近更改的输入框的值，以及它所表示的度量衡就够了。然后，我们可以基于当前的 temperature(温度) 和 scale(度量衡) 来推断其他输入的值。</p>
+<p>  现在输入框能保持同步了，因为它们的值是从相同的 state 计算出来的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">class Calculator extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);</span><br><span class="line">    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);</span><br><span class="line">    this.state = &#123;temperature: <span class="string">''</span>, scale: <span class="string">'c'</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleCelsiusChange(temperature) &#123;</span><br><span class="line">    this.setState(&#123;scale: <span class="string">'c'</span>, temperature&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleFahrenheitChange(temperature) &#123;</span><br><span class="line">    this.setState(&#123;scale: <span class="string">'f'</span>, temperature&#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span></span>() &#123;</span><br><span class="line">    const scale = this.state.scale;</span><br><span class="line">    const temperature = this.state.temperature;</span><br><span class="line">    const celsius = scale === <span class="string">'f'</span> ? tryConvert(temperature, toCelsius) : temperature;</span><br><span class="line">    const fahrenheit = scale === <span class="string">'c'</span> ? tryConvert(temperature, toFahrenheit) : temperature;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;TemperatureInput</span><br><span class="line">          scale=<span class="string">"c"</span></span><br><span class="line">          temperature=&#123;celsius&#125;</span><br><span class="line">          onTemperatureChange=&#123;this.handleCelsiusChange&#125; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TemperatureInput</span><br><span class="line">          scale=<span class="string">"f"</span></span><br><span class="line">          temperature=&#123;fahrenheit&#125;</span><br><span class="line">          onTemperatureChange=&#123;this.handleFahrenheitChange&#125; /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;BoilingVerdict</span><br><span class="line">          celsius=&#123;parseFloat(celsius)&#125; /&gt;</span><br><span class="line"></span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  现在，无论你编辑哪个输入框，Calculator 中的 this.state.temperature 和 this.state.scale 都会更新。其中之一的输入框得到用户原样输入的值，另一个输入框总是显示基于这个值计算出的结果。</p>
+<p>  回顾一下编辑输入时会发生什么：</p>
+<p>  a、React 调用在 DOM &lt; input &gt; 上的 onChange 指定的函数。在我们的例子中，指的是 TemperatureInput 组件中的 handleChange 方法。</p>
+<p>  b、TemperatureInput 组件的 handleChange 函数会在值发生变化时调用 this.props.onTemperatureChange() 函数。 TemperatureInput 组件中的 props属性 ，包括 onTemperatureChange，由其父组件 Calculator 提供。</p>
+<p>  c、当最开始渲染时，Calculator 组件把内部的 handleCelsiusChange 方法指定给摄氏输入组件 TemperatureInput 的 onTemperatureChange 方法，并且把 handleFahrenheitChange 方法指定给华氏输入组件 TemperatureInput 的 onTemperatureChange 。两个 Calculator 内部的方法都会在相应输入框被编辑时被调用。</p>
+<p>  d、在这些方法内部， Calculator 组件会让 React 使用编辑输入的新值和当前输入框的温标来调用 this.setState() 方法来重渲染自身。</p>
+<p>  e、React 调用 Calculator 组件的 render 方法来识别 UI 外观应该是什么样子。基于当前温度和激活的度量衡来重新计算两个输入框的值。这里进行温度转换。</p>
+<p>  f、接着React会使用 Calculator 指定的新props来分别调用 TemperatureInput 组件，React 也会识别出子组件的UI界面。</p>
+<p>  g、React DOM 更新 DOM 以匹配期望的输入值。我们刚刚编辑的输入框接收当前值，另一个输入框更新为转换后的温度。</p>
+<p>  每个更新都会执行相同的步骤，以便输入保持同步。</p>
+<h3 id="五、经验总结"><a href="#五、经验总结" class="headerlink" title="五、经验总结"></a>五、经验总结</h3><p>  在 React 应用中，对于任何可变的数据都应该循序“单一数据源”原则。通常情况下，state 首先被添加到需要进行渲染的组件。然后，如果其它的组件也需要它，可以提升状态到它们最近的祖先组件。应该依赖从上到下的数据流向，而不是试图在不同的组件中同步状态。</p>
+<p>  提升状态相对于双向绑定方法需要写更多的“模板”代码，但有一个好处，它可以更方便的找到和隔离 bugs。因为任何 state 都 “存活” 在若干的组件中，而且可以分别对其独立修改，所以发生错误的可能大大减少。另外，你可以实现任何定制的逻辑来拒绝或者转换用户输入。</p>
+<p>  如果某个东西可以从 props(属性) 或者 state(状态) 得到，那么它很有可能不应该在state中出现。例如，我们只保存最后编辑的 temperature 和它的 scale，而不是保存 celsiusValue 和 fahrenheitValue 。另一个输入框的值总是在 render() 方法中计算得来的。这使我们对其进行清除和四舍五入到其他字段同时不会丢失用户输入的精度。</p>
+<p>  当你看到 UI 中的错误，你可以使用 <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">React 开发者工具</a> 来检查 props ，并向上遍历树，直到找到负责更新状态的组件。这使你可以跟踪到 bug 的源头：<br>  Monitoring State in React DevTools</p>
+<p>  <img src="React-gw-10/1.gif" alt="Alt text"></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
+<li>参考资料2：<a href="https://doc.react-china.org/" target="_blank" rel="noopener">https://doc.react-china.org/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月08日 01:05</p>
+        <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-10/" title="React官网之10-状态提升">http://liuxuewen-site.github.io/2018/07/08/React-gw-10/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/&title=《React官网之10-状态提升》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/&title=《React官网之10-状态提升》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React官网之10-状态提升》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/07/08/React-gw-10/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、引入"><span class="post-toc-text">一、引入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、添加第二个输入框"><span class="post-toc-text">二、添加第二个输入框</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、编写转换函数"><span class="post-toc-text">三、编写转换函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、状态提升"><span class="post-toc-text">四、状态提升</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、经验总结"><span class="post-toc-text">五、经验总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/08/React-gw-11/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React官网之11-组合VS继承
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/07/08/React-gw-09/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React官网之09-表单</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

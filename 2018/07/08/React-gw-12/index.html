@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>React官网之12-react的编程思想 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。   React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。 二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:      JSON 接">
+<meta name="keywords" content="前端-react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React官网之12-react的编程思想">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。   React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。 二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:      JSON 接">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/2.png">
+<meta property="og:updated_time" content="2018-09-03T07:12:58.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React官网之12-react的编程思想">
+<meta name="twitter:description" content="一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。   React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。 二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:      JSON 接">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-React-gw-12" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      React官网之12-react的编程思想
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-07-08
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。</p>
+<p>  React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。</p>
+<h3 id="二、从模拟页面开始"><a href="#二、从模拟页面开始" class="headerlink" title="二、从模拟页面开始"></a>二、从模拟页面开始</h3><p>  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:</p>
+<p>  <img src="React-gw-12/1.png" alt="Alt text"></p>
+<p>  JSON 接口返回的数据如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$49</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Football"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$9</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Baseball"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$29</span>.99"</span>, stocked: <span class="literal">false</span>, name: <span class="string">"Basketball"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$99</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"iPod Touch"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$399</span>.99"</span>, stocked: <span class="literal">false</span>, name: <span class="string">"iPhone 5"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$199</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Nexus 7"</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、步骤1：将UI划分组件层级"><a href="#三、步骤1：将UI划分组件层级" class="headerlink" title="三、步骤1：将UI划分组件层级"></a>三、步骤1：将UI划分组件层级</h3><p>  要做的第一件事是用方框划分出每一个组件(和子组件)并给他们命名。如果你和设计师一起工作，他们可能已经做了这些工作，所以去和他们交流一下！他们的 Photoshop 图层名称可能最终成为你的 React 组件名称！</p>
+<p>  然后该如何拆分组件呢？只需要像拆分一个新方法或新对象一样的方式即可。一个常用的技巧是单一职责原则，即一个组件理想情况下只处理一件事。如果这个组件功能不断丰富，它应该被分成更小的组件。</p>
+<p>  由于经常向用户显示 JSON 数据模型，你会发现如果模型构建正确，对应的 UI（以及组件结构）会被很好地映射。这是因为 UI 和数据模型往往遵循相同的信息结构，这意味着将 UI 划分成组件的工作往往是很容易的。只要把它划分成能准确表示你数据模型的一部分的组件就可以。</p>
+<p>  <img src="React-gw-12/2.png" alt="Alt text"></p>
+<p>  可以看到，在这个简单的小应用中，有5个组件。对每个组件代表的数据进行了斜体标注：<br>  a、FilterableProductTable （orange）： 包含整个示例<br>  b、SearchBar（蓝色）： 接收所有的用户输入<br>  c、ProductTable（绿色）： 根据用户输入显示和过滤数据集合<br>  d、ProductCategoryRow（宝石绿）： 显示每个类别的标题<br>  e、ProductRow（红色）： 显示每个产品的行数据</p>
+<p>  观察 ProductTable ，会发现表头（包含Name和Price标签）不是独立的组件。这是个人偏好问题，当然也存在用其他方式实现的争论。在这个例子中，将其作为 ProductTable 的一部分来处理，因为它是数据集合渲染的一部分，是 ProductTable 的职责。当然，如果这个表头变得复杂的时候（比如，如果需要添加排序功能），这时候创建一个独立的 ProductTableHeader 组件更合适。</p>
+<p>  现在我们已经在原型图中做了标识，接下来对它们进行层级结构排列。这很简单。原型图中的子组件在层级结构中应该作为子节点：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FilterableProductTable</span><br><span class="line">    SearchBar</span><br><span class="line">    ProductTable</span><br><span class="line">        ProductCategoryRow</span><br><span class="line">        ProductRow</span><br></pre></td></tr></table></figure></p>
+<h3 id="四、步骤2：用React构建一个静态版本"><a href="#四、步骤2：用React构建一个静态版本" class="headerlink" title="四、步骤2：用React构建一个静态版本"></a>四、步骤2：用React构建一个静态版本</h3><p>  已经有了组件层次结构，是时候实现应用了。最简单的方法是构建一个采用数据模型并渲染 UI，但没有交互性的版本。最好解耦这些处理，因为构建静态版本需要 大量的代码和少量的思考，而添加交互需要大量思考和少量的代码。</p>
+<p>  要构建应用的静态版本，用于渲染数据模型，需要创建能够复用其他组件的组件，并通过 props 来传递数据。props 是将数据从父级组件传递到子级的一种方式。如果你熟悉 state ，在构建静态版本时 不要使用 state ，state 只用于交互，也就是说，数据可以随时被改变。由于这是一个静态版本，所以你并不需要使用 state 。</p>
+<p>  可以自上而下或自下而上构建。即可以从构建层次结构中顶端的组件开始（即从 FilterableProductTable 开始），也可以从构建层次结构中底层的组件开始（即 ProductRow ）。在更简单的例子中，通常自上而下更容易，而在较大的项目中，自下而上，更有利于编写测试。</p>
+<p>  在这一步结束时，你已经有了一个可重用的组件库，用于渲染你的数据模型。这些组件将只会有 render() 方法，因为这是你应用程序的静态版本。层次结构顶部的组件（ FilterableProductTable ）应该接收你的数据模型作为 prop 。如果你对基础数据模型进行更改，并再次调用 ReactDOM.render()，UI 将同步更新。这有利于观测UI的更新以及相关的数据变化，因为这中间没有做什么复杂的事情。React 的 单向数据流（也称为单向绑定）保证了一切是模块化并且是快速的。</p>
+<h3 id="五、步骤3：确定UI状态的最小（但完整）表示"><a href="#五、步骤3：确定UI状态的最小（但完整）表示" class="headerlink" title="五、步骤3：确定UI状态的最小（但完整）表示"></a>五、步骤3：确定UI状态的最小（但完整）表示</h3><p>  为了 UI 可以交互，需要能够触发更改底层的数据模型。React 通过 state 使其变得容易。</p>
+<p>  要正确的构建应用程序，首先需要考虑你的应用程序需要的最小可变状态集。这里的关键是：不要重复。找出应用程序所需 state 的绝对最小表示，并且可以以此计算出你所需的所有其他数据内容。例如，如果构建一个 TODO 列表，只保留一个 TODO 元素数组即可;不需要为元素数量保留一个单独的 state 变量。相反，当你要渲染 TODO 计数时，只需要获取 TODO 数组的长度即可。</p>
+<p>  我们的示例应用中的数据，有：<br>  a、原始产品列表<br>  b、用户输入的搜索文本<br>  c、复选框的值<br>  d、过滤后的产品列表</p>
+<p>  分析每一个数据，弄清楚哪一个是 state。每个数据考虑3个问题：</p>
+<p>  a、是否通过 props 从父级传入？如果是这样，它可能不是 state。</p>
+<p>  b、是否永远不会发生变化？如果是这样，它可能不是 state 。</p>
+<p>  c、是否可以由组件中其他的 state 或 props 计算得出？如果是这样，则它不是 state 。</p>
+<p>  原始的产品列表作为 props 传递，所以它不是 state 。搜索文本和复选框似乎是 state ，因为它们会根据用户的输入发生变化，并且不能从其他数据计算得出。最后，过滤后的产品列表不是 state ，因为它可以通过结合 原始产品列表 与 搜索文本 和 复选框的值 计算得出。</p>
+<p>  所以最终，我们的 state 是：<br>  a、用户输入的搜索文本<br>  b、复选框的值</p>
+<h3 id="六、步骤4：确定state的位置"><a href="#六、步骤4：确定state的位置" class="headerlink" title="六、步骤4：确定state的位置"></a>六、步骤4：确定state的位置</h3><p>  已经确定了应用所需 state 的最小集合。接下来，需要确定是哪个组件可变，或者说哪个组件拥有这些 state 。</p>
+<p>  记住：React 单向数据流在层级中自上而下进行。这样有可能不能立即判断出状态属于哪个组件。试着按下面的步骤分析操作：</p>
+<p>  对于你应用中的每一个 state ：</p>
+<p>  a、确定每一个需要这个 state 来渲染的组件。</p>
+<p>  b、找出公共父级组件（一个单独的组件，在组件层级中位于所有需要这个 state 的组件的上面）。</p>
+<p>  c、这个公共父级组件或另一个层级更高的组件应该拥有这个 state。</p>
+<p>  d、如果找不出一个拥有该 state 的组件，创建一个简单的新组件来保留这个 state ，并将其添加到公共父级组件的上层即可。</p>
+<p>  我们在我们的应用中贯穿这个策略：</p>
+<p>  a、ProductTable 需要基于 state 过滤产品列表，SearchBar 需要显示搜索文本和选中状态 state 。</p>
+<p>  b、公共的父级组件是 FilterableProductTable</p>
+<p>  c、筛选文本和复选框的值应该放在 FilterableProductTable。</p>
+<p>  那么我们已经决定 state 保存在 FilterableProductTable 中。首先，添加一个实例属性 this.state = {filterText: ‘’, inStockOnly: false} 到 FilterableProductTable 的constructor 来反映你应用的初始 state 。然后，传递 filterText 和 inStockOnly 到 ProductTable 和 SearchBar 作为一个 prop 。最后，使用这些 props 来过滤 ProductTable 中的行，并设置 SearchBar 中的表单字段的值。</p>
+<p>  现在你能够看到你的应用是如何运作的了：设置 filterText 为 “ball” 并刷新你的应用。你将发现数据表被正确的更新。</p>
+<h3 id="七、步骤5：添加反向数据流"><a href="#七、步骤5：添加反向数据流" class="headerlink" title="七、步骤5：添加反向数据流"></a>七、步骤5：添加反向数据流</h3><p>  到目前为止，我们创建了一个可以正确渲染的应用程序，它的数据在层级中通过函数的 props 和 state 向下流动。现在是时候支持其他方式的数据流了：层次结构中深层的 form(表单) 组件需要更新 FilterableProductTable 中的 state 。</p>
+<p>  React 中明确的数据流向，使你容易理解程序如何运行。但是相比传统的数据双向绑定来说，的确需要多敲一些代码。</p>
+<p>  在当前版本的示例中，如果你试图键入或选中复选框，你发现 React 会忽略了你的输入。这是故意的，因为我们把 input 的 value 属性设置为一直等于从 FilterableProductTable 传入的 state。</p>
+<p>  想想我们要做什么。我们期望当用户改变表单输入的时候，我们更新 state 来反映用户的输入。由于组件只能更新它们自己的 state ，FilterableProductTable 将传递一个回调函数到 SearchBar，然后在 state 被更新的时候触发。我们可以使用 input 的 onChange 事件来调用它。FilterableProductTable 传入的回调函数会调用 setState()，这时应用程序会被更新。</p>
+<p>  尽管这听起来很复杂，但真的只需要简单的几行代码即可实现。同时清晰的表达数据在应用中的流动。</p>
+<h3 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h3><p>  使用 React 构建组件和应用的想法。有可能这种写法会比你通常的写法多几行代码，但阅读代码的重要性远远高于写代码，模块化、结构清晰的代码最利于阅读。当创建一个大组件库的时候，你将感激模块化、结构清晰和可以重用的代码，同时你的代码行数会慢慢减少。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
+<li>参考资料2：<a href="https://doc.react-china.org/" target="_blank" rel="noopener">https://doc.react-china.org/</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年09月03日 15:12</p>
+        <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-12/" title="React官网之12-react的编程思想">http://liuxuewen-site.github.io/2018/07/08/React-gw-12/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/&title=《React官网之12-react的编程思想》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/&title=《React官网之12-react的编程思想》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React官网之12-react的编程思想》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/07/08/React-gw-12/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、从模拟页面开始"><span class="post-toc-text">二、从模拟页面开始</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、步骤1：将UI划分组件层级"><span class="post-toc-text">三、步骤1：将UI划分组件层级</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、步骤2：用React构建一个静态版本"><span class="post-toc-text">四、步骤2：用React构建一个静态版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、步骤3：确定UI状态的最小（但完整）表示"><span class="post-toc-text">五、步骤3：确定UI状态的最小（但完整）表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、步骤4：确定state的位置"><span class="post-toc-text">六、步骤4：确定state的位置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、步骤5：添加反向数据流"><span class="post-toc-text">七、步骤5：添加反向数据流</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、总结"><span class="post-toc-text">八、总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/07/08/React-gw-13/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          React官网之13-深入JSX
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/07/08/React-gw-11/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">React官网之11-组合VS继承</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

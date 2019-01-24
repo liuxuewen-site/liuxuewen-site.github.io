@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>客户端数据存储方式：Cookie | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、cookie基础  &amp;emsp;&amp;emsp;当一个用户通过 HTTP 协议访问一个服务器的时候，服务器会将一些 Key/Value 键值对返回给客户端浏览器，并给这些数据加上一些限制条件，在条件符合时这个用户下次访问这个服务器的时候，这些数据又被完整地带回给服务器。   &amp;emsp;&amp;emsp;Cookie是在客户端用于存储会话信息，其要求服务器对任意HTTP请求发送Set-Cookie HT">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="客户端数据存储方式：Cookie">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、cookie基础  &amp;emsp;&amp;emsp;当一个用户通过 HTTP 协议访问一个服务器的时候，服务器会将一些 Key/Value 键值对返回给客户端浏览器，并给这些数据加上一些限制条件，在条件符合时这个用户下次访问这个服务器的时候，这些数据又被完整地带回给服务器。   &amp;emsp;&amp;emsp;Cookie是在客户端用于存储会话信息，其要求服务器对任意HTTP请求发送Set-Cookie HT">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-03T17:53:42.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="客户端数据存储方式：Cookie">
+<meta name="twitter:description" content="一、cookie基础  &amp;emsp;&amp;emsp;当一个用户通过 HTTP 协议访问一个服务器的时候，服务器会将一些 Key/Value 键值对返回给客户端浏览器，并给这些数据加上一些限制条件，在条件符合时这个用户下次访问这个服务器的时候，这些数据又被完整地带回给服务器。   &amp;emsp;&amp;emsp;Cookie是在客户端用于存储会话信息，其要求服务器对任意HTTP请求发送Set-Cookie HT">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-bs-cookie" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      客户端数据存储方式：Cookie
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-30
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、cookie基础"><a href="#一、cookie基础" class="headerlink" title="一、cookie基础"></a>一、cookie基础</h3><p>  &emsp;&emsp;当一个用户通过 HTTP 协议访问一个服务器的时候，服务器会将一些 Key/Value 键值对返回给客户端浏览器，并给这些数据加上一些限制条件，在条件符合时这个用户下次访问这个服务器的时候，这些数据又被完整地带回给服务器。</p>
+<p>  &emsp;&emsp;Cookie是在客户端用于存储会话信息，其要求服务器对任意HTTP请求发送Set-Cookie HTTP头作为响应的一部分- -前端后台均可设置操作cookie。cookie以name为名称，以value为值（固定格式），名和值在传送时都必须是URL编码的。浏览器会存储这样的会话信息，在这之后，通过为每个请求添加Cookie HTTP头将信息发送回服务器。可以通过document.cookie属性来设置cookie。</p>
+<p>  &emsp;&emsp;cookie 是有大小限制的，每个 cookie 所存放的数据不能超过4kb，如果 cookie 字符串的长度超过4kb，则该属性将返回空字符串。typeof document.cookie是字符串不是array。</p>
+<p>  &emsp;&emsp;cookie 的存放，最终都是以文件形式存放在客户端计算机中，所以查看和修改 cookie 都是很方便的，这就是为什么常说 cookie 不能存放重要信息的原因。出于功能和性能的原因考虑，建议尽量降低 cookie 的使用数量，并且要尽量使用小 cookie。</p>
+<p>  &emsp;&emsp;cookie 是存在 有效期的。在默认情况下，一个 cookie 的生命周期就是在浏览器关闭的时候结束。如果想要 cookie 能在浏览器关掉之后还可以使用，就必须要为该 cookie 设置有效期，也就是 cookie 的失效日期。</p>
+<p>  &emsp;&emsp;cookie 存在两种类型：一是你浏览的当前网站本身设置的 cookie；二是来自在网页上嵌入广告或图片等其他域来源的 第三方 cookie (网站可通过使用这些 cookie 跟踪你的使用信息)。</p>
+<p>  &emsp;&emsp;浏览器可以通过设置来接受和拒绝访问 cookie。</p>
+<h3 id="二、cookie过程"><a href="#二、cookie过程" class="headerlink" title="二、cookie过程"></a>二、cookie过程</h3><p>  &emsp;&emsp;一个cookie的设置以及发送过程分为以下四步：<br>  &emsp;&emsp;客户端发送一个http请求到服务器端<br>  &emsp;&emsp;服务器端发送一个http响应到客户端，其中包含Set-Cookie头部<br>  &emsp;&emsp;客户端发送一个http请求到服务器端，其中包含Cookie头部<br>  &emsp;&emsp;服务器端发送一个http响应到客户端</p>
+<h3 id="三、cookie本质"><a href="#三、cookie本质" class="headerlink" title="三、cookie本质"></a>三、cookie本质</h3><p>  &emsp;&emsp;cookie在本质上是http的一个扩展。有两个http头部是专门负责设置以及发送cookie的,它们分别是Set-Cookie以及Cookie。当服务器返回给客户端一个http响应信息时，其中如果包含Set-Cookie这个头部时，意思就是指示客户端建立一个cookie，并且在后续的http请求中自动发送这个cookie到服务器端，直到这个cookie过期。<br>  &emsp;&emsp;如果cookie的生存时间是整个会话期间的话，那么浏览器会将cookie保存在内存中，浏览器关闭时就会自动清除这个cookie。另外一种情况就是保存在客户端的硬盘中，浏览器关闭的话，该cookie也不会被清除，下次打开浏览器访问对应网站时，这个cookie就会自动再次发送到服务器端。</p>
+<h3 id="四、Cookie的不可跨域名性"><a href="#四、Cookie的不可跨域名性" class="headerlink" title="四、Cookie的不可跨域名性"></a>四、Cookie的不可跨域名性</h3><p>  &emsp;&emsp;很多网站都会使用Cookie。例如，Google会向客户端颁发Cookie，Baidu也会向客户端颁发Cookie。那浏览器访问Google会不会也携带上Baidu颁发的Cookie呢？或者Google能不能修改Baidu颁发的Cookie呢？<br>  &emsp;&emsp;答案是否定的。Cookie具有不可跨域名性。根据Cookie规范，浏览器访问Google只会携带Google的Cookie，而不会携带Baidu的Cookie。Google也只能操作Google的Cookie，而不能操作Baidu的Cookie。<br>  &emsp;&emsp;Cookie在性质上是绑定在特定的域名下的，当设置了一个cookie后，再给创建它的域名发送请求时，都会包含这个cookie，这确保了储存在cookie中的信息智能让批准的接收者访问，而不能被其他域访问。<br>  &emsp;&emsp;需要注意的是，虽然网站images.google.com与网站<a href="http://www.google.com同属于Google，但是域名不一样，二者同样不能互相操作彼此的Cookie。（用户登录网站www.google.com之后会发现访问images.google.com时登录信息仍然有效，而普通的Cookie是做不到的。这是因为Google做了特殊处理。）" target="_blank" rel="noopener">www.google.com同属于Google，但是域名不一样，二者同样不能互相操作彼此的Cookie。（用户登录网站www.google.com之后会发现访问images.google.com时登录信息仍然有效，而普通的Cookie是做不到的。这是因为Google做了特殊处理。）</a></p>
+<h3 id="五、cookie属性"><a href="#五、cookie属性" class="headerlink" title="五、cookie属性"></a>五、cookie属性</h3><p>  &emsp;&emsp;String name：Cookie的名称。Cookie一旦创建，名称便不可更改。 </p>
+<p>  &emsp;&emsp;Object value：Cookie的值。若为Unicode字符需要为字符编码。若为二进制数据则需要为BASE64编码。</p>
+<p>  &emsp;&emsp;int maxAge：Cookie失效的时间，单位秒。如果为正数，则该Cookie在&gt;maxAge秒之后失效。如果为负数，该Cookie为临时Cookie，关闭浏览器即失效，浏览器也不会以任何形式保存该Cookie。如果为0，表示删除该Cookie。默认为–1。 </p>
+<p>  &emsp;&emsp;boolean secure：Cookie是否仅被使用安全协议传输。安全协议有HTTPS，SSL等，在网络上传输数据之前先将数据加密。默认为false。 </p>
+<p>  &emsp;&emsp;String path：Cookie的使用路径。如果设置为“/sessionWeb/”，则只有contextPath为“/sessionWeb”的程序可以访问该Cookie。如果设置为“/”，则本域名下contextPath都可以访问该Cookie。注意最后一个字符必须为“/”。</p>
+<p>  &emsp;&emsp;String domain：可以访问该Cookie的域名。如果设置为“.google.com”，则所有以“google.com”结尾的域名都可以访问该Cookie。注意第一个字符必须为“.”。 </p>
+<p>  &emsp;&emsp;String comment：Cookie的用处说明。浏览器显示Cookie信息的时候显示该说明。 </p>
+<p>  &emsp;&emsp;int version：Cookie使用的版本号。0表示遵循Netscape的Cookie规范，1表示遵循W3C的RFC 2109规范。</p>
+<h3 id="五、cookie存取操作（js）"><a href="#五、cookie存取操作（js）" class="headerlink" title="五、cookie存取操作（js）"></a>五、cookie存取操作（js）</h3><p>  前端使用JavaScript存取 cookie 时必须要使用Document对象的 cookie 属性；后台的方式此处不做讲解。<br>  创建和修改一个 cookie如下 ：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　document.cookie  = <span class="string">'username=Darren'</span></span><br></pre></td></tr></table></figure></p>
+<p>  以上代码中’username’表示 cookie 名称，’Darren’表示这个名称对应的值。假设 cookie 名称并不存在，那么就是创建一个新的 cookie；如果存在就是修改了这个 cookie 名称对应的值。如果要多次创建 cookie ，重复使用这个方法即可。</p>
+<h3 id="六、cookie读取操作（js）"><a href="#六、cookie读取操作（js）" class="headerlink" title="六、cookie读取操作（js）"></a>六、cookie读取操作（js）</h3><p>  如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> getCookie(c_name)&#123;</span><br><span class="line">    <span class="keyword">if</span> (document.cookie.length&gt;0)&#123;                                            //查询cookie是否为空</span><br><span class="line">　　    c_start=document.cookie.indexOf(c_name + <span class="string">"="</span>)                         //检查这个cookie是否存在　　</span><br><span class="line">　　　　　　<span class="keyword">if</span> (c_start!=-1)&#123; </span><br><span class="line">　　　　　　　　c_start=c_start + c_name.length+1　                            //获取cookie值的开始位置　</span><br><span class="line">　　　　　　　　c_end=document.cookie.indexOf(<span class="string">";"</span>,c_start)　　                 //获取cookie值的结束位置</span><br><span class="line">　　　　　　　　<span class="keyword">if</span> (c_end==-1) c_end=document.cookie.length　　</span><br><span class="line">　　　　　　　　<span class="built_in">return</span> unescape(document.cookie.substring(c_start,c_end))      //通过substring()得到了值。想了解unescape()得先知道escape()是做什么的。</span><br><span class="line">　　　　　　&#125; </span><br><span class="line">　　 &#125;</span><br><span class="line">　　 <span class="built_in">return</span> <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="七、cookie设置有效期（js）"><a href="#七、cookie设置有效期（js）" class="headerlink" title="七、cookie设置有效期（js）"></a>七、cookie设置有效期（js）</h3><p>  在默认的情况下，cookie 会在浏览器关闭的时候自动清除，但是我们可以通过expires来设置 cookie 的有效期。语法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"name=value;expires=date"</span></span><br></pre></td></tr></table></figure></p>
+<p>  上面代码中的date值为GMT(格林威治时间)格式的日期型字符串，生成方式如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var _date = new Date();            //通过new生成一个Date的实例，得到当前的时间；</span><br><span class="line">_date.setDate(_date.getDate()+30); //getDate()得到当前本地月份中的某一天，加上30即此cookie能在本地保存30天；接着通过setDate()方法来设置时间；</span><br><span class="line">_date.toGMTString();               //toGMTString()方法把Date对象转换为字符串，并返回结果</span><br></pre></td></tr></table></figure></p>
+<p>  下面通过一个完整的函数来说明在创建 cookie 的过程中我们需要注意的地方。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> setCookie(c_name, value, expiredays)&#123;</span><br><span class="line">　    var exdate=new Date();</span><br><span class="line">　　　exdate.setDate(exdate.getDate() + expiredays);</span><br><span class="line">　　　document.cookie=c_name+ <span class="string">"="</span> + escape(value) + ((expiredays==null) ? <span class="string">""</span> : <span class="string">";expires="</span>+exdate.toGMTString());</span><br><span class="line">&#125;</span><br><span class="line">使用方法：setCookie(<span class="string">'username'</span>,<span class="string">'Darren'</span>,30)</span><br></pre></td></tr></table></figure></p>
+<p>  这个函数是按照天数来设置cookie的有效时间，如果想以其他单位（如：小时）来设置，那么改变第三行代码即可：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exdate.setHours(exdate.getHours() + expiredays);</span><br></pre></td></tr></table></figure></p>
+<h3 id="八、cookie清除操作（js）"><a href="#八、cookie清除操作（js）" class="headerlink" title="八、cookie清除操作（js）"></a>八、cookie清除操作（js）</h3><p>  1、通过浏览器工具清除 cookie (有第三方的工具，浏览器自身也有这种功能)<br>  2、通过设置 cookie 的有效期来清除 cookie（把有效期的时间设置为一个已过期的时间）<br>  注：cookie本身不提供删除修改操作，都是借用存取以及有效期间接设置。删除 cookie 有时可能导致某些网页无法正常运行</p>
+<h3 id="九、cookie高级之路径概念"><a href="#九、cookie高级之路径概念" class="headerlink" title="九、cookie高级之路径概念"></a>九、cookie高级之路径概念</h3><p>  &emsp;&emsp;cookie 一般都是由于用户访问页面而被创建的，可是并不是只有在创建 cookie 的页面才可以访问这个 cookie。<br>  &emsp;&emsp;默认情况下，只有与创建 cookie 的页面在同一个目录或子目录下的网页才可以访问，这个是因为安全方面的考虑，造成不是所有页面都可以随意访问其他页面创建的 cookie。举个例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"http://www.cnblogs.com/Darren_code/"</span> 这个页面创建一个cookie，</span><br><span class="line"><span class="string">"http://www.cnblogs.com/Darren_code/archive/2011/11/07/Cookie.html"</span>默认能取到cookie信息。</span><br><span class="line"><span class="string">"http://www.cnblogs.com"</span> 或者 <span class="string">"http://www.cnblogs.com/xxxx/"</span> 就不可以访问这个 cookie。</span><br></pre></td></tr></table></figure></p>
+<p>  那么如何让这个 cookie 能被其他目录或者父级的目录访问类，通过设置 cookie 的路径就可以实现。例子如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"name=value;path=path"</span></span><br><span class="line">document.cookie = <span class="string">"name=value;expires=date;path=path"</span></span><br></pre></td></tr></table></figure></p>
+<p>  path就是 cookie 的路径，最常用的例子就是让 cookie 在跟目录下,这样不管是哪个子页面创建的 cookie，所有的页面都可以访问到了,即:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"name=Darren;path=/"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="十、cookie高级之域概念"><a href="#十、cookie高级之域概念" class="headerlink" title="十、cookie高级之域概念"></a>十、cookie高级之域概念</h3><p>  cookie 实现同域之间访问的问题。语法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"name=value;path=path;domain=domain"</span></span><br></pre></td></tr></table></figure></p>
+<p>  domain就是设置的 cookie 域的值。<br>  例如 “<a href="http://www.qq.com&quot;" target="_blank" rel="noopener">www.qq.com&quot;</a> 与 “sports.qq.com” 公用一个关联的域名”qq.com”，我们如果想让 “sports.qq.com” 下的cookie被 “<a href="http://www.qq.com&quot;" target="_blank" rel="noopener">www.qq.com&quot;</a> 访问，我们就需要用到 cookie 的domain属性，并且需要把path属性设置为 “/“。例：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"username=Darren;path=/;domain=qq.com"</span></span><br></pre></td></tr></table></figure></p>
+<p>  注：一定的是同域之间的访问，不能把domain的值设置成非主域的域名。</p>
+<h3 id="十一、cookie高级之安全性"><a href="#十一、cookie高级之安全性" class="headerlink" title="十一、cookie高级之安全性"></a>十一、cookie高级之安全性</h3><p>  &emsp;&emsp;通常 cookie 信息都是使用HTTP连接传递数据，这种传递方式很容易被查看，所以 cookie 存储的信息容易被窃取。假如 cookie 中所传递的内容比较重要，那么就要求使用加密的数据传输。<br>  &emsp;&emsp;cookie 的“secure”属性，默认的值为空。如果一个 cookie 的属性为secure，那么它与服务器之间就通过HTTPS或者其它安全协议传递数据。语法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = <span class="string">"username=Darren;secure"</span></span><br></pre></td></tr></table></figure></p>
+<p>  &emsp;&emsp;把cookie设置为secure，只保证 cookie 与服务器之间的数据传输过程加密，而保存在本地的 cookie文件并不加密。如果想让本地cookie也加密，得自己加密数据。<br>  &emsp;&emsp;注：就算设置了secure 属性也并不代表他人不能看到你机器本地保存的 cookie 信息，所以说到底，别把重要信息放cookie就对了……</p>
+<h3 id="十二、cookie高级之编码细节"><a href="#十二、cookie高级之编码细节" class="headerlink" title="十二、cookie高级之编码细节"></a>十二、cookie高级之编码细节</h3><p>  &emsp;&emsp;在输入cookie信息时不能包含空格，分号，逗号等特殊符号，而在一般情况下，cookie 信息的存储都是采用未编码的方式。所以，在设置 cookie 信息以前要先使用escape()函数将 cookie 值信息进行编码，在获取到 cookie 值得时候再使用unescape()函数把值进行转换回来。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.cookie = name + <span class="string">"="</span>+ escape (value)               //设置cookie时</span><br></pre></td></tr></table></figure></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> unescape(document.cookie.substring(c_start,c_end))  //获取cookie时</span><br></pre></td></tr></table></figure>
+<h3 id="十三、cookie的优点"><a href="#十三、cookie的优点" class="headerlink" title="十三、cookie的优点"></a>十三、cookie的优点</h3><p>  &emsp;&emsp;1、可配置到期规则： Cookie 可以在浏览器会话结束时到期，或者可以在客户端计算机上无限期存在，这取决于客户端的到期规则。<br>  &emsp;&emsp;2、数据持久性： 虽然客户端计算机上 Cookie 的持续时间取决于客户端上的 Cookie 过期处理和用户干预，但Cookie 通常是客户端上持续时间最长的数据保留形式。<br>  &emsp;&emsp;3、存储与发送：Cookie 存储在客户端并在发送后由服务器读取，cookie发送时是自动携带在请求里，不需要手动发送（localStorage需要）。<br>  &emsp;&emsp;4、简单性： Cookie 是一种基于文本的轻量结构，包含简单的键值对。</p>
+<h3 id="十四、cookie的缺点"><a href="#十四、cookie的缺点" class="headerlink" title="十四、cookie的缺点"></a>十四、cookie的缺点</h3><p>  &emsp;&emsp;1、数量和长度的限制：每个域的cookie总数是有限的，IE6或更低版本最多20个cookie；IE7和之后的版本最后可以有50个；Firefox最多50个；chrome和Safari没有做硬性限制。cookie的长度也有限制，最好将cookie控制在4095B以内。否则会被截掉。<br>  &emsp;&emsp;2、安全性问题： Cookie 把所有要保存的数据通过 HTTP 协议的头部从客户端传递到服务端，又从服务端再传回到客户端，所有的数据都存储在客户端的浏览器里，所以这些 Cookie 数据可以被访问到，如果cookie被人拦截了，那人就可以取得所有的信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。<br>  &emsp;&emsp;3、性能问题：由于所有cookie都会由浏览器作为请求头发送，所以在cookie中存储大量信息会影响到特定域的请求性能.</p>
+<h3 id="十五、cookie的应用-记住登录信息"><a href="#十五、cookie的应用-记住登录信息" class="headerlink" title="十五、cookie的应用-记住登录信息"></a>十五、cookie的应用-记住登录信息</h3><p>  &emsp;&emsp;如果用户是在自己家的电脑上网，登录时就可以记住他的登录信息，下次访问时不需要再次登录，直接访问即可。实现方法是把登录信息如账号、密码等保存在Cookie中，并控制Cookie的有效期，下次访问时再验证Cookie中的登录信息即可。<br>  &emsp;&emsp;保存登录信息有多种方案。最直接的是把用户名与密码都保持到Cookie中，下次访问时检查Cookie中的用户名与密码，与数据库比较。这是一种比较危险的选择，一般不把密码等重要信息保存到Cookie中。<br>  &emsp;&emsp;另一种方案是把密码加密后保存到Cookie中，下次访问时解密并与数据库比较。这种方案略微安全一些。如果不希望保存密码，还可以把登录的时间戳保存到Cookie与数据库中，到时只验证用户名与登录时间戳就可以了。</p>
+<p>标注：</p>
+<ul>
+<li>本文综合多个网上教程所改</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:53</p>
+        <p>原始链接： <a class="post-url" href="/2018/01/30/JS-bs-cookie/" title="客户端数据存储方式：Cookie">http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/&title=《客户端数据存储方式：Cookie》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/&title=《客户端数据存储方式：Cookie》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《客户端数据存储方式：Cookie》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/01/30/JS-bs-cookie/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、cookie基础"><span class="post-toc-text">一、cookie基础</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、cookie过程"><span class="post-toc-text">二、cookie过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、cookie本质"><span class="post-toc-text">三、cookie本质</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、Cookie的不可跨域名性"><span class="post-toc-text">四、Cookie的不可跨域名性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、cookie属性"><span class="post-toc-text">五、cookie属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、cookie存取操作（js）"><span class="post-toc-text">五、cookie存取操作（js）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、cookie读取操作（js）"><span class="post-toc-text">六、cookie读取操作（js）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、cookie设置有效期（js）"><span class="post-toc-text">七、cookie设置有效期（js）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、cookie清除操作（js）"><span class="post-toc-text">八、cookie清除操作（js）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、cookie高级之路径概念"><span class="post-toc-text">九、cookie高级之路径概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十、cookie高级之域概念"><span class="post-toc-text">十、cookie高级之域概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十一、cookie高级之安全性"><span class="post-toc-text">十一、cookie高级之安全性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十二、cookie高级之编码细节"><span class="post-toc-text">十二、cookie高级之编码细节</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十三、cookie的优点"><span class="post-toc-text">十三、cookie的优点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十四、cookie的缺点"><span class="post-toc-text">十四、cookie的缺点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#十五、cookie的应用-记住登录信息"><span class="post-toc-text">十五、cookie的应用-记住登录信息</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/01/30/JS-bs-webStorage/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          客户端数据存储方式：webStorage
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/01/29/frontEnd-basic1/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">前端基础考题1</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

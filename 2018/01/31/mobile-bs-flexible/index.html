@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>flexible实现移动端适配 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、引言  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：      虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：      再看手淘H5要适配的终端设备数据：      看到这么多数据，要崩溃…… 二、手淘团队适配协作模式  为了应对这多么的终端设备，设计师">
+<meta name="keywords" content="前端-移动端适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flexible实现移动端适配">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、引言  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：      虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：      再看手淘H5要适配的终端设备数据：      看到这么多数据，要崩溃…… 二、手淘团队适配协作模式  为了应对这多么的终端设备，设计师">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/3.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/4.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/5.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/6.jpg">
+<meta property="og:updated_time" content="2018-07-03T17:28:57.274Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flexible实现移动端适配">
+<meta name="twitter:description" content="一、引言  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：      虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：      再看手淘H5要适配的终端设备数据：      看到这么多数据，要崩溃…… 二、手淘团队适配协作模式  为了应对这多么的终端设备，设计师">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/3.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-mobile-bs-flexible" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      flexible实现移动端适配
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-31
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：</p>
+<p>  <img src="mobile-bs-flexible/3.jpg" alt="Alt text"></p>
+<p>  虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：</p>
+<p>  <img src="mobile-bs-flexible/1.png" alt="Alt text"></p>
+<p>  再看手淘H5要适配的终端设备数据：</p>
+<p>  <img src="mobile-bs-flexible/2.png" alt="Alt text"></p>
+<p>  看到这么多数据，要崩溃……</p>
+<h3 id="二、手淘团队适配协作模式"><a href="#二、手淘团队适配协作模式" class="headerlink" title="二、手淘团队适配协作模式"></a>二、手淘团队适配协作模式</h3><p>  为了应对这多么的终端设备，设计师和前端之间开发的适配协作基本思路是：<br>  1、选择一种尺寸作为设计和开发基准<br>  2、定义一套适配规则，自动适配剩下的两种尺寸(其实不仅这两种，你懂的)<br>  3、特殊适配效果给出设计效果</p>
+<p>  手淘设计师常选择iPhone6(设备宽高度375pt x 667pt ; 物理像素750pt x 1334pt ; dpr2)作为基准设计尺寸，交付给前端的设计尺寸是按750px * 1334px为准(高度会随着内容多少而改变)。前端开发人员通过一套适配规则自动适配到其他的尺寸。</p>
+<p>  <img src="mobile-bs-flexible/4.jpg" alt="Alt text"></p>
+<h3 id="三、前端开发完成终端适配方案-相关概念"><a href="#三、前端开发完成终端适配方案-相关概念" class="headerlink" title="三、前端开发完成终端适配方案 - - 相关概念"></a>三、前端开发完成终端适配方案 - - 相关概念</h3><p>  拿到设计师给的设计图之后，剩下的事情是前端开发人员的事了。手淘使用 <a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">flexible</a> 方案。在此之前，先了解一些概念。</p>
+  <font size="4" face="黑体"><strong>1、视窗 viewport</strong></font>
+
+<p>  简单的理解，viewport是严格等于浏览器的窗口。<br>  在桌面浏览器中，viewport就是浏览器窗口的宽度高度。但在移动端设备上就有点复杂。<br>  做更深的了解，可以阅读 <a href="https://www.w3cplus.com/css/viewports.html" target="_blank" rel="noopener">PPK写的相关教程</a> 。</p>
+  <font size="4" face="黑体"><strong>2、物理像素(physical pixel)</strong></font>
+
+<p>  物理像素又被称为设备像素，他是显示设备中一个最微小的物理部件。每个像素可以根据操作系统设置自己的颜色和亮度。正是这些设备像素的微小距离欺骗了我们肉眼看到的图像效果。</p>
+<p>  <img src="mobile-bs-flexible/5.jpg" alt="Alt text"></p>
+  <font size="4" face="黑体"><strong>3、设备独立像素(density-independent pixel)</strong></font>
+
+<p>  设备独立像素也称为密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)，然后由相关系统转换为物理像素。其与屏幕密度有关。可用来辅助区分视网膜设备还是非视网膜设备。</p>
+  <font size="4" face="黑体"><strong>4、设备像素比(device pixel ratio)</strong></font>
+
+<p>  设备像素比简称为dpr，其定义了物理像素和设备独立像素的对应关系。设备像素比 ＝ 物理像素 / 设备独立像素。</p>
+<p>  在JavaScript中，可以通过window.devicePixelRatio获取到当前设备的dpr。<br>  而在CSS中，可以通过-webkit-device-pixel-ratio，-webkit-min-device-pixel-ratio和 -webkit-max-device-pixel-ratio进行媒体查询，对不同dpr的设备，做一些样式适配(这里只针对webkit内核的浏览器和webview)。</p>
+  <font size="4" face="黑体"><strong>5、CSS像素</strong></font>
+
+<p>  CSS像素是一个抽像的单位，主要使用在浏览器上，用来精确度量Web页面上的内容。一般情况之下，CSS像素称为与设备无关的像素(device-independent pixel)，简称DIPs。</p>
+  <font size="4" face="黑体"><strong>6、屏幕密度</strong></font>
+
+<p>  屏幕密度是指一个设备表面上存在的像素数量，它通常以每英寸有多少像素来计算(PPI)。</p>
+<p>  众所周知，iPhone6的设备宽度和高度为375pt <em> 667pt,可以理解为设备的独立像素；而其dpr为2，根据上面公式，我们可以很轻松得知其物理像素为750pt </em> 1334pt。</p>
+  <font size="4" face="黑体"><strong>7、meta标签</strong></font>
+
+<p>  <meta>标签有很多种，而这里要着重说的是viewport的meta标签，其主要用来告诉浏览器如何规范的渲染Web页面，而你则需要告诉它视窗有多大。在开发移动端页面，我们需要设置meta标签如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  代码以显示网页的屏幕宽度定义了视窗宽度。网页的比例和最大比例被设置为100%。</p>
+  <font size="4" face="黑体"><strong>8、CSS单位rem</strong></font>
+
+<p>  简单的理解，rem就是相对于根元素<html>的font-size来做计算。使用rem单位，是能轻易的根据<html>的font-size计算出元素的盒模型大小。</html></html></p>
+  <font size="4" face="黑体"><strong>9、图片适配</strong></font>
+
+<p>  在移动端时代屏幕适配除了Layout之外，还要考虑到图片的适配，因为其直接影响到页面显示质量，对于如何实现图片适配，再此不做过多详细阐述。这里盗用了 @南宮瑞揚 根据 <a href="http://mir.aculo.us/2012/06/26/flowchart-how-to-retinafy-your-website/" target="_blank" rel="noopener">mir.aculo.us</a> 翻译的一张信息图：</p>
+<p>  <img src="mobile-bs-flexible/6.jpg" alt="Alt text"></p>
+<h3 id="四、前端开发完成终端适配方案-实现方案"><a href="#四、前端开发完成终端适配方案-实现方案" class="headerlink" title="四、前端开发完成终端适配方案 - - 实现方案"></a>四、前端开发完成终端适配方案 - - 实现方案</h3><p>  手淘团队有一个名叫 <a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">lib-flexible</a> 的库，用来解决H5页面终端适配的。</p>
+  <font size="4" face="黑体"><strong>1、lib-flexible是什么</strong></font>
+
+<p>  lib-flexible是一个制作H5适配的开源库，可以点击 <a href="href=&quot;https://github.com/amfe/lib-flexible/archive/master.zip&quot;">这里</a> 下载相关文件，获取需要的JavaScript和CSS文件。</p>
+<p>  或直接使用阿里CDN(将代码中的换成对应的版本号0.3.4)<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/&#123;&#123;version&#125;&#125;/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>2、使用方法</strong></font>
+
+<p>  第一种方法是将文件下载到你的项目中，然后通过相对路径添加:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"build/flexible_css.debug.js"</span>&gt;&lt;/script&gt; </span><br><span class="line">&lt;script src=<span class="string">"build/flexible.debug.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  或者直接加载阿里CDN的文件：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  另外强烈建议对JS做内联处理，在所有资源加载之前执行这个JS。执行这个JS后，会在<html>元素上增加一个data-dpr属性，以及一个font-size样式。JS会根据不同的设备添加不同的data-dpr值，比如说2或者3，同时会给html加上对应的font-size的值，比如说75px。</html></p>
+<p>  如此一来，页面中的元素，都可以通过rem单位来设置。他们会根据html元素的font-size值做相应的计算，从而实现屏幕的适配效果。</p>
+<p>  除此之外，在引入lib-flexible需要执行的JS之前，可以手动设置meta来控制dpr值，如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"flexible"</span> content=<span class="string">"initial-dpr=2"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  其中initial-dpr会把dpr强制设置为给定的值。如果手动设置了dpr之后，不管设备是多少的dpr，都会强制认为其dpr是你设置的值。在此不建议手动强制设置dpr，因为在Flexible中，只对iOS设备进行dpr的判断，对于Android系列，始终认为其dpr为1。</p>
+  <font size="4" face="黑体"><strong>3、flexible的实质</strong></font>
+
+<p>  事实上他做了这几样事情：<br>  1、动态改写<meta>标签<br>  2、给<html>元素添加data-dpr属性，并且动态改写data-dpr的值<br>  3、给<html>元素添加font-size属性，并且动态改写font-size的值</html></html></p>
+<h3 id="五、案例实战回归"><a href="#五、案例实战回归" class="headerlink" title="五、案例实战回归"></a>五、案例实战回归</h3><p>  回到文章开头，制作一个适配各终端的H5页面步骤如何呢？</p>
+  <font size="4" face="黑体"><strong>1、创建HTML模板</strong></font>
+
+<p>  大家可以根据自己风格写模板。</p>
+  <font size="4" face="黑体"><strong>2、把视觉稿中的px转换成rem</strong></font>
+
+<p>  目前日常工作当中，视觉设计师给到前端开发人员手中的视觉稿尺寸一般是基于640px、750px以及1125px宽度为准。<br>  如文章开头显示的示例设计稿，就是一张以750px为基础设计的。那么，我们如何将设计稿中各元素的px转换成rem。</p>
+<p>  目前Flexible会将视觉稿分成100份（主要为了以后能更好的兼容vh和vw），而每一份被称为一个单位a。同时1rem单位被认定为10a。针对我们这份视觉稿可以计算出：<br>  1a = 7.5px ；1rem = 75px<br>  那么我们这个示例的稿子就分成了100a，也就是整个宽度为10rem，<html>对应的font-size为75px。</html></p>
+<p>  这样一来，对于视觉稿上的元素尺寸换算，只需要原始的px值除以rem基准值即可。例如此例视觉稿中的图片，其尺寸是176px <em> 176px,转换成为2.346667rem </em> 2.346667rem。</p>
+  <font size="4" face="黑体"><strong>3、如何快速计算rem</strong></font>
+
+<p>  应用各种小工具。</p>
+<p>  CSSREM:<br>  CSSREM是一个CSS的px值转rem值的Sublime Text3自动完成插件。<br>  有关于CSSREM如何安装、配置教程可以点击 <a href="https://github.com/flashlizi/cssrem" target="_blank" rel="noopener">这里</a> 查阅。</p>
+<p>  CSS处理器:<br>  除了使用编辑器的插件之外，还可以使用CSS的处理器处理。比如说Sass、LESS以及PostCSS这样的处理器。我们简单来看两个示例。<br>  <a href="https://www.w3cplus.com/blog/tags/302.html" target="_blank" rel="noopener">Sass</a> :使用Sass的同学，可以使用Sass的函数、混合宏这些功能来实现：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">function</span> px2em(<span class="variable">$px</span>, <span class="variable">$base</span>-font-size: 16px) &#123; </span><br><span class="line">    @<span class="keyword">if</span> (unitless(<span class="variable">$px</span>)) &#123; </span><br><span class="line">    	  @warn <span class="string">"Assuming #&#123;<span class="variable">$px</span>&#125; to be in pixels, attempting to convert it into pixels for you"</span>; </span><br><span class="line">    	  @<span class="built_in">return</span> px2em(<span class="variable">$px</span> + 0px); // That may fail. </span><br><span class="line">    &#125; @<span class="keyword">else</span> <span class="keyword">if</span> (unit(<span class="variable">$px</span>) == em) &#123; </span><br><span class="line">    	  @<span class="built_in">return</span> <span class="variable">$px</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    @<span class="built_in">return</span> (<span class="variable">$px</span> / <span class="variable">$base</span>-font-size) * 1em; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">@mixin px2rem(<span class="variable">$property</span>,<span class="variable">$px</span>-values,<span class="variable">$baseline</span>-px:16px,<span class="variable">$support</span>-<span class="keyword">for</span>-ie:<span class="literal">false</span>)&#123; </span><br><span class="line">    //Conver the baseline into rems </span><br><span class="line">    <span class="variable">$baseline</span>-rem: <span class="variable">$baseline</span>-px / 1rem * 1; </span><br><span class="line">    //Print the first line <span class="keyword">in</span> pixel values </span><br><span class="line">    @<span class="keyword">if</span> <span class="variable">$support</span>-<span class="keyword">for</span>-ie &#123; </span><br><span class="line">    	  <span class="comment">#&#123;$property&#125;: $px-values; </span></span><br><span class="line">    &#125; </span><br><span class="line">    //<span class="keyword">if</span> there is only one (numeric) value, <span class="built_in">return</span> the property/value line <span class="keyword">for</span> it. </span><br><span class="line">    @<span class="keyword">if</span> <span class="built_in">type</span>-of(<span class="variable">$px</span>-values) == <span class="string">"number"</span>&#123; </span><br><span class="line">    	  <span class="comment">#&#123;$property&#125;: $px-values / $baseline-rem; </span></span><br><span class="line">    &#125; </span><br><span class="line">    @<span class="keyword">else</span> &#123; </span><br><span class="line">    	  //Create an empty list that we can dump values into </span><br><span class="line">    	  <span class="variable">$rem</span>-values:(); </span><br><span class="line">    	  @each <span class="variable">$value</span> <span class="keyword">in</span> <span class="variable">$px</span>-values&#123; </span><br><span class="line">    	  	  // If the value is zero or not a number, <span class="built_in">return</span> it </span><br><span class="line">    	  	  @<span class="keyword">if</span> <span class="variable">$value</span> == 0 or <span class="built_in">type</span>-of(<span class="variable">$value</span>) != <span class="string">"number"</span>&#123;</span><br><span class="line">    	  	      <span class="variable">$rem</span>-values: append(<span class="variable">$rem</span>-values, <span class="variable">$value</span> / <span class="variable">$baseline</span>-rem); </span><br><span class="line">    	  	  &#125; </span><br><span class="line">    	  &#125; </span><br><span class="line">    	  // Return the property and its list of converted values </span><br><span class="line">    	  <span class="comment">#&#123;$property&#125;: $rem-values; </span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  <a href="https://www.npmjs.com/package/postcss-px2rem" target="_blank" rel="noopener">PostCSS</a> (<a href="https://www.npmjs.com/package/px2rem" target="_blank" rel="noopener">px2rem</a>) :可以使用PostCSS其插件postcss-px2rem 或者 px2rem，均是npm工具，具体配置看npm链接。<br>  配置完成之后，在实际使用时，你只要像下面这样使用：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.selector &#123; </span><br><span class="line">    width: 150px; </span><br><span class="line">    height: 64px; /*px*/ </span><br><span class="line">    font-size: 28px; /*px*/ </span><br><span class="line">    border: 1px solid <span class="comment">#ddd; /*no*/ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  px2rem处理之后将会变成：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.selector &#123; </span><br><span class="line">    width: 2rem; </span><br><span class="line">    border: 1px solid <span class="comment">#ddd; </span></span><br><span class="line">&#125; </span><br><span class="line">[data-dpr=<span class="string">"1"</span>] .selector &#123; </span><br><span class="line">    height: 32px; </span><br><span class="line">    font-size: 14px; </span><br><span class="line">&#125; </span><br><span class="line">[data-dpr=<span class="string">"2"</span>] .selector &#123; </span><br><span class="line">    height: 64px; </span><br><span class="line">    font-size: 28px; </span><br><span class="line">&#125; </span><br><span class="line">[data-dpr=<span class="string">"3"</span>] .selector &#123; </span><br><span class="line">    height: 96px; </span><br><span class="line">    font-size: 42px; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>4、字号不使用rem</strong></font>
+
+<p>  我们在iPhone3G和iPhone4的Retina屏下面，希望看到的文本字号是相同的。也就是说，我们不希望文本在Retina屏幕下变小，另外，我们希望在大屏手机上看到更多文本，以及，现在绝大多数的字体文件都自带一些点阵尺寸，通常是16px和24px，所以我们不希望出现13px和15px这样的奇葩尺寸。</p>
+<p>  如此一来，就决定了在制作H5的页面中，rem并不适合用到段落文本上。所以在Flexible整个适配方案中，考虑文本还是使用px作为单位。只不过使用[data-dpr]属性来区分不同dpr下的文本字号大小。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">div &#123; </span><br><span class="line">    width: 1rem; </span><br><span class="line">    height: 0.4rem; </span><br><span class="line">    font-size: 12px; // 默认写上dpr为1的fontSize </span><br><span class="line">&#125; </span><br><span class="line">[data-dpr=<span class="string">"2"</span>] div &#123; </span><br><span class="line">    font-size: 24px; </span><br><span class="line">&#125; </span><br><span class="line">[data-dpr=<span class="string">"3"</span>] div &#123; </span><br><span class="line">    font-size: 36px; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  为了能更好的利于开发，在实际开发中，我们可以定制一个font-dpr()这样的Sass混合宏<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@mixin font-dpr(<span class="variable">$font</span>-size)&#123; </span><br><span class="line">    font-size: <span class="variable">$font</span>-size; </span><br><span class="line">    [data-dpr=<span class="string">"2"</span>] &amp; &#123; </span><br><span class="line">    	  font-size: <span class="variable">$font</span>-size * 2; </span><br><span class="line">    &#125; </span><br><span class="line">    [data-dpr=<span class="string">"3"</span>] &amp; &#123; </span><br><span class="line">    	  font-size: <span class="variable">$font</span>-size * 3; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  有了这样的混合宏之后，在开发中可以直接这样使用：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@include font-dpr(16px);</span><br></pre></td></tr></table></figure></p>
+<p>  当然这只是针对于描述性的文本，比如说段落文本。但有的时候文本的字号也需要分场景的，比如在项目中有一个slogan,业务方希望这个slogan能根据不同的终端适配。针对这样的场景，完全可以使用rem给slogan做计量单位。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html" target="_blank" rel="noopener">http://www.w3cplus.com/mobile/lib-flexible-for-html5-layout.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:28</p>
+        <p>原始链接： <a class="post-url" href="/2018/01/31/mobile-bs-flexible/" title="flexible实现移动端适配">http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/&title=《flexible实现移动端适配》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/&title=《flexible实现移动端适配》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《flexible实现移动端适配》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-移动端适配/" class="color4">前端-移动端适配</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、引言"><span class="post-toc-text">一、引言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、手淘团队适配协作模式"><span class="post-toc-text">二、手淘团队适配协作模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、前端开发完成终端适配方案-相关概念"><span class="post-toc-text">三、前端开发完成终端适配方案 - - 相关概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、前端开发完成终端适配方案-实现方案"><span class="post-toc-text">四、前端开发完成终端适配方案 - - 实现方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、案例实战回归"><span class="post-toc-text">五、案例实战回归</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/01/server-bs-crossDomain/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          跨域
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/01/31/server-bs-nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">nginx专讲</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

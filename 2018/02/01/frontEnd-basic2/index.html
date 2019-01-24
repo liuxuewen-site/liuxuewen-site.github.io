@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>前端基础考题2 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、什么是WebGL,它有什么作用以及优点?  &amp;emsp;&amp;emsp;WebGL（Web Graphics Library ）是一种 3D 绘图标准，这种绘图技术标准允许把 JavaScript 和 OpenGL ES 2.0 结合在一起，通过增加 OpenGL ES 2.0 的一个 JavaScript 绑定， WebGL 可以为 HTML5 Canvas 提供硬件 3D 加速渲染，这样 We">
+<meta name="keywords" content="前端-考题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端基础考题2">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、什么是WebGL,它有什么作用以及优点?  &amp;emsp;&amp;emsp;WebGL（Web Graphics Library ）是一种 3D 绘图标准，这种绘图技术标准允许把 JavaScript 和 OpenGL ES 2.0 结合在一起，通过增加 OpenGL ES 2.0 的一个 JavaScript 绑定， WebGL 可以为 HTML5 Canvas 提供硬件 3D 加速渲染，这样 We">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-02-24T09:27:34.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端基础考题2">
+<meta name="twitter:description" content="一、什么是WebGL,它有什么作用以及优点?  &amp;emsp;&amp;emsp;WebGL（Web Graphics Library ）是一种 3D 绘图标准，这种绘图技术标准允许把 JavaScript 和 OpenGL ES 2.0 结合在一起，通过增加 OpenGL ES 2.0 的一个 JavaScript 绑定， WebGL 可以为 HTML5 Canvas 提供硬件 3D 加速渲染，这样 We">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-frontEnd-basic2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      前端基础考题2
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-02-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、什么是WebGL-它有什么作用以及优点"><a href="#一、什么是WebGL-它有什么作用以及优点" class="headerlink" title="一、什么是WebGL,它有什么作用以及优点?"></a>一、什么是WebGL,它有什么作用以及优点?</h3><p>  &emsp;&emsp;WebGL（Web Graphics Library ）是一种 3D 绘图标准，这种绘图技术标准允许把 JavaScript 和 OpenGL ES 2.0 结合在一起，通过增加 OpenGL ES 2.0 的一个 JavaScript 绑定， WebGL 可以为 HTML5 Canvas 提供硬件 3D 加速渲染，这样 Web 开发人员就可以借助系统显卡来在浏览器里更流畅地展示 3D 场景和模型，还能创建复杂的导航和数据视觉化。</p>
+<p>  &emsp;&emsp;WebGL 技术标准免去了开发网页专用渲染插件的麻烦，可被用于创建具有复杂 3D 结构的网站页面，甚至可以用来设计 3D 网页游戏等。因为原生的 WebGL 很复杂，我们经常会使用一些三方的库，如 three.js 等，这些库多数用于 HTML5 游戏开发。</p>
+<p>  &emsp;&emsp;WebGL完美地解决了现有的 Web 交互式三维动画的两个问题：<br>  第一，它通过HTML脚本本身实现 Web 交互式三维动画的制作，无需任何浏览器插件支持 ;<br>  第二，它利用底层的图形硬件加速功能进行的图形渲染，是通过统一的、标准的、跨平台的OpenGL接口实现的。</p>
+<h3 id="二、说说你对SVG理解"><a href="#二、说说你对SVG理解" class="headerlink" title="二、说说你对SVG理解?"></a>二、说说你对SVG理解?</h3><p>  SVG可缩放矢量图形（ Scalable Vector Graphics ）是基于可扩展标记语言（ XML ）、用于描述二维矢量图形的一种图形格式。 是W3C在2000年8月制定的一种新的二维矢量图形格式，也是规范中的网络矢量图形标准。</p>
+<p>  SVG 严格遵从 XML 语法，并用文本格式的描述性语言来描述图像内容，因此是一种和图像分辨率无关的矢量图形格式。</p>
+<p>  特点：<br>  (1)任意放缩：用户可以任意缩放图像显示，而不会破坏图像的清晰度、细节等。<br>  (2)文本独立：SVG图像中的文字独立于图像，文字保留可编辑和可搜寻的状态。也不会再有字体的限制，用户系统即使没有安装某一字体，也会看到和他们制作时完全相同的画面。<br>  (3)较小文件：总体来讲，SVG文件比那些 GIF 和 JPEG 格式的文件要小很多，因而下载也很快。<br>  (4)超强显示效果：SVG图像在屏幕上总是边缘清晰，它的清晰度适合任何屏幕分辨率和打印分辨率。<br>  (5)超级颜色控制：SVG图像提供一个 1600 万种颜色的调色板，支持 ICC 颜色描述文件标准、 RGB 、线 X 填充、渐变和蒙版。<br>  (6)交互 X 和智能化。 </p>
+<p>  SVG 面临的主要问题一个是如何和已经占有重要市场份额的矢量图形格式 Flash 竞争的问题，另一个问题就是 SVG 的本地运行环境下的厂家支持程度。</p>
+<p>  浏览器支持：<br>  Internet Explorer9，火狐，谷歌 Chrome ， Opera 和 Safari 都支持 SVG 。<br>  IE8和早期版本都需要一个插件 - 如 Adobe SVG 浏览器，这是免费提供的。 </p>
+<h3 id="三、link和-import的区别"><a href="#三、link和-import的区别" class="headerlink" title="三、link和@import的区别?"></a>三、link和@import的区别?</h3><p>  link使用：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">'stylesheet'</span> rev=<span class="string">'stylesheet'</span> href=<span class="string">'CSS文件 '</span> <span class="built_in">type</span>=<span class="string">'text/css'</span> media=<span class="string">'all'</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  @import使用<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;style <span class="built_in">type</span>=<span class="string">'text/css'</span> media=<span class="string">'screen'</span>&gt;</span><br><span class="line">@import url(<span class="string">'CSS文件 '</span>);</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  两者都是外部引用CSS的方式，但是存在一定的区别：<br>  区别1： link 是 XHTML 标签，除了加载 CSS 外，还可以定义 RSS 等其他事务； @import 属于 CSS 范畴，只能加载 CSS 。<br>  区别2： link 引用 CSS 时，在页面载入时同时加载； @import 需要页面网页完全载入以后加载。<br>  区别3： link 是 XHTML 标签，无兼容问题； @import 是在 CSS2.1 提出的，低版本的浏览器不支持。<br>  区别4： link 支持使用 Javascript 控制 DOM 去改变样式；而 @import 不支持。<br>  区别5： link方式的样式权重高于@import的权重。</p>
+<h3 id="四、src与href的区别？"><a href="#四、src与href的区别？" class="headerlink" title="四、src与href的区别？"></a>四、src与href的区别？</h3><p>  1）src用于替换当前元素， href用于在当前文档和引用资源之间确立联系。</p>
+<p>  2）src是source的缩写，指向外部资源的位置。在请求src资源时会将其指向的资源下载并应用到文档内，指向的内容将会嵌入到文档中当前标签所在位置。例如js脚本，img图片和frame等元素。</p>
+<p>  当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等元素也如此，类似于将所指向资源嵌入当前标签内。这也是为什么将js脚本放在底部而不是头部。</p>
+<p>  3）href是Hypertext Reference 的缩写，指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的链接。</p>
+<p>  如果我们在文档中添加&lt; link href=’common.css’ rel=’stylesheet’/ >那么浏览器会识别该文档为css文件，就会并行下载资源并且不会停止对当前文档的处理。这也是为什么建议使用 link 方式来加载 css ，而不是使用 @import 方式。</p>
+<h3 id="五、title与h、b与strong、i与em，其区别？"><a href="#五、title与h、b与strong、i与em，其区别？" class="headerlink" title="五、title与h、b与strong、i与em，其区别？"></a>五、title与h、b与strong、i与em，其区别？</h3><p>  1）title表示标题，但没有明确意义； H1表示层次明确的标题，对页面信息的抓取有很大的影响；<br>  2）b只是展示强调内容；strong标明重点内容，有语气加强的含义；<br>  3）i内容展示为斜体； em表示强调的文本；</p>
+<p>  Physical Style Elements – 自然样式标签：<br>  b, i, u, s, pre</p>
+<p>  Semantic Style Elements – 语义样式标签：<br>  strong, em, ins, del, code</p>
+<p>  应该准确使用语义样式标签, 但不能滥用 , 如果不能确定时首选使用自然样式标签。 </p>
+<h3 id="六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？"><a href="#六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？" class="headerlink" title="六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？"></a>六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？</h3>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">"width:100%;height:1px;background-color:black"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="七、img的title和alt有什么区别？"><a href="#七、img的title和alt有什么区别？" class="headerlink" title="七、img的title和alt有什么区别？"></a>七、img的title和alt有什么区别？</h3><p>  Alt 用于图片无法加载时显示。<br>  Title 为该属性提供信息，通常当鼠标滑动到元素上的时候显示。</p>
+<h3 id="八、表单的基本组成部分有哪些，表单主要用途是什么？"><a href="#八、表单的基本组成部分有哪些，表单主要用途是什么？" class="headerlink" title="八、表单的基本组成部分有哪些，表单主要用途是什么？"></a>八、表单的基本组成部分有哪些，表单主要用途是什么？</h3><p>  1）组成：表单标签、表单域、表单按钮<br>  a、表单标签：这里面包含了处理表单数据所用CGI程序的URL, 以及数据提交到服务器的方法。<br>  b、表单域：包含了文本框、密码框、隐藏域、多行文本框、复选框、单选框、下拉选择框、和文件上传框等。<br>  c、表单按钮：包括提交按钮，复位按钮和一般按钮；用于将数据传送到服务器上的CGI脚本或者取消输入，还可以用表单按钮来控制其他定义了处理脚本的处理工作。</p>
+<p>  2）主要用途：表单在网页中主要负责数据采集的功能，和向服务器传送数据。</p>
+<h3 id="九、表单提交中Get和Post方式的区别？"><a href="#九、表单提交中Get和Post方式的区别？" class="headerlink" title="九、表单提交中Get和Post方式的区别？"></a>九、表单提交中Get和Post方式的区别？</h3><p>  原理性区别：<br>  1）Http定义的与服务器交互的四种基本方法 - - 增删改查；<br>  从定义而言get用于信息获取（状态不做迁移），是安全幂等的（即不修改信息、同一url多次请求结果一致），比如腾讯新闻的刷新操作；<br>  而post用于信息传送，可以修改服务器上的资源请求（资源的状态迁移），比如新闻评论的提交，提交前后资源被修改了。<br>  2）关于幂等与否只是 http 的规定，实际中要看服务器端怎么写。</p>
+<p>  表象上区别：<br>  1）get将表单中数据的按照 variable=value 的形式，添加到action所指向的URL后面，并且两者使用“ ? ”连接，而各个变量之间使用“ &amp; ”连接（明文提交）；post是将表单中的数据放在form的数据体中，按照变量和值相对应的方式，传递到action所指向URL,用户看不到这个过程。<br>  2）get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制。但理论上，IIS4中最大量为80KB，IIS5中为100KB。<br>  3）get方式服务器端用Request.QueryString获取变量的值，post方式服务器端用Request.Form获取提交的数据。<br>  4）get限制Form表单的数据集的值必须为ASCII字符；而post支持整个ISO10646字符集.<br>  6）get安全性低，post安全性较高。<br>  7）传输信息所在http中的位置不同：Post的信息作为http请求的内容，而Get是在Http头部传输的，get 请求可以有body但大多数服务器不会解析get请求的body。</p>
+<p>标注：</p>
+<ul>
+<li>本文来自牛客网</li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年02月24日 17:27</p>
+        <p>原始链接： <a class="post-url" href="/2018/02/01/frontEnd-basic2/" title="前端基础考题2">http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/&title=《前端基础考题2》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/&title=《前端基础考题2》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《前端基础考题2》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/02/01/frontEnd-basic2/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-考题/" class="color1">前端-考题</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、什么是WebGL-它有什么作用以及优点"><span class="post-toc-text">一、什么是WebGL,它有什么作用以及优点?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、说说你对SVG理解"><span class="post-toc-text">二、说说你对SVG理解?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、link和-import的区别"><span class="post-toc-text">三、link和@import的区别?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、src与href的区别？"><span class="post-toc-text">四、src与href的区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、title与h、b与strong、i与em，其区别？"><span class="post-toc-text">五、title与h、b与strong、i与em，其区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？"><span class="post-toc-text">六、不使用border画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、img的title和alt有什么区别？"><span class="post-toc-text">七、img的title和alt有什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八、表单的基本组成部分有哪些，表单主要用途是什么？"><span class="post-toc-text">八、表单的基本组成部分有哪些，表单主要用途是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#九、表单提交中Get和Post方式的区别？"><span class="post-toc-text">九、表单提交中Get和Post方式的区别？</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/02/02/mobile-bs-vwvh/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          再聊移动端适配之vw、vh
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/02/01/server-bs-crossDomain/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">跨域</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>

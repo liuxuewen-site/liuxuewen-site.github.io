@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>服务器端数据存储方式：session | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、session  &amp;emsp;&amp;emsp;客户端浏览器与服务器之间一系列交互的动作称为一个 Session。   &amp;emsp;&amp;emsp;Session是另一种记录客户状态的机制，不同于Cookie的是cookie保存在客户端浏览器中，而Session保存在服务器上。   &amp;emsp;&amp;emsp;客户端浏览器访问服务器的时候，服务器创建session，把客户端信息以某种形式记录在服务器上，同时">
+<meta name="keywords" content="后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器端数据存储方式：session">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、session  &amp;emsp;&amp;emsp;客户端浏览器与服务器之间一系列交互的动作称为一个 Session。   &amp;emsp;&amp;emsp;Session是另一种记录客户状态的机制，不同于Cookie的是cookie保存在客户端浏览器中，而Session保存在服务器上。   &amp;emsp;&amp;emsp;客户端浏览器访问服务器的时候，服务器创建session，把客户端信息以某种形式记录在服务器上，同时">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-03T17:08:00.563Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="服务器端数据存储方式：session">
+<meta name="twitter:description" content="一、session  &amp;emsp;&amp;emsp;客户端浏览器与服务器之间一系列交互的动作称为一个 Session。   &amp;emsp;&amp;emsp;Session是另一种记录客户状态的机制，不同于Cookie的是cookie保存在客户端浏览器中，而Session保存在服务器上。   &amp;emsp;&amp;emsp;客户端浏览器访问服务器的时候，服务器创建session，把客户端信息以某种形式记录在服务器上，同时">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-BG-bs-session" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      服务器端数据存储方式：session
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/后台/">后台</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2018-01-30
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、session"><a href="#一、session" class="headerlink" title="一、session"></a>一、session</h3><p>  &emsp;&emsp;客户端浏览器与服务器之间一系列交互的动作称为一个 Session。</p>
+<p>  &emsp;&emsp;Session是另一种记录客户状态的机制，不同于Cookie的是cookie保存在客户端浏览器中，而Session保存在服务器上。</p>
+<p>  &emsp;&emsp;客户端浏览器访问服务器的时候，服务器创建session，把客户端信息以某种形式记录在服务器上，同时，服务器会为该Session生成唯一的Session id，这个Session id在随后的请求中会被用来重新获得已经创建的Session。</p>
+<p>  &emsp;&emsp;在Session被创建之后，就可以调用Session相关的方法往Session中增加内容了，而这些内容只会保存在服务器中，发到客户端的只有Session id；当客户端再次发送请求的时候，会将这个Session id带上，服务器接受到请求之后就会依据Session id找到相应的Session，从而再次使用之。</p>
+<p>  &emsp;&emsp;如果说Cookie机制是通过检查客户身上的“通行证”来确定客户身份的话，那么Session机制就是通过检查服务器上的“客户明细表”来确认客户身份。Session相当于程序在服务器上建立的一份客户档案，客户来访的时候只需要查询客户档案表就可以了。</p>
+<p>  &emsp;&emsp;session可应用于记录用户登录状态（session的使用更多涉及后台，具体代码的应用此处不给例子）。</p>
+<h3 id="二、session生命周期"><a href="#二、session生命周期" class="headerlink" title="二、session生命周期"></a>二、session生命周期</h3><p>  &emsp;&emsp;为了获得更高的存取速度，服务器一般把Session放在内存里。每个用户都会有一个独立的Session。如果Session内容过于复杂，当大量客户访问服务器时可能会导致内存溢出。因此，Session里的信息应该尽量精简。</p>
+<p>  &emsp;&emsp;Session在用户第一次访问服务器的时候自动创建。需要注意只有访问JSP、Servlet等程序时才会创建Session，只访问HTML、IMAGE等静态资源并不会创建Session。如果尚未生成Session，也可以使用request.getSession(true)强制生成Session。</p>
+<p>  &emsp;&emsp;Session生成后，只要用户继续访问，服务器就会更新Session的最后访问时间，并维护该Session。用户每访问服务器一次，无论是否读写Session，服务器都认为该用户的Session“活跃（active）”了一次。</p>
+<h3 id="三、session有效期"><a href="#三、session有效期" class="headerlink" title="三、session有效期"></a>三、session有效期</h3><p>  &emsp;&emsp;由于会有越来越多的用户访问服务器，因此Session也会越来越多。为防止内存溢出，服务器会把长时间内没有活跃的Session从内存删除。这个时间就是Session的超时时间。如果超过了超时时间没访问过服务器，Session就自动失效了。</p>
+<p>  &emsp;&emsp;Session的超时时间为maxInactiveInterval属性，可以通过对应的getMaxInactiveInterval()获取，通过setMaxInactiveInterval(longinterval)修改。</p>
+<p>  &emsp;&emsp;Session的超时时间也可以在web.xml中修改。另外，通过调用Session的invalidate()方法可以使Session失效。</p>
+<h3 id="三、session常用方法"><a href="#三、session常用方法" class="headerlink" title="三、session常用方法"></a>三、session常用方法</h3><p>  &emsp;&emsp;1、void setAttribute(String attribute, Object value)：设置Session属性，value参数可以为任何Java Object，通常为Java Bean，value信息不宜过大。</p>
+<p>  &emsp;&emsp;2、String getAttribute(String attribute)：返回Session属性。</p>
+<p>  &emsp;&emsp;3、Enumeration getAttributeNames()：返回Session中存在的属性名。</p>
+<p>  &emsp;&emsp;4、void removeAttribute(String attribute)：移除Session属性。</p>
+<p>  &emsp;&emsp;5、String getId()：返回Session的ID。该ID由服务器自动创建，不会重复。</p>
+<p>  &emsp;&emsp;6、long getCreationTime()：返回Session的创建日期。返回类型为long，常被转化为Date类型，例如：Date createTime = new Date(session.getCreationTime())。</p>
+<p>  &emsp;&emsp;6、long getLastAccessedTime()：返回Session的最后活跃时间。返回类型为long int。</p>
+<p>  &emsp;&emsp;7、getMaxInactiveInterval()：返回Session的超时时间。单位为秒。超过该时间没有访问，服务器认为该Session失效。</p>
+<p>  &emsp;&emsp;8、void setMaxInactiveInterval(int second)：设置Session的超时时间。单位为秒。</p>
+<p>  &emsp;&emsp;9、void putValue(String attribute, Object value)：不推荐的方法。已经被setAttribute(String attribute, Object Value)替代。</p>
+<p>  &emsp;&emsp;10、Object getValue(String attribute)：不被推荐的方法。已经被getAttribute(String attr)替代。</p>
+<p>  &emsp;&emsp;11、boolean isNew()：返回该Session是否是新创建的。</p>
+<p>  &emsp;&emsp;12、void invalidate()：使该Session失效。</p>
+<h3 id="四、Session对浏览器的要求"><a href="#四、Session对浏览器的要求" class="headerlink" title="四、Session对浏览器的要求"></a>四、Session对浏览器的要求</h3><p>  &emsp;&emsp;虽然Session保存在服务器，对客户端是透明的，但它的正常运行仍然需要客户端浏览器的支持。因为Session需要使用Cookie作为识别标志。HTTP协议是无状态的，Session不能依据HTTP连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，它的值为该Session的id（也就是HttpSession.getId()的返回值）。Session依据该Cookie来识别是否为同一用户。</p>
+<p>  &emsp;&emsp;该Cookie为服务器自动生成的，它的maxAge属性一般为–1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器就会失效。因此同一机器的两个浏览器窗口访问服务器时，会生成两个不同的Session。但是由浏览器窗口内的链接、脚本等打开的新窗口（也就是说不是双击桌面浏览器图标等打开的窗口）除外。这类子窗口会共享父窗口的Cookie，因此会共享一个Session。</p>
+<p>  &emsp;&emsp;在谈论session机制的时候，常常听到这样一种误解“只要关闭浏览器，session就消失了”。其实可以想象一下会员卡的例子，除非顾客主动对店家提出销卡，否则店家绝对不会轻易删除顾客的资料。对session来说也是一样的，除非程序通知服务器删除一个session，否则服务器会一直保留，程序一般都是在用户做log off的时候发个指令去删除session。然而浏览器从来不会主动在关闭之前通知服务器它将要关闭，因此服务器根本不会有机会知道浏览器已经关闭，之所以会有这种错觉，是大部分session机制都使用会话cookie来保存session id，而关闭浏览器后这个 session id就消失了，再次连接服务器时也就无法找到原来的session。如果服务器设置的cookie被保存到硬盘上，或者使用某种手段改写浏览器发出的HTTP请求头，把原来的session id发送给服务器，则再次打开浏览器仍然能够找到原来的session。恰恰是由于关闭浏览器不会导致session被删除，迫使服务器为seesion设置了一个失效时间，当距离客户端上一次使用session的时间超过这个失效时间时，服务器就可以认为客户端已经停止了活动，才会把session删除以节省存储空间。</p>
+<p>  &emsp;&emsp;如果客户端浏览器将Cookie功能禁用，或者不支持Cookie怎么办？例如，绝大多数的手机浏览器都不支持Cookie。Java Web提供了另一种解决方案：URL地址重写。</p>
+<h3 id="五、URL地址重写"><a href="#五、URL地址重写" class="headerlink" title="五、URL地址重写"></a>五、URL地址重写</h3><p>  &emsp;&emsp;URL地址重写的原理是将该用户Session的id信息重写到URL地址中。服务器能够解析重写后的URL获取Session的id。这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;</span><br><span class="line">    &lt;a href=<span class="string">"&lt;%=response.encodeURL("</span>index.jsp?c=1&amp;wd=Java<span class="string">") %&gt;"</span>&gt; </span><br><span class="line">    Homepage&lt;/a&gt;</span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  &emsp;&emsp;该方法会自动判断客户端是否支持Cookie。如果客户端支持Cookie，会将URL原封不动地输出来。如果客户端不支持Cookie，则会将用户Session的id重写到URL中。重写后的输出可能是这样的：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;</span><br><span class="line">  &lt;a href=<span class="string">"index.jsp;jsessionid=0CCD096E7F8D97B0BE608AFDC3E1931E?c=1&amp;wd=Java"</span>&gt;Homepage&lt;/a&gt;</span><br><span class="line">&lt;/td&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、Session中禁止使用Cookie"><a href="#六、Session中禁止使用Cookie" class="headerlink" title="六、Session中禁止使用Cookie"></a>六、Session中禁止使用Cookie</h3><p>  &emsp;&emsp;既然WAP上大部分的客户浏览器都不支持Cookie，索性禁止Session使用Cookie，统一使用URL地址重写会更好一些。Java Web规范支持通过配置的方式禁用Cookie。</p>
+<p>  &emsp;&emsp;打开项目的WebRoot目录下的META-INF文件夹（跟WEB-INF文件夹同级，如果没有则创建），打开context.xml（如果没有则创建），编辑内容如下： /META-INF/context.xml：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">'1.0'</span> encoding=<span class="string">'UTF-8'</span>?&gt;</span><br><span class="line">  &lt;Context path=<span class="string">"/sessionWeb"</span>cookies=<span class="string">"false"</span>&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  &emsp;&emsp;或者修改Tomcat全局的conf/context.xml，修改内容如下： context.xml：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- The contents of this file will be loaded <span class="keyword">for</span> eachweb application --&gt;</span><br><span class="line">&lt;Context cookies=<span class="string">"false"</span>&gt;</span><br><span class="line">  &lt;!-- ... 中间代码略 --&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  &emsp;&emsp;部署后TOMCAT便不会自动生成名JSESSIONID的Cookie，Session也不会以Cookie为识别标志，而仅仅以重写后的URL地址为识别标志了。</p>
+<p>  &emsp;&emsp;注意：该配置只是禁止Session使用Cookie作为识别标志，并不能阻止其他的Cookie读写。也就是说服务器不会自动维护名为JSESSIONID的Cookie了，但是程序中仍然可以读写其他的Cookie。</p>
+<h3 id="七、Cookie与Session的区别"><a href="#七、Cookie与Session的区别" class="headerlink" title="七、Cookie与Session的区别"></a>七、Cookie与Session的区别</h3><p>  &emsp;&emsp;1、cookie数据存放在客户的浏览器上，session数据放在服务器上；<br>  &emsp;&emsp;2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗，考虑到安全应当使用session；<br>  &emsp;&emsp;3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能。考虑到减轻服务器性能方面，应当使用COOKIE；<br>  &emsp;&emsp;4、单个cookie在客户端的限制是4K，就是说一个站点在客户端存放的COOKIE不能超过4K。</p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://www.cnblogs.com/andy-zhou/p/5360107.html" target="_blank" rel="noopener">https://www.cnblogs.com/andy-zhou/p/5360107.html</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年07月04日 01:08</p>
+        <p>原始链接： <a class="post-url" href="/2018/01/30/BG-bs-session/" title="服务器端数据存储方式：session">http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/&title=《服务器端数据存储方式：session》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/&title=《服务器端数据存储方式：session》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《服务器端数据存储方式：session》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/01/30/BG-bs-session/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/后台/" class="color3">后台</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、session"><span class="post-toc-text">一、session</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、session生命周期"><span class="post-toc-text">二、session生命周期</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、session有效期"><span class="post-toc-text">三、session有效期</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、session常用方法"><span class="post-toc-text">三、session常用方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、Session对浏览器的要求"><span class="post-toc-text">四、Session对浏览器的要求</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、URL地址重写"><span class="post-toc-text">五、URL地址重写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、Session中禁止使用Cookie"><span class="post-toc-text">六、Session中禁止使用Cookie</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七、Cookie与Session的区别"><span class="post-toc-text">七、Cookie与Session的区别</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+    <a href="/2018/01/30/JS-bs-localStorage/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          localStorage专讲
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2018/01/30/JS-bs-webStorage/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">客户端数据存储方式：webStorage</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
