@@ -16,17 +16,17 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、引言  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：      虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：      再看手淘H5要适配的终端设备数据：      看到这么多数据，要崩溃…… 二、手淘团队适配协作模式  为了应对这多么的终端设备，设计师">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/3.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/2.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/4.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/5.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/6.jpg">
-<meta property="og:updated_time" content="2018-07-03T17:28:57.274Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/3.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/4.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/5.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/6.jpg">
+<meta property="og:updated_time" content="2019-01-25T09:55:50.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flexible实现移动端适配">
 <meta name="twitter:description" content="一、引言  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：      虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：      再看手淘H5要适配的终端设备数据：      看到这么多数据，要崩溃…… 二、手淘团队适配协作模式  为了应对这多么的终端设备，设计师">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/mobile-bs-flexible/3.jpg">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/3.jpg">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -151,15 +151,15 @@
       
             
             <h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>  关于淘宝，手机淘宝的H5页面是如何实现多终端的适配的呢？比如实现类似下面的页面：</p>
-<p>  <img src="mobile-bs-flexible/3.jpg" alt="Alt text"></p>
+<p>  <img src="3.jpg" alt="Alt text"></p>
 <p>  虽然移动的H5页面与PC的Web页面相比简单了不少，但头痛的事是要想尽办法让页面能适配众多不同的终端设备。看看下图你就会知道，这是多么痛苦的一件事情：</p>
-<p>  <img src="mobile-bs-flexible/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <p>  再看手淘H5要适配的终端设备数据：</p>
-<p>  <img src="mobile-bs-flexible/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  看到这么多数据，要崩溃……</p>
 <h3 id="二、手淘团队适配协作模式"><a href="#二、手淘团队适配协作模式" class="headerlink" title="二、手淘团队适配协作模式"></a>二、手淘团队适配协作模式</h3><p>  为了应对这多么的终端设备，设计师和前端之间开发的适配协作基本思路是：<br>  1、选择一种尺寸作为设计和开发基准<br>  2、定义一套适配规则，自动适配剩下的两种尺寸(其实不仅这两种，你懂的)<br>  3、特殊适配效果给出设计效果</p>
 <p>  手淘设计师常选择iPhone6(设备宽高度375pt x 667pt ; 物理像素750pt x 1334pt ; dpr2)作为基准设计尺寸，交付给前端的设计尺寸是按750px * 1334px为准(高度会随着内容多少而改变)。前端开发人员通过一套适配规则自动适配到其他的尺寸。</p>
-<p>  <img src="mobile-bs-flexible/4.jpg" alt="Alt text"></p>
+<p>  <img src="4.jpg" alt="Alt text"></p>
 <h3 id="三、前端开发完成终端适配方案-相关概念"><a href="#三、前端开发完成终端适配方案-相关概念" class="headerlink" title="三、前端开发完成终端适配方案 - - 相关概念"></a>三、前端开发完成终端适配方案 - - 相关概念</h3><p>  拿到设计师给的设计图之后，剩下的事情是前端开发人员的事了。手淘使用 <a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">flexible</a> 方案。在此之前，先了解一些概念。</p>
   <font size="4" face="黑体"><strong>1、视窗 viewport</strong></font>
 
@@ -167,7 +167,7 @@
   <font size="4" face="黑体"><strong>2、物理像素(physical pixel)</strong></font>
 
 <p>  物理像素又被称为设备像素，他是显示设备中一个最微小的物理部件。每个像素可以根据操作系统设置自己的颜色和亮度。正是这些设备像素的微小距离欺骗了我们肉眼看到的图像效果。</p>
-<p>  <img src="mobile-bs-flexible/5.jpg" alt="Alt text"></p>
+<p>  <img src="5.jpg" alt="Alt text"></p>
   <font size="4" face="黑体"><strong>3、设备独立像素(density-independent pixel)</strong></font>
 
 <p>  设备独立像素也称为密度无关像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)，然后由相关系统转换为物理像素。其与屏幕密度有关。可用来辅助区分视网膜设备还是非视网膜设备。</p>
@@ -192,7 +192,7 @@
   <font size="4" face="黑体"><strong>9、图片适配</strong></font>
 
 <p>  在移动端时代屏幕适配除了Layout之外，还要考虑到图片的适配，因为其直接影响到页面显示质量，对于如何实现图片适配，再此不做过多详细阐述。这里盗用了 @南宮瑞揚 根据 <a href="http://mir.aculo.us/2012/06/26/flowchart-how-to-retinafy-your-website/" target="_blank" rel="noopener">mir.aculo.us</a> 翻译的一张信息图：</p>
-<p>  <img src="mobile-bs-flexible/6.jpg" alt="Alt text"></p>
+<p>  <img src="6.jpg" alt="Alt text"></p>
 <h3 id="四、前端开发完成终端适配方案-实现方案"><a href="#四、前端开发完成终端适配方案-实现方案" class="headerlink" title="四、前端开发完成终端适配方案 - - 实现方案"></a>四、前端开发完成终端适配方案 - - 实现方案</h3><p>  手淘团队有一个名叫 <a href="https://github.com/amfe/lib-flexible" target="_blank" rel="noopener">lib-flexible</a> 的库，用来解决H5页面终端适配的。</p>
   <font size="4" face="黑体"><strong>1、lib-flexible是什么</strong></font>
 
@@ -240,7 +240,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 01:28</p>
+        <p>最后更新： 2019年01月25日 17:55</p>
         <p>原始链接： <a class="post-url" href="/2018/01/31/mobile-bs-flexible/" title="flexible实现移动端适配">http://liuxuewen-site.github.io/2018/01/31/mobile-bs-flexible/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

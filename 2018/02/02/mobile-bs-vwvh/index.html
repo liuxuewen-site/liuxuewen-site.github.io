@@ -16,17 +16,17 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、引言  &amp;emsp;&amp;emsp;Flexible到今天也有几年的历史了，解决了适配终端的很多问题，这套方案相对而言是一个较为成熟的方案。但它并不是万能的，也不是最优秀的，他还是存在一些问题的，比如iframe的引用，有时候就把我们自己给埋进去了。下面将介绍一种新的适配方案。   先上这套适配的效果看看：   iPhone系列效果      部分Android效果      上面的Demo，测试">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/2.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/3.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/4.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/5.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/6.png">
-<meta property="og:updated_time" content="2018-07-03T17:30:37.048Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/5.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/6.png">
+<meta property="og:updated_time" content="2019-01-25T10:13:19.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再聊移动端适配之vw、vh">
 <meta name="twitter:description" content="一、引言  &amp;emsp;&amp;emsp;Flexible到今天也有几年的历史了，解决了适配终端的很多问题，这套方案相对而言是一个较为成熟的方案。但它并不是万能的，也不是最优秀的，他还是存在一些问题的，比如iframe的引用，有时候就把我们自己给埋进去了。下面将介绍一种新的适配方案。   先上这套适配的效果看看：   iPhone系列效果      部分Android效果      上面的Demo，测试">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/mobile-bs-vwvh/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -153,19 +153,19 @@
             <h3 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h3><p>  &emsp;&emsp;Flexible到今天也有几年的历史了，解决了适配终端的很多问题，这套方案相对而言是一个较为成熟的方案。但它并不是万能的，也不是最优秀的，他还是存在一些问题的，比如iframe的引用，有时候就把我们自己给埋进去了。下面将介绍一种新的适配方案。</p>
 <p>  先上这套适配的效果看看：</p>
 <p>  iPhone系列效果</p>
-<p>  <img src="mobile-bs-vwvh/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <p>  部分Android效果</p>
-<p>  <img src="mobile-bs-vwvh/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  上面的Demo，测试了Top30的机型。目前未得到支持的：</p>
-<p>  <img src="mobile-bs-vwvh/3.png" alt="Alt text"></p>
+<p>  <img src="3.png" alt="Alt text"></p>
 <h3 id="二、适配方案"><a href="#二、适配方案" class="headerlink" title="二、适配方案"></a>二、适配方案</h3><p>  在移动端布局，我们需要面对两个最为重要的问题：<br>  1）各终端下的适配问题<br>  2）Retina屏的细节处理</p>
 <p>  不同的终端，我们面对的屏幕分辨率、DPR、1px、2x图等一系列的问题。这个布局方案也是针对性的解决这些问题，只不过解决这些问题不再是使用Hack手段（flexible）来处理，而是直接使用原生的CSS技术来处理的。</p>
 <h3 id="三、终端适配"><a href="#三、终端适配" class="headerlink" title="三、终端适配"></a>三、终端适配</h3><p>  以前的Flexible方案是通过JavaScript来模拟vw的特性，今天vw已经得到了众多浏览器的支持，即可以考虑将vw单位运用于我们的适配布局中。</p>
 <p>  vw是基于Viewport视窗的长度单位，这里的视窗（Viewport）指的就是浏览器可视化的区域，而这个可视区域是window.innerWidth/window.innerHeight的大小，关于viewpoint可看 <a href="https://www.w3cplus.com/css/viewports.html" target="_blank" rel="noopener">这里</a>。用下图简单的来示意一下：</p>
-<p>  <img src="mobile-bs-vwvh/4.png" alt="Alt text"><br> </p>
+<p>  <img src="4.png" alt="Alt text"><br> </p>
 <p>  和Viewport相关的单位有四个，分别为vw、vh、vmin和vmax:<br>  1）vw：是Viewport’s width的简写,1vw等于window.innerWidth的1%<br>  2）vh：是Viewport’s height的简写，1vh等于window.innerHeihgt的1%<br>  3）vmin：vmin的值是当前vw和vh中较小的值<br>  4）vmax：vmax的值是当前vw和vh中较大的值</p>
 <p>  vmin和vmax是根据Viewport中长度偏大的那个维度值计算出来的，如果window.innerHeight &gt; window.innerWidth则vmin取百分之一的window.innerWidth，vmax取百分之一的window.innerHeight计算。看图：</p>
-<p>  <img src="mobile-bs-vwvh/5.png" alt="Alt text"><br></p>
+<p>  <img src="5.png" alt="Alt text"><br></p>
 <p>  所以在这个方案中大胆的使用vw来替代以前Flexible中的rem缩放方案。回归到我们的实际业务中来，目前出视觉设计稿，都是使用750px宽度的，从上面的原理来看，那么100vw = 750px，即1vw = 7.5px。那么我们可以根据设计图上的px值直接转换成对应的vw值。</p>
 <p>  看到这里，跟flexible一样又要计算，同样可以使用PostCSS的插件 <a href="https://github.com/evrone/postcss-px-to-viewport" target="_blank" rel="noopener">postcss-px-to-viewport</a> ，让我们可以直接在代码中写px，比如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[w-369]&#123; </span><br><span class="line">  width: 369px; </span><br><span class="line">&#125; </span><br><span class="line">[w-369] h2 span &#123; </span><br><span class="line">  background: <span class="comment">#FF5000; </span></span><br><span class="line">  color: <span class="comment">#fff; </span></span><br><span class="line">  display: inline-block; </span><br><span class="line">  border-radius: 4px; </span><br><span class="line">  font-size: 20px; </span><br><span class="line">  text-shadow: 0 2px 2px <span class="comment">#FF5000; </span></span><br><span class="line">  padding: 2px 5px; </span><br><span class="line">  margin-right: 5px; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>  PostCSS编译之后就是我们所需要的带vw代码：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[w-369] &#123; </span><br><span class="line">  width: 49.2vw; </span><br><span class="line">&#125; </span><br><span class="line">[w-369] h2 span &#123; </span><br><span class="line">  background: <span class="comment">#ff5000; </span></span><br><span class="line">  color: <span class="comment">#fff; </span></span><br><span class="line">  display: inline-block; </span><br><span class="line">  border-radius: .53333vw; </span><br><span class="line">  text-shadow: 0 0.26667vw 0.26667vw <span class="comment">#ff5000; </span></span><br><span class="line">  padding: .26667vw .66667vw; </span><br><span class="line">&#125; </span><br><span class="line">[w-369] h2 span, [w-369] i &#123; </span><br><span class="line">  font-size: 2.66667vw; </span><br><span class="line">  margin-right: .66667vw; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -173,7 +173,7 @@
 <p>  假设你的设计稿不是750px而是1125px，那么你就可以修改vewportWidth的值。有关于该插件的详细介绍，可以阅读其 <a href="https://github.com/evrone/postcss-px-to-viewport" target="_blank" rel="noopener">官方使用文档</a> 。</p>
 <p>  上面解决了px到vw的转换计算。那么在哪些地方可以使用vw来适配我们的页面。根据相关的测试：<br>  1）容器适配，可以使用vw<br>  2）文本的适配，可以使用vw<br>  3）大于1px的边框、圆角、阴影都可以使用vw<br>  4）内距和外距，可以使用vw</p>
 <p>  另外有一个细节需要特别的提出，比如我们有一个这样的设计：</p>
-<p>  <img src="mobile-bs-vwvh/6.png" alt="Alt text"><br></p>
+<p>  <img src="6.png" alt="Alt text"><br></p>
 <p>  如果我们直接使用：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[w-188-246] &#123; </span><br><span class="line">  width: 188px; </span><br><span class="line">&#125; </span><br><span class="line">[w-187-246]&#123; </span><br><span class="line">  width: 187px </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>  最终的效果会造成[w-187-246]容器的高度小于[w-188-246]容器的高度。这个时候我们就需要考虑到 <a href="https://www.w3cplus.com/css/aspect-ratio.html" target="_blank" rel="noopener">容器的长宽比缩放</a> 。推荐一个PostCSS插件 <a href="https://github.com/yisibl/postcss-aspect-ratio-mini" target="_blank" rel="noopener">postcss-aspect-ratio-mini</a> ,这个插件使用很简单，不需要做任何的配置，你只需要本地安装一下就OK。使用的时候如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[aspectratio] &#123; </span><br><span class="line">  position: relative; </span><br><span class="line">&#125; </span><br><span class="line">[aspectratio]::before &#123; </span><br><span class="line">  content: &apos;&apos;; </span><br><span class="line">  display: block; </span><br><span class="line">  width: 1px; </span><br><span class="line">  margin-left: -1px; </span><br><span class="line">  height: 0; </span><br><span class="line">&#125; </span><br><span class="line">[aspectratio-content] &#123; </span><br><span class="line">  position: absolute; </span><br><span class="line">  top: 0; </span><br><span class="line">  left: 0; </span><br><span class="line">  right: 0; </span><br><span class="line">  bottom: 0; </span><br><span class="line">  width: 100%; </span><br><span class="line">  height: 100%; </span><br><span class="line">&#125; </span><br><span class="line">[aspectratio][aspect-ratio=&quot;188/246&quot;]&#123; </span><br><span class="line">  aspect-ratio: &apos;188:246&apos;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>  编译出来：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[aspectratio][aspect-ratio=<span class="string">"188/246"</span>]:before &#123; </span><br><span class="line">  padding-top: 130.85106382978725%; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -199,7 +199,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 01:30</p>
+        <p>最后更新： 2019年01月25日 18:13</p>
         <p>原始链接： <a class="post-url" href="/2018/02/02/mobile-bs-vwvh/" title="再聊移动端适配之vw、vh">http://liuxuewen-site.github.io/2018/02/02/mobile-bs-vwvh/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

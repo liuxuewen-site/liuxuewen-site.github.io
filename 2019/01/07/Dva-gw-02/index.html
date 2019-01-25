@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、 数据流向  数据改变的发生通常是通过用户交互行为或者浏览器行为（如路由跳转等）触发的，可以通过 dispatch 发起一个 action，如果是同步行为会直接通过 Reducers 改变 State ，如果是异步行为（副作用）会先触发 Effects 然后流向 Reducers 最终改变 State，所以在 dva 中，数据流向非常清晰简明，并且思路基本跟开源社区保持一致（也是来自于开源社区">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-02/Dva-gw-02/1.png">
-<meta property="og:updated_time" content="2019-01-07T09:51:10.719Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-02/1.png">
+<meta property="og:updated_time" content="2019-01-25T10:00:39.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dva官网之02-概念">
 <meta name="twitter:description" content="一、 数据流向  数据改变的发生通常是通过用户交互行为或者浏览器行为（如路由跳转等）触发的，可以通过 dispatch 发起一个 action，如果是同步行为会直接通过 Reducers 改变 State ，如果是异步行为（副作用）会先触发 Effects 然后流向 Reducers 最终改变 State，所以在 dva 中，数据流向非常清晰简明，并且思路基本跟开源社区保持一致（也是来自于开源社区">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-02/Dva-gw-02/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-02/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -146,7 +146,7 @@
       
             
             <h3 id="一、-数据流向"><a href="#一、-数据流向" class="headerlink" title="一、 数据流向"></a>一、 数据流向</h3><p>  数据改变的发生通常是通过用户交互行为或者浏览器行为（如路由跳转等）触发的，可以通过 dispatch 发起一个 action，如果是同步行为会直接通过 Reducers 改变 State ，如果是异步行为（副作用）会先触发 Effects 然后流向 Reducers 最终改变 State，所以在 dva 中，数据流向非常清晰简明，并且思路基本跟开源社区保持一致（也是来自于开源社区）。</p>
-<p>  <img src="Dva-gw-02/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <h3 id="二、Models"><a href="#二、Models" class="headerlink" title="二、Models"></a>二、Models</h3>  <font size="4" face="黑体"><strong>State（type State = any）：</strong></font>
 
 <p>  State 表示 Model 的状态数据，通常表现为一个 javascript 对象（当然它可以是任何值）。操作的时候每次都要当作不可变数据（immutable data）来对待，保证每次都是全新对象，没有引用关系，这样才能保证 State 的独立性，便于测试和追踪变化。</p>
@@ -182,7 +182,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年01月07日 17:51</p>
+        <p>最后更新： 2019年01月25日 18:00</p>
         <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-02/" title="Dva官网之02-概念">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-02/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

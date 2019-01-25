@@ -104,6 +104,132 @@
       <div class="outer">
         <section id="main" class="body-wrap">
   
+    <article id="post-React-gw-23" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/08/React-gw-23/">React官网之23-片段(Fragments)</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2018/07/08/React-gw-23/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React官网之23-片段(Fragments)" title="React官网之23-片段(Fragments)">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、前言  React 中一个常见模式是为一个组件返回多个元素。片段(fragments) 可以让你将子元素列表添加到一个分组中，并且不会在 DOM 中增加额外节点：  123456789render() &#123;  return (    &lt;React.Fragment&gt;      &lt;ChildA /&gt;      &lt;ChildB /&g...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2018-07-08</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2018/07/08/React-gw-23/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-React-gw-22" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/08/React-gw-22/">React官网之22-上下文(Context)</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2018/07/08/React-gw-22/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React官网之22-上下文(Context)" title="React官网之22-上下文(Context)">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、前言  在一个典型的 React 应用中，数据是通过 props 属性由上向下（由父及子）的进行传递的，但这对于某些类型的属性而言是极其繁琐的（例如：地区偏好，UI主题。Context 提供了一种在组件之间共享此类值的方式，而不必通过组件树的每个层级显式地传递 props。
+二、不推荐使用 Context  绝大多数的应用程序不需要使用 context。
+  如果你希...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2018-07-08</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2018/07/08/React-gw-22/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
     <article id="post-React-gw-21" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -600,134 +726,6 @@
         </ul>
         
             <a href="/2018/07/08/React-gw-14/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-gw-13" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/08/React-gw-13/">React官网之13-深入JSX</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/07/08/React-gw-13/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React官网之13-深入JSX" title="React官网之13-深入JSX">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、前言  从本质上讲，JSX 是 React.createElement(component, props, …children) 函数提供的语法糖。
-  JSX代码:  123&lt;MyButton color="blue" shadowSize=&#123;2&#125;&gt;  Click Me&lt;/MyButton&gt;
-  编译为：  12345Re...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-07-08</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/07/08/React-gw-13/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-gw-12" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/08/React-gw-12/">React官网之12-react的编程思想</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/07/08/React-gw-12/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React官网之12-react的编程思想" title="React官网之12-react的编程思想">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。
-  React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。
-二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-07-08</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/07/08/React-gw-12/#more" class="article-more-link">more&gt;&gt;</a>
         
     </footer>
   </div>

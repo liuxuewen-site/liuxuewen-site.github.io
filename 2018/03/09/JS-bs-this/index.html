@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、this  this是JavaScript中的一个关键字，代表函数运行时，自动产生的一个内部对象。  函数使用场景的不同，this值也会不同，但它永远指向调用函数的那个对象。 二、this指向  虽然说有人说 谁调用这个函数或方法,this关键字就指向谁 ，但下面我们还是要来深究一下this的指向。   先上一张图：下图我们称之为”JavaScript this决策树”（非严格模式下），用它来">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-this/JS-bs-this/1.jpg">
-<meta property="og:updated_time" content="2018-07-03T16:41:57.914Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-this/1.jpg">
+<meta property="og:updated_time" content="2019-01-25T10:12:17.464Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this关键字">
 <meta name="twitter:description" content="一、this  this是JavaScript中的一个关键字，代表函数运行时，自动产生的一个内部对象。  函数使用场景的不同，this值也会不同，但它永远指向调用函数的那个对象。 二、this指向  虽然说有人说 谁调用这个函数或方法,this关键字就指向谁 ，但下面我们还是要来深究一下this的指向。   先上一张图：下图我们称之为”JavaScript this决策树”（非严格模式下），用它来">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-this/JS-bs-this/1.jpg">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-this/1.jpg">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -148,7 +148,7 @@
             <h3 id="一、this"><a href="#一、this" class="headerlink" title="一、this"></a>一、this</h3><p>  this是JavaScript中的一个关键字，代表函数运行时，自动产生的一个内部对象。<br>  函数使用场景的不同，this值也会不同，但它永远指向调用函数的那个对象。</p>
 <h3 id="二、this指向"><a href="#二、this指向" class="headerlink" title="二、this指向"></a>二、this指向</h3><p>  虽然说有人说 谁调用这个函数或方法,this关键字就指向谁 ，但下面我们还是要来深究一下this的指向。</p>
 <p>  先上一张图：下图我们称之为”JavaScript this决策树”（非严格模式下），用它来帮助我们学习this指向。</p>
-<p>  <img src="JS-bs-this/1.jpg" alt="Alt text"></p>
+<p>  <img src="1.jpg" alt="Alt text"></p>
 <p>  接下来，我们分例子来说明：</p>
 <p>  例子1：普通函数调用下的this<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function person()&#123;</span><br><span class="line">    this.name=&quot;xl&quot;;</span><br><span class="line">    console.log(this);</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">person();                   //输出  window  xl  </span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">var name=&quot;xl&quot;;</span><br><span class="line">function person()&#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">person();                   //输出  window  xl</span><br></pre></td></tr></table></figure></p>
 <p>  person()函数在 “JavaScript this决策树”中进行判定的过程是这样的：<br>  1）person()函数调用是用new进行调用的么？明显不是，进入“否”分支，即函数是否用dot(.)进行调用？；<br>  2）person()函数不是用dot(.)进行调用的，即进入“否”分支，即这里的this指向全局变量window，那么this.name实际上就是window.name;</p>
@@ -170,7 +170,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 00:41</p>
+        <p>最后更新： 2019年01月25日 18:12</p>
         <p>原始链接： <a class="post-url" href="/2018/03/09/JS-bs-this/" title="this关键字">http://liuxuewen-site.github.io/2018/03/09/JS-bs-this/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

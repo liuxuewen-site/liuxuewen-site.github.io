@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、先来看个例子     比较一下这两者this 的差别，第一个this 指向obj，第二个this 指向window ； 二、call()，apply()，bind()  在 javascript 中，call，apply，bind都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。   比如：      那么，他们间有什么区别呢？">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/JS-bs-bind/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/JS-bs-bind/2.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/JS-bs-bind/3.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/bind/3.png">
-<meta property="og:updated_time" content="2018-07-03T16:39:43.254Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/3.png">
+<meta property="og:updated_time" content="2019-01-25T10:30:31.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call()，apply()和bind()">
 <meta name="twitter:description" content="一、先来看个例子     比较一下这两者this 的差别，第一个this 指向obj，第二个this 指向window ； 二、call()，apply()，bind()  在 javascript 中，call，apply，bind都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。   比如：      那么，他们间有什么区别呢？">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/JS-bs-bind/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -148,13 +148,13 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="一、先来看个例子"><a href="#一、先来看个例子" class="headerlink" title="一、先来看个例子"></a>一、先来看个例子</h3><p>  <img src="JS-bs-bind/1.png" alt="Alt text"></p>
+            <h3 id="一、先来看个例子"><a href="#一、先来看个例子" class="headerlink" title="一、先来看个例子"></a>一、先来看个例子</h3><p>  <img src="1.png" alt="Alt text"></p>
 <p>  比较一下这两者this 的差别，第一个this 指向obj，第二个this 指向window ；</p>
 <h3 id="二、call-，apply-，bind"><a href="#二、call-，apply-，bind" class="headerlink" title="二、call()，apply()，bind()"></a>二、call()，apply()，bind()</h3><p>  在 javascript 中，call，apply，bind都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。</p>
 <p>  比如：</p>
-<p>  <img src="JS-bs-bind/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  那么，他们间有什么区别呢？</p>
-<h4 id="1、传参方面"><a href="#1、传参方面" class="headerlink" title="1、传参方面"></a>1、传参方面</h4><p>  <img src="JS-bs-bind/3.png" alt="Alt text"></p>
+<h4 id="1、传参方面"><a href="#1、传参方面" class="headerlink" title="1、传参方面"></a>1、传参方面</h4><p>  <img src="3.png" alt="Alt text"></p>
 <p>  从上面四个结果可以看出：<br>  call、apply、bind这三个函数的第一个参数都是 this 的指向对象，第二个参数差别就来了：<br>  call的参数是直接放进去的，第二第三第n个参数都用逗号分隔，直接放到后面；<br>  apply的参数必须放在一个数组里面传进去；<br>  bind的参数和call一样。　　　<br>  当然，三者的参数不限定是string类型，允许是各种类型，包括函数、object等。</p>
   <font size="4" face="黑体"><strong>这里说个注意点，当参数数量是明确的时用call；而不确定的时候用apply，因为可以用伪数组方式，函数内部通过arguments这个伪数组来遍历所有的参数。(关于伪数组arguments见《伪数组》文章)</strong></font>
 
@@ -162,7 +162,7 @@
 <p>  第一步：定义一个未定义的log方法，让它可以代理console.log的方法<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="built_in">log</span>(msg)　&#123;</span><br><span class="line">    console.log(msg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span>(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>  第二步：改变调用log的方式，传入多个参数，注意传入参数的个数是不定的<br>  当传入参数的个数是不确定的时候，第一步的方法就失效了，这个时候可以考虑使用apply或者 call，注意这里传入参数是不确定的，所以使用apply是最好的，方法如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">log</span></span>()&#123;</span><br><span class="line">    console.log.apply(console, arguments);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span>(1);      //1</span><br><span class="line"><span class="built_in">log</span>(1,2);    //1 2</span><br></pre></td></tr></table></figure></p>
 <p>  第三步：给每一个log消息添加一个”(app)”的前辍<br>  其实arguments参数是个伪数组，通过Array.prototype.slice.call可以转化为标准数组，再使用数组方法unshift<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">log</span></span>()&#123;</span><br><span class="line">    var args = Array.prototype.slice.call(arguments);</span><br><span class="line">    args.unshift(<span class="string">'(app)'</span>);</span><br><span class="line"></span><br><span class="line">    console.log.apply(console, args);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h4 id="2、调用方式"><a href="#2、调用方式" class="headerlink" title="2、调用方式"></a>2、调用方式</h4><p>  <img src="bind/3.png" alt="Alt text"></p>
+<h4 id="2、调用方式"><a href="#2、调用方式" class="headerlink" title="2、调用方式"></a>2、调用方式</h4><p>  <img src="3.png" alt="Alt text"></p>
 <p>  从这张图我们可以看到，bind方法后面多了个 ()，<br>  其实，bind是新创建了一个函数，然后把上下文绑定到bind()括号中的参数上，然后将它返回。<br>  也就是说，bind之后，函数不会执行，只是返回一个改变了上下文的函数副本，必须调用它才会被执行。而call和apply是直接执行函数。</p>
   <font size="4" face="黑体"><strong>这里第一个注意点，连续bind，结果会是怎么样的呢？</strong></font>
 
@@ -183,7 +183,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 00:39</p>
+        <p>最后更新： 2019年01月25日 18:30</p>
         <p>原始链接： <a class="post-url" href="/2018/03/09/JS-bs-bind/" title="call()，apply()和bind()">http://liuxuewen-site.github.io/2018/03/09/JS-bs-bind/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

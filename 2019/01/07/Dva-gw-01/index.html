@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。   特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，effects 和 subs">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/Dva-gw-01/1.gif">
-<meta property="og:updated_time" content="2019-01-22T10:21:42.211Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/1.gif">
+<meta property="og:updated_time" content="2019-01-25T10:00:24.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dva官网之01-上手">
 <meta name="twitter:description" content="一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。   特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，effects 和 subs">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/Dva-gw-01/1.gif">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/1.gif">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -169,7 +169,7 @@
 <p>  编辑 routes/Products.js，替换为以下内容：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import React from <span class="string">'react'</span>;</span><br><span class="line">import &#123; connect &#125; from <span class="string">'dva'</span>;</span><br><span class="line">import ProductList from <span class="string">'../components/ProductList'</span>;</span><br><span class="line"></span><br><span class="line">const Products = (&#123; dispatch, products &#125;) =&gt; &#123;</span><br><span class="line">    <span class="keyword">function</span> handleDelete(id) &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            <span class="built_in">type</span>: <span class="string">'products/delete'</span>,</span><br><span class="line">            payload: id,</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;List of Products&lt;/h2&gt;</span><br><span class="line">            &lt;ProductList onDelete=&#123;handleDelete&#125; products=&#123;products&#125; /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// <span class="built_in">export</span> default Products;</span><br><span class="line"><span class="built_in">export</span> default connect((&#123; products &#125;) =&gt; (&#123;</span><br><span class="line">    products,</span><br><span class="line">&#125;))(Products);</span><br></pre></td></tr></table></figure></p>
 <p>  最后，我们还需要一些初始数据让这个应用 run 起来。编辑 index.js：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- const app = dva();</span><br><span class="line">+ const app = dva(&#123;</span><br><span class="line">+   initialState: &#123;</span><br><span class="line">+     products: [</span><br><span class="line">+       &#123; name: <span class="string">'dva'</span>, id: 1 &#125;,</span><br><span class="line">+       &#123; name: <span class="string">'antd'</span>, id: 2 &#125;,</span><br><span class="line">+     ],</span><br><span class="line">+   &#125;,</span><br><span class="line">+ &#125;);</span><br></pre></td></tr></table></figure></p>
 <p>  刷新浏览器，应该能看到以下效果：</p>
-<p>  <img src="Dva-gw-01/1.gif" alt="Alt text"></p>
+<p>  <img src="1.gif" alt="Alt text"></p>
 <h3 id="九、构建应用"><a href="#九、构建应用" class="headerlink" title="九、构建应用"></a>九、构建应用</h3><p>  完成开发并且在开发环境验证之后，就需要部署给我们的用户了。先执行下面的命令：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure></p>
 <p>  几秒后，输出应该如下:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; @ build /private/tmp/myapp</span><br><span class="line">&gt; roadhog build</span><br><span class="line"></span><br><span class="line">Creating an optimized production build...</span><br><span class="line">Compiled successfully.</span><br><span class="line"></span><br><span class="line">File sizes after gzip:</span><br><span class="line"></span><br><span class="line">  82.98 KB  dist/index.js</span><br><span class="line">  270 B     dist/index.css</span><br></pre></td></tr></table></figure></p>
 <p>  build 命令会打包所有的资源，包含 JavaScript, CSS, web fonts, images, html 等。然后你可以在 dist/ 目录下找到这些文件。</p>
@@ -182,7 +182,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年01月22日 18:21</p>
+        <p>最后更新： 2019年01月25日 18:00</p>
         <p>原始链接： <a class="post-url" href="/2019/01/07/Dva-gw-01/" title="Dva官网之01-上手">http://liuxuewen-site.github.io/2019/01/07/Dva-gw-01/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

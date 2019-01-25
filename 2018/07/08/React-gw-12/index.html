@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。   React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。 二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:      JSON 接">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/2.png">
-<meta property="og:updated_time" content="2018-09-03T07:12:58.454Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/2.png">
+<meta property="og:updated_time" content="2019-01-25T10:18:40.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React官网之12-react的编程思想">
 <meta name="twitter:description" content="一、前言  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。   React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。 二、从模拟页面开始  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:      JSON 接">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/React-gw-12/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-12/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -149,12 +149,12 @@
             <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  在我们看来，React 是 JavaScript 构建大型、高性能 Web 应用的首选。在 Facebook 和 Instagram 中都能很好的应用。</p>
 <p>  React 中重要部分之一是如何构建应用程序。下面将引导完成用 React 构建一个可搜索的产品数据表的思考过程。</p>
 <h3 id="二、从模拟页面开始"><a href="#二、从模拟页面开始" class="headerlink" title="二、从模拟页面开始"></a>二、从模拟页面开始</h3><p>  试想我们已经有一个 JSON 接口，和从设计者那里得来的一个原型图:</p>
-<p>  <img src="React-gw-12/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <p>  JSON 接口返回的数据如下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$49</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Football"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$9</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Baseball"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Sporting Goods"</span>, price: <span class="string">"<span class="variable">$29</span>.99"</span>, stocked: <span class="literal">false</span>, name: <span class="string">"Basketball"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$99</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"iPod Touch"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$399</span>.99"</span>, stocked: <span class="literal">false</span>, name: <span class="string">"iPhone 5"</span>&#125;,</span><br><span class="line">  &#123;category: <span class="string">"Electronics"</span>, price: <span class="string">"<span class="variable">$199</span>.99"</span>, stocked: <span class="literal">true</span>, name: <span class="string">"Nexus 7"</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
 <h3 id="三、步骤1：将UI划分组件层级"><a href="#三、步骤1：将UI划分组件层级" class="headerlink" title="三、步骤1：将UI划分组件层级"></a>三、步骤1：将UI划分组件层级</h3><p>  要做的第一件事是用方框划分出每一个组件(和子组件)并给他们命名。如果你和设计师一起工作，他们可能已经做了这些工作，所以去和他们交流一下！他们的 Photoshop 图层名称可能最终成为你的 React 组件名称！</p>
 <p>  然后该如何拆分组件呢？只需要像拆分一个新方法或新对象一样的方式即可。一个常用的技巧是单一职责原则，即一个组件理想情况下只处理一件事。如果这个组件功能不断丰富，它应该被分成更小的组件。</p>
 <p>  由于经常向用户显示 JSON 数据模型，你会发现如果模型构建正确，对应的 UI（以及组件结构）会被很好地映射。这是因为 UI 和数据模型往往遵循相同的信息结构，这意味着将 UI 划分成组件的工作往往是很容易的。只要把它划分成能准确表示你数据模型的一部分的组件就可以。</p>
-<p>  <img src="React-gw-12/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  可以看到，在这个简单的小应用中，有5个组件。对每个组件代表的数据进行了斜体标注：<br>  a、FilterableProductTable （orange）： 包含整个示例<br>  b、SearchBar（蓝色）： 接收所有的用户输入<br>  c、ProductTable（绿色）： 根据用户输入显示和过滤数据集合<br>  d、ProductCategoryRow（宝石绿）： 显示每个类别的标题<br>  e、ProductRow（红色）： 显示每个产品的行数据</p>
 <p>  观察 ProductTable ，会发现表头（包含Name和Price标签）不是独立的组件。这是个人偏好问题，当然也存在用其他方式实现的争论。在这个例子中，将其作为 ProductTable 的一部分来处理，因为它是数据集合渲染的一部分，是 ProductTable 的职责。当然，如果这个表头变得复杂的时候（比如，如果需要添加排序功能），这时候创建一个独立的 ProductTableHeader 组件更合适。</p>
 <p>  现在我们已经在原型图中做了标识，接下来对它们进行层级结构排列。这很简单。原型图中的子组件在层级结构中应该作为子节点：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FilterableProductTable</span><br><span class="line">    SearchBar</span><br><span class="line">    ProductTable</span><br><span class="line">        ProductCategoryRow</span><br><span class="line">        ProductRow</span><br></pre></td></tr></table></figure></p>
@@ -198,7 +198,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年09月03日 15:12</p>
+        <p>最后更新： 2019年01月25日 18:18</p>
         <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-12/" title="React官网之12-react的编程思想">http://liuxuewen-site.github.io/2018/07/08/React-gw-12/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

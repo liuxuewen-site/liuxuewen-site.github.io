@@ -16,25 +16,25 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、垃圾回收器  JavaScript使用垃圾回收器（机制）来自动管理内存。垃圾回收是一把双刃剑，其好处是可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运转而带来的内存泄露问题。但使用了垃圾回收即意味着程序员将无法掌控内存。ECMAScript没有暴露任何垃圾回收器的接口。我们无法强迫其进行垃圾回收，更无法干预内存管理。 二、内存管理问题  在浏览器中，Chrome V8引擎（Ja">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/2.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/3.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/4.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/5.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/6.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/7.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/8.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/9.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/10.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/11.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/12.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/13.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/14.png">
-<meta property="og:updated_time" content="2018-07-03T16:34:42.709Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/5.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/6.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/7.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/8.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/9.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/10.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/11.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/12.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/13.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/14.png">
+<meta property="og:updated_time" content="2019-01-25T10:10:51.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈V8引擎中的垃圾回收机制">
 <meta name="twitter:description" content="一、垃圾回收器  JavaScript使用垃圾回收器（机制）来自动管理内存。垃圾回收是一把双刃剑，其好处是可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运转而带来的内存泄露问题。但使用了垃圾回收即意味着程序员将无法掌控内存。ECMAScript没有暴露任何垃圾回收器的接口。我们无法强迫其进行垃圾回收，更无法干预内存管理。 二、内存管理问题  在浏览器中，Chrome V8引擎（Ja">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/JS-bs-garbage/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -175,31 +175,31 @@
 <p>  具体的执行过程大致是这样：</p>
 <p>  首先将From空间中所有能从根对象到达的对象复制到To区，然后维护两个To区的指针scanPtr和allocationPtr，分别指向即将扫描的活跃对象和即将为新对象分配内存的地方，开始循环。循环的每一轮会查找当前scanPtr所指向的对象，确定对象内部的每个指针指向哪里。如果指向老生代我们就不必考虑它了。如果指向From区，我们就需要把这个所指向的对象从From区复制到To区，具体复制的位置就是allocationPtr所指向的位置。复制完成后将scanPtr所指对象内的指针修改为新复制对象存放的地址，并移动allocationPtr。如果一个对象内部的所有指针都被处理完，scanPtr就会向前移动，进入下一个循环。若scanPtr和allocationPtr相遇，则说明所有的对象都已被复制完，From区剩下的都可以被视为垃圾，可以进行清理了</p>
 <p>  用图说明：</p>
-<p>  <img src="JS-bs-garbage/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <p>  在执行Scavenge之前，From区长这幅模样:</p>
-<p>  <img src="JS-bs-garbage/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  那么首先按照BFS将根对象能到达的ABC对象复制到To区，于是乎To区就变成了这个样子：</p>
-<p>  <img src="JS-bs-garbage/3.png" alt="Alt text"></p>
+<p>  <img src="3.png" alt="Alt text"></p>
 <p>  接下来进入循环，扫描scanPtr所指的A对象，发现其没有指针，于是乎scanPtr移动，变成如下这样：</p>
-<p>  <img src="JS-bs-garbage/4.png" alt="Alt text"></p>
+<p>  <img src="4.png" alt="Alt text"></p>
 <p>  接下来扫描B对象，发现其有指向E对象的指针，且E对象在From区，那么我们需要将E对象复制到allocationPtr所指的地方并移动allocationPtr指针：</p>
-<p>  <img src="JS-bs-garbage/5.png" alt="Alt text"></p>
+<p>  <img src="5.png" alt="Alt text"></p>
 <p>  B对象里所有指针都已被复制完，所以移动scanPtr：</p>
-<p>  <img src="JS-bs-garbage/6.png" alt="Alt text"></p>
+<p>  <img src="6.png" alt="Alt text"></p>
 <p>  接下来扫描C对象，C对象中有两个指针，分别指向F对象和G对象，且都在From区，先复制F对象到To区：</p>
-<p>  <img src="JS-bs-garbage/7.png" alt="Alt text"></p>
+<p>  <img src="7.png" alt="Alt text"></p>
 <p>  然后复制G对象到To区：</p>
-<p>  <img src="JS-bs-garbage/8.png" alt="Alt text"></p>
+<p>  <img src="8.png" alt="Alt text"></p>
 <p>  这样C对象内部的指针已经复制完成了，移动scanPtr：</p>
-<p>  <img src="JS-bs-garbage/9.png" alt="Alt text"></p>
+<p>  <img src="9.png" alt="Alt text"></p>
 <p>  逐个扫描E，F对象，发现其中都没有指针，移动scanPtr：</p>
-<p>  <img src="JS-bs-garbage/10.png" alt="Alt text"></p>
+<p>  <img src="10.png" alt="Alt text"></p>
 <p>  扫描G对象，发现其中有一个指向H对象的指针，且H对象在From区，复制H对象到To区，并移动allocationPtr：</p>
-<p>  <img src="JS-bs-garbage/11.png" alt="Alt text"></p>
+<p>  <img src="11.png" alt="Alt text"></p>
 <p>  完成后由于G对象没有其他指针，且H对象没有指针移动scanPtr：</p>
-<p>  <img src="JS-bs-garbage/12.png" alt="Alt text"></p>
+<p>  <img src="12.png" alt="Alt text"></p>
 <p>  此时scanPtr和allocationPtr重合，说明复制结束，可以对比一下From区和To区在复制完成后的结果：</p>
-<p>  <img src="JS-bs-garbage/13.png" alt="Alt text"></p>
+<p>  <img src="13.png" alt="Alt text"></p>
 <p>  D对象没有被复制，它将被作为垃圾进行回收。</p>
 <h3 id="六、写屏障与对象的晋升"><a href="#六、写屏障与对象的晋升" class="headerlink" title="六、写屏障与对象的晋升"></a>六、写屏障与对象的晋升</h3><p>  <font size="4" face="黑体"><strong>写屏障：</strong></font><br>  如果新生代中的一个对象只有一个指向它的指针，而这个指针在老生代中，我们如何判断这个新生代的对象是否存活？为了解决这个问题，需要建立一个列表用来记录所有老生代对象指向新生代对象的情况。每当有老生代对象指向新生代对象的时候，我们就记录下来。</p>
 <p>  <font size="4" face="黑体"><strong>对象的晋升：</strong></font><br>  当一个对象经过多次新生代的清理依旧幸存，这说明它的生存周期较长，也就会被移动到老生代，这称为对象的晋升。具体移动的标准有两种：<br>  1、对象从From空间复制到To空间时，会检查它的内存地址来判断这个对象是否已经经历过一个新生代的清理，如果是，则复制到老生代中，否则复制到To空间中。<br>  2、对象从From空间复制到To空间时，如果To空间已经被使用了超过25%，那么这个对象直接被复制到老生代。</p>
@@ -212,7 +212,7 @@
 <p>  结合使用标记清除和标记整理</p>
 <p>  在 Mark-Sweep 和 Mark-Compact 之间，由于 Mark-Compact 需要移动对象，所以它的执行速度不可能很快，所以在取舍上，V8 主要使用 Mark-Sweep（而非递进使用），在空间不足以对从新生代中晋升过来对象进行分配时才使用 Mark-Compact。</p>
 <p>  以下是三种算法的对比：</p>
-<p>  <img src="JS-bs-garbage/14.png" alt="Alt text"></p>
+<p>  <img src="14.png" alt="Alt text"></p>
 <h3 id="八、V8的优化"><a href="#八、V8的优化" class="headerlink" title="八、V8的优化"></a>八、V8的优化</h3><p>  <font size="4" face="黑体"><strong>Incremental Marking（增量标记）：</strong></font><br>  由于全停顿会造成了浏览器一段时间无响应，所以V8使用了一种增量标记的方式，将完整的标记拆分成很多部分，每做完一部分就停下来，让JS的应用逻辑执行一会，这样垃圾回收与应用逻辑交替完成。经过增量标记的改进后，垃圾回收的最大停顿时间可以减少到原来的1/6左右</p>
 <p>  <font size="4" face="黑体"><strong>惰性清理：</strong></font><br>  由于标记完成后，所有的对象都已经被标记，不是死对象就是活对象，堆上多少空间格局已经确定。我们可以不必着急释放那些死对象所占用的空间，而延迟清理过程的执行。垃圾回收器可以根据需要逐一清理死对象所占用的内存页</p>
 <h3 id="九、高效使用内存"><a href="#九、高效使用内存" class="headerlink" title="九、高效使用内存"></a>九、高效使用内存</h3><p>  了解完垃圾回收机制以后，作为开发者的我们要具备的责任就是如何让垃圾回收机制更高效的工作</p>
@@ -233,7 +233,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 00:34</p>
+        <p>最后更新： 2019年01月25日 18:10</p>
         <p>原始链接： <a class="post-url" href="/2018/03/10/JS-bs-garbage/" title="浅谈V8引擎中的垃圾回收机制">http://liuxuewen-site.github.io/2018/03/10/JS-bs-garbage/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

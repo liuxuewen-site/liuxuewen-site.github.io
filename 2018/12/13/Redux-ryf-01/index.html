@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、前言  React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。   为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/Redux-ryf-01/1.jpg">
-<meta property="og:updated_time" content="2018-12-12T17:44:53.790Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/1.jpg">
+<meta property="og:updated_time" content="2019-01-25T10:19:42.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux入门之01-基本用法">
 <meta name="twitter:description" content="一、前言  React 只是 DOM 的一个抽象层，并不是 Web 应用的完整解决方案，它有两个没有涉及：代码结构与组件之间的通信。对于大型的复杂应用来说，这两方面恰恰是最关键的。因此，只用 React 没法写大型应用。   为了解决这个问题，2014年 Facebook 提出了 Flux 架构的概念，引发了很多的实现。2015年，Redux 出现，将 Flux 与函数式编程结合一起，很短时间内就">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/Redux-ryf-01/1.jpg">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/1.jpg">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -209,7 +209,7 @@
 <p>  下面是 combineReducer 的简单实现：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const combineReducers = reducers =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> (state = &#123;&#125;, action) =&gt; &#123;</span><br><span class="line">        <span class="built_in">return</span> Object.keys(reducers).reduce(</span><br><span class="line">            (nextState, key) =&gt; &#123;</span><br><span class="line">                nextState[key] = reducers[key](state[key], action);</span><br><span class="line">                <span class="built_in">return</span> nextState;</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;&#125; </span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>  你可以把所有子 Reducer 放在一个文件里面，然后统一引入:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; combineReducers &#125; from <span class="string">'redux'</span></span><br><span class="line">import * as reducers from <span class="string">'./reducers'</span></span><br><span class="line"></span><br><span class="line">const reducer = combineReducers(reducers)</span><br></pre></td></tr></table></figure></p>
 <h3 id="七、工作流程"><a href="#七、工作流程" class="headerlink" title="七、工作流程"></a>七、工作流程</h3><p>  如图：</p>
-<p>  <img src="Redux-ryf-01/1.jpg" alt="Alt text"></p>
+<p>  <img src="1.jpg" alt="Alt text"></p>
 <p>  首先，用户发出 Action：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.dispatch(action);</span><br></pre></td></tr></table></figure></p>
 <p>  然后，Store 自动调用 Reducer，并且传入两个参数：当前 State 和收到的 Action。Reducer 会返回新的 State :<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> nextState = todoApp(previousState, action);</span><br></pre></td></tr></table></figure></p>
 <p>  State 一旦有变化，Store 就会调用监听函数:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.subscribe(listener);   // 设置监听函数</span><br></pre></td></tr></table></figure></p>
@@ -225,7 +225,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月13日 01:44</p>
+        <p>最后更新： 2019年01月25日 18:19</p>
         <p>原始链接： <a class="post-url" href="/2018/12/13/Redux-ryf-01/" title="Redux入门之01-基本用法">http://liuxuewen-site.github.io/2018/12/13/Redux-ryf-01/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

@@ -16,15 +16,15 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、HTTP简介  HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。基于TCP/IP。 二、HTTP特点  1）工作方式：工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求，服务器向客户端发送响应。  2）简单快速：客户">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/network-bs-http/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/network-bs-http/2.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/network-bs-http/3.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/network-bs-http/4.png">
-<meta property="og:updated_time" content="2018-07-03T17:19:26.340Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/2.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/3.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/4.png">
+<meta property="og:updated_time" content="2019-01-25T10:15:31.668Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="http协议">
 <meta name="twitter:description" content="一、HTTP简介  HTTP协议是Hyper Text Transfer Protocol（超文本传输协议）的缩写,是用于从万维网（WWW:World Wide Web ）服务器传输超文本到本地浏览器的传送协议。基于TCP/IP。 二、HTTP特点  1）工作方式：工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求，服务器向客户端发送响应。  2）简单快速：客户">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/network-bs-http/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/08/network-bs-http/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -152,7 +152,7 @@
 <h3 id="二、HTTP特点"><a href="#二、HTTP特点" class="headerlink" title="二、HTTP特点"></a>二、HTTP特点</h3><p>  1）工作方式：工作于客户端-服务端架构上。浏览器作为HTTP客户端通过URL向HTTP服务端发送请求，服务器向客户端发送响应。<br>  2）简单快速：客户向服务器请求服务时，只需传送请求方法和路径。<br>  3）无连接：即限制每次连接只处理一个请求。服务器处理完客户的请求并收到客户的应答后，即断开连接。<br>  4）无状态：即不具备保存之前发送过的请求或响应的功能。</p>
 <h3 id="三、HTTP之URL"><a href="#三、HTTP之URL" class="headerlink" title="三、HTTP之URL"></a>三、HTTP之URL</h3><p>  HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接。统一资源定位符（Uniform Resource Locator,URL）是一种特殊类型的URI，用来标识某一处资源的地址。</p>
 <p>  URL的组成看下图：</p>
-<p>  <img src="network-bs-http/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <h3 id="四、HTTP之请求消息Request"><a href="#四、HTTP之请求消息Request" class="headerlink" title="四、HTTP之请求消息Request"></a>四、HTTP之请求消息Request</h3><p>  请求消息包括以下格式：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成。</p>
 <p>  请求行，用来说明请求类型,要访问的资源以及所使用的HTTP版本。<br>  请求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息。<br>  空行，请求头部后面的空行是必须的。<br>  请求数据也叫主体，可以添加任意的其他数据。</p>
 <h3 id="五、HTTP之响应消息Response"><a href="#五、HTTP之响应消息Response" class="headerlink" title="五、HTTP之响应消息Response"></a>五、HTTP之响应消息Response</h3><p>  响应信息包括以下组成：状态行、消息报头、空行和响应正文。</p>
@@ -177,9 +177,9 @@
 
 <p>  TCP连接是通过三次握手来连接的。<br>  1）第一次握手<br>  客户端向服务器发起连接请求，同时客户端发送同步序列标号SYN到服务器（设SYN为m），等待服务器确认，这时客户端的状态为SYN_SENT。<br>  2）第二次握手<br>  服务器收到客户端发送的SYN后，向客户端发送确认包ACK（ACK为m+1），意思是说“我收到了你发送的SYN了”。同时，服务器也会向客户端发送一个SYN包（设为n）。这时服务器的状态为SYN_RECV。<br>  3）第三次握手<br>  客户端收到服务器发送的SYN和ACK包后，向服务器发送确认包ACK（n+1），“我也收到你发送的SYN了，我这就给你发个确认过去，然后我们即能合体了”，发送完毕后，客户端和服务器的状态为ESTABLISH，即TCP连接成功。</p>
 <p>  三次握手中，客户端和服务器端都发送两个包SYN和ACK，只不过服务器端的两个包是一次性发过来的，客户端的两个包是分两次发送的。</p>
-<p>  <img src="network-bs-http/2.jpg" alt="Alt text"></p>
+<p>  <img src="2.jpg" alt="Alt text"></p>
 <p>  TCP断开是通过四次挥手来断开的。<br>  1）第一次挥手<br>  A端向B端请求断开连接时会向B端发送一个带有FIN标记的报文段，这里的FIN是FINish的意思。<br>  2）第二次挥手<br>  B端收到A发送的FIN后，B段现在可能现在还有数据没有传完，所以B端并不会马上向A端发送FIN，而是先发送一个确认序号ACK，意思是说“你发的断开连接请求我收到了，但是我现在还有数据没有发完，请稍等一下呗”。<br>  3）第三次挥手<br>  当B端的事情忙完了，那么此时B端就可以断开连接了，此时B端向A端发送FIN序号，意思是这次可以断开连接了。<br>  4）第四次挥手<br>  A端收到B端发送的FIN后，会向B端发送确认ACK，然后经过两个MSL（MSL见下面）时长后断开连接。</p>
-<p>  <img src="network-bs-http/3.jpg" alt="Alt text"><br \=""></p>
+<p>  <img src="3.jpg" alt="Alt text"><br \=""></p>
   <font size="4" face="黑体"><strong>说这里会有以下疑问：</strong></font>
 
 <p>  1）TCP连接为什么要三次握手，两次握手可以么？<br>  假设一种情况，客户端发出的第一个连接请求时，有一报文段在某个网络结点长时间滞留了，以致延误到连接释放以后的某个时间才到达server。这是一个早已失效的报文段了，但server收到此失效的连接请求报文段后，就误认为是客户端再次发出的一个新的连接请求，于是就向客户端发出确认报文段，同意建立连接。假设不采用“三次握手”，那么只要server发出确认，新的连接就建立了。由于现在客户端并没有发出建立连接的请求，因此不会理睬服务端的确认，也不会向服务端发送ACK包。这样就会白白浪费资源。而经过三次握手，客户端和服务器有应有答，这样可以确保TCP正确连接。</p>
@@ -192,7 +192,7 @@
 <p>  HTTPS其实是有两部分组成：HTTP + SSL / TLS，也就是在HTTP上又加了一层处理加密信息的模块。服务端和客户端的信息传输都会通过SSL进行加密，所以传输的数据都是加密后的数据。</p>
   <font size="4" face="黑体"><strong>HTTPS如何进行加密，解密，验证的？：</strong></font>
 
-<p>  <img src="network-bs-http/4.png" alt="Alt text"></p>
+<p>  <img src="4.png" alt="Alt text"></p>
 <p>  1）客户端发起HTTPS请求(1)：<br>  就是用户在浏览器里输入一个https网址，然后连接到server的443端口。</p>
 <p>  2）服务端的配置：<br>  采用HTTPS协议的服务器必须要有一套数字证书，可以自己制作，也可以向组织（CA）申请。区别就是自己颁发的证书需要客户端验证通过，才可以继续访问，而使用受信任的公司申请的证书则不会弹出提示页面。这套证书其实就是一对公钥和私钥。如果对公钥和私钥不太理解，可以想象成一把钥匙和一个锁头，只是全世界只有你一个人有这把钥匙，你可以把锁头给别人，别人可以用这个锁把重要的东西锁起来，然后发给你，因为只有你一个人有这把钥匙，所以只有你才能看到被这把锁锁起来的东西。</p>
 <p>  3）传送证书(2)：<br>  这个证书其实就是公钥，只是包含了很多信息，如证书的颁发机构，过期时间等等。</p>
@@ -215,7 +215,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 01:19</p>
+        <p>最后更新： 2019年01月25日 18:15</p>
         <p>原始链接： <a class="post-url" href="/2018/03/08/network-bs-http/" title="http协议">http://liuxuewen-site.github.io/2018/03/08/network-bs-http/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

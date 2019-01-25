@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、说说你对HTML5认识?  1）是什么：  HTML5指的是包括 HTML 、 CSS 和 JavaScript 在内的一套技术组合。它希望能够减少网页浏览器对于需要插件的丰富性网络应用服务（ Plug-in-Based Rich Internet Application ， RIA ），例如： AdobeFlash 、 Microsoft Silverlight 与 Oracle JavaF">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/HTML5-bs-basic/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/HTML5-bs-basic/2.png">
-<meta property="og:updated_time" content="2018-09-03T06:52:30.378Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/2.png">
+<meta property="og:updated_time" content="2019-01-25T10:33:13.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5介绍">
 <meta name="twitter:description" content="一、说说你对HTML5认识?  1）是什么：  HTML5指的是包括 HTML 、 CSS 和 JavaScript 在内的一套技术组合。它希望能够减少网页浏览器对于需要插件的丰富性网络应用服务（ Plug-in-Based Rich Internet Application ， RIA ），例如： AdobeFlash 、 Microsoft Silverlight 与 Oracle JavaF">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/HTML5-bs-basic/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -176,8 +176,8 @@
 <p>  应用程序缓存的使用要做两方面的工作：<br>  1）浏览器上只需要一个简单的设置即可：&lt; html  manifest=”demo.appcache” ><br>  2）服务器端需要维护一个manifest清单,如:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"></span><br><span class="line">CACHE:</span><br><span class="line"># 需要缓存的列表</span><br><span class="line">style1.css</span><br><span class="line">1.jpg</span><br><span class="line">01.js</span><br><span class="line">http://localhost/applicationcache/02.js</span><br><span class="line">http://localhost/applicationcache/zepto.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line"># 不需要缓存的</span><br><span class="line">4.jpg</span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line"># 访问缓存失败后，备用访问的资源，第一个是访问源，第二个是替换文件*.html /offline.html</span><br><span class="line">2.jpg/3.jpg</span><br></pre></td></tr></table></figure></p>
 <p>  注意：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1）manifest 文件可分为三个部分：</span></span><br><span class="line"><span class="comment">#    CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存</span></span><br><span class="line"><span class="comment">#    NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</span></span><br><span class="line"><span class="comment">#    FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2）manifest文件需配置正确的MIME-type，即"text/cache-manifest"。须在web服务器上配置，不同服务器不一样。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3）Application Cache的尺寸限制统一在5M，单个文件不要超出这个上限。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4）如果manifest文件，或者内部列举的某一个文件不能正常下载，整个更新过程都将失败，浏览器继续全部使用老的缓存。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5）引用manifest的html必须与manifest文件同源。FALLBACK中的资源必须和manifest文件同源。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6）当一个资源被缓存后，该浏览器直接请求这个绝对路径也会访问缓存中的资源。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 7）站点中的其他页面即使没有设置manifest属性，请求的资源如果在缓存中也从缓存中访问。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 8）当manifest文件发生改变时，资源请求本身也会触发更新。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 9）一旦应用被缓存，它就会保持缓存直到发生下列情况：</span></span><br><span class="line"><span class="comment">#    用户清空浏览器缓存</span></span><br><span class="line"><span class="comment">#    manifest 文件被修改（参阅下面的提示）</span></span><br><span class="line"><span class="comment">#    由程序来更新应用缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 10）更新机制，首次更新manifest时，因为页面加载已经开始甚至完成，缓存更新尚未完成，</span></span><br><span class="line"><span class="comment">#     浏览器仍会使用过期的资源；浏览器是当Application Cache有更新时，</span></span><br><span class="line"><span class="comment">#     该次不会使用新资源，第二次才会使用。这个时候在update事件中执行window.reload事件。</span></span><br></pre></td></tr></table></figure></p>
 <p>  这样一来便可以离线应用了，这个时候就算断网了，那些文件依旧能访问。</p>
-<p>  <img src="HTML5-bs-basic/1.png" alt="Alt text"></p>
-<p>  <img src="HTML5-bs-basic/2.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>标注：</p>
 <ul>
 <li>本文来自牛客网，第八点改自 <a href="https://www.cnblogs.com/yexiaochai/p/4271834.html" target="_blank" rel="noopener">https://www.cnblogs.com/yexiaochai/p/4271834.html</a> 及 <a href="https://www.jianshu.com/p/a6261263767f" target="_blank" rel="noopener">https://www.jianshu.com/p/a6261263767f</a></li>
@@ -185,7 +185,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年09月03日 14:52</p>
+        <p>最后更新： 2019年01月25日 18:33</p>
         <p>原始链接： <a class="post-url" href="/2018/02/04/HTML5-bs-basic/" title="HTML5介绍">http://liuxuewen-site.github.io/2018/02/04/HTML5-bs-basic/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

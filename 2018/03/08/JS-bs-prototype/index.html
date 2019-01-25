@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、原型与原型链  首先，说原型与原型链之前，我们先了解一下对象：    Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。  1234567891011121314function f1()&amp;#123;&amp;#125;;var f2 = function()&amp;#123;&amp;#12">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/JS-bs-prototype/1.png">
-<meta property="og:updated_time" content="2018-07-03T16:45:40.150Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/1.png">
+<meta property="og:updated_time" content="2019-01-25T10:11:33.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型与原型链">
 <meta name="twitter:description" content="一、原型与原型链  首先，说原型与原型链之前，我们先了解一下对象：    Javascript中，对象可以分为两类：普通对象（Object）和函数对象（Function），一般通过new Function产生的对象是函数对象，其他对象都是普通对象。  1234567891011121314function f1()&amp;#123;&amp;#125;;var f2 = function()&amp;#123;&amp;#12">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/JS-bs-prototype/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -157,7 +157,7 @@
 <p>  __proto__在普通对象和函数对象中都存在， 它的作用就是保存父类的prototype对象，JS在通过new 表达式创建一个对象的时候，通常会把父类的prototype赋值给新对象的__proto__属性，这样，就形成了一代代传承…由__proto__组成了原型链</p>
 <p>  <font size="4" face="黑体"><strong>举个例子：</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>()&#123;&#125;</span><br><span class="line">f.prototype.foo = <span class="string">"abc"</span>;</span><br><span class="line">var obj = new f();</span><br><span class="line">console.log(obj.foo); //abc</span><br></pre></td></tr></table></figure></p>
 <p>  其中，obj中__proto__保存的是f的prototype，那么，f的prototype中的__proto__中呢？<br>  f.prototype的__proto__中保存的是Object.prototype，<br>  Object.prototype对象中也有__proto__，值是null，表示obj对象原型链的终结。</p>
-<p>  <img src="JS-bs-prototype/1.png" alt="Alt text"></p>
+<p>  <img src="1.png" alt="Alt text"></p>
 <p>  obj对象拥有这样一个原型链后，当obj.foo执行时，obj会先查找自身是否有该属性，但不会查找自己的prototype（因为没有么？）,当找不到foo时，obj就沿着原型链依次去查找。<br>  上面的例子中，我们在f的prototype上定义了foo属性，这时obj就会在原型链上找到这个属性并执行。</p>
 <h3 id="二、new操作"><a href="#二、new操作" class="headerlink" title="二、new操作"></a>二、new操作</h3><p>  众所周知new是用来创建一个新的实例对象，那么，在new的过程中，到底经过了什么呢？</p>
 <p>  举个例子来说明：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cat = new Animal(<span class="string">"cat"</span>);</span><br></pre></td></tr></table></figure></p>
@@ -196,7 +196,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 00:45</p>
+        <p>最后更新： 2019年01月25日 18:11</p>
         <p>原始链接： <a class="post-url" href="/2018/03/08/JS-bs-prototype/" title="原型与原型链">http://liuxuewen-site.github.io/2018/03/08/JS-bs-prototype/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

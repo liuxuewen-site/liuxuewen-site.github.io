@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、引入  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。   来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。   首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：  123456function BoilingV">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/React-gw-10/1.gif">
-<meta property="og:updated_time" content="2018-07-07T17:05:56.402Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/1.gif">
+<meta property="og:updated_time" content="2019-01-25T10:18:28.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React官网之10-状态提升">
 <meta name="twitter:description" content="一、引入  使用 react 经常会遇到几个组件需要共用状态数据的情况。 我们建议提升共享的状态到它们最近的祖先组件中进行管理。   来个例子，我们创建一个温度计算器，用来计算水在一个给定温度下是否会沸腾。   首先，我们创建一个名为 BoilingVerdict 的组件。它接受 celsius（摄氏温度）作为 prop ，并返回是否足以使水沸腾：  123456function BoilingV">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/React-gw-10/1.gif">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-10/1.gif">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -189,7 +189,7 @@
 <p>  提升状态相对于双向绑定方法需要写更多的“模板”代码，但有一个好处，它可以更方便的找到和隔离 bugs。因为任何 state 都 “存活” 在若干的组件中，而且可以分别对其独立修改，所以发生错误的可能大大减少。另外，你可以实现任何定制的逻辑来拒绝或者转换用户输入。</p>
 <p>  如果某个东西可以从 props(属性) 或者 state(状态) 得到，那么它很有可能不应该在state中出现。例如，我们只保存最后编辑的 temperature 和它的 scale，而不是保存 celsiusValue 和 fahrenheitValue 。另一个输入框的值总是在 render() 方法中计算得来的。这使我们对其进行清除和四舍五入到其他字段同时不会丢失用户输入的精度。</p>
 <p>  当你看到 UI 中的错误，你可以使用 <a href="https://github.com/facebook/react-devtools" target="_blank" rel="noopener">React 开发者工具</a> 来检查 props ，并向上遍历树，直到找到负责更新状态的组件。这使你可以跟踪到 bug 的源头：<br>  Monitoring State in React DevTools</p>
-<p>  <img src="React-gw-10/1.gif" alt="Alt text"></p>
+<p>  <img src="1.gif" alt="Alt text"></p>
 <p>标注：</p>
 <ul>
 <li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
@@ -198,7 +198,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月08日 01:05</p>
+        <p>最后更新： 2019年01月25日 18:18</p>
         <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-10/" title="React官网之10-状态提升">http://liuxuewen-site.github.io/2018/07/08/React-gw-10/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

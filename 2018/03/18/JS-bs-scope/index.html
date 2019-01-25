@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：   执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。   执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/1.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/2.jpg">
-<meta property="og:updated_time" content="2018-07-03T16:29:11.116Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/1.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/2.jpg">
+<meta property="og:updated_time" content="2019-01-25T10:12:07.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="作用域与作用域链">
 <meta name="twitter:description" content="一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：   执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。   执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们运行浏览器的时候会创建全局">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/JS-bs-scope/1.jpg">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/1.jpg">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -162,10 +162,10 @@
 <p>  看一个例子：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var color = <span class="string">"red"</span>;                        // 定义一个颜色属性</span><br><span class="line"> </span><br><span class="line">var showColor = <span class="function"><span class="title">function</span></span>()&#123;               // 定义显示颜色的方法</span><br><span class="line">    console.info(this.color);</span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">changeColor</span></span>()&#123;                   // 定义一个交换颜色的函数</span><br><span class="line">    var anotherColor = <span class="string">"blue"</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">swapColor</span></span>()&#123;</span><br><span class="line">     var tempColor = anotherColor;</span><br><span class="line">     anotherColor = color;</span><br><span class="line">     color = tempColor;</span><br><span class="line">    &#125;</span><br><span class="line">    swapColor();</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">changeColor();                           // 调用交换颜色的函数来改变颜色</span><br><span class="line"> </span><br><span class="line">showColor();                             // 调用显示颜色的函数来显示颜色</span><br></pre></td></tr></table></figure></p>
 <p>  1）看上面的代码，首先定义了一个颜色变量color，和一个打印颜色的方法showColor()。接着定义了一个用于交换颜色的函数changeColor()。注意在这个函数中是通过另外一个函数swapColor()来实现交换的。</p>
 <p>  2）接下来，我们开始执行changeColor()函数。上面说到，js在执行函数的时候，会创建一个执行环境，并为每一个函数增加一个属性SCOPE,通过这个属性来指向一块内存，这块内存中包含有所有上下文的变量。那么，在执行changeColor()函数的时候，内存模型应该如下图所示：</p>
-<p>  <img src="JS-bs-scope/1.jpg" alt="Alt text"></p>
+<p>  <img src="1.jpg" alt="Alt text"></p>
 <p>  图中蓝色部分是changeColor()函数的作用域链。由于changeColor()的执行上下文是window对象，所以它的作用域链的最高位指向的是全局作用域（golbal scope），在我们的程序中，目前全局作用域中有color、showColor和changeColor这3个属性。changeColor()作用域链的低位指向的是它自己的作用域，在changeColor()中，有anotherColor和swapColor2个属性。</p>
 <p>  3）执行changeColor()函数时，在函数内部又创建了一个swapColor()函数，创建之后立刻执行这个函数。此时的作用域链内存模型如下图所示：</p>
-<p>  <img src="JS-bs-scope/2.jpg" alt="Alt text"></p>
+<p>  <img src="2.jpg" alt="Alt text"></p>
 <p>  同样，swapColor的作用域链的最顶端指向的是全局作用域，下一级指向的是包含它的changeColor函数的作用域，最后才是指向自己的作用域。</p>
 <p>  4）接着，swapColor函数开始执行，第一代码是var tempColor = anotherColor，它首先会在自己的作用域中查找是否有tempColor属性，根据上面的图我们可以看到，在swapColor的作用域中存在tempColor属性，于是它把tempColor的值由“red”修改为“blue”。</p>
 <p>  第二句代码是anotherColor = color，首先它也是先在swapColor的作用域中查找anotherColor属性，发现没有找到，它就会通过作用域链到上一级的changeColor作用域中去查找，找到之后将anotherColor属性由“blue”修改为“red”。</p>
@@ -188,7 +188,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 00:29</p>
+        <p>最后更新： 2019年01月25日 18:12</p>
         <p>原始链接： <a class="post-url" href="/2018/03/18/JS-bs-scope/" title="作用域与作用域链">http://liuxuewen-site.github.io/2018/03/18/JS-bs-scope/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">

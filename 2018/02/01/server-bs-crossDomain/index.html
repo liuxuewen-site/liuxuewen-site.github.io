@@ -16,25 +16,25 @@
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、跨域  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。 二、同源策略  &amp;emsp;&amp;emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/2.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/3.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/4.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/5.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/6.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/7.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/8.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/9.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/10.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/11.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/12.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/13.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/14.png">
-<meta property="og:updated_time" content="2018-07-03T17:47:30.465Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/2.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/3.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/5.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/6.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/7.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/8.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/9.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/10.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/11.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/12.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/13.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/14.png">
+<meta property="og:updated_time" content="2019-01-25T10:20:11.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域">
 <meta name="twitter:description" content="一、跨域  跨域指一个域下的文档或脚本试图去请求另一个域下的资源。跨域出错主要原因是浏览器的“同源策略”。  跨域有ajax跨域、Cookie跨域、iframe跨域、LocalStorage跨域等。 二、同源策略  &amp;emsp;&amp;emsp;设想这样一种情况：A网站是一家银行，用户登录以后，又去浏览其他网站。 如果其他网站可以读取A网站的 Cookie，会发生什么？ 很显然，如果 Cookie 包含">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/server-bs-crossDomain/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -163,27 +163,27 @@
 <p>  &emsp;&emsp;由此可见，”同源政策”是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。</p>
 <p>  &emsp;&emsp;同源策略/SOP（Same origin policy）是一种约定，由Netscape公司1995年引入浏览器，它是浏览器最核心也最基本的安全功能，保证用户信息的安全，防止恶意的网站窃取数据。如果缺少了同源策略，浏览器很容易受到XSS、CSFR等攻击。所谓同源是指”协议+域名+端口”三者相同，即便两个不同的域名指向同一个ip地址，也非同源。</p>
 <p>  &emsp;&emsp;同源策略限制以下几种行为：<br>  1.) Cookie、LocalStorage 和 IndexDB 无法读取；2.) DOM 和 Js对象无法获得；3.) AJAX 请求不能发送。</p>
-<h3 id="三、常见跨域场景"><a href="#三、常见跨域场景" class="headerlink" title="三、常见跨域场景"></a>三、常见跨域场景</h3><p>  <img src="server-bs-crossDomain/1.png" alt="Alt text"></p>
+<h3 id="三、常见跨域场景"><a href="#三、常见跨域场景" class="headerlink" title="三、常见跨域场景"></a>三、常见跨域场景</h3><p>  <img src="1.png" alt="Alt text"></p>
 <h3 id="四、ajax跨域的表现"><a href="#四、ajax跨域的表现" class="headerlink" title="四、ajax跨域的表现"></a>四、ajax跨域的表现</h3><p>  <font size="4" face="黑体"><strong>第一种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且The response had HTTP status code 404</span><br></pre></td></tr></table></figure></p>
-<p>  <img src="server-bs-crossDomain/2.png" alt="Alt text"></p>
+<p>  <img src="2.png" alt="Alt text"></p>
 <p>  出现这种情况的原因如下：<br>  1）本次ajax请求是“非简单请求”,所以请求前会发送一次预检请求(OPTIONS)<br>  2）服务器端后台接口没有允许OPTIONS请求,导致无法找到对应接口地址</p>
 <p>  解决方案: 后端允许options请求</p>
 <p>  <font size="4" face="黑体"><strong>第二种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且The response had HTTP status code 405</span><br></pre></td></tr></table></figure></p>
-<p>  <img src="server-bs-crossDomain/3.png" alt="Alt text"></p>
+<p>  <img src="3.png" alt="Alt text"></p>
 <p>  出现这种情况的原因如下：<br>  1）后台方法允许OPTIONS请求,但是一些配置文件中(如安全配置),阻止了OPTIONS请求。</p>
 <p>  解决方案: 后端关闭对应的安全配置</p>
 <p>  <font size="4" face="黑体"><strong>第三种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">No <span class="string">'Access-Control-Allow-Origin'</span> header is present on the requested resource,</span><br><span class="line">并且status 200</span><br></pre></td></tr></table></figure></p>
-<p>  <img src="server-bs-crossDomain/4.png" alt="Alt text"></p>
+<p>  <img src="4.png" alt="Alt text"></p>
 <p>  出现这种情况的原因如下：<br>  1）服务器端后台允许OPTIONS请求,并且接口也允许OPTIONS请求,但是头部匹配时出现不匹配现象。比如origin头部检查不匹配,比如少了一些头部的支持(如常见的X-Requested-With头部),然后服务端就会将response返回给前端,前端检测到这个后就触发XHR.onerror,导致前端控制台报错</p>
 <p>  解决方案: 后端增加对应的头部支持</p>
 <p>  <font size="4" face="黑体"><strong>第四种现象:</strong></font><br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heade contains multiple values <span class="string">'*,*'</span></span><br></pre></td></tr></table></figure></p>
-<p>  <img src="server-bs-crossDomain/5.jpg" alt="Alt text"><br>  <img src="server-bs-crossDomain/6.png" alt="Alt text"></p>
+<p>  <img src="5.jpg" alt="Alt text"><br>  <img src="6.png" alt="Alt text"></p>
 <p>  表现现象是，后台响应的http头部信息有两个Access-Control-Allow-Origin:*，主要原因是进行了跨域配置重复。</p>
 <p>  出现这种情况的原因如下：<br>  1）常见于.net后台( 一般在web.config中配置了一次origin,然后代码中又手动添加了一次origin(比如代码手动设置了返回* ) )<br>  2）常见于.net后台(在IIS和项目的webconfig中同时设置Origin:*)</p>
 <p>  解决方案(对应):<br>  1）建议删除代码中手动添加的*，只用项目配置中的即可<br>  2）建议删除IIS下的配置*，只用项目配置中的即可</p>
 <h3 id="五、跨域解决方案"><a href="#五、跨域解决方案" class="headerlink" title="五、跨域解决方案"></a>五、跨域解决方案</h3><h4 id="1、JSONP"><a href="#1、JSONP" class="headerlink" title="1、JSONP"></a>1、JSONP</h4><p>  JSONP之所以能够用来解决跨域方案,主要是因为&lt; script >脚本拥有跨域能力,JSONP正是利用这一点来实现。</p>
 <p>  具体原理：</p>
-<p>  <img src="server-bs-crossDomain/7.png" alt="Alt text"></p>
+<p>  <img src="7.png" alt="Alt text"></p>
 <p>  实现流程：</p>
 <p>  客户端网页通过添加一个&lt; script >元素，向服务器请求JSON数据，这种做法不受同源政策限制</p>
 <p>  1.）原生实现<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var script = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">    script.type = <span class="string">'text/javascript'</span>;</span><br><span class="line"></span><br><span class="line">    // 传参并指定回调执行函数为onBack</span><br><span class="line">    script.src = <span class="string">'http://www.domain2.com:8080/login?user=admin&amp;callback=onBack'</span>;</span><br><span class="line">    document.head.appendChild(script);</span><br><span class="line"></span><br><span class="line">    // 回调执行函数</span><br><span class="line">    <span class="keyword">function</span> onBack(res) &#123;</span><br><span class="line">        alert(JSON.stringify(res));</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
@@ -197,7 +197,7 @@
 <h4 id="2、CORS"><a href="#2、CORS" class="headerlink" title="2、CORS"></a>2、CORS</h4><p>  CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
 <p>  基本上目前所有的浏览器都实现了CORS标准,其实目前几乎所有的浏览器ajax请求都是基于CORS机制的,所以说其实现在CORS解决方案主要是考虑后台该如何实现的问题。</p>
 <p>  具体原理：</p>
-<p>  <img src="server-bs-crossDomain/8.png" alt="Alt text"></p>
+<p>  <img src="8.png" alt="Alt text"></p>
 <p>  简单请求与非简单请求：</p>
 <p>  浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。只要同时满足以下两大条件，就属于简单请求。<br>  1）请求方法是以下三种方法之一：HEAD,GET,POST<br>  2）HTTP的头信息不超出以下几种字段：<br>  &emsp;&emsp;Accept<br>  &emsp;&emsp;Accept-Language<br>  &emsp;&emsp;Content-Language<br>  &emsp;&emsp;Last-Event-ID<br>  &emsp;&emsp;Content-Type(只限于三个值application/x-www-form-urlencoded、 multipart/form-data、text/plain)<br>  凡是不同时满足上面两个条件，就属于非简单请求。</p>
 <p>  普通跨域请求与带cookie请求：</p>
@@ -220,7 +220,7 @@
 <p>  仅列举简单的全局配置。新建配置，然后添加Configuration注解即可配置成功<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class CorsConfig &#123;</span><br><span class="line"></span><br><span class="line">    private CorsConfiguration <span class="function"><span class="title">buildConfig</span></span>() &#123;</span><br><span class="line">        CorsConfiguration corsConfiguration = new CorsConfiguration();</span><br><span class="line">        </span><br><span class="line">        // 可以自行筛选</span><br><span class="line">        corsConfiguration.addAllowedOrigin(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedHeader(<span class="string">"*"</span>);</span><br><span class="line">        corsConfiguration.addAllowedMethod(<span class="string">"*"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> corsConfiguration;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public CorsFilter <span class="function"><span class="title">corsFilter</span></span>() &#123;</span><br><span class="line">        UrlBasedCorsConfigurationSource <span class="built_in">source</span> = new UrlBasedCorsConfigurationSource();</span><br><span class="line">        </span><br><span class="line">        source.registerCorsConfiguration(<span class="string">"/**"</span>, buildConfig());</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">return</span> new CorsFilter(<span class="built_in">source</span>);  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>  5.）NET后台配置</p>
 <p>  第一步 网站配置。打开控制面板，选择管理工具,选择iis;右键单击自己的网站，选择浏览;打开网站所在目录,用记事本打开web.config文件添加下述配置信息,重启网站。</p>
-<p>  <img src="server-bs-crossDomain/9.png" alt="Alt text"></p>
+<p>  <img src="9.png" alt="Alt text"></p>
 <p>  请注意,以上截图较老,如果配置仍然出问题,可以考虑增加更多的headers允许,比如:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"Access-Control-Allow-Headers"</span>:<span class="string">"X-Requested-With,Content-Type,Accept,Origin"</span></span><br></pre></td></tr></table></figure></p>
 <p>  第二步:其它更多配置。如果第一步进行了后,仍然有跨域问题，可能是:<br>  1）接口中有限制死一些请求类型(比如写死了POST等)，这时候请去除限制<br>  2）接口中，重复配置了Origin:*，请去除即可<br>  3）IIS服务器中，重复配置了Origin:*，请去除即可</p>
 <h4 id="3、nginx反向代理处理跨域（推荐）"><a href="#3、nginx反向代理处理跨域（推荐）" class="headerlink" title="3、nginx反向代理处理跨域（推荐）"></a>3、nginx反向代理处理跨域（推荐）</h4><p>  原理： 同源策略是浏览器的安全策略，不是HTTP协议的一部分。服务器端调用HTTP接口只是使用HTTP协议，不会执行JS脚本，不需要同源策略，也就不存在跨越问题。</p>
@@ -237,16 +237,16 @@
 <h3 id="六、分析ajax跨域"><a href="#六、分析ajax跨域" class="headerlink" title="六、分析ajax跨域"></a>六、分析ajax跨域</h3><p>  上述已经介绍了跨域的原理以及如何解决，但实际过程中，发现仍然有很多人对照着类似的文档无法解决跨域问题，主要体现在不知道什么时候是跨域问题造成的，什么时候不是，因此这里稍微介绍下如何分析一个请求是否跨域：</p>
 <p>  抓包请求数据：<br>  第一步当然是得知道我们的ajax请求发送了什么数据，接收了什么，做到这一步并不难，也不需要fiddler等工具，仅基于Chrome即可<br>  1）Chrome浏览器打开对应发生ajax的页面，F12打开Dev Tools<br>  2）发送ajax请求<br>  3）右侧面板-&gt;NetWork-&gt;XHR，然后找到刚才的ajax请求，点进去</p>
 <p>  示例一(正常的ajax请求)</p>
-<p>  <img src="server-bs-crossDomain/10.png" alt="Alt text"></p>
+<p>  <img src="10.png" alt="Alt text"></p>
 <p>  上述请求是一个正确的请求，成功的拿到了响应数据,可以清晰的看到，接口返回的响应头域中，包括了<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Headers: X-Requested-With,Content-Type,Accept</span><br><span class="line">Access-Control-Allow-Methods: Get,Post,Put,OPTIONS</span><br><span class="line">Access-Control-Allow-Origin: *</span><br></pre></td></tr></table></figure></p>
 <p>  示例二(跨域错误的ajax请求)</p>
-<p>  <img src="server-bs-crossDomain/11.png" alt="Alt text"></p>
+<p>  <img src="11.png" alt="Alt text"></p>
 <p>  这个请求中，接口Allow里面没有包括OPTIONS，所以请求出现了跨域。</p>
-<p>  <img src="server-bs-crossDomain/12.jpg" alt="Alt text"></p>
+<p>  <img src="12.jpg" alt="Alt text"></p>
 <p>  这个请求中，Access-Control-Allow-Origin: *出现了两次，导致了跨域配置没有正确配置，出现了错误。</p>
 <p>  更多跨域错误基本都是类似的，就是以上三样没有满足(Headers,Allow,Origin)，这里不再一一说明。</p>
 <p>  示例三(与跨域无关的ajax请求)</p>
-<p>  <img src="server-bs-crossDomain/13.png" alt="Alt text"><br>  <img src="server-bs-crossDomain/14.png" alt="Alt text"></p>
+<p>  <img src="13.png" alt="Alt text"><br>  <img src="14.png" alt="Alt text"></p>
 <p>  比如这个请求，它的跨域配置没有一点问题，它出错仅仅是因为request的Accept和response的Content-Type不匹配而已。</p>
 <p>标注：</p>
 <ul>
@@ -256,7 +256,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年07月04日 01:47</p>
+        <p>最后更新： 2019年01月25日 18:20</p>
         <p>原始链接： <a class="post-url" href="/2018/02/01/server-bs-crossDomain/" title="跨域">http://liuxuewen-site.github.io/2018/02/01/server-bs-crossDomain/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">
