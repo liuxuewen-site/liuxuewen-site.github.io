@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
   
-  <meta name="description" content="一、前言  React提供了一组声明式API以让你不必关心每次更新的变化。这使得应用的编写容易了很多，但在React中如何实现并不是很清晰。这篇文章解释了React对比算法的选择以让组件更新可预测并使得高性能应用足够快。 二、目的  当你使用 React ，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或props 更新时，render">
+  <meta name="description" content="一、前言  React 提供了一组声明式 API，让你可以不必关心每次更新的变化，这使得应用的编写容易了很多，但在 React 中如何实现并不是很清晰，这篇文章解释了 React 对比算法的选择从而让组件的更新可预测，并使得高性能应用足够快。 二、目的  当你使用 React，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或 props">
 <meta name="keywords" content="前端-react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React官网之21-一致性比较(Reconciliation)">
 <meta property="og:url" content="http://liuxuewen-site.github.io/2018/07/08/React-gw-21/index.html">
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
-<meta property="og:description" content="一、前言  React提供了一组声明式API以让你不必关心每次更新的变化。这使得应用的编写容易了很多，但在React中如何实现并不是很清晰。这篇文章解释了React对比算法的选择以让组件更新可预测并使得高性能应用足够快。 二、目的  当你使用 React ，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或props 更新时，render">
+<meta property="og:description" content="一、前言  React 提供了一组声明式 API，让你可以不必关心每次更新的变化，这使得应用的编写容易了很多，但在 React 中如何实现并不是很清晰，这篇文章解释了 React 对比算法的选择从而让组件的更新可预测，并使得高性能应用足够快。 二、目的  当你使用 React，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或 props">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-30T12:44:49.413Z">
+<meta property="og:updated_time" content="2019-01-25T03:46:46.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React官网之21-一致性比较(Reconciliation)">
-<meta name="twitter:description" content="一、前言  React提供了一组声明式API以让你不必关心每次更新的变化。这使得应用的编写容易了很多，但在React中如何实现并不是很清晰。这篇文章解释了React对比算法的选择以让组件更新可预测并使得高性能应用足够快。 二、目的  当你使用 React ，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或props 更新时，render">
+<meta name="twitter:description" content="一、前言  React 提供了一组声明式 API，让你可以不必关心每次更新的变化，这使得应用的编写容易了很多，但在 React 中如何实现并不是很清晰，这篇文章解释了 React 对比算法的选择从而让组件的更新可预测，并使得高性能应用足够快。 二、目的  当你使用 React，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或 props">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -143,40 +143,36 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  React提供了一组声明式API以让你不必关心每次更新的变化。这使得应用的编写容易了很多，但在React中如何实现并不是很清晰。这篇文章解释了React对比算法的选择以让组件更新可预测并使得高性能应用足够快。</p>
-<h3 id="二、目的"><a href="#二、目的" class="headerlink" title="二、目的"></a>二、目的</h3><p>  当你使用 React ，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或props 更新时，render() 函数将会返回一个不同的 React 元素树。接下来 React 将会找出如何高效地更新 UI 来匹配最近时刻的 React 元素树。</p>
-<p>  目前存在大量通用的方法能够以最少的操作步骤将一个树转化成另外一棵树。然而，这个算法是复杂度为O(n3)，其中n 为树中元素的个数。</p>
-<p>  如果你在 React 中展示 1000 个元素，那么每次更新都需要10亿次的比较，这样的代价过于昂贵。然而，React 基于以下两个假设实现了时间复杂度为 O(n) 的算法:</p>
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  React 提供了一组声明式 API，让你可以不必关心每次更新的变化，这使得应用的编写容易了很多，但在 React 中如何实现并不是很清晰，这篇文章解释了 React 对比算法的选择从而让组件的更新可预测，并使得高性能应用足够快。</p>
+<h3 id="二、目的"><a href="#二、目的" class="headerlink" title="二、目的"></a>二、目的</h3><p>  当你使用 React，在任何一个单点时刻你可以认为 render() 函数的作用是创建 React 元素树。在下一个 state 或 props 更新时，render() 函数将会返回一个不同的 React 元素树。接下来 React 将会找出如何高效地更新 UI 来匹配最近时刻的 React 元素树。</p>
+<p>  目前存在大量通用的方法能够以最少的操作步骤将一个树转化成另外一棵树。然而这个算法是复杂度为O(n3)，其中 n 为树中元素的个数。</p>
+<p>  如果你在 React 中展示 1000 个元素，那么每次更新都需要 10 亿次的比较，这样的代价过于昂贵。然而 React 基于以下两个假设实现了时间复杂度为 O(n) 的算法（事实上，这些假设在几乎所有的用例中都是有效的）:</p>
 <p>  1）不同类型的两个元素将会产生不同的树。<br>  2）开发人员可以使用一个 key prop 来指示在不同的渲染中那个那些元素可以保持稳定。</p>
-<p>  事实上，这些假设在几乎所有的用例中都是有效的。</p>
-<h3 id="三、对比算法（Diffing）"><a href="#三、对比算法（Diffing）" class="headerlink" title="三、对比算法（Diffing）"></a>三、对比算法（Diffing）</h3><p>  当比较不同的两个树，React 首先比较两个根元素。根据根的类型不同，它有不同的行为。</p>
+<h3 id="三、对比算法（Diffing）"><a href="#三、对比算法（Diffing）" class="headerlink" title="三、对比算法（Diffing）"></a>三、对比算法（Diffing）</h3><p>  当比较不同的两个树，React 首先比较两个根元素，根据根的类型不同，它有不同的行为。</p>
 <h4 id="1、元素类型不相同："><a href="#1、元素类型不相同：" class="headerlink" title="1、元素类型不相同："></a>1、元素类型不相同：</h4><p>  无论什么时候，当根元素类型不同时，React 将会销毁原先的树并重写构建新的树。从 &lt; a &gt; 到 &lt; img &gt; ，或者从 &lt; Article &gt; 到 &lt; Comment &gt; ，从 &lt; Button &gt; 到 &lt; div &gt; – 这些都将导致全部重新构建。</p>
-<p>  当销毁原先的树时，之前的 DOM 节点将销毁。实例组件执行 componentWillUnmount() 。当构建新的一个树，新的 DOM 节点将会插入 DOM 中，组件将会执行 componentWillMount() 以及 componentDidMount() 。任何与旧树有关的状态都将丢弃。</p>
-<p>  根节点以下的任何组件都会被卸载(unmounted)，其状态都会丢失。例如，当比较:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;Counter /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;</span><br><span class="line">  &lt;Counter /&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  这会销毁旧的 Counter ，并重新装载（remount）一个新的。</p>
-<h4 id="2、DOM元素类型相同："><a href="#2、DOM元素类型相同：" class="headerlink" title="2、DOM元素类型相同："></a>2、DOM元素类型相同：</h4><p>  当比较两个相同类型的 React DOM 元素时，React 检查它们的属性，保留相同的底层 DOM 节点，只更新反生改变的属性。例如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">"before"</span> title=<span class="string">"stuff"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div className=<span class="string">"after"</span> title=<span class="string">"stuff"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  通过比较两个元素，React 会仅修改底层 DOM 节点的 className 属性。</p>
-<p>  当更新 style属性，React 也会仅仅只更新已经改变的属性，例如:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;color: <span class="string">'red'</span>, fontWeight: <span class="string">'bold'</span>&#125;&#125; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;color: <span class="string">'green'</span>, fontWeight: <span class="string">'bold'</span>&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  当React对两个元素进行转化的时候，仅会修改color，而不会修改 fontWeight 。</p>
+<p>  当销毁原先的树时，之前的 DOM 节点将销毁，实例组件执行 componentWillUnmount()。当构建新的一个树，新的 DOM 节点将会插入 DOM 中，组件将会执行 componentWillMount() 以及 componentDidMount()，任何与旧树有关的状态都将丢弃。</p>
+<p>  根节点以下的任何组件都会被卸载(unmounted)，其状态都会丢失。例如，当比较下面情况时，会销毁旧的 Counter，并重新装载（remount）一个新的:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;Counter /&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;</span><br><span class="line">  &lt;Counter /&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2、DOM元素类型相同："><a href="#2、DOM元素类型相同：" class="headerlink" title="2、DOM元素类型相同："></a>2、DOM元素类型相同：</h4><p>  当比较两个相同类型的 React DOM 元素时，React 检查它们的属性，保留相同的底层 DOM 节点，只更新反生改变的属性。例如当比较下面两个元素时，React 会仅修改底层 DOM 节点的 className 属性：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div className=<span class="string">"before"</span> title=<span class="string">"stuff"</span> /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div className=<span class="string">"after"</span> title=<span class="string">"stuff"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  当更新 style 属性，React 也会仅仅只更新已经改变的属性，例如下面当 React 对两个元素进行转化的时候，仅会修改 color，而不会修改 fontWeight:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;color: <span class="string">'red'</span>, fontWeight: <span class="string">'bold'</span>&#125;&#125; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;div style=&#123;&#123;<span class="string">'&#123;&#123;'</span>&#125;&#125;color: <span class="string">'green'</span>, fontWeight: <span class="string">'bold'</span>&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure></p>
 <p>  在处理完当前 DOM 节点后，React 会递归处理子节点。</p>
-<h4 id="3、组件元素类型相同："><a href="#3、组件元素类型相同：" class="headerlink" title="3、组件元素类型相同："></a>3、组件元素类型相同：</h4><p>  当一个组件更新的时候，组件实例保持不变，以便在渲染中保持state。React会更新组件实例的属性来匹配新的元素，并在元素实例上调用 componentWillReceiveProps() 和 componentWillUpdate()。</p>
-<p>  接下来， render() 方法会被调用并且对比算法对上一次的结果和新的结果进行递归。</p>
-<h4 id="4、子元素递归："><a href="#4、子元素递归：" class="headerlink" title="4、子元素递归："></a>4、子元素递归：</h4><p>  默认情况下，当递归一个 DOM 节点的子节点时，React仅在同一时间点递归两个子节点列表，并在有不同时产生一个变更。</p>
+<h4 id="3、组件元素类型相同："><a href="#3、组件元素类型相同：" class="headerlink" title="3、组件元素类型相同："></a>3、组件元素类型相同：</h4><p>  当一个组件更新的时候，组件实例保持不变，以便在渲染中保持 state。React 会更新组件实例的属性来匹配新的元素，并在元素实例上调用 componentWillReceiveProps() 和 componentWillUpdate()。</p>
+<p>  接下来，render() 方法会被调用并且对比算法对上一次的结果和新的结果进行递归。</p>
+<h4 id="4、子元素递归："><a href="#4、子元素递归：" class="headerlink" title="4、子元素递归："></a>4、子元素递归：</h4><p>  默认情况下，当递归一个 DOM 节点的子节点时，React 仅在同一时间点递归两个子节点列表，并在有不同时产生一个变更。</p>
 <p>  例如，当给子元素末尾添加一个元素，在两棵树之间转化中性能就不错:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;first&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;second&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;first&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;second&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;third&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
 <p>  React 会比较两个 &lt; li &gt;first&lt; /li &gt; 树与两个 &lt; li &gt;second&lt; /li &gt; 树，然后插入 &lt; li &gt;third&lt; /li &gt; 树。</p>
 <p>  如果在开始处插入一个节点也是这样简单地实现，那么性能将会很差。例如，在下面两棵树的转化中性能就不佳:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li&gt;Connecticut&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
 <p>  React 将会改变每一个子节点而没有意识到需要保留 <li>Duke</li> 和 <li>Villanova</li> 两个子树。这种低效是一个问题。</p>
-<h4 id="5、Keys："><a href="#5、Keys：" class="headerlink" title="5、Keys："></a>5、Keys：</h4><p>  为了解决这个问题，React 支持一个 key 属性。当子节点有了 key ，React 使用这个 key 去比较原来的树的子节点和之后树的子节点。例如，添加一个 key 到我们上面那个低效的例子中可以使树的转换变高效：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2015"</span>&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2016"</span>&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2014"</span>&gt;Connecticut&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2015"</span>&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2016"</span>&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  现在 React 知道有’2014’ key 的元素是新的， key为’2015’ 和’2016’的两个元素仅仅只是被移动而已。</p>
-<p>  实际上，找到一个 key 通常不难。你所将要展示的组件一般都有唯一的ID，因此你的数据可以作为key的来源：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li key=&#123;item.id&#125;&gt;&#123;item.name&#125;&lt;/li&gt;</span><br></pre></td></tr></table></figure></p>
-<p>  当情况不同时，你可以添加一个新的ID 属性到你的数据模型，或者是hash 一部分内容生成一个key。这个key 需要在它的兄弟节点中是唯一的就可以了，不需要是全局唯一。</p>
-<p>  作为最后的手段，你可以将数组中的索引作为 key 。如果它们从不重新排序，它们工作也很好，但是如果存在重新排序，性能将会很差。</p>
-<p>  当索引用作key时，组件状态在重新排序时也会有问题。组件实例基于key进行更新和重用。如果key是索引，则item的顺序变化会改变key值。这将导致受控组件的状态可能会以意想不到的方式混淆和更新。</p>
+<h4 id="5、Keys："><a href="#5、Keys：" class="headerlink" title="5、Keys："></a>5、Keys：</h4><p>  为了解决这个问题，React 支持一个 key 属性。当子节点有了 key，React 使用这个 key 去比较原来的树的子节点和之后树的子节点。</p>
+<p>  例如，添加一个 key 到我们上面那个低效的例子中可以使树的转换变高效：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2015"</span>&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2016"</span>&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;ul&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2014"</span>&gt;Connecticut&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2015"</span>&gt;Duke&lt;/li&gt;</span><br><span class="line">  &lt;li key=<span class="string">"2016"</span>&gt;Villanova&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  现在 React 知道有’2014’ key 的元素是新的， key 为’2015’ 和’2016’的两个元素仅仅只是被移动而已。</p>
+<p>  实际上，找到一个 key 通常不难。你所将要展示的组件一般都有唯一的 ID，因此你的数据可以作为 key 的来源：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;li key=&#123;item.id&#125;&gt;&#123;item.name&#125;&lt;/li&gt;</span><br></pre></td></tr></table></figure></p>
+<p>  当情况不同时，你可以添加一个新的 ID 属性到你的数据模型，或者是 hash 一部分内容生成一个 key。这个 key 需要在它的兄弟节点中是唯一的就可以了，不需要是全局唯一。</p>
+<p>  作为最后的手段，你可以将数组中的索引作为 key。如果它们从不重新排序，它们工作也很好，但是如果存在重新排序，性能将会很差。当索引用作key时，组件状态在重新排序时也会有问题。组件实例基于 key 进行更新和重用。如果 key 是索引，则 item 的顺序变化会改变 key 值。这将导致受控组件的状态可能会以意想不到的方式混淆和更新。</p>
 <h3 id="四、权衡利弊"><a href="#四、权衡利弊" class="headerlink" title="四、权衡利弊"></a>四、权衡利弊</h3><p>  牢记对比算法的实现细节非常重要。React 会在每个操作上重新渲染整个应用，最终的结果可能是相同的。因此我们经常细化启发式算法，以便优化性能。</p>
 <p>  在目前实现中，可以表明一个事实，即子树在其兄弟节点中移动，但你无法告知其移动到哪。该算法会重渲整个子树。</p>
-<p>  因为React 依赖这个启发式，如果它们背后的假设没有得到满足，性能将会受到影响。</p>
+<p>  因为 React 依赖这个启发式，如果它们背后的假设没有得到满足，性能将会受到影响：</p>
 <p>  1）算法不会尝试匹配不同节点类型的子树。如果你发现在有类似输出的两个不同节点类型中相互切换，你可能需要将其转化成同种类型，事实上，我们没有在其中发现问题。</p>
-<p>  2）keys 应该是稳定的、可预测的并且是唯一的。不稳定的 key (类似于 Math.random() 函数的结果)可能会产生非常多的组件实例并且 DOM 节点也会非必要性的重新创建。这将会造成极大的性能损失和组件内state的丢失。</p>
+<p>  2）keys 应该是稳定的、可预测的并且是唯一的。不稳定的 key (类似于 Math.random() 函数的结果)可能会产生非常多的组件实例并且 DOM 节点也会非必要性的重新创建。这将会造成极大的性能损失和组件内 state 的丢失。</p>
 <p>标注：</p>
 <ul>
 <li>参考资料1：<a href="https://reactjs.org/" target="_blank" rel="noopener">https://reactjs.org/</a></li>
@@ -185,7 +181,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年11月30日 20:44</p>
+        <p>最后更新： 2019年01月25日 11:46</p>
         <p>原始链接： <a class="post-url" href="/2018/07/08/React-gw-21/" title="React官网之21-一致性比较(Reconciliation)">http://liuxuewen-site.github.io/2018/07/08/React-gw-21/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">
@@ -348,10 +344,14 @@
 </p>
 
 
-      <p>
+      <!-- <p>
         Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
         Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
       &copy; 2019 liuxuewen<br>
+      </p> -->
+      <p>
+        1320325272@qq.com 
+        liuxuewen
       </p>
     </div>
   </div>
