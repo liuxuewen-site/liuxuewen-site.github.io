@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>深入理解JavaScript系列04-作用域链 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、前言  回顾一下之前的内容，进入执行上下文会创建 VO 对象、建立作用域链、确定 this 指向。执行上下文的数据(函数形参、变量声明、函数声明)是作为属性存储在 VO 中的。   上一节我们讲了 VO。我们知道变量对象在每次进入上下文时创建，并填入初始值，值的更新出现在代码执行阶段。这一节我们继续深入了解执行上下文，来认识作用域链。 二、作用域链  引用 ECMA-262-3 的定义：每一个">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解JavaScript系列04-作用域链">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、前言  回顾一下之前的内容，进入执行上下文会创建 VO 对象、建立作用域链、确定 this 指向。执行上下文的数据(函数形参、变量声明、函数声明)是作为属性存储在 VO 中的。   上一节我们讲了 VO。我们知道变量对象在每次进入上下文时创建，并填入初始值，值的更新出现在代码执行阶段。这一节我们继续深入了解执行上下文，来认识作用域链。 二、作用域链  引用 ECMA-262-3 的定义：每一个">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-01T08:32:44.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解JavaScript系列04-作用域链">
+<meta name="twitter:description" content="一、前言  回顾一下之前的内容，进入执行上下文会创建 VO 对象、建立作用域链、确定 this 指向。执行上下文的数据(函数形参、变量声明、函数声明)是作为属性存储在 VO 中的。   上一节我们讲了 VO。我们知道变量对象在每次进入上下文时创建，并填入初始值，值的更新出现在代码执行阶段。这一节我们继续深入了解执行上下文，来认识作用域链。 二、作用域链  引用 ECMA-262-3 的定义：每一个">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-deep-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      深入理解JavaScript系列04-作用域链
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-02-01
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>  回顾一下之前的内容，进入执行上下文会创建 VO 对象、建立作用域链、确定 this 指向。执行上下文的数据(函数形参、变量声明、函数声明)是作为属性存储在 VO 中的。</p>
+<p>  上一节我们讲了 VO。我们知道变量对象在每次进入上下文时创建，并填入初始值，值的更新出现在代码执行阶段。这一节我们继续深入了解执行上下文，来认识作用域链。</p>
+<h3 id="二、作用域链"><a href="#二、作用域链" class="headerlink" title="二、作用域链"></a>二、作用域链</h3><p>  引用 ECMA-262-3 的定义：每一个执行上下文都与一个作用域链相关联。作用域链是一个对象组成的链表，求值标识符的时候会搜索它。当控制进入执行上下文时，就根据代码类型创建一个作用域链，并用初始化对象填充。执行一个上下文的时候，其作用域链只会被 with 声明和 catch 语句所影响。</p>
+<p>  不能一下子看明白没关系，我们接着往下看，待会回过来思考思考。看个 demo:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = 10;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">    var b = 100;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> c = a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> bar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()();</span><br></pre></td></tr></table></figure></p>
+<p>  这个例子的执行上下文创建和弹出的过程不明白的见执行上下文一节。根据上边 ECMA-262-3 的定义，作用域链是一个变量对象组成的链表，用来进行变量查询。 比如上面的 bar 上下文的作用域链依次是 AO(bar)、AO(foo)、VO(global)。</p>
+<p>  我们这样模拟全局上下文：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">someECStackContext=&#123;</span><br><span class="line">    AO: ...,</span><br><span class="line">    this: ...,</span><br><span class="line">    Scope:[ 所有变量对象的列表 ]    // Scope = AO|VO + [[Scope]]，也就是当前变量对象加上所有父级变量对象的列表。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  讲 AO 的时候我们说过了有两个阶段，进入上下文(初始化)、代码执行阶段(update值)。我们还知道 JS 是词法作用域规则，直白的说就是你写代码的时候就确定了作用域。不考虑 eval 环境的话，[[scope]] 与函数紧紧相关。</p>
+<h3 id="三、函数的生命周期"><a href="#三、函数的生命周期" class="headerlink" title="三、函数的生命周期"></a>三、函数的生命周期</h3><p>  函数的生命周期分为两个阶段：创建、调用阶段。</p>
+  <font size="4" face="黑体"><strong>1、函数创建阶段：</strong></font>
+
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = 20;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">    var b = 100;</span><br><span class="line">    alert( a + b );</span><br><span class="line">&#125;</span><br><span class="line">foo(); // 120</span><br></pre></td></tr></table></figure>
+<p>  得到预期的结果，这样来分析：在 foo 的作用域内只有 b 的声明，执行 alert 的时候对 a 进行 RHS 查询，没找到，就去外层作用域查找，ok 找到了。</p>
+<p>  现在我们用更底层的思路去分析，虽然上边的分析没毛病：首先我们可以确定 foo 的 AO 对象、全局的 VO 对象：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">AO(foo) = &#123;</span><br><span class="line">    b: undefined</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">VO(global) = &#123;</span><br><span class="line">    foo: &lt;reference <span class="string">'foo'</span>&gt;,</span><br><span class="line">    a: undefined</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  那么是怎么找到 a 的呢？联系上边我们说的作用域链：</p>
+<p>  1）[[scope]] 是所有父级变量对象的层级链，处于当前函数上下文之上，在函数创建时存于其中。当然对 a 的查找是顺着层级往上的。</p>
+<p>  2）[[scope]] 在函数创建时被存储，静态（不变的），永远永远，直到函数被销毁。也就是说函数一旦创建，[[scope]] 属性已经写入，并存储在函数对象中，无论函数是否调用。</p>
+<p>  3）[[scope]] 和作用域链不是一个概念，[[scope]] 是函数的一个属性而已：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo.[[Scope]] = [</span><br><span class="line">    VO(global) </span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+  <font size="4" face="黑体"><strong>2、函数调用阶段：</strong></font>
+
+<p>  前边提到了：Scope = AO|VO + [[Scope]]，更容易理解的形式是这样：Scope = [AO|VO].concat([[Scope]])；在函数调用(进入上下文)阶段，会把当前的 VO|AO 加入到当前执行函数 [[scope]] 属性的前边。</p>
+<p>  这时我们再回到文章开头提到的 ECMA262-3 对于作用域链的定义。定义中提到了标识符，是干什么呢？标识符的作用就是确定一个变量（或函数声明）属于哪个变量对象。标识符解析算法在 ECMA262-3 中也有定义：</p>
+<p>  执行过程中，使用下面的算法进行标识符解析查找:<br>  1）获取作用域链中的下一个对象。如果没有，转到步骤5。<br>  2）调用 Result(1) 的 [[HasProperty]] 方法，把标识符作为属性名传递。<br>  3）如果 Result(2) 为 true，返回一个引用类型的值，其基对象是 Result(1)，属性名为标识符。<br>  4）转到步骤1。<br>  5）返回引用类型的值，基对象为 null，属性名为标识符。<br>  6）求值标识符的结果总是一个引用类型的值，其成员名字组件与标识符字符串相等。</p>
+<p>  大体上说明标识符解析总是会返回一个引用类型，这个引用类型的 getBase() 结果是对应的变量对象(或若未找到则为null)。属性名是向上查找的标识符的名称。在向上查找中，一个上下文中的局部变量较之于父作用域的变量拥有较高的优先级。可以理解为由内向外查找，如果找到了就会返回引用类型，外层有重名的也不会找到那儿去。</p>
+<p>  引用类型在 this 的章节会详细说明。我们通过一个复杂 demo 来熟悉熟悉：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var x = 10;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;</span><br><span class="line">    var y = 20;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>() &#123;</span><br><span class="line">        var z = 30;</span><br><span class="line">        alert(x +  y + z);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); // 60</span><br></pre></td></tr></table></figure></p>
+<p>  在上面代码的执行阶段：</p>
+<p>  1）首先全局上下文：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GlobalECStackContext=&#123;</span><br><span class="line">    VO(global) = &#123;</span><br><span class="line">        foo: &lt;reference <span class="string">'foo'</span>&gt;,</span><br><span class="line">        x: 10</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [ VO(global) ] // 全局上下文的作用域链仅包含全局对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  2）对于 foo：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// AO 对象</span><br><span class="line">fooECStackContext=&#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        bar: &lt;reference <span class="string">'bar'</span>&gt;,</span><br><span class="line">        y: 20</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// [[scope]] 属性</span><br><span class="line">foo.[[ scope ]] = [ GlobalECStackContext.VO(global) ]</span><br><span class="line"></span><br><span class="line">// 作用域链</span><br><span class="line">fooECStackContext = &#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        bar: &lt;reference <span class="string">'bar'</span>&gt;,</span><br><span class="line">        y: 20</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [ fooECStackContext.AO, GlobalECStackContext.VO(global) ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  3）对于 bar：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// AO 对象</span><br><span class="line">barECStackContext = &#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        z: 30</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// [[scope]] 属性</span><br><span class="line">bar.[[ scope ]] = [ fooECStackContext.AO, VO(global) ]</span><br><span class="line"></span><br><span class="line">// 作用域链</span><br><span class="line">barECStackContext = &#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        z: 30</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope:[ </span><br><span class="line">        barECStackContext.AO, </span><br><span class="line">        fooECStackContext.AO, </span><br><span class="line">        GlobalECStackContext.VO(global) </span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  对 ‘x’, ‘y’, ‘z’ 标识符的解析过程：</p>
+<p>  1）对 ‘x’ 进行查找：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">barECStackContext.AO     // 没找到</span><br><span class="line">fooECStackContext.AO     // 没找到</span><br><span class="line">VO(global)               // Get it! 10</span><br></pre></td></tr></table></figure></p>
+<p>  2）对 ‘y’ 进行查找：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">barECStackContext.AO     // 没找到</span><br><span class="line">fooECStackContext.AO     // Get it! 20</span><br></pre></td></tr></table></figure></p>
+<p>  3）对 ‘z’ 进行查找：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VO(global)                 // Get it! 30</span><br></pre></td></tr></table></figure></p>
+<p>  就是这样，虽然没有完全的解释清楚 ECMA262-3 中对于标识符解析的算法规则，但是这样容易理解，也就是这样找的。</p>
+<h3 id="三、闭包"><a href="#三、闭包" class="headerlink" title="三、闭包"></a>三、闭包</h3><p>  闭包前面有一篇文章讲述。这里只说说其与 [[scope]] 属性的联系。</p>
+<p>  在 你不知道的JavaScript 中，闭包定义是：函数拥有对其词法作用域的访问，哪怕是在当前作用域之外执行。在 红宝书 中，闭包定义是：闭包是指有权访问另一个函数作用域中的变量的函数。</p>
+<p>  通过一个 demo 来解读:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var x = 20;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">    alert(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    var x = 10;</span><br><span class="line">    foo(); // 10</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>  从本章节的内容来看，闭包与 [[scope]] 属性息息相关。</p>
+<p>  首先之前提到了函数的 [[scope]] 属性是静态属性，函数创建的时候就被存储到函数对象中，函数销毁才会销毁。闭包的特点恰好就是持久的保有对其定义的词法作用域的访问权限。</p>
+<p>  再来一点，[[scope]] 中保存的是当前函数的所有上层变量对象。上面的 demo 中 foo() 持久访问的正是其上层匿名立即执行函数的 AO 对象中的属性。所以，闭包是函数代码和其 [[scope]] 的结合？</p>
+<h3 id="四、Function-构建的函数"><a href="#四、Function-构建的函数" class="headerlink" title="四、Function 构建的函数"></a>四、Function 构建的函数</h3><p>  Function 构建的函数，其 [[scope]] 中只有全局的 VO。</p>
+<p>  这个 Function 是很有意思的，之前在一些讲解原型的高热度文章中，发现很多会说所有的函数都有 prototype 属性。其实是错误的，比如 Function.prototype.bind 创建的函数就没有 prototype 属性的。</p>
+<p>  同样 Function 构建的函数，其 [[scope]] 也比较特殊，里面只有全局的 VO 对象：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 证明</span><br><span class="line">var a = 10;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">    var b = 20;</span><br><span class="line"></span><br><span class="line">    // 函数声明</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">f1</span></span>()&#123;</span><br><span class="line">        console.log(a, b);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 函数表达式</span><br><span class="line">    var f2 = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        console.log(a, b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Function</span><br><span class="line">    var f3 = Function(<span class="string">'console.log(a,b)'</span>)</span><br><span class="line"></span><br><span class="line">    f1(); // 10, 20</span><br><span class="line">    f2(); // 10, 20</span><br><span class="line">    f3(); // 10, b is not defined</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<p>  f3 只能够访问全局 VO 中的属性，不能访问 VO(foo)，印证了 [[scope]] 里面只有全局的 VO 对象。</p>
+<h3 id="五、with-amp-catch-amp-eval"><a href="#五、with-amp-catch-amp-eval" class="headerlink" title="五、with &amp; catch &amp; eval"></a>五、with &amp; catch &amp; eval</h3><p>  eval 不建议使用，就简单提一提。代码 eval 的上下文与当前的调用上下文（calling context）拥有同样的作用域链：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">evalContext.Scope === callingContext.Scope</span><br></pre></td></tr></table></figure></p>
+<p>  文章开始部分引用的 ECMA-262-3 关于作用域的定义中提到了 with &amp; catch 这一点。事实上在代码执行阶段，可以通过 with 声明和 catch 语句修改作用域链。它们将会被添加到作用域链的最前端：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scope = [ withObj|catchObj, AO|VO, [[scope]] ]</span><br><span class="line"></span><br><span class="line">// 这样好理解</span><br><span class="line">Scope = [ withObj|catchObj ].concat( [ AO|VO ].concat( [[ scope ]] ) )</span><br></pre></td></tr></table></figure></p>
+<p>  很多资料对这个过程解释的很绕，我们通过一段代码具体分析：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = 15, b = 15;</span><br><span class="line"></span><br><span class="line">with( &#123; a: 10 &#125; )&#123;</span><br><span class="line">    var a = 30, b = 30;</span><br><span class="line">    alert(a);            // 30</span><br><span class="line">    alert(b);            // 30</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(a);                // 15 &lt;-- 关键点在这里</span><br><span class="line">alert(b);                // 30</span><br></pre></td></tr></table></figure></p>
+<p>  一步一步分析:</p>
+<p>  1）代码开始执行：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 此时的上下文</span><br><span class="line">EC = &#123;</span><br><span class="line">    VO(global):&#123;</span><br><span class="line">        a: 15,</span><br><span class="line">        b: 15</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [ VO(global) ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  2）执行 with 语句：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 此时的上下文</span><br><span class="line">EC = &#123;</span><br><span class="line">    VO(global):&#123;</span><br><span class="line">        a: 30,                       // 这里先是10，然后又改写为30</span><br><span class="line">        b: 30</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [ &#123; a:10 &#125;, VO(global) ]  // 添加到作用域链的最前端</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  3）with 结束：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 此时的上下文</span><br><span class="line">EC = &#123;</span><br><span class="line">    VO(global):&#123;</span><br><span class="line">        a: 15,                      // --&gt; a: 30 也会被移除，回到最初的状态。即第1步</span><br><span class="line">        b: 30</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [ VO(global) ]          // 从前头移除&#123;a:10&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  catch 的过程是一样的。两个核心: </p>
+<p>  第一是 withObject|catchObject 会被添加到作用域链前端，其实就是标识符解析从 withObj|catchObj 先开始，因为它在头上嘛。这也是我们说 with、catch 可以挟持作用域的原因。</p>
+<p>  第二就是声明完成之后会移除这些状态，回到最初的美好。</p>
+<p>  留一个思考题:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var x = 1, y = 1;</span><br><span class="line"><span class="keyword">function</span> foo( data )&#123;</span><br><span class="line">    var x = 2, y = 2;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>()&#123;</span><br><span class="line">        with( data )&#123;</span><br><span class="line">            console.log(x);</span><br><span class="line">            console.log(y);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    bar();</span><br><span class="line">&#125;</span><br><span class="line">foo( &#123;x: 5&#125; );</span><br><span class="line">console.log(x);</span><br><span class="line">console.log(y);</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、作用域链与原型链"><a href="#六、作用域链与原型链" class="headerlink" title="六、作用域链与原型链"></a>六、作用域链与原型链</h3><p>  二维作用域链查找，就是说在对象中没找到就去原型链上查找：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>()&#123;</span><br><span class="line">    alert( a );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.prototype.a = <span class="string">'jack ma'</span>;</span><br><span class="line">f();                                // jack ma</span><br></pre></td></tr></table></figure></p>
+<p>  这个其实大家很熟悉，原型链末尾都是 -&gt; Object.prototype -&gt; null。顺着原型链逐级的委托，最终会成功输出 ‘jack ma’。</p>
+<p>  好的，接着:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">outer</span></span>()&#123;</span><br><span class="line">    var x = 10;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">inner</span></span>()&#123;</span><br><span class="line">        alert(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    inner();</span><br><span class="line">&#125;</span><br><span class="line">Object.prototype.x = 50;</span><br><span class="line">outer()                             // 10</span><br></pre></td></tr></table></figure></p>
+<p>  这里输出了10，而不是顶层原型定义的50。上一个例子输出的明明是原型委托继承的值啊？我们分析：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 全局上下文</span><br><span class="line">EC(global) = &#123;</span><br><span class="line">    VO:&#123;</span><br><span class="line">        outer: &lt;reference <span class="string">'outer'</span>&gt;,</span><br><span class="line">        x: 50 // 这里不清楚的请注意前边的文章提到过 window instanceof Object</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// outer上下文</span><br><span class="line">EC(outer) = &#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        inner: &lt;reference <span class="string">'inner'</span>&gt;,</span><br><span class="line">        x: 10</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [AO, EC(global).VO]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// inner上下文</span><br><span class="line">EC(inner) = &#123;</span><br><span class="line">    AO:&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [AO, EC(outer).AO, EC(global).VO]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  在这个流程中，执行阶段会顺着原型链的层级进行标识符解析工作。而活动对象(AO)是没有原型的，所以 inner 的 AO 中没有 x 属性，就去下一链级的 outer 中找，找到了就停，如果没有就去全局找了。全局中的 x 是可以通过原型委托继承得到，所以假如你删除 var x = 10，得到的是原型委托继承的 50。</p>
+<p>  参考：<br>  <a href="http://lzw.me/pages/ecmascript/#143" target="_blank" rel="noopener">ECMA-262-3</a><br>  <a href="http://dmitrysoshnikov.com/" target="_blank" rel="noopener">dmitrysoshnikov.com</a></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://github.com/cbbfcd/all-of-javascript/blob/master/深入理解JavaScript系列/scope.md" target="_blank" rel="noopener">https://github.com/cbbfcd/all-of-javascript/blob/master/深入理解JavaScript系列/scope.md</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年02月01日 16:32</p>
+        <p>原始链接： <a class="post-url" href="/2019/02/01/JS-deep-04/" title="深入理解JavaScript系列04-作用域链">http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/&title=《深入理解JavaScript系列04-作用域链》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/&title=《深入理解JavaScript系列04-作用域链》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入理解JavaScript系列04-作用域链》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/02/01/JS-deep-04/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、前言"><span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二、作用域链"><span class="post-toc-text">二、作用域链</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、函数的生命周期"><span class="post-toc-text">三、函数的生命周期</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三、闭包"><span class="post-toc-text">三、闭包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、Function-构建的函数"><span class="post-toc-text">四、Function 构建的函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五、with-amp-catch-amp-eval"><span class="post-toc-text">五、with &amp; catch &amp; eval</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六、作用域链与原型链"><span class="post-toc-text">六、作用域链与原型链</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/28/JS-deep-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">深入理解JavaScript系列03-变量对象</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <!-- <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p> -->
+      <p>
+        1320325272@qq.com 
+        liuxuewen
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
