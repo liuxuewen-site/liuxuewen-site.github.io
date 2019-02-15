@@ -104,6 +104,131 @@
       <div class="outer">
         <section id="main" class="body-wrap">
   
+    <article id="post-Dva-gw-02" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/07/Dva-gw-02/">Dva官网之02-概念</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/07/Dva-gw-02/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="Dva官网之02-概念" title="Dva官网之02-概念">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、 数据流向  数据改变的发生通常是通过用户交互行为或者浏览器行为（如路由跳转等）触发的，可以通过 dispatch 发起一个 action，如果是同步行为会直接通过 Reducers 改变 State ，如果是异步行为（副作用）会先触发 Effects 然后流向 Reducers 最终改变 State，所以在 dva 中，数据流向非常清晰简明，并且思路基本跟开源社区保...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-07</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/07/Dva-gw-02/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-Dva-gw-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/07/Dva-gw-01/">Dva官网之01-上手</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/07/Dva-gw-01/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="Dva官网之01-上手" title="Dva官网之01-上手">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、dva 介绍  dva 是一个基于 redux 和 redux-saga 的数据流方案，为了简化开发体验，dva 还额外内置了 react-router 和 fetch，所以可以理解为一个轻量级的应用框架。
+  特性：  1）易学易用，仅有6个 api，对 redux 用户友好，配合 umi 使用后更是降低为0 api。  2）elm 概念，通过 reducers，e...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-07</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/07/Dva-gw-01/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
     <article id="post-React-bs-interact" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -612,136 +737,10 @@
 
 
   
-    <article id="post-JS-bs-preventShake" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/16/JS-bs-preventShake/">函数防抖与函数节流</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/09/16/JS-bs-preventShake/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="函数防抖与函数节流" title="函数防抖与函数节流">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、目的  以下场景往往由于事件频繁被触发，因而频繁执行DOM操作、资源加载等重行为，导致UI停顿甚至浏览器崩溃：  1）window对象的resize、scroll事件  2）拖拽时的mousemove事件  3）射击游戏中的mousedown、keydown事件  4）文字输入、自动完成的keyup事件
-  实际上，对于window的resize事件，实际需求大多是n...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-09-16</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/09/16/JS-bs-preventShake/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-JS-bs-eventDefault" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/15/JS-bs-eventDefault/">事件冒泡与默认事件</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/09/15/JS-bs-eventDefault/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="事件冒泡与默认事件" title="事件冒泡与默认事件">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、事件冒泡  1）定义：假设一个html结构中，两个标签存在父子层级关系，父盒子和子盒子都绑定一个相同的方法时，当点击子盒子时将会触发执行两次方法。但实际期待点击子盒子就单独触发子盒子的事件而不涉及父盒子的方法。
-  2）阻止：在谷歌火狐等浏览器中阻止事件冒泡的方法是 e.stopPropagation() ，在ie浏览器中阻止事件冒泡的方法是 window.event...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-09-15</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/09/15/JS-bs-eventDefault/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/"><< Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next >></a>
+    <a class="extend prev" rel="prev" href="/"><< Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next >></a>
   </nav>
 </section>
         

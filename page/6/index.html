@@ -104,6 +104,134 @@
       <div class="outer">
         <section id="main" class="body-wrap">
   
+    <article id="post-JS-bs-scope" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/18/JS-bs-scope/">作用域与作用域链</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2018/03/18/JS-bs-scope/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="作用域与作用域链" title="作用域与作用域链">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、执行环境  1在了解作用域与作用域链之前，我们先了解一下执行环境：
+  执行环境也叫执行上下文，它定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都保存着与之对应的变量对象，我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。
+  执行环境有全局执行环境和函数（局部）执行环境之分。执行环境是在运行和执行代码的时候才存在的，我们...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2018-03-18</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2018/03/18/JS-bs-scope/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-JS-bs-arrow" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/16/JS-bs-arrow/">箭头函数与普通函数</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2018/03/16/JS-bs-arrow/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="箭头函数与普通函数" title="箭头函数与普通函数">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、箭头函数与普通函数  首先我们先看一下箭头函数与普通函数：  123456789//箭头函数var a = ()=&gt;&#123;             //函数名、参数、结果  return 1;&#125;//普通函数function a()&#123;  return 1;&#125;
+  接着我们看一下他们间的比较：
+  1）简洁：  1234567//...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2018-03-16</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2018/03/16/JS-bs-arrow/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
     <article id="post-JS-bs-entrust" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -614,136 +742,10 @@
 
 
   
-    <article id="post-JS-bs-garbage" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/JS-bs-garbage/">浅谈V8引擎中的垃圾回收机制</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/03/10/JS-bs-garbage/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="浅谈V8引擎中的垃圾回收机制" title="浅谈V8引擎中的垃圾回收机制">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、垃圾回收器  JavaScript使用垃圾回收器（机制）来自动管理内存。垃圾回收是一把双刃剑，其好处是可以大幅简化程序的内存管理代码，降低程序员的负担，减少因长时间运转而带来的内存泄露问题。但使用了垃圾回收即意味着程序员将无法掌控内存。ECMAScript没有暴露任何垃圾回收器的接口。我们无法强迫其进行垃圾回收，更无法干预内存管理。
-二、内存管理问题  在浏览器中，C...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-03-10</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/03/10/JS-bs-garbage/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-JS-bs-closure" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/10/JS-bs-closure/">闭包</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/03/10/JS-bs-closure/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="闭包" title="闭包">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、什么是闭包  闭包是函数和声明该函数的词法环境的组合，简单的说就是内部函数对外部函数作用域的引用。
-二、JS里面的闭包  12345678910function sayHello(name) &#123;    let str = `Hello,$&#123;name&#125;`;    function say() &#123;        console.lo...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-03-10</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/03/10/JS-bs-closure/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/"><< Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next >></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><< Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next >></a>
   </nav>
 </section>
         

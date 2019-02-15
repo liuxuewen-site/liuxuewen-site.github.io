@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>深入理解JavaScript系列06-函数 | LIUXUEWEN&#39;S BLOG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="LIUXUEWEN,LIUXUEWEN's Blog">
+  
+  <meta name="description" content="一、函数的类型  函数一共有三种类型： 1、函数声明  函数声明，Function Declaration，其语法：  123function Identifier ( FormalParameterListopt ) &amp;#123;     FunctionBody &amp;#125;   Return the result of creating a new Function object as sp">
+<meta name="keywords" content="前端-JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解JavaScript系列06-函数">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/index.html">
+<meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
+<meta property="og:description" content="一、函数的类型  函数一共有三种类型： 1、函数声明  函数声明，Function Declaration，其语法：  123function Identifier ( FormalParameterListopt ) &amp;#123;     FunctionBody &amp;#125;   Return the result of creating a new Function object as sp">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-15T11:54:28.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解JavaScript系列06-函数">
+<meta name="twitter:description" content="一、函数的类型  函数一共有三种类型： 1、函数声明  函数声明，Function Declaration，其语法：  123function Identifier ( FormalParameterListopt ) &amp;#123;     FunctionBody &amp;#125;   Return the result of creating a new Function object as sp">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">I AM LIUXUEWEN</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        I AM LIUXUEWEN
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个 宅不住 的 IT程序员
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuxuewen-site">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" "="">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Weixin" "="">
+                            <i class="fa fa-weixin fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-JS-deep-06" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      深入理解JavaScript系列06-函数
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/前端/">前端</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-02-15
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="一、函数的类型"><a href="#一、函数的类型" class="headerlink" title="一、函数的类型"></a>一、函数的类型</h3><p>  函数一共有三种类型：</p>
+<h4 id="1、函数声明"><a href="#1、函数声明" class="headerlink" title="1、函数声明"></a>1、函数声明</h4><p>  函数声明，Function Declaration，其语法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Identifier ( FormalParameterListopt ) &#123; </span><br><span class="line">    FunctionBody </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  Return the result of creating a new Function object as specified in 13.2 with parameters specified by FormalParameterListopt, and body specified by FunctionBody. Pass in the VariableEnvironment of the running execution context as the Scope. Pass in true as the Strict flag if the FunctionDeclaration is contained in strict code or if its FunctionBody is strict code.<br>  简译：创建并返回一个新的函数对象，并且把 FormalParameterListopt 作为函数的参数，FunctionBody 作为函数的 body。传递运行中的执行上下文中的 VariableEnvironment 作为其 Scope。如果 FunctionDeclaration 包含在严格模式代码里或 FunctionBody 是严格模式代码，那么传递 Strict: true。</p>
+<p>  说明函数声明的特点：<br>  1）要有个名字。代码只出现在程序级的全局上下文或者别的函数的函数体中。<br>  2）仅仅影响变量对象。<br>  3）可以提升，其实质是因为函数声明在进入执行上下文阶段就已经创建并包含在 VO 中了，所以在执行阶段已经是可以使用的了。</p>
+<p>  比如：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 这里可以正常调用，是提升的作用。其实质是因为执行阶段，函数声明早已经在 VO 中了。</span><br><span class="line">foo(); </span><br><span class="line"></span><br><span class="line">// 出现在全局</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">    console.log( <span class="string">'hello world!'</span> );</span><br><span class="line"></span><br><span class="line">    // 出现在别的函数体</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>()&#123;</span><br><span class="line">        console.log(<span class="string">'yeah!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    bar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="2、函数表达式"><a href="#2、函数表达式" class="headerlink" title="2、函数表达式"></a>2、函数表达式</h4><p>  函数表达式，Function Expression，其语法：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var someName = <span class="keyword">function</span> Identifier? ( FormalParameterListopt ) &#123; </span><br><span class="line">    FunctionBody </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>  <a href="http://es5.github.io/#x13" target="_blank" rel="noopener">具体规范传送门</a>。分为了两种情况，就是 Identifier 这个函数名字有或者没有:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var foo = <span class="function"><span class="title">function</span></span>()&#123;&#125;;</span><br><span class="line"></span><br><span class="line">//or</span><br><span class="line"></span><br><span class="line">var bar = <span class="keyword">function</span> <span class="function"><span class="title">_bar</span></span>()&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  总结其特点：</p>
+<p>  1）Identifier(函数名字) 可选，这里要注意规范中的 Note。</p>
+<p>  NOTE The Identifier in a FunctionExpression can be referenced from inside the FunctionExpression’s FunctionBody to allow the function to call itself recursively. However, unlike in a FunctionDeclaration, the Identifier in a FunctionExpression cannot be referenced from and does not affect the scope enclosing the FunctionExpression.</p>
+<p>  这里强调的是可以通过 Identifier 实现递归的情况：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var foo = <span class="keyword">function</span> <span class="function"><span class="title">_foo</span></span>()&#123;</span><br><span class="line">    _foo(); // 通过 Identifier 实现递归</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  2）不会影响变量对象（因为传递给 Scope 或者作为 argument 的都是上下文的 LexicalEnvironment）。</p>
+<p>  3）不会提升，因为代码执行阶段才创建。比如上面的代码，在进入执行上下文阶段其 VO:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VO = &#123;</span><br><span class="line">    foo: undefined                 // 所以，如果提前调用 foo() 会报错的。</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  注意，上面的代码 VO 对象中有 foo 是因为变量是可以影响 VO 的，但是表达式中的 _foo 是不在变量对象中的，因为表达式不会污染 VO，函数表达式在代码执行阶段创建，并且不存在于变量对象中。</p>
+<p>  4）既然是函数表达式，说明其必须出现在表达式的位置<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var f = <span class="function"><span class="title">function</span></span>()&#123;&#125;;            // 这是一个函数表达式 -- 左值表达式</span><br><span class="line">(<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;&#125;);              // 这是一个函数表达式 -- 分组操作符</span><br><span class="line">[<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;&#125;];              // 这是一个函数表达式 -- 数组操作符</span><br><span class="line">1, <span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;&#125;;             // 这是一个函数表达式 -- 逗号操作符</span><br><span class="line">(<span class="function"><span class="title">function</span></span>()&#123;&#125;)();                // 立即执行函数表达式</span><br><span class="line">!<span class="function"><span class="title">function</span></span>()&#123;&#125;;                   // 这也是一个函数表达式 -- 逻辑操作符</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="title">function</span></span>()&#123;alert(1)&#125;;    // 这也是一个函数表达式</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>  接下来让我们继续深入，前边说了函数表达式在代码执行阶段创建，并且不存在于变量对象中，我们验证一下：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">alert(f);               // f is not defined</span><br><span class="line">(<span class="keyword">function</span> <span class="function"><span class="title">f</span></span>()&#123;&#125;);</span><br><span class="line">alert(f);               // f is not defined</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">alert(b);              // b is not defined</span><br><span class="line">[<span class="keyword">function</span> <span class="function"><span class="title">b</span></span>()&#123;&#125;];</span><br><span class="line">alert(b);              // b is not defined</span><br><span class="line"></span><br><span class="line">alert(c);              // c is not defined</span><br><span class="line">1, <span class="keyword">function</span> <span class="function"><span class="title">c</span></span>()&#123;&#125;;</span><br><span class="line">alert(c);              // c is not defined</span><br><span class="line"></span><br><span class="line">// 说明表达式根本不在外边的(父级)变量对象中。</span><br></pre></td></tr></table></figure></p>
+<p>  这是一个非常重要的特点，之前某些版本的浏览器可能还有 bug，上面的代码会输出一些别的结果，但是现在几乎都改正过来了，因为规范中定义了表达式是不存在变量对象中的。这一特点也能被我们所用，利用其不污染变量对象的优点：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 1. 函数作为参数，因为函数表达式不会影响其 VO 对象，所以是安全的。</span><br><span class="line"><span class="keyword">function</span> foo(callback)&#123;</span><br><span class="line">    callback();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="function"><span class="title">function</span></span>()&#123;console.log(1)&#125;);</span><br><span class="line"></span><br><span class="line">// 2. 建立私有的域隐藏一些数据</span><br><span class="line">var obj = &#123;&#125;;</span><br><span class="line">(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    var a = 10;</span><br><span class="line">    obj.f = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        alert(a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br><span class="line">obj.f();                   // 10</span><br><span class="line">alert(a);                  // a is not defined</span><br><span class="line">// 首先 obj 能够访问到 f 是因为函数的 [[Scope]] 属性。</span><br><span class="line">// 函数表达式不存在于外边的 VO 对象中，所以直接访问 a 会报错。</span><br><span class="line"></span><br><span class="line">// 3. 利用其执行阶段创建的特性，动态的根据条件创建函数表达式。</span><br><span class="line">var foo = 10;</span><br><span class="line">var bar = (foo % 2 == 0</span><br><span class="line">? <span class="function"><span class="title">function</span></span> () &#123; alert(0); &#125;</span><br><span class="line">: <span class="function"><span class="title">function</span></span> () &#123; alert(1); &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">bar();                    // 0</span><br></pre></td></tr></table></figure></p>
+<p>  IIFE，叫做立即执行函数表达式，所以，函数声明可不可以加个括号也立即执行？<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>()&#123;&#125;();     // 语法错误</span><br><span class="line"><span class="function"><span class="title">function</span></span>()&#123;&#125;();       // 语法错误  所以不能...</span><br><span class="line">// 因为解析器不知道这个函数是表达式还是函数声明啊</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> foo(x)&#123;</span><br><span class="line">    alert(x)</span><br><span class="line">&#125;(1);                 // 没报错，但是这只是一个分组操作符，并不是函数调用哦！</span><br><span class="line">foo(10);              // 这才是函数调用</span><br><span class="line"></span><br><span class="line">!<span class="keyword">function</span> baz(x)&#123;</span><br><span class="line">    alert(x)</span><br><span class="line">&#125;(10);                // 10! 不是说是分组操作符，不是调用吗？</span><br><span class="line">// 注意前边有一个 ！运算符。此时解析器是知道这是一个函数表达式的。</span><br><span class="line"></span><br><span class="line">// 这里得出一个结论：</span><br><span class="line">// 当一个函数表达式遇到一个括号的时候，就会立即执行，括号不是分组运算符了。</span><br><span class="line">// 而且解析器知道这货是表达式的时候可以不用加个括号括起来。</span><br><span class="line"></span><br><span class="line">// 所以</span><br><span class="line">(<span class="function"><span class="title">function</span></span>()&#123;&#125;)();                    // 拆开看左边是一个表达式(<span class="function"><span class="title">function</span></span>()&#123;&#125;); 右边括号</span><br><span class="line">1, <span class="function"><span class="title">function</span></span>()&#123;alert(150)&#125;();         // 也是立即执行不报错</span><br><span class="line">[<span class="function"><span class="title">function</span></span>()&#123;alert(100)&#125;()];          // 也是立即执行不报错</span><br><span class="line"></span><br><span class="line">var ff = &#123;</span><br><span class="line">    bar: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        console.log(<span class="string">'test'</span>);</span><br><span class="line">    &#125;(1)</span><br><span class="line">&#125;;</span><br><span class="line">ff.bar;                              // <span class="built_in">test</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="3、Function-创建的函数"><a href="#3、Function-创建的函数" class="headerlink" title="3、Function 创建的函数"></a>3、Function 创建的函数</h4><p>  之前就提过，其特殊之处在于 [[Scope]] 中只有全局对象：<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = 100;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>()&#123;</span><br><span class="line">    var a = 50;</span><br><span class="line">    var baz = new Function(<span class="string">'alert(a);'</span>);</span><br><span class="line">    baz();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar();                               // 100</span><br></pre></td></tr></table></figure></p>
+<h4 id="4、补充"><a href="#4、补充" class="headerlink" title="4、补充"></a>4、补充</h4><p>  关于前边提到的函数表达式中的递归，函数表达式可以通过对 Identifier 的引用实现递归:<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> foo(bar)&#123;</span><br><span class="line">    <span class="keyword">if</span>(bar)&#123;</span><br><span class="line">        alert(123);</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    foo(<span class="literal">true</span>);          // 这个 foo 哪里来的？</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">foo();                  // 报错</span><br></pre></td></tr></table></figure></p>
+<p>  从外边的 VO 中来的？不可能啊，在外边执行 foo() 会报错，而且我们已经知道函数表达式不会存在于 VO 中啊，那是 foo 函数内部来的？也不对啊，根本没有这个定义啊。</p>
+<p>  其实是在创建函数表达式的时候创建了一个第三方的特殊对象，然后这个对象的属性的 key 就是函数表达式的名字，值就是函数自己，然后这个对象会添加到作用域链的前端，执行完了机会销毁。是不是有点像前边提到的 with &amp; catch 的变量对象一样。<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var specialObj = &#123;&#125;;</span><br><span class="line">specialObj.foo = foo;</span><br><span class="line"></span><br><span class="line">foo.[[Scope]] = specialObj.concat(Scope);</span><br><span class="line"></span><br><span class="line">delete Scope[0];</span><br></pre></td></tr></table></figure></p>
+<p>  参考：<br>  <a href="http://es5.github.io/#x13" target="_blank" rel="noopener">ES5规范</a><br>  <a href="http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/" target="_blank" rel="noopener">Functions</a></p>
+<p>标注：</p>
+<ul>
+<li>参考资料1：<a href="https://github.com/cbbfcd/all-of-javascript/blob/master/深入理解JavaScript系列/func.md" target="_blank" rel="noopener">https://github.com/cbbfcd/all-of-javascript/blob/master/深入理解JavaScript系列/func.md</a></li>
+</ul>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年02月15日 19:54</p>
+        <p>原始链接： <a class="post-url" href="/2019/02/15/JS-deep-06/" title="深入理解JavaScript系列06-函数">http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/</a></p>
+        <footer>
+            <a href="http://liuxuewen-site.github.io">
+                <img src="/images/logo.png" alt="liuxuewen">
+                liuxuewen
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/&title=《深入理解JavaScript系列06-函数》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/&title=《深入理解JavaScript系列06-函数》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入理解JavaScript系列06-函数》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/02/15/JS-deep-06/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一、函数的类型"><span class="post-toc-text">一、函数的类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1、函数声明"><span class="post-toc-text">1、函数声明</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2、函数表达式"><span class="post-toc-text">2、函数表达式</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3、Function-创建的函数"><span class="post-toc-text">3、Function 创建的函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4、补充"><span class="post-toc-text">4、补充</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/02/JS-deep-05/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">深入理解JavaScript系列05-this</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <!-- <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 liuxuewen<br>
+      </p> -->
+      <p>
+        1320325272@qq.com 
+        liuxuewen
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://liuxuewen-site.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/hexo/">hexo</a><a class="category-link" href="/categories/前端/">前端</a><a class="category-link" href="/categories/后台/">后台</a><a class="category-link" href="/categories/数据结构/">数据结构</a><a class="category-link" href="/categories/网络协议/">网络协议</a><a class="category-link" href="/categories/项目/">项目</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 12.86px;">hexo</a> <a href="/tags/前端-CSS/" style="font-size: 14.29px;">前端-CSS</a> <a href="/tags/前端-ES6/" style="font-size: 11.43px;">前端-ES6</a> <a href="/tags/前端-HTML5/" style="font-size: 10px;">前端-HTML5</a> <a href="/tags/前端-JS/" style="font-size: 18.57px;">前端-JS</a> <a href="/tags/前端-react/" style="font-size: 20px;">前端-react</a> <a href="/tags/前端-安全性/" style="font-size: 10px;">前端-安全性</a> <a href="/tags/前端-性能优化/" style="font-size: 10px;">前端-性能优化</a> <a href="/tags/前端-服务器/" style="font-size: 11.43px;">前端-服务器</a> <a href="/tags/前端-移动端适配/" style="font-size: 11.43px;">前端-移动端适配</a> <a href="/tags/前端-考题/" style="font-size: 17.14px;">前端-考题</a> <a href="/tags/后台/" style="font-size: 10px;">后台</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/网络协议/" style="font-size: 15.71px;">网络协议</a> <a href="/tags/项目/" style="font-size: 10px;">项目</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
