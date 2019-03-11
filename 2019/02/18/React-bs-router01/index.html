@@ -12,20 +12,20 @@
 <meta name="keywords" content="前端-react">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React路由">
-<meta property="og:url" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/index.html">
+<meta property="og:url" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/index.html">
 <meta property="og:site_name" content="LIUXUEWEN&#39;S BLOG">
 <meta property="og:description" content="一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。 二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/1.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/2.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/3.jpg">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/4.png">
-<meta property="og:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/5.png">
-<meta property="og:updated_time" content="2019-01-25T10:17:06.430Z">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/1.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/2.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/3.jpg">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/4.png">
+<meta property="og:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/5.png">
+<meta property="og:updated_time" content="2019-03-11T06:52:37.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React路由">
 <meta name="twitter:description" content="一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。 二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请求重刷整个页面的问题，但随">
-<meta name="twitter:image" content="http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/1.png">
+<meta name="twitter:image" content="http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -133,7 +133,7 @@
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2018-12-18
+          <i class="fa fa-calendar"></i>  2019-02-18
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -230,8 +230,8 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年01月25日 18:17</p>
-        <p>原始链接： <a class="post-url" href="/2018/12/18/React-bs-router01/" title="React路由">http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/</a></p>
+        <p>最后更新： 2019年03月11日 14:52</p>
+        <p>原始链接： <a class="post-url" href="/2019/02/18/React-bs-router01/" title="React路由">http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/</a></p>
         <footer>
             <a href="http://liuxuewen-site.github.io">
                 <img src="/images/logo.png" alt="liuxuewen">
@@ -288,7 +288,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&pic=http://liuxuewen-site.github.ioimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -298,22 +298,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/&title=《React路由》 — LIUXUEWEN'S BLOG&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React路由》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/&via=http://liuxuewen-site.github.io" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《React路由》 — LIUXUEWEN'S BLOG&url=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/&via=http://liuxuewen-site.github.io" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -323,7 +323,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2018/12/18/React-bs-router01/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://liuxuewen-site.github.io/2019/02/18/React-bs-router01/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -355,7 +355,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/12/19/React-bs-router02/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/19/React-bs-router02/" id="article-nav-newer" class="article-nav-link-wrap">
 
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
@@ -366,7 +366,7 @@
     </a>
   
   
-    <a href="/2018/12/16/React-bs-lifeCycle/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/16/React-bs-lifeCycle/" id="article-nav-older" class="article-nav-link-wrap">
       <span class="article-nav-title">React生命周期</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>

@@ -104,6 +104,261 @@
       <div class="outer">
         <section id="main" class="body-wrap">
   
+    <article id="post-JS-deep-01" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/JS-deep-01/">深入理解JavaScript系列01-内存空间</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/25/JS-deep-01/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="深入理解JavaScript系列01-内存空间" title="深入理解JavaScript系列01-内存空间">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、前言  一直以来对 JS 这门动态弱类型语言的理解和认识总是零散杂乱。近期希望整理出一条主轴线来，把 JS 的各方面串联起来。
+  进入正题，可能以前我们并不关心内存空间，从而导致对内存泄露、深浅拷贝等知识点的理解有点模糊。所以 JS 主轴线就是从内存分配开始。
+二、数据结构与算法  所有的语言归根还是为了数据，在内存空间中，编程语言们都有着相似的生命周期：  1）内...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-25</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-JS/" class="color1">前端-JS</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/25/JS-deep-01/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-Dva-gw-06" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/08/Dva-gw-06/">Dva官网之06-dva 源码解析</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/08/Dva-gw-06/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="Dva官网之06-dva 源码解析" title="Dva官网之06-dva 源码解析">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、项目 &gt; package.json  dva 项目只要敲入 npm start 就可以运行启动，在敲下这行命令的时候发生了什么？答案要去 package.json 里去寻找（看源码之前，先去看 package.json，看看项目的入口文件，用了哪些依赖，对项目便有了大致的概念）。
+  package.json 里写：  123"scripts": &#123; ...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-08</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/08/Dva-gw-06/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-Dva-gw-05" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/07/Dva-gw-05/">Dva官网之05-dva 开发复杂 SPA</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/07/Dva-gw-05/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="Dva官网之05-dva 开发复杂 SPA" title="Dva官网之05-dva 开发复杂 SPA">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、前言  在 dva 的官方仓库里，提供了上手教程，讲述了 dva 的一些基本概念。到了真实的业务开发过程中，会遇到许许多多不能用那些基本操作覆盖的场景，本文尝试列举一些常见的需求在 dva 中的实现方式。
+二、动态加载 model  不少业务场景下我们可能会定义多个 model，但并不需要在应用启动的时候就全部加载，比较典型的是各类管理控制台。
+  如果每个功能页面是...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-07</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/07/Dva-gw-05/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
+    <article id="post-Dva-gw-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/07/Dva-gw-04/">Dva官网之04-图解 dva</a>
+    </h1>
+  
+
+          
+              <span class="header-cate">
+                <i class="fa fa-map-marker"></i>
+                  
+                  <a href="/categories/前端/">前端</a>
+                  
+              </span>
+          
+      </header>
+    
+    <div class="article-entry " itemprop="articleBody">
+      
+        <div class="article-img">
+            <a href="/2019/01/07/Dva-gw-04/">
+                
+                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="Dva官网之04-图解 dva" title="Dva官网之04-图解 dva">
+                
+            </a>
+        </div>
+        <div class="article-feed">
+            <p>
+                一、示例背景  最常见的 Web 类示例之一: TodoList = Todo list + Add todo button
+二、图解一: React 表示法  
+  按照 React 官方指导意见, 如果多个 Component 之间要发生交互, 那么状态（即数据）就维护在这些 Component 的最小公约父节点上, 也即是 &lt; App / &gt;，&lt; ...
+            </p>
+        </div>
+      
+        
+    </div>
+    <footer class="article-footer">
+        
+        <ul class="article-footer-menu">
+            
+                <li><i class="fa fa-calendar"></i>2019-01-07</li>
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/前端-react/" class="color4">前端-react</a>
+      
+  </li>
+
+        </ul>
+        
+            <a href="/2019/01/07/Dva-gw-04/#more" class="article-more-link">more&gt;&gt;</a>
+        
+    </footer>
+  </div>
+</article>
+
+
+  
     <article id="post-Dva-gw-03" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -288,259 +543,6 @@
         </ul>
         
             <a href="/2019/01/07/Dva-gw-01/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-bs-interact" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/20/React-bs-interact/">React数据交互</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/12/20/React-bs-interact/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React数据交互" title="React数据交互">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、前言  在 react 中，进行前后端数据交互的方式有很多种，下面我们介绍下常用的几种。注意本文只是简单的介绍下各种方式，至于它们之间的优缺点，以及能从每一种中扩展出的其它功能，请自行学习。
-二、Ajax  1234567891011// ajax(get):const gAjax = new XMLHttpRequest();gAjax.open('GET', '/...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-12-20</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/12/20/React-bs-interact/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-bs-router02" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/19/React-bs-router02/">React路由实例</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/12/19/React-bs-router02/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React路由实例" title="React路由实例">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、前言  上一篇中大概总结了一下 web 应用的路由，这一篇接着上一篇分享一些例子。
-二、简单的路由示例  一个简单的网站结构是首页和几个独立的二级页面，假如我们有三个独立的二级页面分别为：新闻页、课程页、加入我们，路由配置如下：  123456789101112131415161718192021222324252627282930313233343536373839...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-12-19</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/12/19/React-bs-router02/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-bs-router01" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/18/React-bs-router01/">React路由</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/12/18/React-bs-router01/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React路由" title="React路由">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、前言  react-router 针对不同的使用场景衍生了不同的路由包，RN 项目用 react-router-native，Web 项目用react-router-dom。并且不需要再重复引入 react-router。下面用的是 react-router-dom。
-二、前端路由  开始今天的话题之前，先来了解一下前端路由，Ajax 诞生以后，解决了向服务器端发起请...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-12-18</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/12/18/React-bs-router01/#more" class="article-more-link">more&gt;&gt;</a>
-        
-    </footer>
-  </div>
-</article>
-
-
-  
-    <article id="post-React-bs-lifeCycle" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/16/React-bs-lifeCycle/">React生命周期</a>
-    </h1>
-  
-
-          
-              <span class="header-cate">
-                <i class="fa fa-map-marker"></i>
-                  
-                  <a href="/categories/前端/">前端</a>
-                  
-              </span>
-          
-      </header>
-    
-    <div class="article-entry " itemprop="articleBody">
-      
-        <div class="article-img">
-            <a href="/2018/12/16/React-bs-lifeCycle/">
-                
-                <img src="http://liuxuewen-site.github.io/images/banner.jpg" alt="React生命周期" title="React生命周期">
-                
-            </a>
-        </div>
-        <div class="article-feed">
-            <p>
-                一、react生命周期  React 生命周期分为三种状态 1. 初始化 2.更新 3.销毁
-  
-二、初始化  当组件被实例化，第一次被创建时，以下方法依次被调用：  1）getDefaultProps  2）getInitialState  3）componentWillMount  4）render  5）componentDidMount（组件在客户端被实例化时有...
-            </p>
-        </div>
-      
-        
-    </div>
-    <footer class="article-footer">
-        
-        <ul class="article-footer-menu">
-            
-                <li><i class="fa fa-calendar"></i>2018-12-16</li>
-            
-            
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/tags/前端-react/" class="color4">前端-react</a>
-      
-  </li>
-
-        </ul>
-        
-            <a href="/2018/12/16/React-bs-lifeCycle/#more" class="article-more-link">more&gt;&gt;</a>
         
     </footer>
   </div>
